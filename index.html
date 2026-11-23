@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="SMT Mastery Dashboard: research prototype preview with fictional students.">
 <title>SMT Mastery Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -513,6 +515,80 @@ pre.code { max-width: 100%; white-space: pre; }
   .sup-row .btn { margin-left: 0; }
   .al-stds { max-width: none; }
 }
+/* v0.47 · D1: level labels shorten or truncate instead of overlapping */
+.lvl-txt { display: inline-block; min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+.lvl-short { display: none; }
+.lv { max-width: 100%; min-width: 0; }
+.lv .lvl-txt { flex: 0 1 auto; }
+.lvl-conf { white-space: nowrap; }
+.rubric > div { min-width: 0; }
+.rubric b { min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.legend > span { display: inline-flex; align-items: center; min-width: 0; max-width: 100%; }
+.entry-levels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; width: 100%; }
+.sb.sb-wide { display: grid; place-items: center; width: auto; min-width: 0; padding: 0 8px; overflow: hidden; position: relative; }
+@media (max-width: 640px) {
+  .lvl-full { display: none; }
+  .lvl-short { display: inline; }
+  .sb.sb-wide { padding: 0 4px; font-size: .8rem; }
+}
+.pill.sup.ml { background: var(--l4-soft); color: var(--l4); }
+.sup-line { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; }
+.sup-row { flex-wrap: wrap; }
+.sup-h { margin-top: 6px; font-size: .9rem; }
+.pill.imported { background: var(--surface-2); color: var(--ink-2); border: 1px dashed var(--line); font-size: .66rem; }
+.changelog { margin-bottom: 10px; } .changelog ul { margin: 4px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 3px; }
+.pill.warn { background: var(--l1-soft); color: var(--l1); font-weight: 700; white-space: nowrap; }
+/* v0.47 preview */
+.preview-banner { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 6px 20px; max-width: 1440px; margin: 0 auto;
+  background: var(--note-soft, var(--surface-2)); border-top: 1px solid var(--line); font-size: .82rem; }
+#preview-banner-host { background: var(--note-soft, var(--surface-2)); }
+.pb-text { min-width: 0; }
+.pb-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.pb-actions .pill { margin-left: 4px; padding: 0 6px; }
+@media (max-width: 640px) {
+  .preview-banner { padding: 6px 14px; gap: 6px; font-size: .76rem; }
+  .pb-actions { flex-wrap: nowrap; overflow-x: auto; width: 100%; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
+  .pb-actions .btn { flex: 0 0 auto; }
+}
+.dialog.md { width: min(760px, calc(100vw - 24px)); }
+.dlg-body { padding: 16px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.welcome-list { margin: 4px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.welcome-picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+.pick { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; text-align: left; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; }
+.pick.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft, transparent); background: var(--surface-2); }
+.try-list { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+.try-list li { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; }
+.try-list li.done b { text-decoration: line-through; color: var(--ink-3); }
+.sf-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+.sf-steps > div { background: var(--surface-2); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+@media (max-width: 640px) { .sf-steps { grid-template-columns: 1fr; } }
+.gx-card { background: var(--surface-2); border-radius: 10px; padding: 12px 14px; }
+.gx-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 8px; }
+.gx-steps > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.gx-k { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); }
+.gx-v { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.gx-table th, .gx-table td { text-align: center; }
+.glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 16px; margin: 0; }
+.glossary dt { font-weight: 700; font-size: .84rem; }
+.glossary dd { margin: 2px 0 0; font-size: .82rem; color: var(--ink-2); }
+.choice { border-top: 1px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+.vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vs-col { background: var(--surface-2); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.vs-h { font-weight: 750; }
+.vs-std { border-top: 1px solid var(--line); padding-top: 6px; }
+@media (max-width: 640px) { .vs { grid-template-columns: 1fr; } }
+.choice-form fieldset { border: 0; padding: 0; margin: 0; }
+.choice-form { display: flex; flex-direction: column; gap: 8px; }
+.mono-wrap { word-break: break-all; font-family: var(--font-mono, monospace); font-size: .74rem; }
+.smt-check { display: flex; flex-direction: column; gap: 6px; }
+.smt-parts small { white-space: nowrap; }
+.set-group.integrity .card { box-shadow: none; padding: 0; border: 0; background: transparent; }
+/* keep long selects (assessment pickers) inside the screen */
+.field { min-width: 0; max-width: 100%; }
+.field select, .field input { max-width: 100%; min-width: 0; }
+.toolbar, .toolbar .row, .page-head .row { min-width: 0; max-width: 100%; }
+.spread > .row, .spread > .toolbar, .spread > div { min-width: 0; max-width: 100%; }
+.lv { overflow: hidden; } .lv .n { flex-shrink: 0; }
 
 </style>
 </head>
@@ -528,6 +604,7 @@ pre.code { max-width: 100%; white-space: pre; }
       <button class="btn icon" id="open-settings" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     </div>
   </div>
+  <div id="preview-banner-host"></div>
 </header>
 <div class="shell">
   <main id="main" tabindex="-1"></main>
@@ -539,12 +616,42 @@ pre.code { max-width: 100%; white-space: pre; }
 <script>
 "use strict";
 /* ==========================================================================
-   SMT Mastery Middleware · v0.40
+   SMT Mastery Dashboard (version: APP_VERSION below is the only version source)
    Data model, seed cohort, policy engine, encoders (SMT string, CSV, CLR/OB3)
    ========================================================================== */
-const APP_VERSION = "0.46";
-const STORE_KEY = "smt_middleware_v045";
-const SCHEMA = 4;
+const APP_VERSION = "0.47";
+const APP_TAG = "v" + APP_VERSION.replace(/\./g, "");           // "v047", used in file names
+/* Storage is per origin: every repo on <user>.github.io shares one localStorage, so keys are app-specific and version-free. */
+const STORE_KEY = "smt_dashboard_store";                         // demo classes workspace
+const MINE_KEY = "smt_dashboard_mine";                           // "My classes" workspace (kept separate from the demo)
+const ACTIVE_KEY = "smt_dashboard_workspace";                    // which workspace was open last
+const SCHEMA = 5;
+/* ---------- PREVIEW FEEDBACK FORM: the "Send feedback" button opens this link in a new tab ----------
+   Microsoft Forms links open without pre-filled answers; reviewers paste their copied comments, which already include the
+   version and screen. For a Google Form pre-filled link, put the words VERSION and SCREEN where the answers go and the app
+   swaps in the real values. Leave url blank to show copy-only feedback. */
+const FEEDBACK_FORM = { url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=4elDbMNFf0KRVIfu-Jq4TPC4pWRhrBJGtlKxG9OvpLRUMFI0QUdSN0I2TE9YTlRXMVBCRVQxTDJKVC4u" };
+const PREVIEW = true;   // v0.47 is the pre-IRB preview: fictional students only, roster and record import turned off
+const CHANGELOG = [
+  { version: "0.47", date: "2026-11-22", items: [
+    "Preview build for informal practitioner review: fictional students only, with a permanent warning; roster and record import are turned off.",
+    "Welcome screen with a choice of Physics, Math, or English sample classes, and a “Try this” checklist so every reviewer sees the same tasks.",
+    "Send feedback opens the feedback form with the version and current screen filled in; Copy my comments copies your notes as Markdown.",
+    "How grades are calculated: a plain-language panel with a glossary, in Teacher view.",
+    "Which fits your school? Side-by-side choices for the grading rule and the transcript length.",
+    "The averaging comparison names its baseline: the same conversion table or a raw-points average.",
+    "Level 1 converts below a passing grade by default; an optional pass rule; a warning chip when a student has Level 1 on a graded standard but a passing letter.",
+    "SMT codes are always 33 characters: NCES district ID by default, UEI hashed to 9 characters, DUNS kept as a legacy option; validator and codebook download.",
+    "Multilingual learner (ML) status, proficiency, and supports alongside IEP and 504.",
+    "Level labels shorten on phones instead of overlapping nearby text.",
+    "Ready for GitHub Pages: one version number on every export, log entry, and feedback note; app-specific storage keys; noindex.",
+    "Planned for v0.48 (pilot): class setup wizard, gradebook score import, registrar view, policy-change history, and data migrations."] },
+  { version: "0.46", date: "2026-11-21", items: [
+    "Retry queue filters by class card; Add class; IEP/504 flags.",
+    "Copy scores from the Score view and scoresheet; assessment list in the Gradebook.",
+    "Add a standard from the Class view; semester review for recommendation letters; import past learner records and chart growth.",
+    "Points is the default export score type; full scrollable file preview; Students view fits phone screens."] }
+];
 
 function isoToday() {
   const d = new Date();
@@ -559,6 +666,7 @@ const LEVELS = {
   3: { name: "Meets", long: "Meets the standard (proficient)", smt: "06" },
   4: { name: "Exceeds", long: "Exceeds the standard", smt: "08" }
 };
+LEVELS[1].abbr = "Not yet"; LEVELS[2].abbr = "Appr."; LEVELS[3].abbr = "Meets"; LEVELS[4].abbr = "Exceeds";
 const METHODS = {
   P: { name: "Observation or conversation", short: "Observation" },
   A: { name: "Product (student work)", short: "Product" },
@@ -582,6 +690,13 @@ const SEMESTERS = [
   { id: "S1", name: "Semester 1", start: "2026-08-24", end: "2027-01-22" },
   { id: "S2", name: "Semester 2", start: "2027-01-25", end: "2027-06-15" }
 ];
+const DEFAULT_CALENDAR = { semesters: SEMESTERS.map((s) => ({ ...s })), terms: TERMS.map((t) => ({ ...t })) };
+/* Calendar is a site setting in "My classes": the arrays above are updated in place so every view picks it up. */
+function applyCalendar(cal) {
+  const src = cal && cal.semesters ? cal : DEFAULT_CALENDAR;
+  src.semesters.forEach((s, i) => Object.assign(SEMESTERS[i], s));
+  src.terms.forEach((t, i) => Object.assign(TERMS[i], t));
+}
 function semesterFor(iso) { return iso >= SEMESTERS[1].start ? "S2" : "S1"; }
 const semesterStart = (id) => SEMESTERS.find((s) => s.id === id).start;
 const NO_SCHOOL = [["2026-09-07", "Labor Day"], ["2026-09-21", "Yom Kippur"], ["2026-10-12", "Indigenous Peoples' Day"],
@@ -1258,11 +1373,17 @@ function finishProfile(p) {
   p.assessments = assessments;
   return p;
 }
-const PROFILE_BUILDERS = { physics: buildPhysics, math: buildMath, english: buildEnglish };
+function buildMine() {
+  return { id: "mine", name: "My classes", teacher: "My classes", blurb: "Your own classes, set up from a roster and standards files",
+    frameworks: [], competencies: [], sections: [], courses: {}, assessments: [], seed: 1, idBase: 1, idBase2: 1, nameShift: 0, notes: {},
+    artifacts: { A: ["Lab report", "Written work", "Project", "Notebook"], P: ["Conference notes", "Presentation", "Demonstration"], E: ["Quiz", "Unit test", "Exit ticket"] } };
+}
+const PROFILE_BUILDERS = { physics: buildPhysics, math: buildMath, english: buildEnglish, mine: buildMine };
 const PROFILE_CACHE = {};
 let PROFILE_ID = "physics", PROFILE = null, FRAMEWORKS = [], COMPETENCIES = [], COMP = {}, SECTIONS = [], SEC = {}, SEED_ASSESSMENTS = [], COURSES = {};
 function activateProfile(id) {
   if (!PROFILE_BUILDERS[id]) id = "physics";
+  if (id === "mine") delete PROFILE_CACHE.mine;
   const p = PROFILE_CACHE[id] || (PROFILE_CACHE[id] = PROFILE_BUILDERS[id]());
   PROFILE_ID = id; PROFILE = p;
   FRAMEWORKS = p.frameworks; COMPETENCIES = p.competencies; COMP = Object.fromEntries(COMPETENCIES.map((c) => [c.id, c]));
@@ -1271,10 +1392,11 @@ function activateProfile(id) {
 const courseComps = (sectionId) => (COURSES[SEC[sectionId].course]?.comps || COMPETENCIES.map((c) => c.id)).map((id) => COMP[id]).filter(Boolean);
 
 /* ---------- teacher customizations: added classes, courses, standards ---------- */
-const CUSTOM_KEYS = ["customSections", "customCourses", "customStandards", "courseAdds", "supports", "history"];
-const CUSTOM_DEFAULTS = { customSections: () => [], customCourses: () => ({}), customStandards: () => [], courseAdds: () => ({}), supports: () => ({}), history: () => ({}) };
+const CUSTOM_KEYS = ["customSections", "customCourses", "customStandards", "customFrameworks", "courseAdds", "supports", "history"];
+const CUSTOM_DEFAULTS = { customSections: () => [], customCourses: () => ({}), customStandards: () => [], customFrameworks: () => [], courseAdds: () => ({}), supports: () => ({}), history: () => ({}) };
 function applyCustom(s) {
   const p = PROFILE;
+  FRAMEWORKS = [...p.frameworks, ...(s.customFrameworks || []).filter((f) => !p.frameworks.some((x) => x.id === f.id))];
   COMPETENCIES = [...p.competencies, ...(s.customStandards || [])];
   COMP = Object.fromEntries(COMPETENCIES.map((c) => [c.id, c]));
   SECTIONS = [...p.sections, ...(s.customSections || [])];
@@ -1298,9 +1420,30 @@ function seedSupports(students) {
     const acc = [...ACCOMMODATIONS].sort(() => rng() - 0.5).slice(0, n);
     out[st.id] = { plan, accommodations: acc, modifications: plan === "IEP" && rng() < 0.25 ? "Modified rubric on extended writing; reduced item count on unit tests." : "", updated: "2026-09-08" };
   });
+  /* Multilingual learners: ~10% of students, separate random stream so IEP/504 seeds are unchanged. Some also have an IEP. */
+  const rml = mulberry32((PROFILE.seed || 1) + 104729);
+  const langs = ["Spanish", "Portuguese", "Haitian Creole", "Arabic", "Mandarin", "Polish", "Ukrainian", "Vietnamese", "Albanian", "Dari"];
+  students.forEach((st) => {
+    const r = rml();
+    if (r > 0.1) return;
+    const status = r < 0.05 ? "Active ML" : r < 0.075 ? "Monitored (exited, within 4 years)" : "Former ML";
+    const lvl = status === "Active ML" ? 2 + Math.floor(rml() * 3) : 5;
+    const sup = [...ML_SUPPORTS].sort(() => rml() - 0.5).slice(0, status === "Active ML" ? 3 : status.startsWith("Monitored") ? 1 : 0);
+    const rec = out[st.id] || { plan: "", accommodations: [], modifications: "", updated: "2026-09-08" };
+    rec.ml = { status, proficiency: String(lvl), source: "LAS Links (district ELP assessment)", assessedOn: "2026-03-15", homeLanguage: langs[Math.floor(rml() * langs.length)], supports: sup };
+    out[st.id] = rec;
+  });
+  if (!Object.values(out).some((x) => x.plan === "IEP" && x.ml)) {
+    const both = Object.keys(out).find((k) => out[k].plan === "IEP");
+    if (both) out[both].ml = { status: "Active ML", proficiency: "3", source: "LAS Links (district ELP assessment)", assessedOn: "2026-03-15", homeLanguage: "Spanish", supports: ML_SUPPORTS.slice(0, 2) };
+  }
   return out;
 }
+const ML_STATUSES = ["Not ML", "Active ML", "Monitored (exited, within 4 years)", "Former ML"];
+const ML_SUPPORTS = ["Bilingual glossary or word-to-word dictionary", "Translated directions", "Native-language clarification", "Word bank or sentence frames", "Extended time", "Read-aloud of directions (in English)", "Visual supports", "Reduced linguistic load on non-ELA tasks"];
 const supportOf = (sid) => state.supports && state.supports[sid];
+const mlStatus = (sid) => { const s = supportOf(sid); return (s && s.ml && s.ml.status) || "Not ML"; };
+const mlActive = (sid) => /^Active|^Monitored/.test(mlStatus(sid));
 
 /* ---------- copy-to-clipboard tables (tab-separated, pastes into spreadsheets) ---------- */
 const tsv = (rows) => rows.map((r) => r.map((v) => String(v ?? "").replace(/[\t\n]/g, " ")).join("\t")).join("\n");
@@ -1384,15 +1527,19 @@ function randomSalt() {
 const DEFAULT_SETTINGS = {
   theme: "system", density: "auto", fontScale: 100, cvd: false, reduceMotion: false,
   mode: "teacher", startTab: "today",
-  research: { studyNotes: true, tips: true, pseudonymsEverywhere: false },
+  research: { studyNotes: true, tips: true, pseudonymsEverywhere: false, includeSupports: false,
+    profRationale: "Levels 1–4 map to even codes 02–08 so that intermediate codes (01, 03, 05, 07) stay free for half-levels or local scales; 00 means no evidence. Confirm against the published taxonomy before reporting." },
   columns: { attempts: true, habits: true, retry: true, course: false, last: false, evidence: true },
   rubricOpen: true, autoAdvance: true,
-  policy: { rule: "latest", n: 2, weight: 0.65, confirm: false, anchors: { 1: 62, 2: 75, 3: 88, 4: 98 }, showLegacyToTeacher: true,
+  policy: { rule: "latest", n: 2, weight: 0.65, confirm: false, anchors: { 1: 50, 2: 72, 3: 87, 4: 97 }, showLegacyToTeacher: true,
+    passRule: { mode: "off", pct: 70 }, passLine: 60, baseline: "anchors",
     gradeFrameworks: { NGSS: true, "CT Math": false, CSTA: false, MathContent: true, MathPractice: false, "ELA-R": true, "ELA-W": true, "ELA-SL": true } },
   groups: { tier3Min: 3, persistentAttempts: 2 },
-  privacy: { nameFormat: "full", salt: "" },
+  privacy: { nameFormat: "full", researchSalt: "", credentialSalt: "" },
+  importCuts: { 4: 90, 3: 75, 2: 60 },
   export: { scoreType: "points", total: 10, mapping: "anchors", decimals: 1, nameFormat: "lastFirst", overall: false, includeBlank: false },
-  district: { idType: "DUNS", idValue: "084927104", issuerName: "Demo Connecticut Secondary District", term: semesterFor(TODAY) }
+  /* Fictional NCES-style ID (CT LEA IDs begin with 09). Replace with the real 7-digit NCES district ID for a pilot. */
+  district: { idType: "NCES", idValue: "0999999", issuerName: "Demo Connecticut Secondary District (fictional)", term: semesterFor(TODAY) }
 };
 const RULES = {
   latest: { name: "Most recent evidence", short: "Most recent" },
@@ -1410,37 +1557,106 @@ function deepMerge(base, over) {
   }
   return out;
 }
-function freshState(profileId = "physics") {
+/* ---------- grading policy history (locked per term; every change versioned with a reason) ---------- */
+const POLICY_FIELDS = ["rule", "n", "weight", "confirm", "anchors", "gradeFrameworks", "passRule", "passLine", "baseline"];
+let POLICY_CAP = Infinity;       // set while reproducing an earlier export
+let VIEW_DATE = TODAY;           // the date grades are viewed or exported as of
+let GEN_STAMP = null;            // fixed "generated" time while reproducing an export
+const localIso = (dt = new Date()) => { const z = (n) => String(n).padStart(2, "0"); return `${dt.getFullYear()}-${z(dt.getMonth() + 1)}-${z(dt.getDate())}T${z(dt.getHours())}:${z(dt.getMinutes())}:${z(dt.getSeconds())}`; };
+const genStamp = () => GEN_STAMP || localIso();
+const pickPolicy = (p) => structuredClone(Object.fromEntries(POLICY_FIELDS.map((k) => [k, p[k]])));
+function initialPolicyHistory(s, reason = "Initial policy for the term") {
+  return [{ version: 1, effectiveFrom: SEMESTERS[0].start, ...pickPolicy(s.settings.policy), reason, mode: "initial", changedAt: genStamp(), appVersion: APP_VERSION }];
+}
+function policyVersions() { return (state.policyHistory || []).filter((v) => v.version <= POLICY_CAP); }
+/* The version in force on a date: of the versions effective by then, the newest one wins. "Recalculate the term" versions
+   take effect from the term start, so they replace earlier versions for every date; "going forward" versions start today. */
+function policyAt(date) {
+  let best = null;
+  for (const v of policyVersions()) if (v.effectiveFrom <= date && (!best || v.version > best.version)) best = v;
+  return best || policyVersions()[0] || state.settings.policy;
+}
+const currentPolicy = () => policyAt(VIEW_DATE);
+/* A standard's level uses the policy in force on the date of its most recent evidence, so a forward-only change never
+   rewrites a level that has no new evidence. */
+const policyForAttempts = (att) => policyAt(att.length ? att[att.length - 1].date : VIEW_DATE);
+const policyVersionNow = () => Math.max(0, ...policyVersions().map((v) => v.version));
+function syncPolicyMirror() {
+  const latest = (state.policyHistory || []).reduce((a, v) => (!a || v.version > a.version ? v : a), null);
+  if (latest) Object.assign(state.settings.policy, pickPolicy(latest));
+}
+const BASELINES = {
+  anchors: { name: "Same conversion table", vs: "vs. averaging on the same conversion table", help: "Averages every attempt using the same level → percent table as the mastery grade. The gap mostly reflects the table, not a measurement." },
+  rawPoints: { name: "Raw-points average", vs: "vs. raw-points average", help: "Each attempt scored as level ÷ 4 × 100 and averaged, like a plain points gradebook." },
+  imported: { name: "Imported gradebook percent", vs: "vs. reported gradebook percent", help: "The course percent the school actually reported, from an imported PowerTeacher Pro or SIS file." }
+};
+const hasImportedBaseline = () => Object.keys((state.imports && state.imports.reported) || {}).length > 0;
+
+/* ---------- workspaces: demo classes and "My classes" never share storage ---------- */
+let FIRST_RUN = false;
+function baseState(profileId) {
   activateProfile(profileId);
-  const s = { schema: SCHEMA, profile: PROFILE_ID, store: {}, settings: structuredClone(DEFAULT_SETTINGS), ...seedData(), fieldNotes: [], telemetry: [], feedback: [], reviewer: "" };
-  applyCustom(s);
-  s.settings.privacy.salt = randomSalt();
+  const s = { schema: SCHEMA, appVersion: APP_VERSION, workspace: profileId === "mine" ? "mine" : "demo", profile: PROFILE_ID, store: {}, settings: structuredClone(DEFAULT_SETTINGS),
+    fieldNotes: [], telemetry: [], feedback: [], reviewer: "", exportLog: [], imports: { reported: {}, files: [] }, calendar: null, tryThis: {}, choices: {}, welcomed: false };
+  s.settings.privacy.researchSalt = randomSalt();
+  s.settings.privacy.credentialSalt = randomSalt();
   return s;
 }
+function freshState(profileId = "physics") {
+  const s = baseState(profileId);
+  Object.assign(s, seedData());
+  s.policyHistory = initialPolicyHistory(s);
+  applyCalendar(null);
+  applyCustom(s);
+  return s;
+}
+function freshMine() {
+  const s = baseState("mine");
+  Object.assign(s, { students: [], assessments: [], scores: [], habits: {}, flags: {} });
+  CUSTOM_KEYS.forEach((k) => (s[k] = CUSTOM_DEFAULTS[k]()));
+  s.policyHistory = initialPolicyHistory(s);
+  applyCalendar(null);
+  applyCustom(s);
+  return s;
+}
+function hydrate(p) {
+  if (p.schema !== SCHEMA || !Array.isArray(p.scores) || !Array.isArray(p.students)) return null;
+  activateProfile(p.profile || "physics");
+  p.profile = PROFILE_ID; p.store = p.store || {}; p.workspace = PROFILE_ID === "mine" ? "mine" : "demo";
+  p.settings = deepMerge(DEFAULT_SETTINGS, p.settings);
+  if (!p.settings.privacy.researchSalt) p.settings.privacy.researchSalt = randomSalt();
+  if (!p.settings.privacy.credentialSalt) p.settings.privacy.credentialSalt = randomSalt();
+  p.fieldNotes = p.fieldNotes || []; p.telemetry = p.telemetry || []; p.flags = p.flags || {}; p.habits = p.habits || {};
+  p.feedback = p.feedback || []; p.reviewer = p.reviewer || ""; p.exportLog = p.exportLog || []; p.imports = p.imports || { reported: {}, files: [] };
+  p.tryThis = p.tryThis || {}; p.choices = p.choices || {};
+  CUSTOM_KEYS.forEach((k) => { if (p[k] == null) p[k] = CUSTOM_DEFAULTS[k](); });
+  if (!p.policyHistory || !p.policyHistory.length) p.policyHistory = initialPolicyHistory(p);
+  applyCalendar(p.calendar);
+  applyCustom(p);
+  return p;
+}
+function readStore(key) { try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; } catch (e) { return null; } }
 function loadState() {
+  let active = "demo";
+  try { active = localStorage.getItem(ACTIVE_KEY) || "demo"; FIRST_RUN = !localStorage.getItem(STORE_KEY) && !localStorage.getItem(MINE_KEY); } catch (e) { /* storage unavailable */ }
   try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (!raw) return freshState();
-    const p = JSON.parse(raw);
-    activateProfile(p.profile || "physics");
-    p.profile = PROFILE_ID; p.store = p.store || {};
-    if (p.schema !== SCHEMA || !Array.isArray(p.scores) || !Array.isArray(p.students)) return freshState();
-    p.settings = deepMerge(DEFAULT_SETTINGS, p.settings);
-    if (!p.settings.privacy.salt) p.settings.privacy.salt = randomSalt();
-    p.fieldNotes = p.fieldNotes || []; p.telemetry = p.telemetry || []; p.flags = p.flags || {}; p.habits = p.habits || {};
-    p.feedback = p.feedback || []; p.reviewer = p.reviewer || "";
-    CUSTOM_KEYS.forEach((k) => { if (p[k] == null) p[k] = CUSTOM_DEFAULTS[k](); });
-    if (!p.supports || !Object.keys(p.supports).length) p.supports = seedSupports(p.students);
-    applyCustom(p);
-    return p;
+    // TODO(pilot): migrations. Before real teachers use the tool, replace the fresh start on a schema mismatch with a
+    // migration chain (migrations[5] = (s) => {...} upgrades schema 5 to 6, and so on) and save an automatic backup of the
+    // old state first. v0.47 raises SCHEMA to 5 and starts fresh because no one used v0.46 with real data.
+    if (active === "mine") { const m = readStore(MINE_KEY); const h = m && hydrate(m); if (h) return h; }
+    const p = readStore(STORE_KEY);
+    return (p && hydrate(p)) || freshState();
   } catch (e) { return freshState(); }
 }
+const storeKeyFor = (s) => (s.workspace === "mine" ? MINE_KEY : STORE_KEY);
 let state = loadState();
 let saveTimer = null;
 function save() {
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable: session-only */ } }, 120);
+  saveTimer = setTimeout(() => { try { localStorage.setItem(storeKeyFor(state), JSON.stringify(state)); localStorage.setItem(ACTIVE_KEY, state.workspace); } catch (e) { /* storage unavailable: session-only */ } }, 120);
 }
+function saveNow() { clearTimeout(saveTimer); try { localStorage.setItem(storeKeyFor(state), JSON.stringify(state)); localStorage.setItem(ACTIVE_KEY, state.workspace); } catch (e) { /* ignore */ } }
+const isDemo = () => state.workspace !== "mine";
 
 /* ---------- indexes ---------- */
 let IDX = null;
@@ -1466,12 +1682,12 @@ function index() {
 function activeComps(sectionId) {
   const ix = index();
   if (ix.active.has(sectionId)) return ix.active.get(sectionId);
-  const ids = new Set(state.assessments.filter((a) => a.date <= TODAY && (sectionId === "all" || (a.sections || []).includes(sectionId))).flatMap((a) => a.comps));
+  const ids = new Set(state.assessments.filter((a) => a.date <= VIEW_DATE && (sectionId === "all" || (a.sections || []).includes(sectionId))).flatMap((a) => a.comps));
   const list = COMPETENCIES.filter((c) => ids.has(c.id));
   ix.active.set(sectionId, list);
   return list;
 }
-const countsInGrade = (c) => !!state.settings.policy.gradeFrameworks[c.framework];
+const countsInGrade = (c, p = currentPolicy()) => !!(p.gradeFrameworks || {})[c.framework];
 const attemptsFor = (sid, cid) => index().live.get(`${sid}|${cid}`) || [];
 const historyFor = (sid, cid) => index().all.get(`${sid}|${cid}`) || [];
 function entryState(e) { if (e.voided) return "void"; if (index().superseded.has(e.id)) return "superseded"; return "live"; }
@@ -1493,7 +1709,7 @@ function assessmentsFor(sectionId, cid) {
 function currentHabit(sid) { const h = state.habits[sid] || []; return h.length ? h[h.length - 1].value : null; }
 
 /* ---------- policy engine ---------- */
-function evaluate(att, p = state.settings.policy) {
+function evaluate(att, p = policyForAttempts(att)) {
   if (!att.length) return { value: null, level: 0, n: 0, trace: "no evidence", confirmed: false, mastered: false };
   const lv = att.map((a) => a.level);
   let v, trace;
@@ -1509,8 +1725,8 @@ function evaluate(att, p = state.settings.policy) {
   const confirmed = level < 3 || !p.confirm || meetsCount >= 2;
   return { value: v, level, n: lv.length, trace, confirmed, mastered: level >= 3 && confirmed, meetsCount };
 }
-function pctFromValue(v) {
-  const a = state.settings.policy.anchors;
+function pctFromValue(v, p = currentPolicy()) {
+  const a = p.anchors;
   if (v == null) return null;
   const lo = Math.floor(v), hi = Math.ceil(v);
   return lo === hi ? a[lo] : a[lo] + (a[hi] - a[lo]) * (v - lo);
@@ -1519,29 +1735,64 @@ const LETTERS = [[97, "A+"], [93, "A"], [90, "A-"], [87, "B+"], [83, "B"], [80, 
 function letter(p) { if (p == null) return "–"; for (const [cut, l] of LETTERS) if (p >= cut) return l; return "F"; }
 const letterRank = (l) => LETTERS.findIndex((x) => x[1] === l);
 
+/* Comparison baseline for the averaging audit (per standard). "imported" is course-level only. */
+function baselineStd(att, p, type) {
+  if (!att.length) return null;
+  if (type === "rawPoints") return mean(att.map((a) => (a.level / 4) * 100));
+  if (type === "imported") return null;
+  return mean(att.map((a) => p.anchors[a.level]));
+}
+const importedPct = (sid) => { const r = state.imports && state.imports.reported && state.imports.reported[sid]; return r && r.pct != null ? Number(r.pct) : null; };
+const passLineLetter = (p = currentPolicy()) => letter(p.passLine);
 function metrics(student) {
   const ix = index();
   if (ix.metrics.has(student.id)) return ix.metrics.get(student.id);
-  const anchors = state.settings.policy.anchors;
-  const per = {}; const pol = [], leg = [];
+  const pc = currentPolicy();
+  const per = {}; const pol = [], leg = [], l1Graded = [];
+  let countedN = 0, countedMet = 0;
   for (const c of COMPETENCIES) {
     const att = attemptsFor(student.id, c.id);
-    const ev = evaluate(att);
-    const legacy = att.length ? mean(att.map((a) => anchors[a.level])) : null;
-    per[c.id] = { ev, att, policyPct: pctFromValue(ev.value), legacyPct: legacy };
-    if (att.length && countsInGrade(c)) { pol.push(pctFromValue(ev.value)); leg.push(legacy); }
+    const p = policyForAttempts(att);
+    const ev = evaluate(att, p);
+    const legacy = baselineStd(att, p, pc.baseline);
+    per[c.id] = { ev, att, policyPct: pctFromValue(ev.value, p), legacyPct: legacy, policyVersion: p.version };
+    if (att.length && countsInGrade(c, pc)) {
+      pol.push(pctFromValue(ev.value, p)); if (legacy != null) leg.push(legacy);
+      countedN++; if (ev.level >= 3) countedMet++;
+      if (ev.level === 1) l1Graded.push(c);
+    }
   }
-  const policyPct = pol.length ? Math.round(mean(pol)) : null;
-  const legacyPct = leg.length ? Math.round(mean(leg)) : null;
+  const rawPct = pol.length ? Math.round(mean(pol)) : null;
+  const pr = pc.passRule || { mode: "off" };
+  let failsRule = false;
+  if (rawPct != null && pr.mode === "noLevel1") failsRule = l1Graded.length > 0;
+  if (rawPct != null && pr.mode === "pctMeets") failsRule = countedN > 0 && (countedMet / countedN) * 100 < Number(pr.pct || 0);
+  const policyPct = rawPct == null ? null : failsRule ? Math.min(rawPct, pc.passLine - 1) : rawPct;
+  const legacyPct = pc.baseline === "imported" ? importedPct(student.id) : leg.length ? Math.round(mean(leg)) : null;
   const m = {
-    per, policyPct, legacyPct, delta: policyPct == null ? null : policyPct - legacyPct,
+    per, policyPct, rawPct, capped: failsRule && rawPct >= pc.passLine, legacyPct,
+    delta: policyPct == null || legacyPct == null ? null : policyPct - legacyPct,
+    baseline: pc.baseline, policyVersion: pc.version || 1,
     policyLetter: letter(policyPct), legacyLetter: letter(legacyPct), evidenced: pol.length,
+    l1Graded, warnL1Pass: l1Graded.length > 0 && policyPct != null && policyPct >= pc.passLine,
     active: activeComps(student.sectionId),
     mastered: activeComps(student.sectionId).filter((c) => per[c.id].ev.mastered).length,
     meanLevel: mean(COMPETENCIES.filter((c) => per[c.id].ev.value != null).map((c) => per[c.id].ev.value))
   };
   ix.metrics.set(student.id, m);
   return m;
+}
+
+/* ---------- reproducing an earlier export: same evidence (by record time), same policy version, same date ---------- */
+function withSnapshot(snap, fn) {
+  const saved = { scores: state.scores, cap: POLICY_CAP, vd: VIEW_DATE, gs: GEN_STAMP, ex: state.settings.export };
+  /* Seeded demo entries existed before any export (their recordedAt can be a simulated future time), so they always count. */
+  state.scores = saved.scores.filter((e) => e.by === "seed" || e.recordedAt <= snap.ts).map((e) => (e.voided && e.voided.at > snap.ts ? { ...e, voided: null } : e));
+  POLICY_CAP = snap.policyVersion; VIEW_DATE = snap.date; GEN_STAMP = snap.ts;
+  if (snap.export) state.settings.export = structuredClone(snap.export);
+  invalidate();
+  try { return fn(); }
+  finally { state.scores = saved.scores; POLICY_CAP = saved.cap; VIEW_DATE = saved.vd; GEN_STAMP = saved.gs; state.settings.export = saved.ex; invalidate(); }
 }
 
 /* ---------- grouping (re-teach / practice / intensive review) ---------- */
@@ -1571,28 +1822,72 @@ function groupsForSection(sectionId) {
 }
 
 /* ---------- identity & privacy ---------- */
-function pseudonym(sid) { return "P-" + sha256Hex(state.settings.privacy.salt + "|" + sid).slice(0, 6).toUpperCase(); }
+/* Research pseudonyms use researchSalt only; credential hashes use credentialSalt only. researchSalt is never exported. */
+function pseudonym(sid) { return "P-" + sha256Hex(state.settings.privacy.researchSalt + "|" + sid).slice(0, 6).toUpperCase(); }
 
-/* ---------- SMT string (Uranis et al., 2019 layout as implemented in v0.36) ---------- */
+/* ---------- SMT string (Uranis et al., 2019): always 33 characters ----------
+   pos 1–3 Domain · 4–7 Comp · 8–10 Type · 11–12 Decay · 13–14 Proficiency · 15 "-" · 16–23 Date · 24 Method · 25–33 District */
+const ID_TYPES = {
+  NCES: { name: "NCES LEA ID", help: "7-digit NCES district (LEA) ID, zero-padded to 9." },
+  UEI: { name: "UEI (hashed to 9 chars)", help: "The 12-character SAM UEI is hashed (SHA-256 of the uppercase UEI, first 9 base-36 characters, uppercase) so the code stays 33 characters. The hash is deterministic and documented in the codebook." },
+  DUNS: { name: "DUNS (retired federally in 2022)", help: "Legacy 9-digit DUNS number. Kept only to match older records." }
+};
+function ueiHash9(uei) {
+  const h = sha256Hex(String(uei).toUpperCase());
+  let n = BigInt("0x" + h.slice(0, 16));
+  let out = "";
+  for (let i = 0; i < 9; i++) { out = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Number(n % 36n)] + out; n /= 36n; }
+  return out;
+}
 function districtField() {
   const d = state.settings.district;
   const raw = String(d.idValue || "").replace(/[^0-9A-Za-z]/g, "").toUpperCase();
-  if (d.idType === "UEI") return raw.padEnd(12, "0").slice(0, 12);
-  if (d.idType === "NCES") return raw.replace(/\D/g, "").padStart(7, "0").slice(0, 7).padStart(9, "0");
-  return raw.replace(/\D/g, "").padEnd(9, "0").slice(0, 9);
+  if (d.idType === "UEI") return ueiHash9(raw);
+  if (d.idType === "NCES") return raw.replace(/\D/g, "").padStart(7, "0").slice(-7).padStart(9, "0");
+  return raw.replace(/\D/g, "").padStart(9, "0").slice(-9);
 }
+const SMT_FIELDS = [["Domain", 1, 3], ["Comp", 4, 7], ["Type", 8, 10], ["Decay", 11, 12], ["Prof", 13, 14], ["", 15, 15], ["Date", 16, 23], ["Method", 24, 24], ["District", 25, 33]];
+const fit = (v, n, pad) => String(v == null ? "" : v).toUpperCase().replace(/[^0-9A-Z]/g, "").padEnd(n, pad).slice(0, n);
 function smtParts(comp, entry) {
   return [
-    ["Domain", comp.domainCode.padEnd(3, "X").slice(0, 3)],
-    ["Comp", comp.compNum.padEnd(4, "0").slice(0, 4)],
-    ["Type", comp.typeCode.padEnd(3, "X").slice(0, 3)],
-    ["Decay", comp.decayCode],
+    ["Domain", fit(comp.domainCode, 3, "X")],
+    ["Comp", String(comp.compNum || "").replace(/\D/g, "").padStart(4, "0").slice(-4)],
+    ["Type", fit(comp.typeCode, 3, "X")],
+    ["Decay", String(comp.decayCode || "00").replace(/\D/g, "").padStart(2, "0").slice(-2)],
     ["Prof", LEVELS[entry.level].smt],
     ["", "-"],
     ["Date", entry.date.replace(/-/g, "")],
     ["Method", entry.method],
     ["District", districtField()]
   ];
+}
+/* Returns a list of problems; an empty list means the code is valid. */
+function assertSmt(str) {
+  const errs = [];
+  if (typeof str !== "string" || str.length !== 33) errs.push(`length ${str ? str.length : 0}, expected 33`);
+  if (str[14] !== "-") errs.push("position 15 is not a hyphen");
+  const dt = str.slice(15, 23);
+  const iso = `${dt.slice(0, 4)}-${dt.slice(4, 6)}-${dt.slice(6, 8)}`;
+  const dd = new Date(iso + "T00:00:00Z");
+  if (!/^\d{8}$/.test(dt) || isNaN(dd) || dd.toISOString().slice(0, 10) !== iso) errs.push(`date "${dt}" is not a valid YYYYMMDD`);
+  if (!"PAE".includes(str[23] || "?")) errs.push(`method "${str[23] || ""}" is not P, A, or E`);
+  return errs;
+}
+const smtValid = (str) => assertSmt(str).length === 0;
+/* Every current SMT code in this workspace, for the Reviewer check and the codebook. */
+function smtAudit() {
+  const bad = [], seen = { domain: new Map(), type: new Map(), decay: new Map() };
+  let n = 0;
+  state.students.forEach((st) => COMPETENCIES.forEach((c) => {
+    const att = attemptsFor(st.id, c.id);
+    if (!att.length) return;
+    const code = smtString(c, att[att.length - 1]); n++;
+    const errs = assertSmt(code);
+    if (errs.length) bad.push({ st, c, code, errs });
+    const parts = smtParts(c, att[att.length - 1]);
+    seen.domain.set(parts[0][1], c.domain || c.framework); seen.type.set(parts[2][1], seen.type.get(parts[2][1]) || c.standard); seen.decay.set(parts[3][1], true);
+  }));
+  return { n, bad, seen };
 }
 const smtString = (comp, entry) => smtParts(comp, entry).map((p) => p[1]).join("");
 
@@ -1604,16 +1899,18 @@ function sisCsv(sectionId, format) {
   const term = state.settings.district.term;
   const list = roster(sectionId);
   if (format === "course") {
-    const rows = [["Student_Number", "Student_Name", "Course_Section", "Store_Code", "Percent", "Grade", "Work_Habits", "Graded_Standards_With_Evidence"]];
-    list.forEach((st) => { const m = metrics(st); rows.push([st.id, `${st.last}, ${st.first}`, sectionId, term, m.policyPct ?? "", m.policyLetter, currentHabit(st.id) || "", `${m.evidenced}/${m.active.filter(countsInGrade).length}`]); });
+    const pv = policyVersionNow();
+    const rows = [["Student_Number", "Student_Name", "Course_Section", "Store_Code", "Percent", "Grade", "Work_Habits", "Graded_Standards_With_Evidence", "Level1_Warning", "SMT_App_Version", "Policy_Version"]];
+    list.forEach((st) => { const m = metrics(st); rows.push([st.id, `${st.last}, ${st.first}`, sectionId, term, m.policyPct ?? "", m.policyLetter, currentHabit(st.id) || "", `${m.evidenced}/${m.active.filter((c) => countsInGrade(c)).length}`, m.warnL1Pass ? "Y" : "", APP_VERSION, pv]); });
     return csv(rows);
   }
-  const rows = [["Student_Number", "Student_Name", "Course_Section", "Store_Code", "Framework", "Standard_ID", "Standard_Level", "Standard_Percent", "Counts_In_Course_Grade", "Evidence_Count", "Last_Evidence_Date"]];
+  const pv = policyVersionNow();
+  const rows = [["Student_Number", "Student_Name", "Course_Section", "Store_Code", "Framework", "Standard_ID", "Standard_Level", "Standard_Percent", "Counts_In_Course_Grade", "Evidence_Count", "Last_Evidence_Date", "SMT_App_Version", "Policy_Version"]];
   list.forEach((st) => {
     const m = metrics(st);
     activeComps(sectionId).forEach((c) => {
       const { ev, att, policyPct } = m.per[c.id];
-      rows.push([st.id, `${st.last}, ${st.first}`, sectionId, term, c.framework, c.standard, ev.value == null ? "" : fmt1(ev.value), policyPct == null ? "" : Math.round(policyPct), countsInGrade(c) ? "Y" : "N", att.length, att.length ? att[att.length - 1].date : ""]);
+      rows.push([st.id, `${st.last}, ${st.first}`, sectionId, term, c.framework, c.standard, ev.value == null ? "" : fmt1(ev.value), policyPct == null ? "" : Math.round(policyPct), countsInGrade(c) ? "Y" : "N", att.length, att.length ? att[att.length - 1].date : "", APP_VERSION, pv]);
     });
   });
   return csv(rows);
@@ -1624,7 +1921,7 @@ const EXPORT_TYPES = {
   percent: { name: "Percent (conversion anchors)", file: "Percent", short: "percent" }
 };
 function exportValue(level, ex = state.settings.export) {
-  const anchors = state.settings.policy.anchors;
+  const anchors = currentPolicy().anchors;
   const round = (v) => Math.round(v);
   if (ex.scoreType === "percent") return round(anchors[level]);
   if (ex.scoreType === "points") {
@@ -1667,21 +1964,96 @@ function ptpImport(sectionId, aid, ex = state.settings.export) {
   const text = [header, ...rows].map((r) => r.map(csvCell).join(",")).join("\r\n") + "\r\n";
   return { a, comps, header, rows, skipped, cells, text, firstScoreCol: withName ? 2 : 1 };
 }
+/* Support flags appear only when Settings › Reviewer view › "Include support flags (de-identified)" is on. */
+function supportFlags(sid) {
+  const s = supportOf(sid) || {};
+  return { iep: s.plan === "IEP" ? 1 : 0, p504: s.plan === "504" ? 1 : 0, ml: (s.ml && s.ml.status) || "Not ML" };
+}
 function researchCsv(sectionId) {
-  const anchors = state.settings.policy.anchors;
-  const rows = [["pseudonym", "section", "framework", "standard", "attempt_index", "level", "method", "evidence_date", "assessment_id", "is_reassessment", "policy_value_after", "legacy_running_mean_pct", "work_habits_current"]];
+  const pc = currentPolicy(), bt = pc.baseline, pv = policyVersionNow();
+  const withSup = !!state.settings.research.includeSupports;
+  const rows = [["pseudonym", "section", "framework", "standard", "attempt_index", "level", "method", "evidence_date", "assessment_id", "is_reassessment", "source",
+    "policy_value_after", "baseline_running_pct", "baseline_type", "work_habits_current", ...(withSup ? ["support_iep", "support_504", "support_ml_status"] : []), "smt_valid", "app_version", "policy_version"]];
   roster(sectionId).forEach((st) => {
+    const sf = withSup ? supportFlags(st.id) : null;
     COMPETENCIES.forEach((c) => {
       const att = attemptsFor(st.id, c.id);
       att.forEach((e, i) => {
         const upTo = att.slice(0, i + 1);
         const a = assessmentById(e.aid);
-        rows.push([pseudonym(st.id), st.sectionId, c.framework, c.standard, i + 1, e.level, e.method, e.date, e.aid || "", a && a.reassess ? 1 : 0,
-          fmt1(evaluate(upTo).value), Math.round(mean(upTo.map((x) => anchors[x.level]))), currentHabit(st.id) || ""]);
+        const p = policyForAttempts(upTo);
+        const base = bt === "imported" ? importedPct(st.id) : baselineStd(upTo, p, bt);
+        rows.push([pseudonym(st.id), st.sectionId, c.framework, c.standard, i + 1, e.level, e.method, e.date, e.aid || "", a && a.reassess ? 1 : 0, e.source || "dashboard",
+          fmt1(evaluate(upTo, p).value), base == null ? "" : Math.round(base), bt, currentHabit(st.id) || "", ...(withSup ? [sf.iep, sf.p504, sf.ml] : []),
+          smtValid(smtString(c, e)) ? 1 : 0, APP_VERSION, pv]);
       });
     });
   });
   return csv(rows);
+}
+/* Subgroup summary for equity analysis; groups under 10 students are suppressed. */
+function subgroupSummary(sectionId) {
+  const list = roster(sectionId);
+  const groups = [["IEP", (f) => f.iep], ["504", (f) => f.p504], ["ML (active or monitored)", (f) => /^Active|^Monitored/.test(f.ml)], ["Former ML", (f) => /^Former/.test(f.ml)], ["No IEP, 504, or ML flag", (f) => !f.iep && !f.p504 && !/^Active|^Monitored/.test(f.ml)], ["All students", () => true]];
+  return groups.map(([name, test]) => {
+    const ms = list.filter((st) => test(supportFlags(st.id))).map(metrics).filter((m) => m.policyPct != null);
+    const n = ms.length;
+    if (n < 10) return { name, n: "<10", mastery: "<10", baseline: "<10", gap: "<10" };
+    const withBase = ms.filter((m) => m.legacyPct != null);
+    return { name, n, mastery: Math.round(mean(ms.map((m) => m.policyPct))), baseline: withBase.length ? Math.round(mean(withBase.map((m) => m.legacyPct))) : "–",
+      gap: withBase.length ? (mean(withBase.map((m) => m.delta)) >= 0 ? "+" : "") + mean(withBase.map((m) => m.delta)).toFixed(1) : "–" };
+  });
+}
+
+/* ---------- SMT codebook (dissertation appendix) ---------- */
+function codebookRows() {
+  const { seen } = smtAudit();
+  const doms = new Map(), types = new Map(), decays = new Map();
+  COMPETENCIES.forEach((c) => {
+    const p = smtParts(c, { level: 3, date: "2026-01-01", method: "P" });
+    if (!doms.has(p[0][1])) doms.set(p[0][1], new Set()); doms.get(p[0][1]).add(c.domain || c.framework);
+    if (!types.has(p[2][1])) types.set(p[2][1], new Set()); types.get(p[2][1]).add(c.standard);
+    decays.set(p[3][1], (decays.get(p[3][1]) || 0) + 1);
+  });
+  const inUse = (field, code) => (seen[field].has(code) ? "yes" : "defined, no evidence yet");
+  const rows = [["field", "positions", "code", "meaning", "in_use"]];
+  doms.forEach((v, k) => rows.push(["Domain", "1-3", k, [...v].join("; "), inUse("domain", k)]));
+  rows.push(["Comp", "4-7", "####", "Competency number within the domain (zero-padded)", ""]);
+  types.forEach((v, k) => rows.push(["Type", "8-10", k, `Evidence type for ${[...v].slice(0, 6).join(", ")}${v.size > 6 ? ", …" : ""}`, inUse("type", k)]));
+  const DECAY = { "00": "No decay", "01": "Slow decay", "02": "Standard decay (default)", "03": "Fast decay" };
+  decays.forEach((v, k) => rows.push(["Decay", "11-12", k, DECAY[k] || "Local decay code", inUse("decay", k)]));
+  [1, 2, 3, 4].forEach((l) => rows.push(["Proficiency", "13-14", LEVELS[l].smt, `Level ${l} ${LEVELS[l].name}`, "yes"]));
+  rows.push(["Separator", "15", "-", "Hyphen", "yes"]);
+  rows.push(["Date", "16-23", "YYYYMMDD", "Date of the evidence that set the current level", "yes"]);
+  Object.entries(METHODS).forEach(([k, m]) => rows.push(["Method", "24", k, m.name, "yes"]));
+  const d = state.settings.district;
+  rows.push(["District", "25-33", districtField(), `${ID_TYPES[d.idType].name}: ${ID_TYPES[d.idType].help}`, "yes"]);
+  return rows;
+}
+function codebookCsv() { return csv([...codebookRows(), [], ["app_version", APP_VERSION, "", "generated", genStamp().slice(0, 10)]]); }
+function codebookMd() {
+  const rows = codebookRows().slice(1);
+  const d = state.settings.district;
+  const sect = (f) => rows.filter((r) => r[0] === f).map((r) => `| \`${r[2]}\` | ${r[3]} | ${r[4]} |`).join("\n");
+  const tbl = (f) => `| Code | Meaning | In use |\n|---|---|---|\n${sect(f)}`;
+  return [
+    "# SMT codebook",
+    `Standardized Mastery Taxonomy (Uranis et al., 2019) as encoded by the SMT Mastery Dashboard v${APP_VERSION}. Generated ${genStamp().slice(0, 10)}. Grading policy version ${policyVersionNow()}.`,
+    "", "## Layout (33 characters)",
+    "| Field | Positions | Length |", "|---|---|---|",
+    ...SMT_FIELDS.map(([k, a, b]) => `| ${k || "Separator (-)"} | ${a === b ? a : `${a}–${b}`} | ${b - a + 1} |`),
+    "", "Example: `" + (COMPETENCIES[0] ? smtString(COMPETENCIES[0], { level: 3, date: "2026-11-17", method: "P" }) : "") + "`",
+    "", "## Domain codes", tbl("Domain"),
+    "", "## Type codes", tbl("Type"),
+    "", "## Decay codes", tbl("Decay"),
+    "", "## Proficiency mapping", "| Level | Code |", "|---|---|", ...[1, 2, 3, 4].map((l) => `| ${l} ${LEVELS[l].name} | \`${LEVELS[l].smt}\` |`),
+    "", "**Rationale (researcher's note):** " + (state.settings.research.profRationale || "_Not yet written._"),
+    "", "## Method codes", "| Code | Meaning |", "|---|---|", ...Object.entries(METHODS).map(([k, m]) => `| \`${k}\` | ${m.name} |`),
+    "", "## District identifier",
+    `Type: **${ID_TYPES[d.idType].name}**. ${ID_TYPES[d.idType].help} Encoded value: \`${districtField()}\`.`,
+    "", "## Validation", "Every exported code is checked: length 33, hyphen at position 15, a real calendar date in YYYYMMDD, and method P, A, or E. Codes that fail are flagged in Reviewer view and left out of exports.",
+    ""
+  ].join("\n");
 }
 
 /* ---------- intervention brief (Markdown) ---------- */
@@ -1689,10 +2061,14 @@ function lessonBrief(sectionId, cid) {
   const c = COMP[cid], sec = SEC[sectionId];
   const { byComp } = groupsForSection(sectionId);
   const g = byComp[cid] || { reteach: [], practice: [] };
-  const line = (st) => { const att = attemptsFor(st.id, cid); const last = att[att.length - 1]; return `- ${nameOf(st)}: latest feedback: "${last ? last.note : "no evidence yet"}"`; };
+  const line = (st) => {
+    const att = attemptsFor(st.id, cid); const last = att[att.length - 1];
+    const ml = mlActive(st.id) ? `\n  - ML supports: ${(supportOf(st.id).ml.supports || []).join("; ") || "none listed"}` : "";
+    return `- ${nameOf(st)}: latest feedback: "${last ? last.note : "no evidence yet"}"${ml}`;
+  };
   return [
     `# Intervention plan: ${c.standard} ${c.title}`,
-    `${sec.period}, ${sec.name} (${c.unit}). Prepared ${fmtDate(TODAY, { month: "long", day: "numeric", year: "numeric" })}.`,
+    `${sec.period}, ${sec.name} (${c.unit}). Prepared ${fmtDate(VIEW_DATE, { month: "long", day: "numeric", year: "numeric" })}.`,
     "", `**Learning target:** ${c.target}`, "",
     `## Re-teach group (currently at 1, ${g.reteach.length} students)`,
     g.reteach.length ? g.reteach.map(line).join("\n") : "- None",
@@ -1703,7 +2079,8 @@ function lessonBrief(sectionId, cid) {
     "## Prompt for planning help",
     `> Plan two parallel 20-minute small-group stations for high school students working on ${c.standard} (${c.title}). ` +
     `Station A (${g.reteach.length} students) rebuilds the foundation described at level 1 → 2 above; Station B (${g.practice.length} students) closes the gap from level 2 → 3. ` +
-    `Use the feedback notes above to target misconceptions, and end each station with a 3-minute exit check aligned to the level 3 descriptor.`
+    `Use the feedback notes above to target misconceptions, and end each station with a 3-minute exit check aligned to the level 3 descriptor.`,
+    "", `_Generated by the SMT Mastery Dashboard v${APP_VERSION} · grading policy v${policyVersionNow()}._`
   ].join("\n");
 }
 
@@ -1714,8 +2091,8 @@ function buildClr(st) {
   const issuer = { id: `${base}/issuers/${districtField()}`, type: ["Profile"], name: d.issuerName };
   const m = metrics(st);
   const dates = COMPETENCIES.flatMap((c) => m.per[c.id].att.map((a) => a.date)).sort();
-  const issued = `${dates[dates.length - 1] || TODAY}T00:00:00Z`;
-  const salt = state.settings.privacy.salt;
+  const issued = `${dates[dates.length - 1] || VIEW_DATE}T00:00:00Z`;
+  const salt = state.settings.privacy.credentialSalt;
   const identifier = [{ type: "IdentityObject", identityHash: "sha256$" + sha256Hex(st.id + salt), identityType: "studentId", hashed: true, salt }];
   const creds = COMPETENCIES.filter((c) => m.per[c.id].att.length).map((c) => {
     const { att, ev } = m.per[c.id];
@@ -1737,7 +2114,7 @@ function buildClr(st) {
           description: c.target, criteria: { narrative: `Level 3 descriptor: ${c.rubric[3]}` },
           alignment: [
             { type: ["Alignment"], targetName: `${c.standard}: ${c.title}`, targetUrl: `${base}/frameworks/${c.framework.toLowerCase()}/${c.standard.toLowerCase()}`, targetCode: c.standard, targetFramework: (FRAMEWORKS.find((f) => f.id === c.framework) || {}).name || c.framework },
-            { type: ["Alignment"], targetName: "Standardized Mastery Taxonomy code", targetUrl: `${base}/frameworks/smt`, targetCode: smtString(c, last), targetFramework: "SMT (Uranis et al., 2019)" }
+            ...(smtValid(smtString(c, last)) ? [{ type: ["Alignment"], targetName: "Standardized Mastery Taxonomy code", targetUrl: `${base}/frameworks/smt`, targetCode: smtString(c, last), targetFramework: "SMT (Uranis et al., 2019)" }] : [])
           ],
           resultDescription: [{
             id: rdId, type: ["ResultDescription"], name: "Mastery level", resultType: "RubricCriterionLevel",
@@ -1754,6 +2131,7 @@ function buildClr(st) {
     id: `urn:uuid:${nameUuid(`clr|${st.id}|${salt}`)}`,
     type: ["VerifiableCredential", "ClrCredential"],
     issuer, validFrom: issued,
+    description: `Unsigned preview generated by the SMT Mastery Dashboard v${APP_VERSION} under grading policy v${policyVersionNow()}.`,
     name: `Comprehensive Learner Record: ${SEC[st.sectionId].name} (${SEMESTERS.find((x) => x.id === SEC[st.sectionId].semester).name}, 2026–27)`,
     credentialSubject: { type: ["ClrSubject"], identifier, verifiableCredential: creds }
   };
@@ -1770,7 +2148,6 @@ function studentReview(st, qid) {
   const semObj = SEMESTERS.find((x) => x.id === qid);
   const q = semObj ? { id: semObj.id, name: semObj.name, start: semObj.start, end: semObj.end, isSemester: true } : TERMS.find((t) => t.id === qid) || TERMS.find((t) => t.id === termFor(TODAY));
   const start = q.start, end = q.end < TODAY ? q.end : TODAY, ongoing = q.end >= TODAY;
-  const anchors = state.settings.policy.anchors;
   const name = nameOf(st), first = state.settings.research.pseudonymsEverywhere && isResearch() ? name : st.first;
   const rows = [];
   let attempts = 0;
@@ -1836,7 +2213,7 @@ function studentReview(st, qid) {
       .map(({ a, c }) => `${fmtDate(a.date)} · ${a.aid && assessmentById(a.aid) ? assessmentById(a.aid).title : METHODS[a.method].name} (${c.standard}, level ${a.level})${a.note ? `: "${a.note}"` : ""}${a.artifactUrl ? ` ${a.artifactUrl}` : ""}`);
     sections.unshift({ h: "Evidence highlights", empty: "No evidence at Meets or above yet.", items: highlights });
   }
-  const footer = `Levels use the ${RULES[state.settings.policy.rule].name.toLowerCase()} rule on a 1–4 scale (3 = meets the standard). Generated by the SMT Mastery Dashboard on ${fmtDate(TODAY, { month: "long", day: "numeric", year: "numeric" })}.`;
+  const footer = `Levels use the ${RULES[currentPolicy().rule].name.toLowerCase()} rule on a 1–4 scale (3 = meets the standard). Generated by the SMT Mastery Dashboard v${APP_VERSION} (grading policy v${policyVersionNow()}) on ${fmtDate(TODAY, { month: "long", day: "numeric", year: "numeric" })}.`;
   const heading = `${q.isSemester ? "Semester review" : "Progress review"}: ${name}`;
   const sub = `${sec.name} (${sec.period}) · ${q.isSemester ? q.name : q.id}, ${range}${ongoing ? " (in progress)" : ""}`;
   const text = [heading, sub, "", ...(letterText ? ["Summary for letters of recommendation", letterText, ""] : []), "Overview", overview, "",
@@ -1851,7 +2228,7 @@ function studentReview(st, qid) {
    Views: Today · Score · Class · Students · Gradebook
    plus evidence drawer, settings window, research margin
    ========================================================================== */
-function uiDefaults() { return { tab: "today", semester: semesterFor(TODAY), sectionId: SECTIONS.find((x) => x.semester === semesterFor(TODAY))?.id || SECTIONS[0].id, compId: COMPETENCIES[0].id, assessmentId: null, studentId: null, studentTab: "progress", fw: FRAMEWORKS[0].id, showUpcoming: false,
+function uiDefaults() { return { tab: "today", semester: semesterFor(TODAY), sectionId: SECTIONS.find((x) => x.semester === semesterFor(TODAY))?.id || SECTIONS[0]?.id, compId: COMPETENCIES[0]?.id, assessmentId: null, studentId: null, studentTab: "progress", fw: FRAMEWORKS[0]?.id, showUpcoming: false,
   studentSection: "all", studentQuery: "", reviewQuarter: null, alTerm: null, alQuery: "", reviewOpen: false, ssTerm: null, ssStd: "all", ssShow: "level",
   rq: { group: "standard", cls: "all", fw: "all", level: "all", sort: "student", q: "" }, heatSort: "name", gbFormat: "standards", gbMode: "ptp", ptpAssessment: null, ptpScoreType: "points", ptpOverall: false, ptpBlank: false, ptpBundleTerm: null, settingsPane: "appearance", auditOpen: false, showChanges: false }; }
 state.ui = Object.assign({}, uiDefaults(), state.ui || {});
@@ -1875,18 +2252,32 @@ function nameOf(st) {
   if (s.privacy.nameFormat === "lastFirst") return `${st.last}, ${st.first}`;
   return `${st.first} ${st.last}`;
 }
+/* Level label that shortens on phones ("2 Appr.") and truncates instead of overlapping; the full name stays in title/aria-label. */
+function lvLabel(l, withNum = true) {
+  const full = `${withNum ? l + " " : ""}${LEVELS[l].name}`, short = `${withNum ? l + " " : ""}${LEVELS[l].abbr}`;
+  return `<span class="lvl-txt" title="${esc(`${l} ${LEVELS[l].name}`)}"><span class="lvl-full">${esc(full)}</span><span class="lvl-short">${esc(short)}</span></span>`;
+}
+/* A3 warning: Level 1 on a graded standard but a passing letter. */
+function warnChip(m, compact) {
+  if (!m.warnL1Pass) return "";
+  const stds = m.l1Graded.map((c) => c.standard).join(", ");
+  const msg = `Level 1 (Not yet) on ${stds}, but the course letter ${m.policyLetter} is passing (pass line ${passLineLetter()}).`;
+  return ` <span class="pill warn" title="${esc(msg)}" aria-label="${esc(msg)}"${tip("warn-l1")}>⚠${compact ? "" : " Level 1 but passing"}</span>`;
+}
+const baselineVs = () => BASELINES[currentPolicy().baseline].vs;
+const baselineShort = () => ({ anchors: "same-table average", rawPoints: "raw-points avg", imported: "reported %" })[currentPolicy().baseline];
 function chip(ev, compact) {
   if (!ev || ev.value == null) return `<span class="lv lv-0"><span class="n">–</span>${compact ? "" : "No evidence"}</span>`;
   const v = fmt1(ev.value);
-  const label = compact ? "" : LEVELS[ev.level].name + (ev.confirmed ? "" : " · confirm");
-  return `<span class="lv lv-${ev.level}" title="${esc(LEVELS[ev.level].long)}${ev.confirmed ? "" : " (needs a second confirming attempt)"}"><span class="n">${v}</span>${label}</span>`;
+  const label = compact ? "" : lvLabel(ev.level, false) + (ev.confirmed ? "" : '<span class="lvl-conf"> · confirm</span>');
+  return `<span class="lv lv-${ev.level}" title="${esc(LEVELS[ev.level].long)}${ev.confirmed ? "" : " (needs a second confirming attempt)"}" aria-label="${esc(`${v} ${LEVELS[ev.level].name}${ev.confirmed ? "" : ", needs confirming"}`)}"><span class="n">${v}</span>${label}</span>`;
 }
 function distBar(d) {
   const tot = d[0] + d[1] + d[2] + d[3] + d[4] || 1;
   const seg = (k) => (d[k] ? `<span class="d${k}" style="width:${(d[k] / tot) * 100}%" title="Level ${k}: ${d[k]}"></span>` : "");
   return `<div class="dist" role="img" aria-label="Level 1: ${d[1]}, 2: ${d[2]}, 3: ${d[3]}, 4: ${d[4]}, no evidence: ${d[0]}">${seg(1)}${seg(2)}${seg(3)}${seg(4)}</div>`;
 }
-const LEGEND = `<div class="legend" data-tip="legend"><span><i style="background:var(--l1)"></i>1 Not yet</span><span><i style="background:var(--l2)"></i>2 Approaching</span><span><i style="background:var(--l3)"></i>3 Meets</span><span><i style="background:var(--l4)"></i>4 Exceeds</span><span><i style="background:var(--l0-soft);border:1px solid var(--line)"></i>No evidence</span></div>`;
+const LEGEND = `<div class="legend" data-tip="legend">${[1, 2, 3, 4].map((l) => `<span aria-label="${l} ${LEVELS[l].name}"><i style="background:var(--l${l})"></i>${lvLabel(l)}</span>`).join("")}<span><i style="background:var(--l0-soft);border:1px solid var(--line)"></i>No evidence</span></div>`;
 const semSections = () => SECTIONS.filter((s) => s.semester === ui.semester);
 const semName = (id) => SEMESTERS.find((s) => s.id === id).name;
 const sectionOptions = (sel, withAll) =>
@@ -1924,7 +2315,8 @@ function renderHeader() {
     `<button data-act="mode" data-mode="teacher" aria-pressed="${s.mode === "teacher"}">Teacher</button>` +
     `<button data-act="mode" data-mode="research" aria-pressed="${s.mode === "research"}">Reviewer</button>`;
   document.getElementById("mode").classList.add("research");
-  const bs = document.getElementById("brand-sub"); if (bs) bs.textContent = `v${APP_VERSION} · demo data · ${PROFILE.teacher} · 2026–27`;
+  const bs = document.getElementById("brand-sub"); if (bs) bs.textContent = `v${APP_VERSION}${PREVIEW ? " preview" : ""} · fictional data · ${PROFILE.teacher} · 2026–27`;
+  const pb = document.getElementById("preview-banner-host"); if (pb) pb.innerHTML = previewBanner();
   document.getElementById("semester").innerHTML = SEMESTERS.map((x) => `<button data-act="semester" data-v="${x.id}" aria-pressed="${ui.semester === x.id}" title="${esc(x.name)}: ${fmtDate(x.start)}–${fmtDate(x.end)}">${x.id}</button>`).join("");
 }
 
@@ -1955,11 +2347,11 @@ function viewToday() {
     });
     const nextA = state.assessments.filter((a) => a.sections.includes(sec.id) && a.date > TODAY).sort((a, b) => a.date.localeCompare(b.date))[0];
     const rate = assessed ? Math.round((mastered / assessed) * 100) : 0;
-    const nSup = list.filter((st) => supportOf(st.id)).length;
+    const nSup = list.filter((st) => supportOf(st.id)?.plan).length, nMl = list.filter((st) => mlActive(st.id)).length;
     const sel = ui.rq.cls === sec.id;
     return `<article class="card sec-card clickable ${sel ? "selected" : ""}" data-act="rq-card" data-sec="${sec.id}" aria-label="Show ${esc(sec.period)} ${esc(sec.name)} retries"${tip("sec-card", sec.id)}>
       <div class="spread"><span class="when">${esc(sec.period)} · ${esc(sec.time)}</span><span class="small faint">${sel ? '<span class="pill accent">Filtering retries</span>' : esc(sec.room || "")}</span></div>
-      <div><h3>${esc(sec.name)}</h3><p class="small muted">${list.length} students${nSup ? ` · ${nSup} with IEP/504` : ""} · ${comps.length} standards taught so far${nextA ? ` · next: ${esc(nextA.title)} (${fmtDate(nextA.date)})` : ""}</p></div>
+      <div><h3>${esc(sec.name)}</h3><p class="small muted">${list.length} students${nSup ? ` · ${nSup} with IEP/504` : ""}${nMl ? ` · ${nMl} ML` : ""} · ${comps.length} standards taught so far${nextA ? ` · next: ${esc(nextA.title)} (${fmtDate(nextA.date)})` : ""}</p></div>
       <div class="stack" style="gap:6px"${tip("dist")}>${distBar(d)}<span class="tiny muted">${rate}% of assessed standards at Meets or above${d[0] ? ` · ${d[0]} not yet assessed` : ""}</span></div>
       <div class="facts">
         <div${tip("fact-l1")}><b>${l1Students.size}</b><span>students needing re-teaching</span></div>
@@ -2097,7 +2489,7 @@ function viewScore() {
       <details class="disclose" ${state.settings.rubricOpen ? "open" : ""} data-act="rubric-toggle"${tip("rubric", comp.id)}>
         <summary>${esc(comp.unit)} · Rubric: ${esc(comp.target)}</summary>
         <p class="small muted" style="margin-top:8px"><b>${esc(comp.standard)}</b> ${esc(comp.pe)}</p>
-        <div class="rubric" style="margin-top:10px">${[1, 2, 3, 4].map((l) => `<div class="r${l}"><b>${l} ${LEVELS[l].name}</b>${esc(comp.rubric[l])}</div>`).join("")}</div>
+        <div class="rubric" style="margin-top:10px">${[1, 2, 3, 4].map((l) => `<div class="r${l}"><b aria-label="${l} ${LEVELS[l].name}">${lvLabel(l)}</b>${esc(comp.rubric[l])}</div>`).join("")}</div>
       </details>
       <p class="tiny muted" data-tip="kbd">Keyboard: select a row, press <span class="kbd">1</span>–<span class="kbd">4</span> to score, <span class="kbd">0</span> to clear, <span class="kbd">↑</span><span class="kbd">↓</span> to move, <span class="kbd">F</span> to flag a retry, <span class="kbd">Enter</span> for evidence. Scoring the same assessment again replaces the score; it doesn't add an attempt.</p>
       ${researchInline("How scoring works", "Each score belongs to an assessment, so re-scoring replaces rather than stacking attempts. Corrections and voids stay in the audit trail, and every view (groups, records, gradebook file) updates from this one entry.")}
@@ -2114,7 +2506,7 @@ function scoreRow(st, comp, a) {
   const flag = state.flags[`${st.id}|${comp.id}`]?.on;
   const nm = esc(nameOf(st));
   const btns = [1, 2, 3, 4].map((l) =>
-    `<button class="sb" data-act="score" data-level="${l}" aria-pressed="${!!(cur && cur.level === l)}"${tip("scorebtn", l)} aria-label="${l} ${LEVELS[l].name} for ${nm}">${l}</button>`).join("");
+    `<button class="sb" data-act="score" data-level="${l}" aria-pressed="${!!(cur && cur.level === l)}"${tip("scorebtn", l)} aria-label="${l} ${LEVELS[l].name} for ${nm}" title="${l} ${LEVELS[l].name}">${l}</button>`).join("");
   const habit = currentHabit(st.id);
   const last = att[att.length - 1];
   const showLegacy = isResearch() || state.settings.policy.showLegacyToTeacher;
@@ -2127,7 +2519,7 @@ function scoreRow(st, comp, a) {
     ${cols.habits ? `<td><select data-act="habit" data-sid="${st.id}" aria-label="Work habits for ${nm}" class="small">
         <option value="" ${habit ? "" : "selected"}>–</option>${HABITS.map((h) => `<option ${habit === h.id ? "selected" : ""} title="${esc(h.desc)}">${h.id}</option>`).join("")}</select></td>` : ""}
     ${cols.retry ? `<td>${ev.value != null && ev.level < 3 ? `<button class="btn sm ${flag ? "" : "ghost"}" data-act="flag" data-sid="${st.id}" data-cid="${comp.id}" aria-pressed="${!!flag}">${flag ? '<span class="pill flag">Flagged</span>' : "+ Retry"}</button>` : flag ? '<span class="pill flag">Flagged</span>' : ""}</td>` : ""}
-    ${cols.course ? `<td class="num small"><b>${m.policyLetter}</b> ${m.policyPct ?? "–"}%${showLegacy && m.delta ? ` <span class="faint">(avg ${m.legacyPct})</span>` : ""}</td>` : ""}
+    ${cols.course ? `<td class="num small"><b>${m.policyLetter}</b> ${m.policyPct ?? "–"}%${showLegacy && m.delta ? ` <span class="faint" title="${esc(baselineVs())}">(${esc(baselineShort())} ${m.legacyPct})</span>` : ""}${warnChip(m, true)}</td>` : ""}
     ${cols.last ? `<td class="small muted">${last ? fmtDate(last.date) : "–"}</td>` : ""}
     ${cols.evidence ? `<td style="text-align:right"><button class="btn sm ghost" data-act="drawer" data-sid="${st.id}" data-cid="${comp.id}" data-tip="evidence-btn">Evidence${att.filter((x) => x.artifactUrl).length ? ` (${att.filter((x) => x.artifactUrl).length})` : ""}</button></td>` : ""}
   </tr>`;
@@ -2159,7 +2551,7 @@ function viewClass() {
       ${g.reteach.length ? `<div class="grp g1"><h4>Re-teach · at 1 (${g.reteach.length})</h4>${names(g.reteach, c.id)}</div>` : ""}
       ${g.practice.length ? `<div class="grp g2"><h4>Targeted practice · at 2 (${g.practice.length})</h4>${names(g.practice, c.id)}</div>` : ""}
       ${g.confirm.length ? `<div class="grp" style="background:var(--surface-2)"><h4>Needs a confirming attempt (${g.confirm.length})</h4>${names(g.confirm, c.id)}</div>` : ""}
-      <div class="row tight"><button class="btn sm" data-act="copy-brief" data-cid="${c.id}" data-tip="copy-plan">${ICON.copy} Copy intervention plan</button><button class="btn sm ghost" data-act="go" data-tab="score" data-cid="${c.id}">Score</button></div>
+      <div class="row tight"><button class="btn sm" data-act="copy-brief" data-cid="${c.id}" data-tip="copy-plan">${ICON.copy} Copy intervention plan</button><button class="btn sm ghost" data-act="dl-brief" data-cid="${c.id}">${ICON.download} .md</button><button class="btn sm ghost" data-act="go" data-tab="score" data-cid="${c.id}">Score</button></div>
     </article>`;
   }).join("");
   const sorted = [...list];
@@ -2261,7 +2653,7 @@ function viewStudents() {
     body = `<div class="stack">
       <p class="small muted" data-tip="credential">A Comprehensive Learner Record (CLR 2.0) containing one Open Badges 3.0 credential per standard with evidence. Mastery levels are encoded as rubric levels; the SMT code is carried as an alignment.</p>
       <div class="inline-note" style="font-family:var(--font-body);font-size:.84rem"><b>Unsigned</b>This preview has no cryptographic proof, so it is not yet verifiable. Your district's issuing service must sign it before it is shared, and it should be checked with the 1EdTech validator first.</div>
-      <div class="row"><button class="btn primary" data-act="copy-clr">${ICON.copy} Copy JSON-LD</button><span class="tiny muted">${(json.length / 1024).toFixed(1)} KB · ${COMPETENCIES.filter((c) => m.per[c.id].att.length).length} credentials</span></div>
+      <div class="row"><button class="btn primary" data-act="copy-clr">${ICON.copy} Copy JSON-LD</button><button class="btn" data-act="dl-clr">${ICON.download} Download .json</button><span class="tiny muted">${(json.length / 1024).toFixed(1)} KB · ${COMPETENCIES.filter((c) => m.per[c.id].att.length).length} credentials</span></div>
       <pre class="code">${esc(json)}</pre></div>`;
   }
   const pctMet = m.active.length ? Math.round((m.mastered / m.active.length) * 100) : 0;
@@ -2288,8 +2680,8 @@ function viewStudents() {
               <div class="meter" role="img" aria-label="${pctMet}% of standards taught at Meets or above"><span style="width:${pctMet}%"></span></div>
               <div class="metric-s">standards taught at Meets or above</div></div>
             <div class="metric" data-tip="stat-grade"><div class="metric-k">Gradebook grade</div>
-              <div class="metric-v num">${m.policyLetter}<span class="metric-of">${m.policyPct ?? "–"}%</span></div>
-              ${showLegacy && m.delta != null ? `<div class="metric-s"${tip("stat-legacy")}>Averaging every attempt: <b>${m.legacyLetter} ${m.legacyPct}%</b> <span class="delta ${m.delta > 0 ? "up" : m.delta < 0 ? "down" : ""}">${m.delta > 0 ? "+" : ""}${m.delta} pts</span></div>` : `<div class="metric-s">from current levels</div>`}</div>
+              <div class="metric-v num">${m.policyLetter}<span class="metric-of">${m.policyPct ?? "–"}%</span></div>${warnChip(m)}${m.capped ? `<div class="metric-s"><span class="pill warn">Capped by pass rule</span></div>` : ""}
+              ${showLegacy && m.delta != null ? `<div class="metric-s"${tip("stat-legacy")}>${esc(cap1(BASELINES[m.baseline].name))}: <b>${m.legacyLetter} ${m.legacyPct}%</b> <span class="delta ${m.delta > 0 ? "up" : m.delta < 0 ? "down" : ""}">${m.delta > 0 ? "+" : ""}${m.delta} pts</span></div>` : `<div class="metric-s">from current levels</div>`}</div>
             <div class="metric" data-tip="stat-habits"><div class="metric-k">Work habits</div>
               <div class="metric-v sm">${esc(currentHabit(st.id) || "Not rated")}</div>
               <div class="habit-trail">${habits.map((h) => `<span class="htag h-${h.value.toLowerCase()}" title="${esc(fmtDate(h.date))}">${hmonth(h.date)} · ${esc(h.value)}</span>`).join("") || '<span class="metric-s">No ratings yet</span>'}</div></div>
@@ -2343,9 +2735,11 @@ function reviewCard(st) {
 }
 
 function smtBreakdown(c, entry) {
+  if (!c) return "";
   const parts = smtParts(c, entry);
   const str = parts.map((p) => p[1]).join("");
-  return `<div class="smt-parts" title="${esc(str)} (${str.length} characters)">${parts.map(([k, v]) => `<span>${esc(v)}${k ? `<small>${k}</small>` : ""}</span>`).join("")}<span class="pill note" style="align-self:center">${str.length} chars</span></div>`;
+  const errs = assertSmt(str);
+  return `<div class="smt-parts" title="${esc(str)} (${str.length} characters)">${parts.map(([k, v], i) => `<span>${esc(v)}<small>${k ? esc(k) + " " : ""}${SMT_FIELDS[i][1] === SMT_FIELDS[i][2] ? SMT_FIELDS[i][1] : `${SMT_FIELDS[i][1]}–${SMT_FIELDS[i][2]}`}</small></span>`).join("")}<span class="pill ${errs.length ? "warn" : "note"}" style="align-self:center">${str.length} chars${errs.length ? " · invalid" : " ✓"}</span></div>`;
 }
 
 /* ---------------------------------------------------------------- Gradebook */
@@ -2354,7 +2748,7 @@ function viewGradebook() {
   const text = ui.gbMode === "summary" ? sisCsv(sec.id, ui.gbFormat) : "";
   const p = state.settings.policy;
   return `<div class="page-head"><div><div class="kicker">Gradebook</div><h2 data-tip="page-gradebook">${esc(sec.period)} · ${esc(sec.name)}</h2></div>
-      <div class="toolbar"><label class="field" for="sel-section">Class<select id="sel-section" data-act="section">${sectionOptions(sec.id)}</select></label></div></div>
+      <div class="toolbar"><button class="btn ghost" data-act="open-dialog" data-v="how-grades">How grades are calculated</button><label class="field" for="sel-section">Class<select id="sel-section" data-act="section">${sectionOptions(sec.id)}</select></label></div></div>
     ${scoresheet(sec)}
     ${assessmentListCard(sec)}
     <section class="stack" style="gap:12px">
@@ -2388,7 +2782,7 @@ function scoresheet(sec) {
       }).join("")}</div></td>`;
     }).join("");
     return `<tr><td class="name ss-sticky"><button class="linklike" data-act="student" data-sid="${st.id}"${tip("student", st.id)}>${esc(nameOf(st))}</button></td>
-      <td class="ss-grade ss-sticky2"${tip("ss-grade", st.id)}><b>${m.policyLetter}</b> <span class="muted num">${m.policyPct ?? "–"}%</span></td>${cells}</tr>`;
+      <td class="ss-grade ss-sticky2"${tip("ss-grade", st.id)}><b>${m.policyLetter}</b> <span class="muted num">${m.policyPct ?? "–"}%</span>${warnChip(m, true)}</td>${cells}</tr>`;
   }).join("");
   const opt = (v, l, cur) => `<option value="${v}" ${cur === v ? "selected" : ""}>${l}</option>`;
   return `<section class="card flush">
@@ -2513,7 +2907,7 @@ function renderDrawer() {
     const s = entryState(e);
     const a = e.aid ? assessmentById(e.aid) : null;
     return `<div class="entry ${s}">
-      <div class="spread"><div class="row tight">${chip({ value: e.level, level: e.level, confirmed: true })}<span class="small"><b>${esc(a ? a.title : "Other evidence")}</b></span></div>
+      <div class="spread"><div class="row tight">${chip({ value: e.level, level: e.level, confirmed: true })}<span class="small"><b>${esc(a ? a.title : "Other evidence")}</b></span>${e.source === "import" ? `<span class="pill imported" title="Imported from ${esc(e.importFile || "a gradebook file")}: ${esc(e.importRaw || "")}">imported</span>` : ""}</div>
         <span class="tiny muted">${fmtDate(e.date)} · ${esc(METHODS[e.method].short)}</span></div>
       ${e.note ? `<p class="small">${esc(e.note)}</p>` : ""}
       ${e.artifactUrl ? `<a class="small" href="${esc(e.artifactUrl)}" target="_blank" rel="noopener noreferrer">${esc(e.artifactType || "Evidence")} ↗</a>` : ""}
@@ -2527,21 +2921,21 @@ function renderDrawer() {
       <div class="row tight" style="margin-top:6px">${chip(ev)}</div></div>
       <button class="btn icon ghost" data-act="close-drawer" aria-label="Close" id="drawer-close">${ICON.close}</button></div>
     <div class="drawer-body">
-      ${supportOf(sid) && !isResearch() ? `<div class="sup-row small"><span class="pill sup ${supportOf(sid).plan === "IEP" ? "iep" : "p504"}">${esc(supportOf(sid).plan)}</span><span>${esc(supportOf(sid).accommodations.join(" · "))}</span></div>` : ""}
+      ${supportOf(sid) && !isResearch() ? `<div class="sup-row small">${supportOf(sid).plan ? `<span class="sup-line"><span class="pill sup ${supportOf(sid).plan === "IEP" ? "iep" : "p504"}">${esc(supportOf(sid).plan)}</span><span>${esc(supportOf(sid).accommodations.join(" · "))}</span></span>` : ""}${mlActive(sid) ? `<span class="sup-line"><span class="pill sup ml">ML</span><span>${esc((supportOf(sid).ml.supports || []).join(" · ") || "No ML supports listed")}</span></span>` : ""}</div>` : ""}
       ${pick ? `<label class="field" for="f-cid">Standard<select id="f-cid" data-act="drawer-std">${byFramework(courseComps(st.sectionId)).map(({ f, comps }) => `<optgroup label="${esc(f.short)}">${comps.map((x) => `<option value="${x.id}" ${x.id === cid ? "selected" : ""}>${esc(x.standard)} · ${esc(x.title)}${m.active.includes(x) ? "" : " (not yet taught)"}</option>`).join("")}</optgroup>`).join("")}</select></label>` : ""}
       <div class="row">${ev.level < 3 && ev.value != null ? `<button class="btn sm" data-act="flag" data-sid="${sid}" data-cid="${cid}" aria-pressed="${!!flag}">${ICON.flag} ${flag ? "Remove retry flag" : "Flag for retry"}</button>` : ""}
         <button class="btn sm ghost" data-act="student" data-sid="${sid}">Open learner record</button></div>
-      <details class="disclose"><summary>Standard & rubric</summary><p class="small muted" style="margin-top:8px"><span class="pill">${esc(FRAMEWORKS.find((f) => f.id === c.framework).name)}</span> ${esc(c.unit)}</p><p class="small" style="margin-top:6px"><b>${esc(c.standard)}</b> ${esc(c.pe)}</p><div class="rubric" style="margin-top:8px;grid-template-columns:1fr 1fr">${[1, 2, 3, 4].map((l) => `<div class="r${l}"><b>${l} ${LEVELS[l].name}</b>${esc(c.rubric[l])}</div>`).join("")}</div></details>
+      <details class="disclose"><summary>Standard & rubric</summary><p class="small muted" style="margin-top:8px"><span class="pill">${esc(FRAMEWORKS.find((f) => f.id === c.framework).name)}</span> ${esc(c.unit)}</p><p class="small" style="margin-top:6px"><b>${esc(c.standard)}</b> ${esc(c.pe)}</p><div class="rubric" style="margin-top:8px;grid-template-columns:1fr 1fr">${[1, 2, 3, 4].map((l) => `<div class="r${l}"><b aria-label="${l} ${LEVELS[l].name}">${lvLabel(l)}</b>${esc(c.rubric[l])}</div>`).join("")}</div></details>
       <form id="entry-form" class="card stack" style="background:var(--surface-2)">
         <h4>${editing ? "Correct this score" : "Add evidence"}</h4>
         ${editing ? `<p class="tiny muted">Saving creates a correction. The original stays in the audit trail.</p>` : ""}
         <fieldset style="border:0;padding:0;margin:0"><legend class="small" style="font-weight:650;color:var(--ink-2);margin-bottom:6px">Level</legend>
-          <div class="scorebtns">${[1, 2, 3, 4].map((l) => `<label class="sb" style="display:grid;place-items:center;width:auto;padding:0 12px" data-level="${l}" aria-pressed="${f.level === l}"><input type="radio" name="level" value="${l}" ${f.level === l ? "checked" : ""} style="position:absolute;opacity:0;width:1px;height:1px">${l} ${LEVELS[l].name}</label>`).join("")}</div></fieldset>
+          <div class="scorebtns entry-levels">${[1, 2, 3, 4].map((l) => `<label class="sb sb-wide" data-level="${l}" aria-pressed="${f.level === l}" title="${l} ${LEVELS[l].name}"><input type="radio" name="level" value="${l}" ${f.level === l ? "checked" : ""} aria-label="${l} ${LEVELS[l].name}" style="position:absolute;opacity:0;width:1px;height:1px">${lvLabel(l)}</label>`).join("")}</div></fieldset>
         <div class="form-grid">
           <label class="field" for="f-aid">Assessment<select id="f-aid" name="aid"><option value="">Other evidence (conference, observation)</option>${aList.map((a) => `<option value="${a.id}" ${f.aid === a.id ? "selected" : ""}>${fmtDate(a.date)} · ${esc(a.title)}</option>`).join("")}</select></label>
           <label class="field" for="f-date">Evidence date<input id="f-date" name="date" type="date" value="${esc(f.date)}" required></label>
           <label class="field" for="f-method">Evidence type<select id="f-method" name="method">${Object.entries(METHODS).map(([k, v]) => `<option value="${k}" ${f.method === k ? "selected" : ""}>${v.name}</option>`).join("")}</select></label>
-          <label class="field" for="f-type">Evidence type<input id="f-type" name="artifactType" type="text" value="${esc(f.artifactType)}" placeholder="Lab report, video, notes"></label>
+          <label class="field" for="f-type">Name of the work (optional)<input id="f-type" name="artifactType" type="text" value="${esc(f.artifactType)}" placeholder="Lab report, video, notes"></label>
           <label class="field full" for="f-url">Link to student work (optional)<input id="f-url" name="artifactUrl" type="url" value="${esc(f.artifactUrl)}" placeholder="https://"></label>
           <label class="field full" for="f-note">Feedback<textarea id="f-note" name="note" rows="2" placeholder="What the evidence shows and the next step">${esc(f.note)}</textarea></label>
         </div>
@@ -2565,6 +2959,11 @@ function renderDialog() {
   else if (transient.dialog === "add-class") host.innerHTML = addClassDialog();
   else if (transient.dialog === "add-standard") host.innerHTML = addStandardDialog();
   else if (transient.dialog === "supports") host.innerHTML = supportsDialog();
+  else if (transient.dialog === "welcome") host.innerHTML = welcomeDialog();
+  else if (transient.dialog === "try-this") host.innerHTML = tryThisDialog();
+  else if (transient.dialog === "send-feedback") host.innerHTML = sendFeedbackDialog();
+  else if (transient.dialog === "how-grades") host.innerHTML = gradesDialog();
+  else if (transient.dialog === "choices") host.innerHTML = choicesDialog();
 }
 function newAssessmentDialog(ed) {
   const scoredComps = ed ? new Set(state.scores.filter((e) => e.aid === ed.id && entryState(e) === "live").map((e) => e.cid)) : new Set();
@@ -2590,7 +2989,7 @@ function newAssessmentDialog(ed) {
 function settingsDialog() {
   const s = state.settings, p = s.policy;
   const pane = ui.settingsPane;
-  const panes = [["appearance", "Appearance"], ["views", "Views & columns"], ["research", "Reviewer view"], ["study", "Study data"], ["grading", "Grading rule"], ["groups", "Groups"], ["privacy", "Privacy & IDs"], ["data", "Data"]];
+  const panes = [["appearance", "Appearance"], ["views", "Views & columns"], ["research", "Reviewer view"], ["study", "Study data"], ["grading", "Grading rule"], ["groups", "Groups"], ["privacy", "Privacy & IDs"], ["data", "Data"], ["about", "About"]];
   const seg = (path, val, opts) => `<div class="seg">${opts.map(([v, l]) => `<button type="button" data-act="set" data-path="${path}" data-v="${v}" aria-pressed="${String(val) === String(v)}">${l}</button>`).join("")}</div>`;
   const toggle = (path, val, label, help) => `<div class="set-row"><div><div class="lbl">${label}</div>${help ? `<div class="help">${help}</div>` : ""}</div><input type="checkbox" data-setting="${path}" ${val ? "checked" : ""} aria-label="${esc(label)}"></div>`;
   let body = "";
@@ -2616,14 +3015,16 @@ function settingsDialog() {
       ${toggle("policy.showLegacyToTeacher", p.showLegacyToTeacher, "Show the averaging comparison in Teacher view")}</div>
     <div class="set-group"><h4>Student names</h4>${seg("privacy.nameFormat", s.privacy.nameFormat, [["full", "First Last"], ["lastFirst", "Last, First"], ["firstInitial", "First L."]])}</div>`;
   else if (pane === "research") body = `
-    <div class="set-group"><h4>View mode</h4>${seg("mode", s.mode, [["teacher", "Teacher"], ["research", "Reviewer"]])}
+    <div class="set-group"><h4>View mode</h4>${seg("mode", s.mode, [["teacher", "Teacher"], ["research", "Reviewer"]])}<p class="help small muted">Keyboard: T for Teacher, R for Reviewer.</p>
       <p class="help small muted">Reviewer view adds context pop-ups, a feedback log, and an explanation panel describing each view, how mastery is tracked, and where teacher time is saved. Teacher view hides all of it.</p></div>
     <div class="set-group"><h4>Sample teacher</h4>${seg("__profile", PROFILE_ID, Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => [k, v]))}<p class="help small muted">${esc(PROFILE.blurb)}</p></div>
     <div class="set-group"><h4>Show in Reviewer view</h4>
       ${toggle("research.studyNotes", s.research.studyNotes, "Explanation panel", "A side panel explaining the current view, how the dashboard tracks mastery, and how it reduces workload.")}
       ${toggle("research.tips", s.research.tips, "Context pop-ups", "Hover any header, chart, menu, assessment, or score for a short explanation.")}
 
-      ${toggle("research.pseudonymsEverywhere", s.research.pseudonymsEverywhere, "Show pseudonyms instead of names", "For screen recordings, defense presentations, and observers.")}</div>`;
+      ${toggle("research.pseudonymsEverywhere", s.research.pseudonymsEverywhere, "Show pseudonyms instead of names", "For screen recordings, defense presentations, and observers.")}</div>
+    <div class="set-group"><h4>Research file</h4>
+      ${toggle("research.includeSupports", s.research.includeSupports, "Include support flags (de-identified)", "Adds support_iep, support_504, and support_ml_status columns to the research CSV for equity analysis. Subgroup summaries with fewer than 10 students show “<10”. Off by default.")}</div>`;
   else if (pane === "study") {
     const tel = telemetrySummary();
     body = `
@@ -2640,12 +3041,18 @@ function settingsDialog() {
     <div class="set-group"><h4>Research export (de-identified)</h4>
       <p class="help small muted">One row per attempt for every class this semester. Names and student numbers are replaced with salted SHA-256 pseudonyms; the salt stays in this browser.</p>
       <div class="row"><button class="btn sm" type="button" data-act="dl-research">${ICON.download} Download research CSV</button></div></div>
+    <div class="set-group integrity">${exportLogCard()}</div>
+    <div class="set-group"><h4>SMT code check and codebook</h4><p class="help small muted">Codes are 33 characters: Domain 1–3 · Comp 4–7 · Type 8–10 · Decay 11–12 · Proficiency 13–14 · hyphen 15 · Date 16–23 · Method 24 · District 25–33.</p>${smtCheckHtml()}</div>
+    ${state.settings.research.includeSupports ? `<div class="set-group integrity">${subgroupCard()}</div>` : ""}
     <div class="set-group"><h4>Field notes</h4>
       <form id="fieldnote-form" class="stack" style="gap:6px"><label for="fieldnote" class="small muted">Observation (saved with the time and the view you were on: ${esc(ui.tab)})</label>
         <textarea id="fieldnote" rows="3" placeholder="e.g., Teacher paused at the assessment picker for about 10 seconds"></textarea>
         <div class="row tight"><button class="btn sm" type="submit">Add note</button><button class="btn sm ghost" type="button" data-act="copy-notes">${ICON.copy} Copy all (${state.fieldNotes.length})</button></div></form>
       ${state.fieldNotes.slice(-8).reverse().map((x) => `<div class="fieldnote"><div class="meta">${esc(x.t.replace("T", " ").slice(0, 16))} · ${esc(x.view)}</div><p class="small">${esc(x.text)}</p></div>`).join("")}</div>`;
-  } else if (pane === "grading") body = `
+  } else if (pane === "grading") {
+    const cp = currentPolicy();
+    body = `
+    <div class="inline-note" style="font-family:var(--font-body);font-size:.84rem;margin-bottom:12px"><b>Preview build</b>Changes here apply to the whole term right away, so you can see their effect. In the pilot build (v0.48) the policy is locked per term and every change needs a reason.</div>
     <div class="set-group"><h4>How the current level is set</h4>
       ${seg("policy.rule", p.rule, Object.entries(RULES).map(([k, v]) => [k, v.short]))}
       <p class="help small muted">${{
@@ -2658,36 +3065,52 @@ function settingsDialog() {
       ${p.rule === "decaying" ? `<div class="set-row"><div class="lbl">Weight of newest attempt</div>${seg("policy.weight", p.weight, [["0.5", "50%"], ["0.65", "65%"], ["0.75", "75%"]])}</div>` : ""}
       ${toggle("policy.confirm", p.confirm, "Require a second attempt at 3+ to confirm mastery", "Single proficient results show as “confirm” until a second piece of evidence agrees.")}</div>
     <div class="set-group"><h4>Standards that count toward the course percent</h4>
-      ${FRAMEWORKS.map((f) => toggle(`policy.gradeFrameworks.${f.id}`, p.gradeFrameworks[f.id], f.name, f.id === "NGSS" ? "The physics standards of the course." : "Still scored, reported on the transcript, and exported per standard.")).join("")}</div>
-    <div class="set-group"><h4>Conversion to gradebook percent</h4>
-      <form id="anchors-form" class="anchors">${[1, 2, 3, 4].map((l) => `<label class="field" for="anc-${l}">${l} ${LEVELS[l].name}<input id="anc-${l}" type="number" min="0" max="100" name="a${l}" value="${p.anchors[l]}"></label>`).join("")}</form>
+      ${FRAMEWORKS.map((f) => toggle(`policy.gradeFrameworks.${f.id}`, p.gradeFrameworks[f.id], f.name, "Unchecked sets are still scored, reported on the transcript, and exported per standard.")).join("")}</div>
+    <div class="set-group"><h4>Conversion to gradebook percent <span class="pill note">Site decision: confirm with registrar</span></h4>
+      <form id="anchors-form" class="anchors">${[1, 2, 3, 4].map((l) => `<label class="field" for="anc-${l}">${lvLabel(l)}<input id="anc-${l}" type="number" min="0" max="100" name="a${l}" value="${p.anchors[l]}" aria-label="${l} ${LEVELS[l].name} percent"></label>`).join("")}</form>
       <p class="error" id="anchor-error"></p>
-      <p class="help small muted">Values between levels (from averaging rules) are converted proportionally. Letters: A+ 97, A 93, A− 90, B+ 87, B 83, B− 80, C+ 77, C 73, C− 70, D+ 67, D 63, D− 60.</p></div>`;
+      <p class="help small muted">Level 1 ships at ${DEFAULT_SETTINGS.policy.anchors[1]}%, below the passing line, so “Not yet” never produces a passing grade on its own. Values between levels (from averaging rules) are converted proportionally. Letters: A+ 97, A 93, A− 90, B+ 87, B 83, B− 80, C+ 77, C 73, C− 70, D+ 67, D 63, D− 60.</p></div>
+    <div class="set-group"><h4>Passing</h4>
+      <div class="set-row"><div><div class="lbl">Lowest passing letter</div><div class="help">Used by the warning chip and the pass rule.</div></div>${seg("policy.passLine", p.passLine, [["60", "D−"], ["70", "C−"]])}</div>
+      <div class="set-row"><div><div class="lbl">Pass rule</div><div class="help">${{ off: "Off. Students with Level 1 on a graded standard can still pass; a warning chip flags them.", noLevel1: "To pass, a student must have no graded standard at Level 1. Otherwise the course percent is capped just below the passing line.", pctMeets: `To pass, at least ${p.passRule.pct}% of graded standards must be at Level 3 or higher. Otherwise the course percent is capped just below the passing line.` }[p.passRule.mode]}</div></div>
+        ${seg("policy.passRule.mode", p.passRule.mode, [["off", "Off"], ["noLevel1", "No Level 1"], ["pctMeets", "% at 3+"]])}</div>
+      ${p.passRule.mode === "pctMeets" ? `<div class="set-row"><div class="lbl">Share of graded standards at 3 or higher</div>${seg("policy.passRule.pct", p.passRule.pct, [["50", "50%"], ["60", "60%"], ["70", "70%"], ["80", "80%"]])}</div>` : ""}</div>
+    <div class="set-group"><h4>Averaging comparison baseline</h4>
+      ${seg("policy.baseline", cp.baseline, [["anchors", "Same conversion table"], ["rawPoints", "Raw-points average"]])}
+      <p class="help small muted">${esc(BASELINES[cp.baseline].help)} A third baseline, the school's own reported gradebook percent, arrives with gradebook import in the pilot build.</p></div>`;
+  }
   else if (pane === "groups") body = `
     <div class="set-group"><h4>MTSS review prompt</h4>
       <div class="set-row"><div><div class="lbl">“Not yet” on at least this many standards</div></div>${seg("groups.tier3Min", state.settings.groups.tier3Min, [["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"]])}</div>
       <div class="set-row"><div><div class="lbl">Or this many attempts still at 1 on one standard</div></div>${seg("groups.persistentAttempts", state.settings.groups.persistentAttempts, [["2", "2"], ["3", "3"]])}</div>
       <p class="help small muted">Re-teach (at 1) and targeted practice (at 2) groups are always built per standard.</p></div>`;
   else if (pane === "privacy") {
-    const len = smtString(COMPETENCIES[0], { level: 3, date: "2026-11-17", method: "P" }).length;
+    const ex = COMPETENCIES[0] ? smtString(COMPETENCIES[0], { level: 3, date: "2026-11-17", method: "P" }) : "";
     body = `
     <div class="set-group"><h4>District identifier in SMT codes</h4>
-      ${seg("district.idType", s.district.idType, [["DUNS", "DUNS (as published)"], ["NCES", "NCES LEA ID"], ["UEI", "SAM UEI"]])}
+      ${seg("district.idType", s.district.idType, Object.entries(ID_TYPES).map(([k, v]) => [k, v.name]))}
+      <p class="help small muted">${esc(ID_TYPES[s.district.idType].help)}</p>
       <label class="field" for="dist-id">Identifier value<input id="dist-id" type="text" data-setting="district.idValue" value="${esc(s.district.idValue)}"></label>
-      <p class="help small muted">The federal government stopped using DUNS in April 2022 (replaced by the 12-character UEI). The original 33-character layout reserves 9 characters; an NCES 7-digit ID is left-padded to 9; a UEI makes the code ${12 + 24} characters. Current length: <b>${len}</b>.</p>
+      <p class="help small muted">Encoded as <code>${esc(districtField())}</code> (positions 25–33). Every code stays 33 characters: <code>${esc(ex)}</code> ${smtValid(ex) ? "✓ valid" : "✗ " + esc(assertSmt(ex).join("; "))}. The demo value is fictional.</p>
       <label class="field" for="issuer">Issuer name on credentials<input id="issuer" type="text" data-setting="district.issuerName" value="${esc(s.district.issuerName)}"></label></div>
-    <div class="set-group"><h4>Pseudonyms</h4>
-      <p class="help small muted">Research exports replace names and student numbers with salted hashes. Changing the salt changes every pseudonym.</p>
-      <div class="row"><code>${esc(s.privacy.salt)}</code><button class="btn sm" type="button" data-act="new-salt">New salt</button></div></div>`;
-  } else if (pane === "data") body = `
+    <div class="set-group"><h4>Pseudonyms and credential hashes</h4>
+      <p class="help small muted">Research pseudonyms and credential hashes use separate salts, so a shared credential can't be used to re-identify the research file. The research salt never leaves this browser. Changing it changes every pseudonym.</p>
+      <div class="row"><span class="small">Research salt</span><code>${esc(s.privacy.researchSalt)}</code><button class="btn sm" type="button" data-act="new-salt">New research salt</button></div>
+      <div class="row"><span class="small">Credential salt</span><code>${esc(s.privacy.credentialSalt)}</code></div></div>`;
+  } else if (pane === "about") body = `
+    <div class="set-group"><h4>SMT Mastery Dashboard v${APP_VERSION}</h4>
+      <p class="help small muted">A research prototype for the SMT grading study. ${PREVIEW ? "This preview uses fictional students only. Nothing you enter leaves this browser unless you copy or download it, and the app uses no analytics." : ""}</p></div>
+    <div class="set-group"><h4>Changelog</h4>
+      ${CHANGELOG.map((c) => `<div class="changelog"><div class="small"><b>v${esc(c.version)}</b> · ${esc(fmtDate(c.date, { month: "short", day: "numeric", year: "numeric" }))}</div><ul>${c.items.map((x) => `<li class="small">${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div>`;
+  else if (pane === "data") body = `
     <div class="set-group"><h4>Back up or move data</h4>
       <p class="help small muted">Everything is stored only in this browser. Copy a backup to keep it, or paste one to restore it.</p>
       <div class="row"><button class="btn" type="button" data-act="dl-backup">${ICON.download} Download backup (.json)</button><button class="btn" type="button" data-act="copy-backup">${ICON.copy} Copy backup</button></div>
-      <label class="field" for="restore">Restore from backup<textarea id="restore" class="code" rows="4" placeholder="Paste backup JSON here"></textarea></label>
+      ${PREVIEW ? `<p class="help small muted">Restoring from a file is turned off in this preview so no outside data is loaded.</p>` : `<label class="field" for="restore">Restore from backup<textarea id="restore" class="code" rows="4" placeholder="Paste backup JSON here"></textarea></label>
       <div class="row"><button class="btn" type="button" data-act="restore">Restore</button><label class="btn" for="restore-file">Choose file…</label><input id="restore-file" type="file" accept=".json,application/json" class="hidden"></div>
-      <p class="error" id="restore-error"></p></div>
+      <p class="error" id="restore-error"></p>`}</div>
     <div class="set-group"><h4>Demo data</h4>
-      <div class="row"><button class="btn danger" type="button" data-act="reset" id="reset-btn">Reset demo classes</button><span class="tiny muted">Restores the demo classes for both semesters and default settings. Field notes are kept.</span></div></div>`;
+      <div class="row"><button class="btn danger" type="button" data-act="reset" id="reset-btn">Reset demo classes</button><span class="tiny muted">Restores the demo classes for both semesters, the default grading policy, and the Try this checklist. Your comments and field notes are kept.</span></div></div>`;
   return `<div class="scrim" data-act="close-dialog"></div>
   <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title">
     <div class="dialog-head"><h3 id="settings-title">Settings</h3><button class="btn icon ghost" data-act="close-dialog" aria-label="Close settings" id="settings-close">${ICON.close}</button></div>
@@ -2750,11 +3173,11 @@ function howItWorks() {
   return [
     ["Evidence comes in", `<p>Every score is an entry: student, standard, assessment, level 1–4, evidence type (observation or conversation, product, or test), date, feedback, and an optional link to student work.</p><p>Entries are never overwritten. A correction creates a new entry that supersedes the old one, and Undo or Void marks an entry inactive, so the full history is always available.</p>`],
     ["Mastery is tracked per standard", `<p>The current level on each standard comes from the grading rule, now <b>${esc(RULES[p.rule].name.toLowerCase())}</b>${p.rule === "recentN" ? ` (N = ${p.n})` : p.rule === "decaying" ? ` (weight ${p.weight})` : ""}. Later growth replaces early attempts instead of being averaged with them.</p><p>${p.confirm ? "Mastery also needs two pieces of evidence at 3 or above." : "An optional rule can require two pieces of evidence at 3 or above before a standard counts as mastered."} Rules are changed in Settings › Grading rule, and every view recalculates immediately.</p>`],
-    ["Levels become gradebook scores", `<p>Levels convert to percentages through the anchors (1 → ${p.anchors[1]}, 2 → ${p.anchors[2]}, 3 → ${p.anchors[3]}, 4 → ${p.anchors[4]}). The course percent averages the current levels of <b>${esc(counted)}</b> standards; the others are still scored and reported.</p><p>PowerSchool receives one import file per assessment, matched by student number.</p>`],
+    ["Levels become gradebook scores", `<p>Levels convert to percentages through the anchors (1 → ${p.anchors[1]}, 2 → ${p.anchors[2]}, 3 → ${p.anchors[3]}, 4 → ${p.anchors[4]}); Level 1 sits below the passing line. The averaging comparison uses the <b>${esc(BASELINES[p.baseline].name.toLowerCase())}</b> baseline. The course percent averages the current levels of <b>${esc(counted)}</b> standards; the others are still scored and reported.</p><p>PowerSchool receives one import file per assessment, matched by student number.</p>`],
     ["Courses run by semester", `<p>Each course lasts one semester (S1: Aug 24–Jan 22; S2: Jan 25–Jun 15) on a four-period day: P1 7:50–9:10, P2 9:15–10:35, P3 10:40–12:40 (with lunch), P4 12:45–2:05. Semester 2 classes have different students. Switch semesters at the top of the page.</p><p>A standard appears in a class once an assessment for it has been given; later units stay under “coming later.” This sample uses: ${FRAMEWORKS.map((f) => esc(f.name)).join("; ")}.</p>`],
     ["Groups and retries update themselves", `<p>Re-teach and practice groups rebuild after every score. Students are suggested for MTSS review only with persistent need (“not yet” on ${s.groups.tier3Min}+ standards, or ${s.groups.persistentAttempts}+ attempts still at 1). Retry flags clear when a later score reaches 3.</p>`],
-    ["Privacy", `<p>Data stays in this browser unless you download or copy it. Research exports drop names and student numbers and use salted SHA-256 pseudonyms; the salt never leaves the browser. Pseudonyms can replace names on screen for presentations (Settings › Research view).</p>`],
-    ["The SMT code", `<p>Each current level is also encoded as a Standardized Mastery Taxonomy string (Uranis et al., 2019): domain, competency number, type, decay rule, proficiency, date, method, and district ID.</p>${smtBreakdown(COMPETENCIES[0], ex)}<p class="tiny" style="font-family:var(--font-body);color:var(--ink-2);margin-top:6px">The proficiency codes (02/04/06/08) and the decay field should be confirmed against the published taxonomy. District ID: ${esc(s.district.idType)}.</p>`]
+    ["Privacy", `<p>Data stays in this browser unless you download or copy it. Research exports drop names and student numbers and use salted SHA-256 pseudonyms. Research pseudonyms and credential hashes use separate salts, and the research salt never leaves the browser. Pseudonyms can replace names on screen for presentations (Settings › Research view).</p>`],
+    ["The SMT code", `<p>Each current level is also encoded as a Standardized Mastery Taxonomy string (Uranis et al., 2019): domain, competency number, type, decay rule, proficiency, date, method, and district ID.</p>${smtBreakdown(COMPETENCIES[0], ex)}<p class="tiny" style="font-family:var(--font-body);color:var(--ink-2);margin-top:6px">The proficiency codes (02/04/06/08) and the decay field should be confirmed against the published taxonomy. District ID: ${esc(ID_TYPES[s.district.idType].name)}. Every code is checked for length 33, the hyphen at position 15, a real date, and a valid method before export.</p>${smtCheckHtml()}`]
   ];
 }
 const WORKLOAD = [
@@ -2769,7 +3192,7 @@ function renderMargin() {
   const el = document.getElementById("margin");
   if (!isResearch()) { el.innerHTML = ""; return; }
   const g = VIEW_GUIDE[ui.tab];
-  el.innerHTML = profileCard() + feedbackCard() + (!state.settings.research.studyNotes ? "" : `
+  el.innerHTML = profileCard() + feedbackCard() + integrityNote() + (!state.settings.research.studyNotes ? "" : `
     <section class="note-card"><div class="eyebrow">About this view</div><h3>${esc(g.name)}</h3>
       <p style="margin-top:6px">${esc(g.purpose)}</p>
       <p class="small" style="margin-top:10px"><b class="lbl-note">How it works</b></p><ul>${g.how.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
@@ -2800,20 +3223,35 @@ function telemetrySummary() {
 }
 
 /* ---------------------------------------------------------------- v0.46 additions */
+const ML_SHORT = { "Active ML": "Active", "Monitored (exited, within 4 years)": "Monitored", "Former ML": "Former" };
 function supPill(sid, compact) {
   const s = supportOf(sid);
   if (!s) return "";
-  const detail = isResearch() ? "Details hidden in Reviewer view" : s.accommodations.join(", ") + (s.modifications ? ` · Modifications: ${s.modifications}` : "");
-  return ` <span class="pill sup ${s.plan === "IEP" ? "iep" : "p504"}" title="${esc(s.plan)}: ${esc(detail)}"${compact ? "" : tip("supports", sid)}>${esc(s.plan)}</span>`;
+  const hide = isResearch();
+  let out = "";
+  if (s.plan) {
+    const detail = hide ? "Details hidden in Reviewer view" : s.accommodations.join(", ") + (s.modifications ? ` · Modifications: ${s.modifications}` : "");
+    out += ` <span class="pill sup ${s.plan === "IEP" ? "iep" : "p504"}" title="${esc(s.plan)}: ${esc(detail)}"${compact ? "" : tip("supports", sid)}>${esc(s.plan)}</span>`;
+  }
+  if (s.ml && /^Active|^Monitored/.test(s.ml.status)) {
+    const detail = hide ? "Details hidden in Reviewer view" : `${s.ml.status}${s.ml.proficiency ? ` · ELP ${s.ml.proficiency}` : ""}${(s.ml.supports || []).length ? ` · ${s.ml.supports.join(", ")}` : ""}`;
+    out += ` <span class="pill sup ml" title="Multilingual learner: ${esc(detail)}"${compact ? "" : tip("supports", sid)}>ML${s.ml.status.startsWith("Monitored") ? "·M" : ""}</span>`;
+  }
+  return out;
 }
 function supportsRow(st) {
   const s = supportOf(st.id);
-  if (!s) return `<div class="sup-row" data-tip="supports-row"><span class="small muted">No IEP or 504 plan recorded.</span><button class="btn sm ghost" data-act="edit-supports">Add IEP / 504 info</button></div>`;
+  const hasMl = s && s.ml && s.ml.status && s.ml.status !== "Not ML";
+  if (!s || (!s.plan && !hasMl)) return `<div class="sup-row" data-tip="supports-row"><span class="small muted">No IEP, 504, or ML status recorded.</span><button class="btn sm ghost" data-act="edit-supports">Add student supports</button></div>`;
   const hidden = isResearch();
-  return `<div class="sup-row" data-tip="supports-row">
-    <span class="pill sup ${s.plan === "IEP" ? "iep" : "p504"}">${esc(s.plan)}</span>
+  const plan = s.plan ? `<span class="pill sup ${s.plan === "IEP" ? "iep" : "p504"}">${esc(s.plan)}</span>
     ${hidden ? `<span class="small muted">Accommodations are hidden in Reviewer view.</span>` : `<span class="sup-list">${s.accommodations.map((a) => `<span class="htag">${esc(a)}</span>`).join("")}${s.other ? `<span class="htag">${esc(s.other)}</span>` : ""}</span>
-    ${s.modifications ? `<span class="small"><b>Modifications:</b> ${esc(s.modifications)}</span>` : ""}`}
+    ${s.modifications ? `<span class="small"><b>Modifications:</b> ${esc(s.modifications)}</span>` : ""}`}` : "";
+  const ml = hasMl ? `<span class="sup-line"><span class="pill sup ml">ML · ${esc(ML_SHORT[s.ml.status] || s.ml.status)}</span>
+    ${hidden ? `<span class="small muted">ML details are hidden in Reviewer view.</span>` : `${s.ml.proficiency ? `<span class="small">ELP level <b>${esc(s.ml.proficiency)}</b>${s.ml.source ? ` (${esc(s.ml.source)}${s.ml.assessedOn ? `, ${esc(fmtDate(s.ml.assessedOn))}` : ""})` : ""}</span>` : ""}
+    ${s.ml.homeLanguage ? `<span class="small muted">Home language: ${esc(s.ml.homeLanguage)}</span>` : ""}
+    <span class="sup-list">${(s.ml.supports || []).map((a) => `<span class="htag">${esc(a)}</span>`).join("")}</span>`}</span>` : "";
+  return `<div class="sup-row" data-tip="supports-row">${plan ? `<span class="sup-line">${plan}</span>` : ""}${ml}
     <button class="btn sm ghost" data-act="edit-supports">Edit</button></div>`;
 }
 function notTaughtList(sec, active) {
@@ -2883,11 +3321,11 @@ function historyTab(st) {
       ${series.length ? `<div class="table-wrap"><table><thead><tr><th>Term</th><th>Source</th><th>Results</th><th>Average level</th><th>At 3+</th></tr></thead><tbody>${series.map((s) => `<tr><td class="small">${s.term}</td><td class="small">${esc(s.sources.join(", "))}</td><td class="num small">${s.n}</td><td class="num small"><b>${s.mean.toFixed(2)}</b></td><td class="num small">${Math.round((s.met / s.n) * 100)}%</td></tr>`).join("")}</tbody></table></div>` : ""}
     </section>
     <section class="card stack" data-tip="history-import">
-      <div><h3>Import a past learner record</h3><p class="small muted">Choose a Comprehensive Learner Record or Open Badges JSON file from an earlier course or school, or paste its contents. Only standards, levels, and dates are kept.</p></div>
-      <div class="row"><label class="btn" for="hist-file">${ICON.upload} Choose file…</label><input id="hist-file" type="file" accept=".json,application/json" class="hidden">
-        <button class="btn ghost" data-act="hist-sample">Load a sample prior record</button></div>
-      <textarea id="hist-text" class="code" rows="3" placeholder="Paste JSON here"></textarea>
-      <div class="row"><button class="btn" data-act="hist-import">Import pasted record</button><p class="error" id="hist-error" role="alert"></p></div>
+      <div><h3>${PREVIEW ? "Past learner records" : "Import a past learner record"}</h3><p class="small muted">${PREVIEW ? "In the pilot, teachers can import a Comprehensive Learner Record or Open Badges file from an earlier course. File import is turned off in this preview; load a fictional sample record to see how growth is charted." : "Choose a Comprehensive Learner Record or Open Badges JSON file from an earlier course or school, or paste its contents. Only standards, levels, and dates are kept."}</p></div>
+      <div class="row">${PREVIEW ? "" : `<label class="btn" for="hist-file">${ICON.upload} Choose file…</label><input id="hist-file" type="file" accept=".json,application/json" class="hidden">`}
+        <button class="btn ${PREVIEW ? "" : "ghost"}" data-act="hist-sample">Load a sample prior record</button></div>
+      ${PREVIEW ? "" : `<textarea id="hist-text" class="code" rows="3" placeholder="Paste JSON here"></textarea>
+      <div class="row"><button class="btn" data-act="hist-import">Import pasted record</button><p class="error" id="hist-error" role="alert"></p></div>`}
       ${recs.length ? `<div class="stack" style="gap:6px"><h4>Imported records</h4>${recs.map((h) => `<div class="hist-item"><div><b class="small">${esc(h.name)}</b><div class="tiny muted">${h.records.length} results · ${fmtDate(h.records.map((r) => r.date).sort()[0])} – ${fmtDate(h.records.map((r) => r.date).sort().pop())} · imported ${fmtDate(h.imported)}</div></div><button class="btn sm ghost danger" data-act="hist-remove" data-v="${h.id}">Remove</button></div>`).join("")}</div>` : ""}
     </section></div>`;
 }
@@ -2910,8 +3348,9 @@ function addClassDialog() {
         <label class="field" for="ac-period">Period<select id="ac-period" name="period">${Object.entries(PERIOD_TIMES).map(([p, t]) => `<option value="${p}" ${!taken[p] && p === "Period 3" ? "selected" : ""}>${p} · ${t}${taken[p] ? ` (now: ${esc(taken[p])})` : ""}</option>`).join("")}</select></label>
       </div>
       <label class="field" for="ac-room">Room<input id="ac-room" name="room" type="text" value="${esc(SECTIONS[0]?.room || "")}"></label>
-      <label class="field" for="ac-roster">Roster (optional): one student per line<textarea id="ac-roster" name="roster" rows="6" placeholder="Rivera, Maya, 20991&#10;Chen, Liam, 20992&#10;Okafor, Amara"></textarea></label>
-      <p class="tiny muted">Format: Last, First, Student number. The number is optional; one is assigned if missing. Standards come from the course; a new course starts with none, and you can add them on the Class view.</p>
+      ${PREVIEW ? `<label class="field" for="ac-count">Fictional students<select id="ac-count" name="count">${[0, 12, 18, 24].map((n) => `<option value="${n}" ${n === 18 ? "selected" : ""}>${n ? `${n} fictional students` : "No students yet"}</option>`).join("")}</select></label>
+      <p class="tiny muted">Roster import is turned off in this preview, so the class is filled with fictional students. Standards come from the course; a new course starts with none, and you can add them on the Class view.</p>` : `<label class="field" for="ac-roster">Roster (optional): one student per line<textarea id="ac-roster" name="roster" rows="6" placeholder="Rivera, Maya, 20991&#10;Chen, Liam, 20992&#10;Okafor, Amara"></textarea></label>
+      <p class="tiny muted">Format: Last, First, Student number. The number is optional; one is assigned if missing. Standards come from the course; a new course starts with none, and you can add them on the Class view.</p>`}
     </div>
     <div class="dialog-foot"><p class="error" id="ac-error" role="alert"></p><div class="row tight"><button class="btn ghost" type="button" data-act="close-dialog">Cancel</button><button class="btn primary" type="submit">Add class</button></div></div>
     </form></div>`;
@@ -2945,20 +3384,340 @@ function addStandardDialog() {
 function supportsDialog() {
   const st = studentById(ui.studentId);
   const s = supportOf(st.id) || { plan: "", accommodations: [], modifications: "", other: "" };
+  const ml = s.ml || { status: "Not ML", proficiency: "", source: "", assessedOn: "", homeLanguage: "", supports: [] };
+  const lg = (t) => `<legend class="small" style="font-weight:650;color:var(--ink-2)">${t}</legend>`;
   return `<div class="scrim" data-act="close-dialog"></div>
   <div class="dialog sm" role="dialog" aria-modal="true" aria-labelledby="sup-title">
-    <div class="dialog-head"><h3 id="sup-title">IEP / 504 information · ${esc(nameOf(st))}</h3><button class="btn icon ghost" data-act="close-dialog" aria-label="Close">${ICON.close}</button></div>
+    <div class="dialog-head"><h3 id="sup-title">Student supports (IEP · 504 · ML) · ${esc(nameOf(st))}</h3><button class="btn icon ghost" data-act="close-dialog" aria-label="Close">${ICON.close}</button></div>
     <form id="sup-form" class="na-form"><div class="na-body">
-      <div class="inline-note" style="font-family:var(--font-body);font-size:.84rem"><b>Privacy</b>Record the plan type and the accommodations you provide. Don't record diagnoses or disability categories. This information is never included in exports, shared reviews, credentials, or research files, and is hidden in Reviewer view.</div>
-      <fieldset class="stack" style="border:0;padding:0;margin:0;gap:6px"><legend class="small" style="font-weight:650;color:var(--ink-2)">Plan</legend>
+      <div class="inline-note" style="font-family:var(--font-body);font-size:.84rem"><b>Privacy</b>Record flags and the supports you provide. Don't record diagnoses or disability categories. This information is left out of exports, shared reviews, credentials, and research files (unless de-identified support flags are turned on for research), and details are hidden in Reviewer view.</div>
+      <h4 class="sup-h">IEP or 504</h4>
+      <fieldset class="stack" style="border:0;padding:0;margin:0;gap:6px">${lg("Plan")}
         <div class="row">${[["", "None"], ["IEP", "IEP"], ["504", "504 plan"]].map(([v, l]) => `<label class="check"><input type="radio" name="plan" value="${v}" ${s.plan === v ? "checked" : ""}> ${l}</label>`).join("")}</div></fieldset>
-      <fieldset class="stack" style="border:0;padding:0;margin:0;gap:6px"><legend class="small" style="font-weight:650;color:var(--ink-2)">Accommodations (how the student accesses the work)</legend>
+      <fieldset class="stack" style="border:0;padding:0;margin:0;gap:6px">${lg("Accommodations (how the student accesses the work)")}
         <div class="acc-grid">${ACCOMMODATIONS.map((a) => `<label class="check small"><input type="checkbox" name="acc" value="${esc(a)}" ${s.accommodations.includes(a) ? "checked" : ""}> ${esc(a)}</label>`).join("")}</div>
         <label class="field" for="sup-other">Other accommodation<input id="sup-other" name="other" type="text" value="${esc(s.other || "")}"></label></fieldset>
       <label class="field" for="sup-mod">Modifications (changes to what is assessed)<textarea id="sup-mod" name="mods" rows="2" placeholder="Modified rubric on extended writing">${esc(s.modifications || "")}</textarea></label>
+      <h4 class="sup-h">Multilingual learner (ML)</h4>
+      <div class="form-grid">
+        <label class="field" for="ml-status">ML status<select id="ml-status" name="mlStatus">${ML_STATUSES.map((x) => `<option ${ml.status === x ? "selected" : ""}>${esc(x)}</option>`).join("")}</select></label>
+        <label class="field" for="ml-prof">English language proficiency level<input id="ml-prof" name="mlProf" type="text" value="${esc(ml.proficiency || "")}" placeholder="e.g., 3"></label>
+        <label class="field" for="ml-src">Source / assessment<input id="ml-src" name="mlSrc" type="text" value="${esc(ml.source || "")}" placeholder="District ELP assessment"></label>
+        <label class="field" for="ml-date">Date assessed<input id="ml-date" name="mlDate" type="date" value="${esc(ml.assessedOn || "")}"></label>
+        <label class="field full" for="ml-lang">Home language (optional)<input id="ml-lang" name="mlLang" type="text" value="${esc(ml.homeLanguage || "")}"></label>
+      </div>
+      <fieldset class="stack" style="border:0;padding:0;margin:0;gap:6px">${lg("ML supports")}
+        <div class="acc-grid">${ML_SUPPORTS.map((a) => `<label class="check small"><input type="checkbox" name="mlSup" value="${esc(a)}" ${(ml.supports || []).includes(a) ? "checked" : ""}> ${esc(a)}</label>`).join("")}</div></fieldset>
     </div>
     <div class="dialog-foot"><p class="error" id="sup-error" role="alert"></p><div class="row tight"><button class="btn ghost" type="button" data-act="close-dialog">Cancel</button><button class="btn primary" type="submit">Save</button></div></div>
     </form></div>`;
+}
+
+"use strict";
+/* ==========================================================================
+   v0.47 preview build: fictional-data banner, welcome, "Try this" checklist,
+   Send feedback / Copy my comments, "How grades are calculated" panel,
+   side-by-side "which fits your school?" choices, Reviewer integrity cards
+   ========================================================================== */
+
+/* ---------- Try this: the same short walkthrough for every reviewer ---------- */
+const TRY_TASKS = [
+  { id: "score", title: "Score a class", how: "Open Score, pick an assessment, and give at least five students a level (keys 1–4 work).", go: "score" },
+  { id: "retry", title: "Handle a retry", how: "Flag a student for another attempt (F in the Score view), or work a student from the retry queue on Today.", go: "today" },
+  { id: "student", title: "Open a student record", how: "Open Students and pick anyone. Look at the progress review and the levels per standard.", go: "students" },
+  { id: "compare", title: "Compare the averaged grade with the mastery grade", how: "Open “How grades are calculated” to see one student's grade both ways.", dialog: "how-grades" },
+  { id: "export", title: "Export a file", how: "In Gradebook, download a PowerSchool import file or a summary.", go: "gradebook" },
+  { id: "choose", title: "Tell us which option fits your school", how: "Answer at least one side-by-side choice.", dialog: "choices" }
+];
+function tryMark(id) {
+  if (!state.tryThis || state.tryThis[id]) return;
+  state.tryThis[id] = localIso();
+  const done = TRY_TASKS.filter((t) => state.tryThis[t.id]).length;
+  save();
+  if (typeof toast === "function") setTimeout(() => toast(`Try this: “${TRY_TASKS.find((t) => t.id === id).title}” done (${done} of ${TRY_TASKS.length})`), 30);
+}
+const tryDone = () => TRY_TASKS.filter((t) => state.tryThis[t.id]).length;
+
+/* ---------- permanent preview banner ---------- */
+function previewBanner() {
+  if (!PREVIEW) return "";
+  return `<div class="preview-banner" role="note" aria-label="Preview notice">
+    <span class="pb-text"><b>Preview with fictional students.</b> Do not enter real student information.</span>
+    <span class="pb-actions">
+      <button class="btn sm" data-act="open-dialog" data-v="try-this">Try this <span class="pill">${tryDone()}/${TRY_TASKS.length}</span></button>
+      <button class="btn sm" data-act="open-dialog" data-v="how-grades">How grades work</button>
+      <button class="btn sm primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>
+      <button class="btn sm ghost" data-act="banner-reset" title="Start over with fresh demo classes">Reset demo</button>
+    </span></div>`;
+}
+
+/* ---------- dialog shell ---------- */
+function dlg(id, title, body, foot, size = "sm") {
+  return `<div class="scrim" data-act="close-dialog"></div>
+  <div class="dialog ${size}" role="dialog" aria-modal="true" aria-labelledby="${id}-title">
+    <div class="dialog-head"><h3 id="${id}-title">${title}</h3><button class="btn icon ghost" data-act="close-dialog" aria-label="Close">${ICON.close}</button></div>
+    <div class="dlg-body">${body}</div>
+    ${foot ? `<div class="dialog-foot">${foot}</div>` : ""}</div>`;
+}
+
+/* ---------- welcome ---------- */
+function welcomeDialog() {
+  const body = `
+    <p>This is a <b>research prototype</b> of a grading tool for a doctoral study on standards-based grading. Teachers score each standard on a 1–4 mastery scale, and the tool produces the percent and letter grades that PowerSchool needs, plus a learner record for each student.</p>
+    <ul class="welcome-list">
+      <li><b>All students are fictional.</b> Please don't enter real student information.</li>
+      <li><b>A walkthrough takes about 10 minutes.</b> The “Try this” checklist gives everyone the same short set of tasks.</li>
+      <li><b>Your comments help shape the tool.</b> Use “Send feedback” at any time. Nothing you type leaves this browser unless you copy or send it, and the app uses no analytics.</li>
+    </ul>
+    <h4 style="margin-top:14px">Pick a sample teacher</h4>
+    <div class="welcome-picks">${Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => `<button class="pick ${PROFILE_ID === k ? "on" : ""}" data-act="welcome-pick" data-v="${k}" aria-pressed="${PROFILE_ID === k}"><b>${esc(v)}</b><span class="small muted">${esc(PROFILE_COURSES[k])}</span></button>`).join("")}</div>`;
+  return dlg("welcome", "Welcome to the SMT Mastery Dashboard preview", body,
+    `<span class="tiny muted">v${APP_VERSION} preview</span><div class="row tight"><button class="btn primary" data-act="welcome-start">Start the walkthrough</button></div>`);
+}
+
+/* ---------- Try this ---------- */
+function tryThisDialog() {
+  const body = `<p class="small muted">Six short tasks, about 10 minutes in all. Each one checks itself off when you do it, or tick it yourself.</p>
+    <ol class="try-list">${TRY_TASKS.map((t) => `<li class="${state.tryThis[t.id] ? "done" : ""}">
+      <label class="check"><input type="checkbox" data-act="try-toggle" data-v="${t.id}" ${state.tryThis[t.id] ? "checked" : ""}> <b>${esc(t.title)}</b></label>
+      <p class="small muted">${esc(t.how)}</p>
+      <button class="btn sm ghost" data-act="try-go" data-v="${t.id}">Go there</button></li>`).join("")}</ol>
+    <p class="small">${tryDone() === TRY_TASKS.length ? "All done. Thank you! Please use <b>Send feedback</b> to share what you noticed." : "When you're finished, use <b>Send feedback</b>."}</p>`;
+  return dlg("try", `Try this (${tryDone()} of ${TRY_TASKS.length})`, body,
+    `<button class="btn ghost" data-act="banner-reset">Reset demo and start over</button><button class="btn primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>`);
+}
+
+/* ---------- Send feedback / Copy my comments ---------- */
+const SCREEN_NAMES = { today: "Today", score: "Score", class: "Class", students: "Students", gradebook: "Gradebook" };
+const screenLabel = () => `${SCREEN_NAMES[ui.tab] || ui.tab} · ${PROFILE.name} · ${isResearch() ? "Reviewer" : "Teacher"} view`;
+function feedbackFormUrl() {
+  if (!FEEDBACK_FORM.url) return "";
+  return FEEDBACK_FORM.url.replace(/VERSION/g, encodeURIComponent(`v${APP_VERSION}`)).replace(/SCREEN/g, encodeURIComponent(screenLabel()));
+}
+function sendFeedbackDialog() {
+  const url = feedbackFormUrl();
+  const n = state.feedback.length;
+  const body = `
+    <p class="small">You're on <b>${esc(screenLabel())}</b>, v${APP_VERSION}.</p>
+    <label class="field" for="sf-text">Quick comment about this screen (optional)<textarea id="sf-text" rows="3" placeholder="What was clear, confusing, or missing?">${esc(transient.sfDraft || "")}</textarea></label>
+    <div class="row tight"><button class="btn sm" data-act="sf-add">Add to my comments</button><span class="tiny muted" id="sf-count">${n} comment${n === 1 ? "" : "s"} saved in this browser</span></div>
+    <div class="sf-steps">
+      <div><b>1. Copy my comments</b><p class="small muted">Copies everything you've noted (here, in Reviewer feedback mode, and your side-by-side choices) as Markdown, with no student data.</p>
+        <button class="btn" data-act="copy-comments">${ICON.copy} Copy my comments</button></div>
+      <div><b>2. ${url ? "Open the feedback form" : "Send them"}</b><p class="small muted">${url ? (/VERSION|SCREEN/.test(FEEDBACK_FORM.url) ? "Opens the short form with the version and this screen filled in. Paste your comments into it." : `Opens the short feedback form in a new tab. Paste your comments into it; they already include the version (v${APP_VERSION}) and the screen you were on.`) : "The feedback form link hasn't been set up yet. Paste your comments into an email to the researcher."}</p>
+        ${url ? `<a class="btn primary" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-act="sf-open">Open feedback form ↗</a>` : ""}</div>
+    </div>
+    <p class="tiny muted">Your name is optional. Comments stay on this device until you copy or send them.</p>`;
+  return dlg("sf", "Send feedback", body, "");
+}
+function addQuickComment(text) {
+  state.feedback.push({ id: "f" + Date.now().toString(36), t: new Date().toISOString(), view: ui.tab, key: "general", label: "General comment", context: screenLabel(),
+    type: "comment", text, reviewer: state.reviewer || "", appVersion: APP_VERSION });
+  save();
+}
+
+/* ---------- How grades are calculated (plain language) ---------- */
+function exampleStudent() {
+  const st0 = ui.studentId && studentById(ui.studentId);
+  const pool = [st0, ...roster(`all-${ui.semester}`)].filter(Boolean);
+  for (const st of pool) {
+    const m = metrics(st);
+    const c = COMPETENCIES.find((x) => { const a = m.per[x.id].att; return a.length >= 3 && a[0].level < a[a.length - 1].level && countsInGrade(x); });
+    if (c && m.policyPct != null) return { st, c, m };
+  }
+  const st = pool.find((s) => metrics(s).policyPct != null);
+  return st ? { st, c: COMPETENCIES.find((x) => metrics(st).per[x.id].att.length), m: metrics(st) } : null;
+}
+function gradesDialog() {
+  const p = currentPolicy(), ex = exampleStudent();
+  const lvlRow = [1, 2, 3, 4].map((l) => `<td class="num"><b>${p.anchors[l]}%</b></td>`).join("");
+  let example = "";
+  if (ex) {
+    const { st, c, m } = ex, { att, ev, policyPct } = m.per[c.id];
+    const avg = mean(att.map((a) => a.level));
+    example = `<div class="gx-card">
+      <div class="small muted">Example: ${esc(nameOf(st))}, ${esc(c.standard)} ${esc(c.title)}</div>
+      <div class="gx-steps">
+        <div><span class="gx-k">Attempts</span><span class="gx-v">${att.map((a) => `<span class="lv lv-${a.level}"><span class="n">${a.level}</span></span>`).join(" → ")}</span></div>
+        <div><span class="gx-k">Current level</span><span class="gx-v">${chip(ev)} <span class="small muted">(${esc(RULES[p.rule].name.toLowerCase())})</span></span></div>
+        <div><span class="gx-k">As a percent</span><span class="gx-v"><b>${Math.round(policyPct)}%</b></span></div>
+        <div><span class="gx-k">If attempts were averaged</span><span class="gx-v">level ${avg.toFixed(1)} → <b>${Math.round(pctFromValue(avg, p))}%</b></span></div>
+      </div>
+      <p class="small" style="margin-top:8px">Course grade: <b>${m.policyLetter} ${m.policyPct}%</b> from current levels${m.legacyPct != null ? `, compared with <b>${m.legacyLetter} ${m.legacyPct}%</b> ${esc(baselineVs().replace(/^vs\. /, "from "))}` : ""}.${m.warnL1Pass ? " " + warnChip(m) : ""}</p></div>`;
+  }
+  const G = [
+    ["Standard", "One skill the course teaches, such as a state or national standard. Each gets its own level."],
+    ["Level (1–4)", "1 Not yet · 2 Approaching · 3 Meets (the goal) · 4 Exceeds. Shown as “Appr.” on small screens."],
+    ["Evidence type", "How the level was shown: an observation or conversation, a product (student work), or a test or quiz."],
+    ["Current level", `The level that counts now. Under the ${RULES[p.rule].name.toLowerCase()} rule, later growth replaces early attempts instead of being averaged in.`],
+    ["Retry", "A flag for another attempt. It clears itself when the student reaches 3."],
+    ["Conversion table", `Turns levels into percents for PowerSchool: 1 → ${p.anchors[1]}%, 2 → ${p.anchors[2]}%, 3 → ${p.anchors[3]}%, 4 → ${p.anchors[4]}%. Set by the school.`],
+    ["Course percent", "The average of the current levels' percents across the standards that count toward the grade."],
+    ["Pass line", `The lowest passing letter (${passLineLetter()}). A warning appears if a student has a 1 on a graded standard but still passes.`],
+    ["Averaging comparison", `What a points gradebook would show if every attempt were averaged (${BASELINES[p.baseline].name.toLowerCase()}). The gap shows how averaging holds back late growth.`],
+    ["Work habits", "Recorded separately (Exemplary, Consistent, Developing) and never mixed into the mastery grade."],
+    ["Learner record", "A layered transcript and Open Badges credential listing each standard, its level, and links to the student's work."]
+  ];
+  const body = `
+    <p><b>In short:</b> each standard gets a level from 1 to 4 based on the evidence that counts under the grading rule (now <b>${esc(RULES[p.rule].name.toLowerCase())}</b>). Each level converts to a percent, and the course grade averages those percents across the graded standards.</p>
+    <div class="table-wrap"><table class="gx-table"><thead><tr><th>Level</th>${[1, 2, 3, 4].map((l) => `<th>${lvLabel(l)}</th>`).join("")}</tr></thead><tbody><tr><td class="small">Percent</td>${lvlRow}</tr></tbody></table></div>
+    ${example}
+    <h4 style="margin-top:14px">Glossary</h4>
+    <dl class="glossary">${G.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+    ${isResearch() ? `<p class="small muted">Reviewer view: each current level is also encoded as a 33-character SMT code; see “How the SMT dashboard works” in the side panel.</p>` : ""}`;
+  return dlg("gx", "How grades are calculated", body, `<span></span><button class="btn primary" data-act="open-dialog" data-v="choices">Which option fits your school?</button>`, "md");
+}
+
+/* ---------- Which fits your school? (two versions of contested decisions) ---------- */
+function courseUnder(st, patch) {
+  const pc = { ...currentPolicy(), ...patch, anchors: { ...currentPolicy().anchors, ...(patch.anchors || {}) } };
+  const vals = COMPETENCIES.filter((c) => countsInGrade(c, pc)).map((c) => { const att = attemptsFor(st.id, c.id); return att.length ? pctFromValue(evaluate(att, pc).value, pc) : null; }).filter((v) => v != null);
+  const pct = vals.length ? Math.round(mean(vals)) : null;
+  return { pct, letter: letter(pct) };
+}
+const CHOICES = [
+  { id: "rule", q: "Which grading rule fits your school?", a: "Most recent evidence", b: "Decaying average (newest attempt counts 65%)" },
+  { id: "transcript", q: "Which transcript fits your school?", a: "Short: summary only", b: "Full: rubric and evidence for each standard" },
+  { id: "anchors", q: "How should Level 1 (Not yet) convert?", a: "50%: below passing", b: "62%: a D−" }
+];
+function choiceBox(c) {
+  const cur = state.choices[c.id] || {};
+  return `<form class="choice-form" data-choice="${c.id}">
+    <fieldset><legend class="small"><b>${esc(c.q)}</b></legend>
+      <div class="row">${[["a", c.a], ["b", c.b], ["neither", "Neither / it depends"]].map(([v, l]) => `<label class="check small"><input type="radio" name="pick" value="${v}" ${cur.pick === v ? "checked" : ""}> ${esc(l)}</label>`).join("")}</div></fieldset>
+    <label class="field" for="why-${c.id}">Why? (optional)<input id="why-${c.id}" name="why" type="text" value="${esc(cur.why || "")}" placeholder="One line is plenty"></label>
+    <div class="row tight"><button class="btn sm" type="submit">Save answer</button>${cur.pick ? `<span class="tiny muted">Saved ${esc(cur.at.slice(0, 16).replace("T", " "))}</span>` : ""}</div></form>`;
+}
+function choicesDialog() {
+  const ex = exampleStudent();
+  let rule = "", trans = "", anch = "";
+  if (ex) {
+    const { st, c } = ex;
+    const att = attemptsFor(st.id, c.id);
+    const latest = evaluate(att, { ...currentPolicy(), rule: "latest" }), dec = evaluate(att, { ...currentPolicy(), rule: "decaying", weight: 0.65 });
+    const cl = courseUnder(st, { rule: "latest" }), cd = courseUnder(st, { rule: "decaying", weight: 0.65 });
+    const attHtml = att.map((a) => `<span class="lv lv-${a.level}"><span class="n">${a.level}</span></span>`).join(" → ");
+    rule = `<div class="vs">
+      <div class="vs-col"><div class="vs-h">A · Most recent evidence</div><p class="small muted">The latest attempt sets the level.</p><div>${attHtml}</div><p>Level now: ${chip(latest)}</p><p class="small">Course grade: <b>${cl.letter} ${cl.pct}%</b></p></div>
+      <div class="vs-col"><div class="vs-h">B · Decaying average</div><p class="small muted">Each new attempt counts 65%; earlier ones fade.</p><div>${attHtml}</div><p>Level now: ${chip(dec)}</p><p class="small">Course grade: <b>${cd.letter} ${cd.pct}%</b></p></div>
+    </div><p class="tiny muted">Same student both ways: ${esc(nameOf(st))}, ${esc(c.standard)} ${esc(c.title)}.</p>`;
+    const m = metrics(st);
+    const shown = m.active.filter((x) => m.per[x.id].att.length).slice(0, 3);
+    trans = `<div class="vs">
+      <div class="vs-col"><div class="vs-h">A · Short transcript</div>
+        <p class="small"><b>${esc(nameOf(st))}</b> · ${esc(SEC[st.sectionId].name)}</p>
+        <p class="small">Grade ${m.policyLetter} ${m.policyPct}% · ${m.mastered} of ${m.active.length} standards at Meets or above · Work habits: ${esc(currentHabit(st.id) || "–")}</p></div>
+      <div class="vs-col"><div class="vs-h">B · Full transcript</div>
+        <p class="small"><b>${esc(nameOf(st))}</b> · ${m.policyLetter} ${m.policyPct}%</p>
+        ${shown.map((x) => { const { ev, att: aa } = m.per[x.id]; const last = aa[aa.length - 1]; return `<div class="vs-std"><div class="small">${chip(ev, true)} <b>${esc(x.standard)}</b> ${esc(x.title)}</div><div class="tiny muted">Rubric: ${esc(x.rubric[ev.level])}</div>${last.note ? `<div class="tiny">Feedback: ${esc(last.note)}</div>` : ""}${last.artifactUrl ? `<div class="tiny">Evidence: ${esc(last.artifactType || "student work")} (link)</div>` : ""}</div>`; }).join("")}
+        <p class="tiny muted">…and so on for every standard.</p></div></div>`;
+    const sem = roster(`all-${ui.semester}`);
+    const passWith = (a1) => sem.filter((s) => { const mm = metrics(s); if (!mm.l1Graded.length) return false; const r = courseUnder(s, { anchors: { 1: a1 } }); return r.pct != null && r.pct >= currentPolicy().passLine; }).length;
+    const withL1 = sem.filter((s) => metrics(s).l1Graded.length).length;
+    anch = `<div class="vs">
+      <div class="vs-col"><div class="vs-h">A · Level 1 = 50%</div><p class="small muted">“Not yet” is clearly below passing.</p><p class="small">${passWith(50)} of ${withL1} students with a 1 on a graded standard still pass this semester.</p></div>
+      <div class="vs-col"><div class="vs-h">B · Level 1 = 62% (D−)</div><p class="small muted">Matches a familiar points scale, but “Not yet” alone is passing.</p><p class="small">${passWith(62)} of ${withL1} students with a 1 on a graded standard pass this semester.</p></div></div>`;
+  }
+  const sections = [[CHOICES[0], rule], [CHOICES[1], trans], [CHOICES[2], anch]];
+  const body = `<p class="small muted">These decisions aren't settled. Each shows the same student or class two ways. Pick the one that fits your school; there's no right answer.</p>
+    ${sections.map(([c, html]) => `<section class="choice">${html}${choiceBox(c)}</section>`).join("")}`;
+  return dlg("ch", "Which fits your school?", body, `<span class="tiny muted">Answers are included when you copy your comments.</span><button class="btn primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>`, "md");
+}
+
+/* ---------- Reviewer: SMT check and codebook ---------- */
+function smtCheckHtml() {
+  const a = smtAudit();
+  return `<div class="smt-check">
+    <p class="small"><b>${a.n - a.bad.length} of ${a.n}</b> current codes pass the check${a.bad.length ? `; <span style="color:var(--l1)">${a.bad.length} fail and are left out of exports</span>` : ""}.</p>
+    ${a.bad.slice(0, 5).map((b) => `<p class="tiny"><code>${esc(b.code)}</code> ${esc(b.c.standard)}: ${esc(b.errs.join("; "))}</p>`).join("")}
+    <label class="field" for="prof-why" style="margin-top:6px">Proficiency mapping rationale (goes in the codebook)<textarea id="prof-why" rows="3" data-setting="research.profRationale">${esc(state.settings.research.profRationale)}</textarea></label>
+    <div class="row tight"><button class="btn sm" data-act="dl-codebook" data-v="md">${ICON.download} Codebook (.md)</button><button class="btn sm" data-act="dl-codebook" data-v="csv">${ICON.download} Codebook (.csv)</button></div></div>`;
+}
+
+/* ---------- Reviewer: export log with exact reproduction ---------- */
+function exportLogCard() {
+  const log = [...state.exportLog].reverse().slice(0, 12);
+  const pv = state.policyHistory.reduce((a, v) => (!a || v.version > a.version ? v : a), null);
+  return `<section class="card stack" data-tip="export-log">
+    <div><h3>Export log and reproduction</h3><p class="small muted">Every download is logged with the app version, grading policy version, settings, and a SHA-256 fingerprint. “Check” rebuilds the file from the evidence recorded by then and confirms it matches exactly.</p></div>
+    <p class="small">Grading policy v${pv.version}${pv.reason ? ` (${esc(pv.reason)})` : ""}. ${state.policyHistory.length > 1 ? `${state.policyHistory.length} versions so far; each preview edit makes a new version. ` : ""}The locked policy with required reasons arrives in the pilot build.</p>
+    ${log.length ? `<div class="table-wrap"><table><thead><tr><th>When</th><th>File</th><th>App</th><th>Policy</th><th></th></tr></thead><tbody>${log.map((x) => `<tr>
+      <td class="small">${esc(x.ts.slice(5, 16).replace("T", " "))}</td><td class="small mono-wrap">${esc(x.file)}</td><td class="small">v${esc(x.appVersion)}</td><td class="small">v${x.policyVersion}</td>
+      <td class="small">${x.digest ? `<span class="row tight"><button class="btn sm ghost" data-act="repro-check" data-v="${x.id}">Check</button><button class="btn sm ghost" data-act="repro-dl" data-v="${x.id}">Download again</button></span><span class="tiny" id="repro-${x.id}"></span>` : '<span class="tiny muted">not reproducible (backup)</span>'}</td></tr>`).join("")}</tbody></table></div>` : `<p class="small muted">No exports yet. Download any file in the Gradebook and it will appear here.</p>`}
+  </section>`;
+}
+/* Reviewer side panel: a pointer to the study-integrity tools (interactive tools live in Settings › Study data,
+   because clicks in the main page are captured for feedback in Reviewer view). */
+function integrityNote() {
+  const a = smtAudit(), n = state.exportLog.length;
+  return `<section class="note-card"><div class="eyebrow">Study integrity</div>
+    <p class="small" style="margin-top:6px">${a.n - a.bad.length} of ${a.n} SMT codes valid · ${n} export${n === 1 ? "" : "s"} logged · grading policy v${policyVersionNow()}</p>
+    <div class="row tight" style="margin-top:6px"><button class="btn sm" data-act="open-study">Export log, codebook, subgroups</button></div></section>`;
+}
+function subgroupCard() {
+  const rows = subgroupSummary(`all-${ui.semester}`);
+  return `<section class="card stack"><div><h3>Subgroup summary (de-identified)</h3><p class="small muted">${esc(semName(ui.semester))}, all classes. Mean course percent under the mastery rule and the ${esc(BASELINES[currentPolicy().baseline].name.toLowerCase())} baseline. Groups under 10 students show “&lt;10”.</p></div>
+    <div class="table-wrap"><table><thead><tr><th>Group</th><th>Students</th><th>Mastery %</th><th>Baseline %</th><th>Gap</th></tr></thead><tbody>${rows.map((r) => `<tr><td class="small">${esc(r.name)}</td><td class="num small">${esc(r.n)}</td><td class="num small">${esc(r.mastery)}</td><td class="num small">${esc(r.baseline)}</td><td class="num small">${esc(r.gap)}</td></tr>`).join("")}</tbody></table></div></section>`;
+}
+
+/* ---------- event handling for the pieces above ---------- */
+function v47Click(act, d, t) {
+  switch (act) {
+    case "open-dialog":
+      if (d.v === "how-grades") tryMark("compare");
+      openDialog(d.v); return true;
+    case "banner-reset":
+      if (t.dataset.armed !== "1") { t.dataset.armed = "1"; t.textContent = "Click again to reset"; setTimeout(() => { if (t.isConnected) { t.dataset.armed = ""; t.textContent = "Reset demo"; } }, 4000); return true; }
+      state.tryThis = {}; resetDemo(); return true;
+    case "welcome-pick": switchProfile(d.v); transient.dialog = "welcome"; renderDialog(); return true;
+    case "welcome-start": state.welcomed = true; save(); transient.dialog = "try-this"; renderDialog(); return true;
+    case "try-go": {
+      const task = TRY_TASKS.find((x) => x.id === d.v);
+      transient.dialog = null;
+      if (task.dialog) { if (task.id === "compare") tryMark("compare"); openDialog(task.dialog); }
+      else { renderDialog(); setTab(task.go); }
+      return true;
+    }
+    case "sf-add": {
+      const ta = document.getElementById("sf-text"), v = ta.value.trim();
+      if (!v) { ta.focus(); return true; }
+      addQuickComment(v); transient.sfDraft = ""; renderDialog(); toast("Comment saved. Copy your comments when you're ready to send them.");
+      return true;
+    }
+    case "copy-comments": copyText(feedbackMarkdown(), "Your comments"); return true;
+    case "open-study": ui.settingsPane = "study"; openDialog("settings"); return true;
+    case "dl-codebook": runExport(d.v === "csv" ? "codebookCsv" : "codebookMd"); return true;
+    case "dl-clr": runExport("clr", { sid: ui.studentId }); return true;
+    case "dl-brief": runExport("brief", { sectionId: ui.sectionId, cid: d.cid }); return true;
+    case "repro-check": case "repro-dl": {
+      const entry = state.exportLog.find((x) => x.id === d.v);
+      const out = entry && reproduceExport(entry);
+      const el = document.getElementById(`repro-${d.v}`);
+      if (!out) { if (el) el.textContent = "Couldn't rebuild"; return true; }
+      if (act === "repro-check") { if (el) { el.textContent = out.digestNow === entry.digest ? " ✓ matches exactly" : " ✗ differs"; el.style.color = out.digestNow === entry.digest ? "var(--l3)" : "var(--l1)"; } }
+      else saveFile(out.filename, out.data, "Reproduced file");
+      return true;
+    }
+  }
+  return false;
+}
+function v47Change(t) {
+  if (t.dataset.act === "try-toggle") {
+    if (t.checked) state.tryThis[t.dataset.v] = localIso(); else delete state.tryThis[t.dataset.v];
+    save(); renderDialog(); renderHeader(); return true;
+  }
+  return false;
+}
+function v47Submit(f) {
+  if (f.classList.contains("choice-form")) {
+    const fd = new FormData(f), id = f.dataset.choice, pick = fd.get("pick");
+    if (!pick) { toast("Choose one of the options first."); return true; }
+    state.choices[id] = { pick, why: String(fd.get("why") || "").trim(), at: localIso(), appVersion: APP_VERSION };
+    logT("choice", { id, pick });
+    save(); tryMark("choose"); renderDialog(); toast("Answer saved");
+    return true;
+  }
+  return false;
 }
 
 "use strict";
@@ -2982,7 +3741,7 @@ function levelContext(sid, cid) {
   return { title: `${nameOf(st)} · ${c.standard} ${c.title}`,
     body: P(`Current level <b>${fmt1(ev.value)} · ${LEVELS[ev.level].name}</b>${ev.confirmed ? "" : " (needs a second attempt at 3+ to confirm)"}.`) +
       P(`Attempts:<br>${list}`) +
-      P(`Under the current rule, ${ruleSentence()}. That converts to <b>${Math.round(policyPct)}%</b>; averaging every attempt would give ${Math.round(legacyPct)}%.`) +
+      P(`Under the current rule, ${ruleSentence()}. That converts to <b>${Math.round(policyPct)}%</b>${legacyPct != null ? `; the comparison baseline (${esc(BASELINES[currentPolicy().baseline].name.toLowerCase())}) would give ${Math.round(legacyPct)}%` : ""}.`) +
       (flag ? P("Flagged for a retry.") : "") };
 }
 const TIPS = {
@@ -2997,7 +3756,7 @@ const TIPS = {
     const sec = SEC[id], list = roster(id);
     const deltas = list.map((st) => metrics(st).delta).filter((x) => x != null);
     return { title: `${sec.period} · ${sec.name}`, body: P(`${list.length} students, ${sec.room}, ${sec.time}.`) +
-      (deltas.length ? P(`Compared with averaging every attempt, the grading rule changes course grades by ${(mean(deltas) >= 0 ? "+" : "") + mean(deltas).toFixed(1)} points on average for this class.`) : P("Scoring hasn't started for this class.")) };
+      (deltas.length ? P(`Compared with the baseline (${esc(BASELINES[currentPolicy().baseline].name.toLowerCase())}), the grading rule changes course grades by ${(mean(deltas) >= 0 ? "+" : "") + mean(deltas).toFixed(1)} points on average for this class.`) : P("Scoring hasn't started for this class.")) };
   },
   "dist": () => ({ title: "Level distribution", body: P("Each bar shows how all student-standard results in this class split across levels 1–4. Gray is not yet assessed. Hover-free reading: more green and blue means more students at Meets or above.") }),
   "fact-reteach": () => ({ title: "Re-teach spots", body: P("The number of student-standard pairs currently at level 1. Each appears in a re-teach group on the Class view.") }),
@@ -3044,8 +3803,8 @@ const TIPS = {
   "copy-plan": () => ({ title: "Copy intervention plan", body: P("Copies a Markdown intervention plan with both group rosters, recent feedback, rubric targets, and a planning prompt.") }),
   "add-class": () => ({ title: "Add class", body: P("Create a class for this semester: pick an existing course (its standards come along) or name a new one, choose a period, and paste a roster.") }),
   "add-standard": () => ({ title: "Add standard", body: P("Add a state standard to this course, or write your own with a four-level rubric. It applies to every class of the course and appears in scoring once an assessment includes it.") }),
-  "supports": (sid) => ({ title: "IEP / 504", body: isResearch() ? P("This student has a support plan. Details are hidden in Reviewer view.") : P(esc((supportOf(sid)?.accommodations || []).join(" · "))) + (supportOf(sid)?.modifications ? P(`Modifications: ${esc(supportOf(sid).modifications)}`) : "") }),
-  "supports-row": () => ({ title: "Supports", body: P("IEP or 504 plan type plus the accommodations and modifications you provide. Never includes diagnoses, never exported, and hidden in Reviewer view.") }),
+  "supports": (sid) => ({ title: "Student supports (IEP · 504 · ML)", body: isResearch() ? P("This student has a support plan or multilingual learner status. Details are hidden in Reviewer view; only the flag is shown.") : P(esc((supportOf(sid)?.accommodations || []).join(" · "))) + (supportOf(sid)?.modifications ? P(`Modifications: ${esc(supportOf(sid).modifications)}`) : "") + (mlActive(sid) ? P(`ML supports: ${esc((supportOf(sid).ml.supports || []).join(" · "))}`) : "") }),
+  "supports-row": () => ({ title: "Student supports", body: P("IEP or 504 plan type with the accommodations and modifications provided, and multilingual learner (ML) status with English proficiency level and ML supports. Never includes diagnoses. Details are hidden in Reviewer view. Research files include only de-identified flags, and only when that setting is on; subgroups under 10 students are suppressed.") }),
   "copy-scores": () => ({ title: "Copy scores", body: P("Copies the roster with this assessment's levels, PowerSchool values, and feedback as a tab-separated table. Paste into a spreadsheet, or paste the value column into PowerTeacher Pro's scoresheet (both list students by last name).") }),
   "copy-ss": () => ({ title: "Copy table", body: P("Copies the scoresheet as shown (period, standard filter, and levels or PowerSchool values) as a tab-separated table for pasting into a spreadsheet.") }),
   "assessment-list": () => ({ title: "Assessment list", body: P("Every assessment for this class. Edit changes the name, date, evidence type, standards, or classes; standards that already have scores can't be removed. Delete removes the assessment and voids its scores, which stay in the audit trail.") }),
@@ -3060,7 +3819,8 @@ const TIPS = {
   "student-list": () => ({ title: "Students", body: P("Filter by class or search by name. The number is standards at Meets+ out of standards taught.") }),
   "stat-mastered": () => ({ title: "Standards at Meets+", body: P("Standards taught so far where this student's current level is 3 or 4.") }),
   "stat-grade": () => ({ title: "Gradebook equivalent", body: P("The percent and letter PowerSchool would show, from the current levels and conversion anchors.") }),
-  "stat-legacy": () => ({ title: "If all attempts were averaged", body: P("What a points gradebook would show by averaging every attempt, including early ones. The gap shows how much averaging would hold back later growth.") }),
+  "warn-l1": () => ({ title: "Level 1 but passing", body: P(`This student has Level 1 (Not yet) on at least one standard that counts toward the course grade, yet the course letter is at or above the passing line (${passLineLetter()}). Check the conversion table or turn on a pass rule in Settings › Grading rule.`) }),
+  "stat-legacy": () => ({ title: `Comparison baseline: ${BASELINES[currentPolicy().baseline].name}`, body: P(BASELINES[currentPolicy().baseline].help) + P("What a points gradebook would show by averaging every attempt, including early ones. The gap shows how much averaging would hold back later growth.") }),
   "stat-habits": () => ({ title: "Work habits", body: P("The most recent rating, reported separately from mastery.") }),
   "review": () => ({ title: "Progress review", body: P("Written automatically from this quarter's evidence: strengths, growth, next steps (using the next rubric level), work habits, retries, and recent feedback. “Copy” produces plain text for emails to counselors, case managers, or colleagues.") }),
   "mini": (sid, cid) => { const x = levelContext(sid, cid); x.body += P("In the chart, dots are attempts over the semester and the dashed line is level 3."); return x; },
@@ -3093,7 +3853,7 @@ const TIPS = {
   "dl-ptp": () => ({ title: "Download CSV", body: P("Saves this assessment's import file (UTF-8, Windows line endings).") }),
   "bundle": () => ({ title: "Quarter or semester bundle", body: P("A .zip with one import file per scored assessment and an IMPORT-STEPS.txt that lists which assessment each file goes to.") }),
   "steps": () => ({ title: "Import steps", body: P("Follows PowerSchool's “Importing and Exporting Scores” help page, with this file's settings filled in.") }),
-  "averaging": () => ({ title: "Averaging check", body: P("Compares each student's grade under the current rule with averaging every attempt. Both use the same anchors, so the difference comes only from the rule. Changes are reported in both directions.") }),
+  "averaging": () => ({ title: "Averaging check", body: P("Compares each student's grade under the current rule with the selected comparison baseline (same conversion table or raw-points average). With the same table, the difference reflects the rule and the table; with raw points it models a plain points gradebook. Changes are reported in both directions.") }),
   "histogram": () => ({ title: "Distribution of differences", body: P("How many students' grades differ, and by how much, between the current rule and averaging. Green: averaging would have lowered the grade. Red: recent evidence was weaker than earlier evidence.") }),
   "audit-row": (sid) => { const m = metrics(studentById(sid)); return { title: nameOf(studentById(sid)), body: P(`Averaged: ${m.legacyLetter} ${m.legacyPct}% · Current rule: ${m.policyLetter} ${m.policyPct}% · Difference ${m.delta > 0 ? "+" : ""}${m.delta} points.`) }; },
   "research-export": () => ({ title: "Research export", body: P("One row per attempt with pseudonyms instead of names and student numbers. Pseudonyms are salted SHA-256 hashes; the salt stays in this browser.") }),
@@ -3181,7 +3941,7 @@ function addFeedback(text) {
   if (transient.fbTarget && transient.fbTarget.view !== ui.tab) transient.fbTarget = null;
   const t = transient.fbTarget || fbTargetFrom(null);
   state.feedback.push({ id: "f" + Date.now().toString(36), t: new Date().toISOString(), view: t.view, key: t.key, label: t.label, context: t.context,
-    type: transient.fbType || "comment", text, reviewer: state.reviewer || "" });
+    type: transient.fbType || "comment", text, reviewer: state.reviewer || "", appVersion: APP_VERSION });
   save();
 }
 function feedbackCard() {
@@ -3191,7 +3951,7 @@ function feedbackCard() {
   return `<section class="note-card fb-card" aria-label="Reviewer feedback">
     <div class="spread"><div class="eyebrow">Reviewer feedback</div><span class="pill note">${n} note${n === 1 ? "" : "s"}</span></div>
     <p class="tiny" style="font-family:var(--font-body);color:var(--ink-2);margin-top:4px">Hover anything for context. Click any part of the page to choose it, then type. Switch to Teacher to use the dashboard.</p>
-    <label class="field" for="fb-name" style="margin-top:8px">Your name<input id="fb-name" type="text" value="${esc(state.reviewer || "")}" placeholder="Reviewer"></label>
+    <label class="field" for="fb-name" style="margin-top:8px">Your name (optional)<input id="fb-name" type="text" value="${esc(state.reviewer || "")}" placeholder="Reviewer"></label>
     <div class="fb-target" id="fb-target">${fbTargetHtml()}</div>
     <div class="row tight" style="margin-top:6px"><button class="btn sm ghost" data-act="fb-general">Comment on the whole view</button></div>
     <div class="seg fb-types" role="group" aria-label="Note type" style="margin-top:8px">${FB_TYPES.map(([k, l]) => `<button data-act="fb-type" data-v="${k}" aria-pressed="${type === k}">${l}</button>`).join("")}</div>
@@ -3212,7 +3972,8 @@ function feedbackMarkdown() {
   const count = (t) => fb.filter((f) => f.type === t).length;
   const when = new Date().toLocaleString([], { dateStyle: "long", timeStyle: "short" });
   const lines = [`# SMT Mastery Dashboard: reviewer feedback`, "",
-    `- **Reviewer:** ${state.reviewer || "(not given)"}`, `- **Exported:** ${when}`, `- **Dashboard version:** v${APP_VERSION}`,
+    `- **Reviewer:** ${state.reviewer || "(not given)"}`, `- **Exported:** ${when}`, `- **Dashboard version:** v${APP_VERSION}${PREVIEW ? " (preview, fictional students)" : ""}`,
+    `- **Screen when copied:** ${screenLabel()}`,
     `- **Notes:** ${fb.length} (${FB_TYPES.map(([k, l]) => `${count(k)} ${l.toLowerCase()}${count(k) === 1 ? "" : "s"}`).join(", ")})`, ""];
   const issues = fb.filter((f) => f.type === "issue");
   if (issues.length) { lines.push("## Issues at a glance", ""); issues.forEach((f) => lines.push(`- **${VIEW_NAMES[f.view]} › ${f.label}:** ${f.text.replace(/\n/g, " ")}`)); lines.push(""); }
@@ -3224,12 +3985,21 @@ function feedbackMarkdown() {
     for (const t of targets) {
       const its = items.filter((f) => f.label === t);
       lines.push(`### ${t}`, `_${its[0].context}_`, "");
-      its.forEach((f) => lines.push(`- **${FB_TYPES.find((x) => x[0] === f.type)[1]}** (${new Date(f.t).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}): ${f.text.replace(/\n/g, "\n  ")}`));
+      its.forEach((f) => lines.push(`- **${FB_TYPES.find((x) => x[0] === f.type)[1]}** (${new Date(f.t).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}, v${f.appVersion || APP_VERSION}): ${f.text.replace(/\n/g, "\n  ")}`));
       lines.push("");
     }
   }
+  const answered = CHOICES.filter((c) => state.choices && state.choices[c.id]);
+  if (answered.length) {
+    lines.push("## Which fits your school?", "");
+    answered.forEach((c) => { const a = state.choices[c.id]; lines.push(`- **${c.q}** ${a.pick === "a" ? c.a : a.pick === "b" ? c.b : "Neither / it depends"}${a.why ? `: ${a.why}` : ""}`); });
+    lines.push("");
+  }
+  lines.push("## Try this checklist", "", ...TRY_TASKS.map((x) => `- [${state.tryThis && state.tryThis[x.id] ? "x" : " "}] ${x.title}`), "");
   const p = state.settings.policy;
   lines.push("## Dashboard settings during the review", "",
+    `- Sample teacher: ${PROFILE.name}`,
+    `- Comparison baseline: ${BASELINES[p.baseline].name} · Pass line: ${letter(p.passLine)} · Pass rule: ${p.passRule.mode}`,
     `- Grading rule: ${RULES[p.rule].name}${p.confirm ? " (confirmation required)" : ""}`,
     `- Conversion anchors: 1 → ${p.anchors[1]}%, 2 → ${p.anchors[2]}%, 3 → ${p.anchors[3]}%, 4 → ${p.anchors[4]}%`,
     `- Course percent includes: ${FRAMEWORKS.filter((f) => p.gradeFrameworks[f.id]).map((f) => f.short).join(", ") || "none"}`,
@@ -3266,7 +4036,8 @@ async function saveFile(filename, data, label) {
     }
   }
   if (HOSTED) { toast("Downloads aren't available in this view. Use Copy instead."); return false; }
-  const blob = data instanceof Blob ? data : new Blob([data], { type: filename.endsWith(".zip") ? "application/zip" : "text/csv;charset=utf-8" });
+  const MIME = { zip: "application/zip", json: "application/json;charset=utf-8", md: "text/markdown;charset=utf-8", txt: "text/plain;charset=utf-8", csv: "text/csv;charset=utf-8" };
+  const blob = data instanceof Blob ? data : new Blob([data], { type: MIME[filename.split(".").pop()] || "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url; a.download = filename;
@@ -3279,7 +4050,7 @@ async function saveFile(filename, data, label) {
 
 /* ---------- file naming ---------- */
 const slugify = (s) => s.normalize("NFKD").replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-").slice(0, 48);
-function ptpFilename(sectionId, a) { return `PTP_${sectionId}_${a.date}_${slugify(a.title)}_${exportTag()}.csv`; }
+function ptpFilename(sectionId, a) { return `PTP_${sectionId}_${a.date}_${slugify(a.title)}_${exportTag()}_${APP_TAG}.csv`; }
 
 /* ---------- minimal ZIP writer (stored, no compression; UTF-8 names) ---------- */
 const CRC_T = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
@@ -3318,7 +4089,7 @@ const ptpOpts = () => state.settings.export;
 const exportTag = () => { const ex = state.settings.export; return ex.scoreType === "points" ? `points${ex.total}` : ex.scoreType; };
 function ptpTermAssessments(sectionId, term) {
   return state.assessments
-    .filter((a) => (a.sections || []).includes(sectionId) && a.date <= TODAY && (term.startsWith("S") ? semesterFor(a.date) === term : termFor(a.date) === term))
+    .filter((a) => (a.sections || []).includes(sectionId) && a.date <= VIEW_DATE && (term.startsWith("S") ? semesterFor(a.date) === term : termFor(a.date) === term))
     .sort((a, b) => a.date.localeCompare(b.date))
     .map((a) => ({ a, x: ptpImport(sectionId, a.id, ptpOpts()) }))
     .filter(({ x }) => x && x.cells > 0);
@@ -3329,7 +4100,7 @@ function importStepsText(sectionId, items) {
   const t = EXPORT_TYPES[ex.scoreType].file;
   return [
     `PowerTeacher Pro score import: ${sec.period} ${sec.name}`,
-    `Generated ${new Date().toLocaleString()} by the SMT Mastery Dashboard v${APP_VERSION}`,
+    `Generated ${genStamp().replace("T", " ")} by the SMT Mastery Dashboard v${APP_VERSION} · grading policy v${policyVersionNow()} · score type ${exportTypeLabel(ex)}`,
     "",
     "Files in this folder (one per assessment):",
     ...items.map(({ a, x }) => `  ${ptpFilename(sectionId, a)}  ->  assessment "${a.title}" (${a.date}), ${x.rows.length} students, columns: ${x.comps.map((c) => c.standard).join(", ")}`),
@@ -3347,26 +4118,59 @@ function importStepsText(sectionId, items) {
     "Only current scores are included; corrected or voided scores are left out."
   ].join("\r\n") + "\r\n";
 }
-function exportPtpCurrent() {
-  const x = ptpImport(ui.sectionId, ui.ptpAssessment, ptpOpts());
-  if (!x || !x.rows.length) { toast("There are no scores to export for this assessment."); return; }
-  saveFile(ptpFilename(ui.sectionId, x.a), x.text, "Import file");
+/* ---------- export registry: every download is logged with what's needed to reproduce it exactly ---------- */
+const crlf = (s) => s.replace(/\r?\n/g, "\r\n") + "\r\n";
+const EXPORTS = {
+  ptp: { label: "Import file", make: ({ sectionId, aid }) => { const x = ptpImport(sectionId, aid, ptpOpts()); return x && x.rows.length ? { filename: ptpFilename(sectionId, x.a), data: x.text } : null; } },
+  bundle: { label: "Import files", make: ({ sectionId, term }) => {
+    const items = ptpTermAssessments(sectionId, term);
+    if (!items.length) return null;
+    const folder = `PTP_${sectionId}_${term}_${VIEW_DATE}_${APP_TAG}`;
+    const files = items.map(({ a, x }) => ({ name: `${folder}/${ptpFilename(sectionId, a)}`, text: x.text }));
+    files.push({ name: `${folder}/IMPORT-STEPS.txt`, text: importStepsText(sectionId, items) });
+    return { filename: `${folder}.zip`, data: makeZip(files), digest: files.map((f) => `${f.name}\n${f.text}`).join("\n--\n"), count: items.length };
+  } },
+  summary: { label: "Summary", make: ({ sectionId, format }) => ({ filename: `SMT_${sectionId}_${format === "course" ? "course" : "standards"}_summary_${VIEW_DATE}_${APP_TAG}_pv${policyVersionNow()}.csv`, data: crlf(sisCsv(sectionId, format)) }) },
+  research: { label: "Research file", make: ({ semester }) => ({ filename: `SMT_research_${semester}_${VIEW_DATE}_${APP_TAG}_pv${policyVersionNow()}.csv`, data: crlf(researchCsv(`all-${semester}`)) }) },
+  clr: { label: "Credential", make: ({ sid }) => { const st = studentById(sid); return st ? { filename: `CLR_${slugify(nameOf(st))}_${VIEW_DATE}_${APP_TAG}.json`, data: JSON.stringify(buildClr(st), null, 2) } : null; } },
+  brief: { label: "Intervention plan", make: ({ sectionId, cid }) => ({ filename: `Intervention_plan_${sectionId}_${slugify(COMP[cid].standard)}_${VIEW_DATE}.md`, data: lessonBrief(sectionId, cid) }) },
+  codebookMd: { label: "SMT codebook", make: () => ({ filename: `SMT_codebook_${VIEW_DATE}_${APP_TAG}.md`, data: codebookMd() }) },
+  codebookCsv: { label: "SMT codebook", make: () => ({ filename: `SMT_codebook_${VIEW_DATE}_${APP_TAG}.csv`, data: crlf(codebookCsv()) }) },
+  backup: { label: "Backup", reproducible: false, make: () => ({ filename: `SMT_backup_${state.workspace}_${VIEW_DATE}_${APP_TAG}.json`, data: JSON.stringify({ ...state, exportedAt: genStamp(), appVersion: APP_VERSION, schema: SCHEMA }, null, 1) }) }
+};
+const settingsSnap = () => structuredClone({ export: state.settings.export, district: state.settings.district, research: state.settings.research });
+async function runExport(kind, args = {}, emptyMsg = "There's nothing to export yet.") {
+  const ts = localIso();
+  GEN_STAMP = ts;
+  let out;
+  try { out = EXPORTS[kind].make(args); } finally { GEN_STAMP = null; }
+  if (!out) { toast(emptyMsg); return false; }
+  const ok = await saveFile(out.filename, out.data, out.count ? `${out.count} ${EXPORTS[kind].label.toLowerCase()}` : EXPORTS[kind].label);
+  if (ok) {
+    state.exportLog.push({ id: newId(), kind, args, file: out.filename, ts, date: VIEW_DATE, policyVersion: policyVersionNow(), appVersion: APP_VERSION,
+      settings: settingsSnap(), digest: EXPORTS[kind].reproducible === false ? null : sha256Hex(out.digest ?? out.data) });
+    if (state.exportLog.length > 300) state.exportLog.splice(0, state.exportLog.length - 300);
+    if (kind !== "backup") tryMark("export");
+    save();
+  }
+  return ok;
 }
-function exportPtpBundle() {
-  const term = ui.ptpBundleTerm || termFor(TODAY);
-  const items = ptpTermAssessments(ui.sectionId, term);
-  if (!items.length) { toast(`No scored assessments in ${term} for this class.`); return; }
-  const folder = `PTP_${ui.sectionId}_${term}_${TODAY}`;
-  const files = items.map(({ a, x }) => ({ name: `${folder}/${ptpFilename(ui.sectionId, a)}`, text: x.text }));
-  files.push({ name: `${folder}/IMPORT-STEPS.txt`, text: importStepsText(ui.sectionId, items) });
-  saveFile(`${folder}.zip`, makeZip(files), `${items.length} import files`);
+/* Regenerates a logged export from the evidence recorded by then, the policy version then, and the settings then. */
+function reproduceExport(entry) {
+  const saved = { district: state.settings.district, research: state.settings.research };
+  if (entry.settings) { state.settings.district = structuredClone(entry.settings.district); state.settings.research = structuredClone(entry.settings.research); }
+  try {
+    return withSnapshot({ ts: entry.ts, policyVersion: entry.policyVersion, date: entry.date, export: entry.settings && entry.settings.export }, () => {
+      const out = EXPORTS[entry.kind].make(entry.args);
+      return out ? { ...out, digestNow: sha256Hex(out.digest ?? out.data) } : null;
+    });
+  } finally { state.settings.district = saved.district; state.settings.research = saved.research; invalidate(); }
 }
-function exportSummary() {
-  const sec = SEC[ui.sectionId];
-  saveFile(`SMT_${sec.id}_${ui.gbFormat === "course" ? "course" : "standards"}_summary_${TODAY}.csv`, sisCsv(sec.id, ui.gbFormat).replace(/\n/g, "\r\n") + "\r\n", "Summary");
-}
-function exportResearch() { saveFile(`SMT_research_${ui.semester}_${TODAY}.csv`, researchCsv(`all-${ui.semester}`).replace(/\n/g, "\r\n") + "\r\n", "Research file"); }
-function exportBackup() { saveFile(`SMT_backup_${TODAY}.json`, JSON.stringify(state, null, 1), "Backup"); }
+function exportPtpCurrent() { runExport("ptp", { sectionId: ui.sectionId, aid: ui.ptpAssessment }, "There are no scores to export for this assessment."); }
+function exportPtpBundle() { const term = ui.ptpBundleTerm || termFor(TODAY); runExport("bundle", { sectionId: ui.sectionId, term }, `No scored assessments in ${term} for this class.`); }
+function exportSummary() { runExport("summary", { sectionId: ui.sectionId, format: ui.gbFormat }); }
+function exportResearch() { runExport("research", { semester: ui.semester }); }
+function exportBackup() { runExport("backup"); }
 
 "use strict";
 /* ==========================================================================
@@ -3416,6 +4220,7 @@ function render() {
   applyAppearance();
   renderHeader();
   document.getElementById("main").innerHTML = (VIEWS[ui.tab] || viewToday)();
+  if (ui.tab === "students") tryMark("student");
   renderMargin();
   renderDrawer();
   renderDialog();
@@ -3471,10 +4276,12 @@ async function copyText(text, label) {
 }
 
 /* ---------- mutations ---------- */
-const nowIso = () => new Date().toISOString().slice(0, 19);
+const nowIso = () => localIso();
 const newId = () => "e" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
 function logT(type, meta = {}) {
-  state.telemetry.push({ t: Date.now(), type, view: ui.tab, ...meta });
+  state.telemetry.push({ t: Date.now(), type, view: ui.tab, v: APP_VERSION, ...meta });
+  if (type === "score" && state.tryThis) { state.tryThis._scores = (state.tryThis._scores || 0) + 1; if (state.tryThis._scores >= 5) tryMark("score"); }
+  if (type === "flag") tryMark("retry");
   if (state.telemetry.length > 1000) state.telemetry.splice(0, state.telemetry.length - 1000);
 }
 function addScore(f, meta = {}) {
@@ -3484,7 +4291,7 @@ function addScore(f, meta = {}) {
   invalidate();
   const ev = evaluate(attemptsFor(f.sid, f.cid));
   const key = `${f.sid}|${f.cid}`;
-  if (ev.mastered && state.flags[key]) delete state.flags[key];
+  if (ev.mastered && state.flags[key]) { delete state.flags[key]; tryMark("retry"); }
   logT("score", { correction: !!f.supersedes, ...meta });
   save();
   return e;
@@ -3512,12 +4319,34 @@ function setHabit(sid, value) {
 }
 function getPath(obj, path) { return path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj); }
 function setSetting(path, raw) {
+  /* Preview build: grading-policy edits update the term's policy in place (logged on the version). v0.48 locks the policy
+     and requires a reason plus "going forward" or "recalculate" for every change. */
+  if (path.startsWith("policy.") && path !== "policy.showLegacyToTeacher") return setPolicyField(path.slice(7), raw);
   const keys = path.split(".");
   let o = state.settings;
   for (let i = 0; i < keys.length - 1; i++) o = o[keys[i]];
   const last = keys[keys.length - 1], cur = o[last];
   o[last] = typeof cur === "number" ? Number(raw) : typeof cur === "boolean" ? raw === true || raw === "true" : raw;
   invalidate();
+}
+
+/* Preview build: each grading-policy edit is saved as a new policy version that applies to the whole year (so the effect is
+   visible right away) and earlier exports stay reproducible. v0.48 adds the locked policy, required reason, and the
+   "going forward" vs. "recalculate the term" choice. */
+function setPolicyField(path, raw) {
+  const latest = state.policyHistory.reduce((a, x) => (!a || x.version > a.version ? x : a), null);
+  const v = structuredClone(latest);
+  const keys = path.split(".");
+  let o = v;
+  for (let i = 0; i < keys.length - 1; i++) o = o[keys[i]];
+  const last = keys[keys.length - 1], from = o[last];
+  const to = typeof from === "number" ? Number(raw) : typeof from === "boolean" ? raw === true || raw === "true" : raw;
+  if (to === from) return;
+  o[last] = to;
+  delete v.edits;
+  Object.assign(v, { version: latest.version + 1, effectiveFrom: SEMESTERS[0].start, mode: "preview-edit", reason: `Preview edit: ${path} ${from} → ${to}`, changedAt: nowIso(), appVersion: APP_VERSION });
+  state.policyHistory.push(v);
+  syncPolicyMirror(); invalidate(); logT("policy", { field: path, version: v.version });
 }
 
 /* ---------- score table ---------- */
@@ -3605,6 +4434,7 @@ function onClick(e) {
   if (!t) return;
   const act = t.dataset.act, d = t.dataset;
   if (t.tagName === "DETAILS" || t.tagName === "SELECT" || (t.tagName === "INPUT" && t.type !== "button")) return;
+  if (v47Click(act, d, t)) return;
   switch (act) {
     case "tab": setTab(d.tab); break;
     case "mode": state.settings.mode = d.mode; transient.drawer = null; render(); toast(d.mode === "research" ? "Reviewer view: hover for context, click any part of the page to comment" : "Teacher view: the dashboard is interactive again"); break;
@@ -3713,13 +4543,10 @@ function onClick(e) {
     }
     case "settings-pane": ui.settingsPane = d.v; renderDialog(); restoreFocus({ act: "settings-pane", v: d.v }); break;
     case "set": if (d.path === "__profile") { switchProfile(d.v); renderDialog(); break; } setSetting(d.path, d.v); render(); break;
-    case "new-salt": state.settings.privacy.salt = randomSalt(); invalidate(); render(); toast("New salt set. All pseudonyms changed."); break;
+    case "new-salt": state.settings.privacy.researchSalt = randomSalt(); invalidate(); render(); toast("New research salt set. All research pseudonyms changed."); break;
     case "reset":
       if (t.dataset.armed !== "1") { t.dataset.armed = "1"; t.textContent = "Click again to reset"; return; }
-      { const notes = state.fieldNotes, fb = state.feedback, rv = state.reviewer, st = state.settings, pid = PROFILE_ID; state = freshState(pid); state.settings = st; state.fieldNotes = notes; state.feedback = fb; state.reviewer = rv; state.ui = uiDefaults(); ui = state.ui; }
-      transient = { drawer: null, dialog: null, editing: null, lastFocus: null, fbTarget: null, fbType: "comment", fbDraft: "" };
-      try { localStorage.removeItem(STORE_KEY); } catch (err) { /* ignore */ }
-      render(); toast("Demo classes restored"); break;
+      resetDemo(); break;
     case "restore": {
       const err = $("#restore-error");
       try {
@@ -3739,6 +4566,7 @@ function onClick(e) {
 }
 function onChange(e) {
   const t = e.target, d = t.dataset;
+  if (v47Change(t)) return;
   if (d.act === "section") { ui.sectionId = t.value; ui.assessmentId = null; render(); return; }
   if (d.act === "assessment") { ui.assessmentId = t.value; render(); return; }
   if (d.act === "habit") { setHabit(d.sid, t.value); toast(`Work habits: ${t.value} for ${nameOf(studentById(d.sid))}`); renderMargin(); return; }
@@ -3764,8 +4592,8 @@ function onChange(e) {
     if (v.some((x) => !Number.isFinite(x) || x < 0 || x > 100)) { err.textContent = "Each value must be between 0 and 100."; return; }
     if (!(v[0] < v[1] && v[1] < v[2] && v[2] < v[3])) { err.textContent = "Each level needs a higher percent than the level below it."; return; }
     err.textContent = "";
-    state.settings.policy.anchors = { 1: v[0], 2: v[1], 3: v[2], 4: v[3] };
-    invalidate(); render(); toast("Conversion updated for all students");
+    [1, 2, 3, 4].forEach((l, i) => { if (currentPolicy().anchors[l] !== v[i]) setPolicyField(`anchors.${l}`, v[i]); });
+    render(); toast("Conversion updated for all students");
     return;
   }
   if (t.id === "restore-file" && t.files && t.files[0]) {
@@ -3806,6 +4634,21 @@ function parseRoster(text, base) {
     return { first, last, id: num ? (num.toUpperCase().startsWith("CT-") ? num.toUpperCase() : `CT-${num}`) : `CT-${base + i}` };
   });
 }
+/* Preview build: no roster import, so added classes get fictional students. */
+function fictionalRoster(n, base) {
+  const F = ["Avery", "Jordan", "Riley", "Quinn", "Rowan", "Sage", "Emery", "Finley", "Harlow", "Jules", "Kai", "Lane", "Marlow", "Noor", "Oakley", "Parker", "Reese", "Sasha", "Tatum", "Wren", "Zion", "Arden", "Blair", "Cass"];
+  const L = ["Ashby", "Brennan", "Calder", "Dunmore", "Ellery", "Fairley", "Garrow", "Holloway", "Ingram", "Jessop", "Kendrick", "Lowell", "Marsh", "Nolan", "Orwell", "Pryce", "Quill", "Radley", "Sutter", "Thorne", "Underhill", "Vance", "Winslow", "Yardley"];
+  const rng = mulberry32(base);
+  const used = new Set(state.students.map((s) => `${s.first} ${s.last}`));
+  const out = [];
+  for (let i = 0; out.length < n && i < n * 20; i++) {
+    const first = F[Math.floor(rng() * F.length)], last = L[Math.floor(rng() * L.length)];
+    if (used.has(`${first} ${last}`)) continue;
+    used.add(`${first} ${last}`);
+    out.push({ first, last, id: `CT-${base + out.length}` });
+  }
+  return out;
+}
 function submitAddClass(f) {
   const fd = new FormData(f), err = $("#ac-error");
   let course = fd.get("course");
@@ -3816,7 +4659,7 @@ function submitAddClass(f) {
   const sem = fd.get("semester"), period = fd.get("period");
   const id = `${sem}-${period.replace("Period ", "P")}-${uid}`;
   const base = 90000 + Math.floor(Math.random() * 9000);
-  const kids = parseRoster(String(fd.get("roster") || ""), base);
+  const kids = PREVIEW ? fictionalRoster(Number(fd.get("count") || 0), base) : parseRoster(String(fd.get("roster") || ""), base);
   const dupe = kids.find((k) => state.students.some((s) => s.id === k.id));
   if (dupe) { err.textContent = `Student number ${dupe.id} is already used. Check the roster.`; return; }
   const name = COURSES[course]?.name || newName;
@@ -3892,6 +4735,17 @@ function importHistory(json, fileName) {
   state.history[sid] = [...(state.history[sid] || []), { id: "h" + Date.now().toString(36), name: json.name || fileName || "Imported record", imported: TODAY, records: recs }];
   save(); render(); toast(`Imported ${recs.length} results`);
 }
+/* Fresh start: demo classes, default grading policy, and the Try this checklist. Comments, choices, and display settings stay. */
+function resetDemo(profileId = PROFILE_ID) {
+  const keep = { notes: state.fieldNotes, fb: state.feedback, rv: state.reviewer, choices: state.choices, tel: state.telemetry };
+  const disp = Object.fromEntries(["theme", "density", "fontScale", "cvd", "reduceMotion", "mode", "startTab", "columns", "research", "rubricOpen", "autoAdvance"].map((k) => [k, state.settings[k]]));
+  state = freshState(profileId);
+  Object.assign(state.settings, structuredClone(disp));
+  Object.assign(state, { fieldNotes: keep.notes, feedback: keep.fb, reviewer: keep.rv, choices: keep.choices, telemetry: keep.tel, welcomed: true });
+  state.ui = uiDefaults(); ui = state.ui;
+  transient = { drawer: null, dialog: null, editing: null, lastFocus: null, fbTarget: null, fbType: "comment", fbDraft: "" };
+  invalidate(); saveNow(); render(); toast(`Demo classes restored (${PROFILE.teacher.toLowerCase()} sample)`);
+}
 function switchProfile(id) {
   if (id === PROFILE_ID || !PROFILE_BUILDERS[id]) return;
   const keep = ["students", "assessments", "scores", "habits", "flags", "ui", ...CUSTOM_KEYS];
@@ -3912,6 +4766,7 @@ function switchProfile(id) {
 }
 function onInput(e) {
   if (e.target.id === "fb-name") { state.reviewer = e.target.value; save(); return; }
+  if (e.target.id === "sf-text") { transient.sfDraft = e.target.value; return; }
   if (e.target.id === "fb-text") { transient.fbDraft = e.target.value; return; }
   if (e.target.id === "al-search") { ui.alQuery = e.target.value; const pos = e.target.selectionStart; render(); const el = $("#al-search"); if (el) { el.focus(); el.setSelectionRange(pos, pos); } return; }
   if (e.target.id === "rq-search") {
@@ -3925,6 +4780,7 @@ function onInput(e) {
 function onSubmit(e) {
   const f = e.target;
   e.preventDefault();
+  if (v47Submit(f)) return;
   if (f.id === "entry-form") {
     const fd = new FormData(f);
     const level = Number(fd.get("level"));
@@ -3941,10 +4797,13 @@ function onSubmit(e) {
   } else if (f.id === "ac-form") { submitAddClass(f); return;
   } else if (f.id === "as-form") { submitAddStandard(f); return;
   } else if (f.id === "sup-form") {
-    const fd = new FormData(f), sid = ui.studentId, plan = fd.get("plan");
-    if (!plan) delete state.supports[sid];
-    else state.supports[sid] = { plan, accommodations: fd.getAll("acc"), other: String(fd.get("other") || "").trim(), modifications: String(fd.get("mods") || "").trim(), updated: TODAY };
-    save(); transient.dialog = null; render(); toast(plan ? "Support plan saved" : "Support plan removed"); return;
+    const fd = new FormData(f), sid = ui.studentId, plan = fd.get("plan") || "";
+    const g = (k) => String(fd.get(k) || "").trim();
+    const mlStatus = g("mlStatus") || "Not ML";
+    const ml = mlStatus === "Not ML" && !g("mlProf") ? null : { status: mlStatus, proficiency: g("mlProf"), source: g("mlSrc"), assessedOn: g("mlDate"), homeLanguage: g("mlLang"), supports: fd.getAll("mlSup") };
+    if (!plan && !ml) delete state.supports[sid];
+    else state.supports[sid] = { plan, accommodations: plan ? fd.getAll("acc") : [], other: plan ? g("other") : "", modifications: plan ? g("mods") : "", ...(ml ? { ml } : {}), updated: TODAY };
+    invalidate(); save(); transient.dialog = null; render(); toast(plan || ml ? "Student supports saved" : "Student supports removed"); return;
   } else if (f.id === "na-form" && f.dataset.edit) { submitEditAssessment(f); return;
   } else if (f.id === "na-form") {
     const fd = new FormData(f);
@@ -4025,6 +4884,7 @@ function init() {
   document.addEventListener("toggle", (e) => { if (e.target.dataset && e.target.dataset.act === "audit-toggle") ui.auditOpen = e.target.open; }, true);
   window.addEventListener("hashchange", () => { const t = location.hash.slice(1); if (TABS.some((x) => x.id === t) && t !== ui.tab) { ui.tab = t; render(); } });
   $("#open-settings").addEventListener("click", () => openDialog("settings"));
+  if (!state.welcomed) transient.dialog = "welcome";
   if (window.matchMedia) {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     if (mq.addEventListener) mq.addEventListener("change", () => applyAppearance());
