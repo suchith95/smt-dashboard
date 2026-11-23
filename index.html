@@ -589,6 +589,42 @@ pre.code { max-width: 100%; white-space: pre; }
 .toolbar, .toolbar .row, .page-head .row { min-width: 0; max-width: 100%; }
 .spread > .row, .spread > .toolbar, .spread > div { min-width: 0; max-width: 100%; }
 .lv { overflow: hidden; } .lv .n { flex-shrink: 0; }
+.mode-switch { display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px 4px 6px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer; flex: 0 0 auto; }
+.mode-switch .sw { width: 30px; height: 18px; border-radius: 999px; background: var(--line); position: relative; transition: background .15s; flex: 0 0 auto; }
+.mode-switch .sw span { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.3); transition: left .15s; }
+.mode-switch.on { border-color: var(--note, var(--accent)); background: var(--note-soft, var(--surface-2)); }
+.mode-switch.on .sw { background: var(--note, var(--accent)); }
+.mode-switch.on .sw span { left: 14px; }
+.mode-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pb-hint { max-width: 1440px; margin: 0 auto; padding: 0 20px 6px; font-size: .76rem; color: var(--ink-2); }
+@media (max-width: 640px) { .pb-hint { padding: 0 14px 6px; } }
+.welcome-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.welcome-modes > div { background: var(--surface-2); border-radius: 10px; padding: 10px 12px; }
+@media (max-width: 640px) { .welcome-modes { grid-template-columns: 1fr; } }
+.sf-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+.sf-summary > div { background: var(--surface-2); border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; }
+.sf-summary .v { font-size: 1.2rem; font-weight: 750; }
+.sf-summary .k { font-size: .74rem; color: var(--ink-2); }
+.sf-go { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; background: var(--surface-2); border-radius: 10px; padding: 12px; }
+.choice-opts { display: flex; flex-direction: column; gap: 6px; }
+.mini-table { width: 100%; font-size: .76rem; border-collapse: collapse; }
+.mini-table th, .mini-table td { padding: 3px 6px; border-bottom: 1px solid var(--line); text-align: left; }
+.mini-table th { font-size: .68rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); }
+.mini-chart { width: 100%; max-width: 260px; height: auto; display: block; }
+.fb-steps { position: sticky; top: -16px; z-index: 2; display: flex; gap: 6px; flex-wrap: wrap; padding: 8px 0; margin-top: -8px; background: var(--surface); border-bottom: 1px solid var(--line); }
+.fb-step { font: inherit; font-size: .8rem; font-weight: 700; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); border-radius: 999px; padding: 4px 10px; cursor: pointer; }
+.fb-step .pill { margin-left: 4px; padding: 0 6px; }
+.fb-sec { display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 48px; padding-top: 6px; }
+.fb-sec + .fb-sec { border-top: 2px solid var(--line); padding-top: 14px; }
+.fb-mini { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: .84rem; }
+.gx-growth { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.gx-growth > div { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.gx-arrow { color: var(--ink-3); }
+.gx-compare { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.gx-compare > div { background: var(--surface); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 3px; border: 1px solid var(--line); min-width: 0; }
+.gx-compare .gx-win { border-color: var(--l3); box-shadow: inset 0 3px 0 var(--l3); }
+.gx-big { font-size: 1.3rem; font-weight: 750; }
+@media (max-width: 640px) { .gx-compare { grid-template-columns: 1fr; } }
 
 </style>
 </head>
@@ -635,10 +671,11 @@ const PREVIEW = true;   // v0.47 is the pre-IRB preview: fictional students only
 const CHANGELOG = [
   { version: "0.47", date: "2026-11-22", items: [
     "Preview build for informal practitioner review: fictional students only, with a permanent warning; roster and record import are turned off.",
-    "Welcome screen with a choice of Physics, Math, or English sample classes, and a “Try this” checklist so every reviewer sees the same tasks.",
-    "Send feedback opens the feedback form with the version and current screen filled in; Copy my comments copies your notes as Markdown.",
-    "How grades are calculated: a plain-language panel with a glossary, in Teacher view.",
-    "Which fits your school? Side-by-side choices for the grading rule and the transcript length.",
+    "Welcome screen explaining Teacher and Reviewer view, with a choice of Physics, Math, or English sample classes.",
+    "The Reviewer view switch lives in the demo bar; the “Try this” walkthrough covers using the dashboard as a teacher, then reviewing it and leaving comments.",
+    "Give feedback: one window with the questions, your comments, and sending. Answers save as you go, and one button copies everything and opens the Microsoft Form; long feedback is split to fit the form.",
+    "How grades are calculated: a plain-language panel with a 1 → 2 → 3 → 4 growth example (mastery grade vs. averaged and points grades) and a glossary.",
+    "Which fits your school? Six questions shown with demo data (latest vs. highest attempt, per-assessment vs. mastery gradebook, how often grades update, running averages vs. mastery graphs, where work habits go, how much the learner record shows) plus three optional open questions.",
     "The averaging comparison names its baseline: the same conversion table or a raw-points average.",
     "Level 1 converts below a passing grade by default; an optional pass rule; a warning chip when a student has Level 1 on a graded standard but a passing letter.",
     "SMT codes are always 33 characters: NCES district ID by default, UEI hashed to 9 characters, DUNS kept as a legacy option; validator and codebook download.",
@@ -2311,10 +2348,12 @@ function renderHeader() {
   const s = state.settings;
   document.getElementById("tabs").innerHTML = TABS.map((t) =>
     `<button class="tab" role="tab" aria-selected="${ui.tab === t.id}" data-act="tab" data-tab="${t.id}"${tip("tab", t.id)}>${t.label}</button>`).join("");
-  document.getElementById("mode").innerHTML =
-    `<button data-act="mode" data-mode="teacher" aria-pressed="${s.mode === "teacher"}">Teacher</button>` +
-    `<button data-act="mode" data-mode="research" aria-pressed="${s.mode === "research"}">Reviewer</button>`;
-  document.getElementById("mode").classList.add("research");
+  const modeEl = document.getElementById("mode");
+  if (modeEl) {
+    modeEl.style.display = PREVIEW ? "none" : "";   // in the preview, the Reviewer view switch lives in the demo bar
+    modeEl.innerHTML = `<button data-act="mode" data-mode="teacher" aria-pressed="${s.mode === "teacher"}">Teacher</button><button data-act="mode" data-mode="research" aria-pressed="${s.mode === "research"}">Reviewer</button>`;
+    modeEl.classList.add("research");
+  }
   const bs = document.getElementById("brand-sub"); if (bs) bs.textContent = `v${APP_VERSION}${PREVIEW ? " preview" : ""} · fictional data · ${PROFILE.teacher} · 2026–27`;
   const pb = document.getElementById("preview-banner-host"); if (pb) pb.innerHTML = previewBanner();
   document.getElementById("semester").innerHTML = SEMESTERS.map((x) => `<button data-act="semester" data-v="${x.id}" aria-pressed="${ui.semester === x.id}" title="${esc(x.name)}: ${fmtDate(x.start)}–${fmtDate(x.end)}">${x.id}</button>`).join("");
@@ -2961,9 +3000,8 @@ function renderDialog() {
   else if (transient.dialog === "supports") host.innerHTML = supportsDialog();
   else if (transient.dialog === "welcome") host.innerHTML = welcomeDialog();
   else if (transient.dialog === "try-this") host.innerHTML = tryThisDialog();
-  else if (transient.dialog === "send-feedback") host.innerHTML = sendFeedbackDialog();
+  else if (["feedback", "send-feedback", "choices"].includes(transient.dialog)) host.innerHTML = feedbackDialog();
   else if (transient.dialog === "how-grades") host.innerHTML = gradesDialog();
-  else if (transient.dialog === "choices") host.innerHTML = choicesDialog();
 }
 function newAssessmentDialog(ed) {
   const scoredComps = ed ? new Set(state.scores.filter((e) => e.aid === ed.id && entryState(e) === "live").map((e) => e.cid)) : new Set();
@@ -3422,12 +3460,16 @@ function supportsDialog() {
 
 /* ---------- Try this: the same short walkthrough for every reviewer ---------- */
 const TRY_TASKS = [
-  { id: "score", title: "Score a class", how: "Open Score, pick an assessment, and give at least five students a level (keys 1–4 work).", go: "score" },
-  { id: "retry", title: "Handle a retry", how: "Flag a student for another attempt (F in the Score view), or work a student from the retry queue on Today.", go: "today" },
-  { id: "student", title: "Open a student record", how: "Open Students and pick anyone. Look at the progress review and the levels per standard.", go: "students" },
-  { id: "compare", title: "Compare the averaged grade with the mastery grade", how: "Open “How grades are calculated” to see one student's grade both ways.", dialog: "how-grades" },
-  { id: "export", title: "Export a file", how: "In Gradebook, download a PowerSchool import file or a summary.", go: "gradebook" },
-  { id: "choose", title: "Tell us which option fits your school", how: "Answer at least one side-by-side choice.", dialog: "choices" }
+  { id: "score", group: "teacher", title: "Score a class", how: "Open Score, pick an assessment, and give at least five students a level (keys 1–4 work).", go: "score" },
+  { id: "retry", group: "teacher", title: "Handle a retry", how: "Flag a student for another attempt (F in the Score view), or work a student from the retry queue on Today.", go: "today" },
+  { id: "student", group: "teacher", title: "Open a student record", how: "Open Students and pick anyone. Look at the progress review and the levels per standard.", go: "students" },
+  { id: "compare", group: "teacher", title: "Compare the averaged grade with the mastery grade", how: "Open “How grades work” to see one student's grade both ways.", dialog: "how-grades" },
+  { id: "export", group: "teacher", title: "Export a file", how: "In Gradebook, download a PowerSchool import file or a summary.", go: "gradebook" },
+  { id: "reviewer", group: "review", title: "Turn on Reviewer view and look around", how: "Flip the Reviewer view switch in the demo bar (or press R). Hover any header, chart, menu, or score for an explanation, and read the side panel.", mode: "research" },
+  { id: "comment", group: "review", title: "Leave a comment on a specific part", how: "In Reviewer view, click the part of the page you want to comment on, type in the side panel, and press Enter.", mode: "research" },
+  { id: "back", group: "review", title: "Switch back to Teacher view", how: "Flip the switch off (or press T) to use the dashboard again. Switch back and forth as often as you like.", mode: "teacher" },
+  { id: "choose", group: "review", title: "Answer the questions in Give feedback", how: "Quick “which fits your school?” questions, each shown with demo data, plus three optional open questions.", dialog: "choices" },
+  { id: "send", group: "review", title: "Send your feedback", how: "In Give feedback, “Copy everything and open the form” copies your answers and comments and opens the short form. Paste and submit.", dialog: "send-feedback" }
 ];
 function tryMark(id) {
   if (!state.tryThis || state.tryThis[id]) return;
@@ -3441,14 +3483,18 @@ const tryDone = () => TRY_TASKS.filter((t) => state.tryThis[t.id]).length;
 /* ---------- permanent preview banner ---------- */
 function previewBanner() {
   if (!PREVIEW) return "";
-  return `<div class="preview-banner" role="note" aria-label="Preview notice">
+  const on = isResearch(), n = state.feedback.length;
+  return `<div class="preview-banner" role="region" aria-label="Demo and review tools">
     <span class="pb-text"><b>Preview with fictional students.</b> Do not enter real student information.</span>
     <span class="pb-actions">
+      <button class="mode-switch ${on ? "on" : ""}" role="switch" aria-checked="${on}" data-act="toggle-reviewer" title="Reviewer view: hover for explanations, click to comment (R / T)">
+        <span class="sw" aria-hidden="true"><span></span></span><span>Reviewer view</span></button>
       <button class="btn sm" data-act="open-dialog" data-v="try-this">Try this <span class="pill">${tryDone()}/${TRY_TASKS.length}</span></button>
       <button class="btn sm" data-act="open-dialog" data-v="how-grades">How grades work</button>
-      <button class="btn sm primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>
+      <button class="btn sm primary" data-act="open-dialog" data-v="feedback">Give feedback${n + answeredCount() ? ` <span class="pill">${n + answeredCount()}</span>` : ""}</button>
       <button class="btn sm ghost" data-act="banner-reset" title="Start over with fresh demo classes">Reset demo</button>
-    </span></div>`;
+    </span></div>
+    ${on ? `<div class="pb-hint">Reviewer view: hover anything for an explanation, or click a part of the page and type a comment in the side panel. Flip the switch off (or press T) to use the dashboard.</div>` : ""}`;
 }
 
 /* ---------- dialog shell ---------- */
@@ -3466,9 +3512,15 @@ function welcomeDialog() {
     <p>This is a <b>research prototype</b> of a grading tool for a doctoral study on standards-based grading. Teachers score each standard on a 1–4 mastery scale, and the tool produces the percent and letter grades that PowerSchool needs, plus a learner record for each student.</p>
     <ul class="welcome-list">
       <li><b>All students are fictional.</b> Please don't enter real student information.</li>
-      <li><b>A walkthrough takes about 10 minutes.</b> The “Try this” checklist gives everyone the same short set of tasks.</li>
-      <li><b>Your comments help shape the tool.</b> Use “Send feedback” at any time. Nothing you type leaves this browser unless you copy or send it, and the app uses no analytics.</li>
+      <li><b>A walkthrough takes about 10–15 minutes.</b> The “Try this” checklist gives everyone the same short set of tasks.</li>
+      <li><b>Nothing you type leaves this browser</b> until you send it, and the app uses no analytics.</li>
     </ul>
+    <h4 style="margin-top:14px">Two ways to look at it</h4>
+    <div class="welcome-modes">
+      <div><b>Teacher view</b><p class="small muted">Use the dashboard the way a teacher would: score, open student records, export grades.</p></div>
+      <div><b>Reviewer view</b><p class="small muted">Hover anything for an explanation of what it does and why. Click any part of the page to leave a comment about it.</p></div>
+    </div>
+    <p class="small">Switch between them any time with the <b>Reviewer view</b> switch in the yellow demo bar (or press R and T). When you're done, <b>Give feedback</b> collects your answers and comments and sends them in one step.</p>
     <h4 style="margin-top:14px">Pick a sample teacher</h4>
     <div class="welcome-picks">${Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => `<button class="pick ${PROFILE_ID === k ? "on" : ""}" data-act="welcome-pick" data-v="${k}" aria-pressed="${PROFILE_ID === k}"><b>${esc(v)}</b><span class="small muted">${esc(PROFILE_COURSES[k])}</span></button>`).join("")}</div>`;
   return dlg("welcome", "Welcome to the SMT Mastery Dashboard preview", body,
@@ -3477,14 +3529,19 @@ function welcomeDialog() {
 
 /* ---------- Try this ---------- */
 function tryThisDialog() {
-  const body = `<p class="small muted">Six short tasks, about 10 minutes in all. Each one checks itself off when you do it, or tick it yourself.</p>
-    <ol class="try-list">${TRY_TASKS.map((t) => `<li class="${state.tryThis[t.id] ? "done" : ""}">
+  const item = (t) => `<li class="${state.tryThis[t.id] ? "done" : ""}">
       <label class="check"><input type="checkbox" data-act="try-toggle" data-v="${t.id}" ${state.tryThis[t.id] ? "checked" : ""}> <b>${esc(t.title)}</b></label>
       <p class="small muted">${esc(t.how)}</p>
-      <button class="btn sm ghost" data-act="try-go" data-v="${t.id}">Go there</button></li>`).join("")}</ol>
-    <p class="small">${tryDone() === TRY_TASKS.length ? "All done. Thank you! Please use <b>Send feedback</b> to share what you noticed." : "When you're finished, use <b>Send feedback</b>."}</p>`;
+      <button class="btn sm ghost" data-act="try-go" data-v="${t.id}">${t.mode ? (t.mode === "research" ? "Turn on Reviewer view" : "Back to Teacher view") : "Go there"}</button></li>`;
+  const grp = (g) => TRY_TASKS.filter((t) => t.group === g);
+  const body = `<p class="small muted">About 10–15 minutes. Each task checks itself off when you do it, or tick it yourself.</p>
+    <h4>1. Use it as a teacher <span class="tiny muted">(Teacher view)</span></h4>
+    <ol class="try-list">${grp("teacher").map(item).join("")}</ol>
+    <h4>2. Review it <span class="tiny muted">(Reviewer view, then send)</span></h4>
+    <ol class="try-list" start="${grp("teacher").length + 1}">${grp("review").map(item).join("")}</ol>
+    <p class="small">${tryDone() === TRY_TASKS.length ? "All done. Thank you!" : "You can switch between Teacher and Reviewer view at any point."}</p>`;
   return dlg("try", `Try this (${tryDone()} of ${TRY_TASKS.length})`, body,
-    `<button class="btn ghost" data-act="banner-reset">Reset demo and start over</button><button class="btn primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>`);
+    `<button class="btn ghost" data-act="banner-reset">Reset demo and start over</button><button class="btn primary" data-act="open-dialog" data-v="feedback">Give feedback</button>`);
 }
 
 /* ---------- Send feedback / Copy my comments ---------- */
@@ -3494,21 +3551,15 @@ function feedbackFormUrl() {
   if (!FEEDBACK_FORM.url) return "";
   return FEEDBACK_FORM.url.replace(/VERSION/g, encodeURIComponent(`v${APP_VERSION}`)).replace(/SCREEN/g, encodeURIComponent(screenLabel()));
 }
-function sendFeedbackDialog() {
-  const url = feedbackFormUrl();
-  const n = state.feedback.length;
-  const body = `
-    <p class="small">You're on <b>${esc(screenLabel())}</b>, v${APP_VERSION}.</p>
-    <label class="field" for="sf-text">Quick comment about this screen (optional)<textarea id="sf-text" rows="3" placeholder="What was clear, confusing, or missing?">${esc(transient.sfDraft || "")}</textarea></label>
-    <div class="row tight"><button class="btn sm" data-act="sf-add">Add to my comments</button><span class="tiny muted" id="sf-count">${n} comment${n === 1 ? "" : "s"} saved in this browser</span></div>
-    <div class="sf-steps">
-      <div><b>1. Copy my comments</b><p class="small muted">Copies everything you've noted (here, in Reviewer feedback mode, and your side-by-side choices) as Markdown, with no student data.</p>
-        <button class="btn" data-act="copy-comments">${ICON.copy} Copy my comments</button></div>
-      <div><b>2. ${url ? "Open the feedback form" : "Send them"}</b><p class="small muted">${url ? (/VERSION|SCREEN/.test(FEEDBACK_FORM.url) ? "Opens the short form with the version and this screen filled in. Paste your comments into it." : `Opens the short feedback form in a new tab. Paste your comments into it; they already include the version (v${APP_VERSION}) and the screen you were on.`) : "The feedback form link hasn't been set up yet. Paste your comments into an email to the researcher."}</p>
-        ${url ? `<a class="btn primary" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-act="sf-open">Open feedback form ↗</a>` : ""}</div>
-    </div>
-    <p class="tiny muted">Your name is optional. Comments stay on this device until you copy or send them.</p>`;
-  return dlg("sf", "Send feedback", body, "");
+/* Microsoft Forms long-answer boxes hold about 4,000 characters, so long feedback is split into numbered parts. */
+const FORM_LIMIT = 3800;
+function feedbackParts() {
+  const text = feedbackFormText();
+  if (text.length <= FORM_LIMIT) return [text];
+  const parts = []; let cur = "";
+  text.split("\n").forEach((line) => { if ((cur + line).length + 1 > FORM_LIMIT - 20 && cur) { parts.push(cur); cur = ""; } cur += line + "\n"; });
+  if (cur) parts.push(cur);
+  return parts.map((p, i) => `(Part ${i + 1} of ${parts.length})\n${p}`);
 }
 function addQuickComment(text) {
   state.feedback.push({ id: "f" + Date.now().toString(36), t: new Date().toISOString(), view: ui.tab, key: "general", label: "General comment", context: screenLabel(),
@@ -3529,22 +3580,22 @@ function exampleStudent() {
   return st ? { st, c: COMPETENCIES.find((x) => metrics(st).per[x.id].att.length), m: metrics(st) } : null;
 }
 function gradesDialog() {
-  const p = currentPolicy(), ex = exampleStudent();
+  const p = currentPolicy();
   const lvlRow = [1, 2, 3, 4].map((l) => `<td class="num"><b>${p.anchors[l]}%</b></td>`).join("");
-  let example = "";
-  if (ex) {
-    const { st, c, m } = ex, { att, ev, policyPct } = m.per[c.id];
-    const avg = mean(att.map((a) => a.level));
-    example = `<div class="gx-card">
-      <div class="small muted">Example: ${esc(nameOf(st))}, ${esc(c.standard)} ${esc(c.title)}</div>
-      <div class="gx-steps">
-        <div><span class="gx-k">Attempts</span><span class="gx-v">${att.map((a) => `<span class="lv lv-${a.level}"><span class="n">${a.level}</span></span>`).join(" → ")}</span></div>
-        <div><span class="gx-k">Current level</span><span class="gx-v">${chip(ev)} <span class="small muted">(${esc(RULES[p.rule].name.toLowerCase())})</span></span></div>
-        <div><span class="gx-k">As a percent</span><span class="gx-v"><b>${Math.round(policyPct)}%</b></span></div>
-        <div><span class="gx-k">If attempts were averaged</span><span class="gx-v">level ${avg.toFixed(1)} → <b>${Math.round(pctFromValue(avg, p))}%</b></span></div>
+  /* Illustration: steady growth on one standard, 1 → 2 → 3 → 4, as a student might show across a unit. */
+  const att = [["2026-09-14", 1], ["2026-10-01", 2], ["2026-10-20", 3], ["2026-11-09", 4]].map(([date, level]) => ({ date, level, method: "A" }));
+  const ev = evaluate(att, p), mp = Math.round(pctFromValue(ev.value, p));
+  const avg = mean(att.map((a) => a.level)), ap = Math.round(pctFromValue(avg, p));
+  const raw = Math.round(mean(att.map((a) => (a.level / 4) * 100)));
+  const example = `<div class="gx-card">
+      <div class="small muted">Example: a student who grows steadily on one standard across a unit</div>
+      <div class="gx-growth">${att.map((a) => `<div><span class="lv lv-${a.level}"><span class="n">${a.level}</span></span><span class="tiny muted">${esc(fmtDate(a.date, { month: "short", day: "numeric" }))}</span></div>`).join('<span class="gx-arrow" aria-hidden="true">→</span>')}</div>
+      <div class="gx-compare">
+        <div class="gx-win"><span class="gx-k">Mastery grade (${esc(RULES[p.rule].name.toLowerCase())})</span><span class="gx-big">${letter(mp)} ${mp}%</span><span class="small">Level ${fmt1(ev.value)}: where the student is now</span></div>
+        <div><span class="gx-k">Averaging the attempts (same table)</span><span class="gx-big">${letter(ap)} ${ap}%</span><span class="small">Level ${avg.toFixed(1)}: September still counts</span></div>
+        <div><span class="gx-k">Plain points average</span><span class="gx-big">${letter(raw)} ${raw}%</span><span class="small">25%, 50%, 75%, 100% averaged</span></div>
       </div>
-      <p class="small" style="margin-top:8px">Course grade: <b>${m.policyLetter} ${m.policyPct}%</b> from current levels${m.legacyPct != null ? `, compared with <b>${m.legacyLetter} ${m.legacyPct}%</b> ${esc(baselineVs().replace(/^vs\. /, "from "))}` : ""}.${m.warnL1Pass ? " " + warnChip(m) : ""}</p></div>`;
-  }
+      <p class="small" style="margin-top:8px">The student ends the unit exceeding the standard. A points gradebook would still report <b>${letter(raw)}</b> or <b>${letter(ap)}</b>, because the early attempts never go away. The mastery grade reports <b>${letter(mp)}</b>.</p></div>`;
   const G = [
     ["Standard", "One skill the course teaches, such as a state or national standard. Each gets its own level."],
     ["Level (1–4)", "1 Not yet · 2 Approaching · 3 Meets (the goal) · 4 Exceeds. Shown as “Appr.” on small screens."],
@@ -3565,63 +3616,180 @@ function gradesDialog() {
     <h4 style="margin-top:14px">Glossary</h4>
     <dl class="glossary">${G.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
     ${isResearch() ? `<p class="small muted">Reviewer view: each current level is also encoded as a 33-character SMT code; see “How the SMT dashboard works” in the side panel.</p>` : ""}`;
-  return dlg("gx", "How grades are calculated", body, `<span></span><button class="btn primary" data-act="open-dialog" data-v="choices">Which option fits your school?</button>`, "md");
+  return dlg("gx", "How grades are calculated", body, `<span></span><button class="btn primary" data-act="open-dialog" data-v="feedback">Give feedback</button>`, "md");
 }
 
-/* ---------- Which fits your school? (two versions of contested decisions) ---------- */
+/* ---------- Which fits your school? (open design decisions, each shown with this demo's data) ---------- */
 function courseUnder(st, patch) {
   const pc = { ...currentPolicy(), ...patch, anchors: { ...currentPolicy().anchors, ...(patch.anchors || {}) } };
   const vals = COMPETENCIES.filter((c) => countsInGrade(c, pc)).map((c) => { const att = attemptsFor(st.id, c.id); return att.length ? pctFromValue(evaluate(att, pc).value, pc) : null; }).filter((v) => v != null);
   const pct = vals.length ? Math.round(mean(vals)) : null;
   return { pct, letter: letter(pct) };
 }
+/* Course grade from the evidence dated on or before a day, as PowerSchool would show it if synced then. */
+function courseAsOf(st, date) {
+  const pc = currentPolicy();
+  const vals = COMPETENCIES.filter((c) => countsInGrade(c, pc)).map((c) => { const att = attemptsFor(st.id, c.id).filter((a) => a.date <= date); return att.length ? pctFromValue(evaluate(att, pc).value, pc) : null; }).filter((v) => v != null);
+  const pct = vals.length ? Math.round(mean(vals)) : null;
+  return { pct, letter: letter(pct) };
+}
+/* Questions asked inside the dashboard. Add or edit entries here; answers go out with the reviewer's combined feedback. */
 const CHOICES = [
-  { id: "rule", q: "Which grading rule fits your school?", a: "Most recent evidence", b: "Decaying average (newest attempt counts 65%)" },
-  { id: "transcript", q: "Which transcript fits your school?", a: "Short: summary only", b: "Full: rubric and evidence for each standard" },
-  { id: "anchors", q: "How should Level 1 (Not yet) convert?", a: "50%: below passing", b: "62%: a D−" }
+  { id: "attempt", q: "When a student is assessed on a standard more than once, which attempt should count?",
+    opts: [["latest", "The most recent attempt (growth counts, and so does a later slip)"], ["highest", "The highest attempt (a grade never goes down)"], ["confirm", "The most recent, but mastery needs a second attempt at 3 or above"], ["depends", "It depends / not sure"]] },
+  { id: "gradebook", q: "How would your school use the PowerSchool gradebook?",
+    opts: [["assessments", "Send each assessment's scores (one column per quiz, lab, or project)"], ["mastery", "Keep a mastery gradebook (one running score per standard that updates as students grow)"], ["both", "Both"], ["depends", "It depends / not sure"]] },
+  { id: "cadence", q: "How often should course grades in PowerSchool be updated to show progress toward mastery?",
+    opts: [["every", "After every scored assessment"], ["weekly", "Weekly"], ["biweekly", "Every two weeks"], ["reports", "Only at progress reports and quarter ends"]] },
+  { id: "display", q: "Which view of a student's progress fits your school?",
+    opts: [["average", "A regular gradebook: scores and a running average"], ["mastery", "A mastery graph: each standard's level over time"], ["both", "Both, side by side"], ["depends", "It depends / not sure"]] },
+  { id: "habits", q: "Where should work habits (on time, prepared, participation) be reported?",
+    opts: [["beside", "Next to the mastery grade on the report card, but not part of it"], ["comments", "Only in comments and conferences"], ["mixed", "Mixed into the course grade, as many gradebooks do now"], ["depends", "It depends / not sure"]] },
+  { id: "transcript", q: "How much should a student's learner record show families and colleges?",
+    opts: [["summary", "A summary: course grade and standards met"], ["full", "The full record: each standard's level, the rubric, and links to student work"], ["split", "Full for families and students, summary for colleges"], ["depends", "It depends / not sure"]] }
 ];
+const OPEN_QUESTIONS = [
+  { id: "confusing", q: "What was confusing, or took longer than it should?" },
+  { id: "timesaver", q: "What would save you the most time, if anything?" },
+  { id: "stopper", q: "What would most likely stop your school from using a tool like this?" }
+];
+const answeredCount = () => CHOICES.filter((c) => state.choices[c.id]?.pick).length + OPEN_QUESTIONS.filter((o) => state.choices[o.id]?.text).length;
+const questionCount = () => CHOICES.length + OPEN_QUESTIONS.length;
+const choiceLabel = (c, pick) => (c.opts.find((o) => o[0] === pick) || [pick, pick])[1];
 function choiceBox(c) {
   const cur = state.choices[c.id] || {};
-  return `<form class="choice-form" data-choice="${c.id}">
-    <fieldset><legend class="small"><b>${esc(c.q)}</b></legend>
-      <div class="row">${[["a", c.a], ["b", c.b], ["neither", "Neither / it depends"]].map(([v, l]) => `<label class="check small"><input type="radio" name="pick" value="${v}" ${cur.pick === v ? "checked" : ""}> ${esc(l)}</label>`).join("")}</div></fieldset>
-    <label class="field" for="why-${c.id}">Why? (optional)<input id="why-${c.id}" name="why" type="text" value="${esc(cur.why || "")}" placeholder="One line is plenty"></label>
-    <div class="row tight"><button class="btn sm" type="submit">Save answer</button>${cur.pick ? `<span class="tiny muted">Saved ${esc(cur.at.slice(0, 16).replace("T", " "))}</span>` : ""}</div></form>`;
+  return `<div class="choice-form" data-choice="${c.id}" role="group" aria-labelledby="q-${c.id}">
+    <div class="small" id="q-${c.id}"><b>${esc(c.q)}</b></div>
+    <div class="choice-opts">${c.opts.map(([v, l]) => `<label class="check small"><input type="radio" name="pick-${c.id}" value="${v}" data-choice="${c.id}" ${cur.pick === v ? "checked" : ""}> ${esc(l)}</label>`).join("")}</div>
+    <label class="field" for="why-${c.id}">Why, or what would your school need? (optional)<input id="why-${c.id}" class="choice-why" data-choice="${c.id}" type="text" value="${esc(cur.why || "")}" placeholder="One line is plenty"></label></div>`;
 }
-function choicesDialog() {
-  const ex = exampleStudent();
-  let rule = "", trans = "", anch = "";
-  if (ex) {
-    const { st, c } = ex;
-    const att = attemptsFor(st.id, c.id);
-    const latest = evaluate(att, { ...currentPolicy(), rule: "latest" }), dec = evaluate(att, { ...currentPolicy(), rule: "decaying", weight: 0.65 });
-    const cl = courseUnder(st, { rule: "latest" }), cd = courseUnder(st, { rule: "decaying", weight: 0.65 });
-    const attHtml = att.map((a) => `<span class="lv lv-${a.level}"><span class="n">${a.level}</span></span>`).join(" → ");
-    rule = `<div class="vs">
-      <div class="vs-col"><div class="vs-h">A · Most recent evidence</div><p class="small muted">The latest attempt sets the level.</p><div>${attHtml}</div><p>Level now: ${chip(latest)}</p><p class="small">Course grade: <b>${cl.letter} ${cl.pct}%</b></p></div>
-      <div class="vs-col"><div class="vs-h">B · Decaying average</div><p class="small muted">Each new attempt counts 65%; earlier ones fade.</p><div>${attHtml}</div><p>Level now: ${chip(dec)}</p><p class="small">Course grade: <b>${cd.letter} ${cd.pct}%</b></p></div>
-    </div><p class="tiny muted">Same student both ways: ${esc(nameOf(st))}, ${esc(c.standard)} ${esc(c.title)}.</p>`;
-    const m = metrics(st);
-    const shown = m.active.filter((x) => m.per[x.id].att.length).slice(0, 3);
-    trans = `<div class="vs">
-      <div class="vs-col"><div class="vs-h">A · Short transcript</div>
-        <p class="small"><b>${esc(nameOf(st))}</b> · ${esc(SEC[st.sectionId].name)}</p>
-        <p class="small">Grade ${m.policyLetter} ${m.policyPct}% · ${m.mastered} of ${m.active.length} standards at Meets or above · Work habits: ${esc(currentHabit(st.id) || "–")}</p></div>
-      <div class="vs-col"><div class="vs-h">B · Full transcript</div>
-        <p class="small"><b>${esc(nameOf(st))}</b> · ${m.policyLetter} ${m.policyPct}%</p>
-        ${shown.map((x) => { const { ev, att: aa } = m.per[x.id]; const last = aa[aa.length - 1]; return `<div class="vs-std"><div class="small">${chip(ev, true)} <b>${esc(x.standard)}</b> ${esc(x.title)}</div><div class="tiny muted">Rubric: ${esc(x.rubric[ev.level])}</div>${last.note ? `<div class="tiny">Feedback: ${esc(last.note)}</div>` : ""}${last.artifactUrl ? `<div class="tiny">Evidence: ${esc(last.artifactType || "student work")} (link)</div>` : ""}</div>`; }).join("")}
-        <p class="tiny muted">…and so on for every standard.</p></div></div>`;
-    const sem = roster(`all-${ui.semester}`);
-    const passWith = (a1) => sem.filter((s) => { const mm = metrics(s); if (!mm.l1Graded.length) return false; const r = courseUnder(s, { anchors: { 1: a1 } }); return r.pct != null && r.pct >= currentPolicy().passLine; }).length;
-    const withL1 = sem.filter((s) => metrics(s).l1Graded.length).length;
-    anch = `<div class="vs">
-      <div class="vs-col"><div class="vs-h">A · Level 1 = 50%</div><p class="small muted">“Not yet” is clearly below passing.</p><p class="small">${passWith(50)} of ${withL1} students with a 1 on a graded standard still pass this semester.</p></div>
-      <div class="vs-col"><div class="vs-h">B · Level 1 = 62% (D−)</div><p class="small muted">Matches a familiar points scale, but “Not yet” alone is passing.</p><p class="small">${passWith(62)} of ${withL1} students with a 1 on a graded standard pass this semester.</p></div></div>`;
+const lvChip = (l) => `<span class="lv lv-${l}"><span class="n">${l}</span></span>`;
+/* A student whose attempts include a slip after a higher score, so "latest" and "highest" differ. */
+function slipExample() {
+  for (const st of roster(`all-${ui.semester}`)) {
+    for (const c of COMPETENCIES) {
+      if (!countsInGrade(c)) continue;
+      const att = attemptsFor(st.id, c.id), lv = att.map((a) => a.level);
+      if (lv.length >= 3 && Math.max(...lv) > lv[lv.length - 1] && lv[0] < Math.max(...lv)) return { st, c, att };
+    }
   }
-  const sections = [[CHOICES[0], rule], [CHOICES[1], trans], [CHOICES[2], anch]];
-  const body = `<p class="small muted">These decisions aren't settled. Each shows the same student or class two ways. Pick the one that fits your school; there's no right answer.</p>
-    ${sections.map(([c, html]) => `<section class="choice">${html}${choiceBox(c)}</section>`).join("")}`;
-  return dlg("ch", "Which fits your school?", body, `<span class="tiny muted">Answers are included when you copy your comments.</span><button class="btn primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>`, "md");
+  return null;
+}
+function miniLevelChart(att) {
+  const W = 220, H = 70, pad = 14;
+  if (!att.length) return "";
+  const d0 = dayNum(att[0].date), d1 = Math.max(d0 + 1, dayNum(att[att.length - 1].date));
+  const x = (d) => pad + ((dayNum(d) - d0) / (d1 - d0)) * (W - pad * 2), y = (l) => H - 8 - ((l - 1) / 3) * (H - 18);
+  return `<svg viewBox="0 0 ${W} ${H}" class="mini-chart" role="img" aria-label="Levels over time: ${att.map((a) => a.level).join(", ")}">
+    <line x1="${pad}" x2="${W - pad}" y1="${y(3)}" y2="${y(3)}" stroke="var(--line)" stroke-dasharray="3 3"/>
+    <polyline fill="none" stroke="var(--ink-3)" stroke-width="1.5" points="${att.map((a) => `${x(a.date)},${y(a.level)}`).join(" ")}"/>
+    ${att.map((a) => `<circle cx="${x(a.date)}" cy="${y(a.level)}" r="3.5" fill="var(--l${a.level})"/>`).join("")}</svg>`;
+}
+function choiceVisuals() {
+  const ex = exampleStudent(), slip = slipExample();
+  const html = {};
+  if (slip) {
+    const { st, c, att } = slip;
+    const pl = { ...currentPolicy(), rule: "latest", confirm: false }, ph = { ...currentPolicy(), rule: "highest", confirm: false };
+    const l = evaluate(att, pl), h = evaluate(att, ph);
+    const cl = courseUnder(st, { rule: "latest", confirm: false }), chh = courseUnder(st, { rule: "highest", confirm: false });
+    html.attempt = `<p class="tiny muted">${esc(nameOf(st))}, ${esc(c.standard)} ${esc(c.title)}: ${att.map((a) => lvChip(a.level)).join(" → ")}</p>
+      <div class="vs">
+        <div class="vs-col"><div class="vs-h">Most recent attempt</div><p>Standard level: ${chip(l)}</p><p class="small">Course grade: <b>${cl.letter} ${cl.pct}%</b></p><p class="tiny muted">Shows where the student is now. A bad day late in the unit lowers the grade until the next attempt.</p></div>
+        <div class="vs-col"><div class="vs-h">Highest attempt</div><p>Standard level: ${chip(h)}</p><p class="small">Course grade: <b>${chh.letter} ${chh.pct}%</b></p><p class="tiny muted">Rewards the best evidence and never drops. It can overstate what the student can do today.</p></div>
+      </div>`;
+  }
+  if (ex) {
+    const { st } = ex, m = metrics(st), sec = SEC[st.sectionId];
+    const a = state.assessments.filter((x) => (x.sections || []).includes(st.sectionId) && x.date <= TODAY && x.comps.some((cid) => entryForAssessment(st.id, cid, x.id))).sort((p, q) => q.date.localeCompare(p.date))[0];
+    const peers = roster(st.sectionId).slice(0, 3);
+    const shown = m.active.filter((x) => m.per[x.id].att.length && countsInGrade(x)).slice(0, 3);
+    html.gradebook = `<div class="vs">
+      <div class="vs-col"><div class="vs-h">Each assessment in PowerSchool</div><p class="tiny muted">One column per assessment${a ? ` (here: ${esc(a.title)}, ${esc(exportTypeLabel())})` : ""}. Familiar to families; PowerSchool averages the columns.</p>
+        ${a ? `<table class="mini-table"><thead><tr><th>Student</th>${a.comps.slice(0, 2).map((cid) => `<th>${esc(COMP[cid].standard)}</th>`).join("")}</tr></thead><tbody>${peers.map((p) => `<tr><td>${esc(p.first)}</td>${a.comps.slice(0, 2).map((cid) => { const e = entryForAssessment(p.id, cid, a.id); return `<td class="num">${e ? exportValue(e.level) : "–"}</td>`; }).join("")}</tr>`).join("")}</tbody></table>` : ""}</div>
+      <div class="vs-col"><div class="vs-h">Mastery gradebook</div><p class="tiny muted">One score per standard, replaced as the student grows. The course grade comes from current levels.</p>
+        <table class="mini-table"><thead><tr><th>Standard</th><th>Level</th><th>%</th></tr></thead><tbody>${shown.map((x) => `<tr><td>${esc(x.standard)}</td><td>${chip(m.per[x.id].ev, true)}</td><td class="num">${Math.round(m.per[x.id].policyPct)}</td></tr>`).join("")}</tbody></table>
+        <p class="tiny">${esc(nameOf(st))}, ${esc(sec.name)}: <b>${m.policyLetter} ${m.policyPct}%</b></p></div></div>`;
+    /* cadence: what families would see in PowerSchool on each Friday */
+    const fridays = []; let dd = TODAY;
+    while (fridays.length < 6) { if (new Date(dd + "T12:00:00").getDay() === 5 && dd >= semesterStart(sec.semester)) fridays.unshift(dd); dd = addDays(dd, -1); if (dd < semesterStart(sec.semester)) break; }
+    const reports = TERMS.filter((t) => t.semester === sec.semester).flatMap((t) => [addDays(t.start, Math.floor((dayNum(t.end) - dayNum(t.start)) / 2)), t.end]);
+    const reportVal = (f) => { const r = reports.filter((x) => x <= f).pop(); return r ? courseAsOf(st, r) : { pct: null, letter: "–" }; };
+    const biw = (f, i) => courseAsOf(st, fridays[i - ((fridays.length - 1 - i) % 2)] || f);
+    const cell = (g) => `<td class="num">${g.pct == null ? "–" : `${g.letter} ${g.pct}`}</td>`;
+    html.cadence = `<p class="tiny muted">What ${esc(nameOf(st))}'s family would see in PowerSchool each Friday under each schedule.</p>
+      <div class="table-wrap"><table class="mini-table"><thead><tr><th>Update</th>${fridays.map((f) => `<th>${esc(fmtDate(f, { month: "short", day: "numeric" }))}</th>`).join("")}</tr></thead><tbody>
+        <tr><td>Every assessment / weekly</td>${fridays.map((f) => cell(courseAsOf(st, f))).join("")}</tr>
+        <tr><td>Every two weeks</td>${fridays.map((f, i) => cell(biw(f, i))).join("")}</tr>
+        <tr><td>Progress reports only</td>${fridays.map((f) => cell(reportVal(f))).join("")}</tr></tbody></table></div>
+      <p class="tiny muted">More frequent updates show growth sooner but move the grade more often; report-only updates are steadier but can lag weeks behind what the student can do.</p>`;
+    /* display: running average vs mastery graph */
+    const evs = COMPETENCIES.filter((x) => countsInGrade(x)).flatMap((x) => attemptsFor(st.id, x.id).map((e) => ({ ...e, c: x }))).sort((p, q) => p.date.localeCompare(q.date));
+    let run = [];
+    const rows = evs.slice(-6).map((e) => e);
+    const allPct = evs.map((e) => (e.level / 4) * 100);
+    const startIdx = evs.length - rows.length;
+    const graphs = shown.slice(0, 2);
+    html.display = `<div class="vs">
+      <div class="vs-col"><div class="vs-h">Regular gradebook</div><p class="tiny muted">Each score as points (level ÷ 4), with the running average a points gradebook would show.</p>
+        <table class="mini-table"><thead><tr><th>Date</th><th>Standard</th><th>Score</th><th>Running avg</th></tr></thead><tbody>${rows.map((e, i) => { run = allPct.slice(0, startIdx + i + 1); return `<tr><td>${esc(fmtDate(e.date, { month: "short", day: "numeric" }))}</td><td>${esc(e.c.standard)}</td><td class="num">${Math.round((e.level / 4) * 100)}%</td><td class="num">${Math.round(mean(run))}%</td></tr>`; }).join("")}</tbody></table></div>
+      <div class="vs-col"><div class="vs-h">Mastery graph</div><p class="tiny muted">Each standard's level over time; the dashed line is 3 (Meets). This is the Students page view.</p>
+        ${graphs.map((x) => `<div class="tiny"><b>${esc(x.standard)}</b> ${esc(x.title)}</div>${miniLevelChart(m.per[x.id].att)}`).join("")}</div></div>
+      <p class="tiny muted">Same student both ways: ${esc(nameOf(st))}.</p>`;
+  }
+  if (ex) {
+    const { st } = ex, m = metrics(st);
+    const shown = m.active.filter((x) => m.per[x.id].att.length).slice(0, 2);
+    html.transcript = `<div class="vs">
+      <div class="vs-col"><div class="vs-h">Summary</div><p class="small"><b>${esc(nameOf(st))}</b> · ${esc(SEC[st.sectionId].name)}</p>
+        <p class="small">Grade ${m.policyLetter} ${m.policyPct}% · ${m.mastered} of ${m.active.length} standards at Meets or above · Work habits: ${esc(currentHabit(st.id) || "–")}</p></div>
+      <div class="vs-col"><div class="vs-h">Full record</div><p class="small"><b>${esc(nameOf(st))}</b> · ${m.policyLetter} ${m.policyPct}%</p>
+        ${shown.map((x) => { const { ev, att: aa } = m.per[x.id]; const last = aa[aa.length - 1]; return `<div class="vs-std"><div class="small">${chip(ev, true)} <b>${esc(x.standard)}</b> ${esc(x.title)}</div><div class="tiny muted">Rubric: ${esc(x.rubric[ev.level])}</div>${last.note ? `<div class="tiny">Feedback: ${esc(last.note)}</div>` : ""}${last.artifactUrl ? `<div class="tiny">Evidence: link to ${esc(last.artifactType || "student work")}</div>` : ""}</div>`; }).join("")}
+        <p class="tiny muted">…and so on for every standard.</p></div></div>`;
+  }
+  return html;
+}
+/* ---------- Give feedback: questions, comments, and sending in one window ---------- */
+function feedbackDialog() {
+  const html = choiceVisuals();
+  const fb = state.feedback, rev = fb.filter((f) => f.key !== "general"), gen = fb.filter((f) => f.key === "general");
+  const url = feedbackFormUrl(), parts = feedbackParts();
+  const types = Object.fromEntries(FB_TYPES);
+  const body = `
+    <nav class="fb-steps" aria-label="Feedback steps">
+      <button class="fb-step" data-act="fb-jump" data-v="fq">1 · Questions <span class="pill" id="fb-answered">${answeredCount()}/${questionCount()}</span></button>
+      <button class="fb-step" data-act="fb-jump" data-v="fc">2 · Your comments <span class="pill">${fb.length}</span></button>
+      <button class="fb-step" data-act="fb-jump" data-v="fs">3 · Send</button></nav>
+    <section id="fq" class="fb-sec">
+      <h4>1 · Which fits your school?</h4>
+      <p class="small muted">These decisions aren't settled, and schools differ. Most questions show this demo's fictional data both ways. Pick what fits; “it depends” is a useful answer too. Answers save as you go.</p>
+      ${CHOICES.map((c) => `<section class="choice">${html[c.id] || ""}${choiceBox(c)}</section>`).join("")}
+      <section class="choice"><div class="small"><b>A few open questions</b> <span class="muted">(optional)</span></div>
+        ${OPEN_QUESTIONS.map((o) => `<label class="field" for="oq-${o.id}">${esc(o.q)}<textarea id="oq-${o.id}" class="open-q" data-choice="${o.id}" rows="2">${esc(state.choices[o.id]?.text || "")}</textarea></label>`).join("")}</section>
+    </section>
+    <section id="fc" class="fb-sec">
+      <h4>2 · Your comments</h4>
+      ${rev.length ? `<p class="small muted">From Reviewer view (${rev.length}):</p><ul class="fb-mini">${rev.map((f) => `<li><span class="fb-type t-${f.type}">${esc(types[f.type] || f.type)}</span> <b>${esc(SCREEN_NAMES[f.view] || f.view)} › ${esc(f.label)}:</b> ${esc(f.text)} <button class="linklike tiny" data-act="fb-del2" data-v="${f.id}">Remove</button></li>`).join("")}</ul>`
+        : `<p class="small muted">No Reviewer view comments yet. Comments on a specific part of the page are the most useful: flip the <b>Reviewer view</b> switch in the demo bar, click the part you mean, and type.</p>`}
+      ${gen.length ? `<ul class="fb-mini">${gen.map((f) => `<li><b>General (${esc(SCREEN_NAMES[f.view] || f.view)}):</b> ${esc(f.text)} <button class="linklike tiny" data-act="fb-del2" data-v="${f.id}">Remove</button></li>`).join("")}</ul>` : ""}
+      <label class="field" for="sf-text">Add a general comment<textarea id="sf-text" rows="2" placeholder="Overall, what was clear, confusing, or missing?">${esc(transient.sfDraft || "")}</textarea></label>
+      <div class="row tight"><button class="btn sm" data-act="sf-add">Add comment</button></div>
+    </section>
+    <section id="fs" class="fb-sec">
+      <h4>3 · Send</h4>
+      <div class="sf-go">
+        <p class="small">Everything above (answers, open responses, and comments, with the version and the screen you're on) goes out as one block of text. In the form, paste it into the single answer box and submit.</p>
+        ${url ? (parts.length === 1
+          ? `<a class="btn primary" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-act="sf-open">Copy everything and open the form ↗</a>`
+          : `<p class="small">Your feedback is long, so it's split into ${parts.length} parts to fit the form's answer box. Paste part 1 and submit, then open the form again for the next part.</p>
+             <div class="row tight">${parts.map((_, i) => `<button class="btn sm" data-act="copy-part" data-v="${i}">${ICON.copy} Copy part ${i + 1}</button>`).join("")}</div>
+             <a class="btn primary" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-act="sf-open" data-nocopy="1">Open the form ↗</a>`)
+          : `<p class="small muted">The feedback form link hasn't been set up yet. Copy everything and email it to the researcher.</p>`}
+        <div class="row tight"><button class="btn sm ghost" data-act="copy-comments">${ICON.copy} Copy only</button><button class="btn sm ghost" data-act="fb-export">${ICON.download} Download as a file</button></div>
+      </div>
+      <p class="tiny muted">Your name is optional (set it in the Reviewer view side panel). Nothing leaves this device until you send it. No student data is included.</p>
+    </section>`;
+  return dlg("fbk", "Give feedback", body, `<span class="tiny muted">v${APP_VERSION} · answers save automatically</span><button class="btn primary" data-act="fb-jump" data-v="fs">Go to Send</button>`, "md");
 }
 
 /* ---------- Reviewer: SMT check and codebook ---------- */
@@ -3663,9 +3831,7 @@ function subgroupCard() {
 /* ---------- event handling for the pieces above ---------- */
 function v47Click(act, d, t) {
   switch (act) {
-    case "open-dialog":
-      if (d.v === "how-grades") tryMark("compare");
-      openDialog(d.v); return true;
+    case "open-dialog": openFeedbackish(d.v); return true;
     case "banner-reset":
       if (t.dataset.armed !== "1") { t.dataset.armed = "1"; t.textContent = "Click again to reset"; setTimeout(() => { if (t.isConnected) { t.dataset.armed = ""; t.textContent = "Reset demo"; } }, 4000); return true; }
       state.tryThis = {}; resetDemo(); return true;
@@ -3674,17 +3840,26 @@ function v47Click(act, d, t) {
     case "try-go": {
       const task = TRY_TASKS.find((x) => x.id === d.v);
       transient.dialog = null;
-      if (task.dialog) { if (task.id === "compare") tryMark("compare"); openDialog(task.dialog); }
+      if (task.mode) { renderDialog(); setMode(task.mode); }
+      else if (task.dialog) openFeedbackish(task.dialog);
       else { renderDialog(); setTab(task.go); }
       return true;
     }
     case "sf-add": {
       const ta = document.getElementById("sf-text"), v = ta.value.trim();
       if (!v) { ta.focus(); return true; }
-      addQuickComment(v); transient.sfDraft = ""; renderDialog(); toast("Comment saved. Copy your comments when you're ready to send them.");
+      addQuickComment(v); transient.sfDraft = ""; renderDialog(); renderHeader(); document.getElementById("fc")?.scrollIntoView({ block: "start" }); toast("Comment added");
       return true;
     }
-    case "copy-comments": copyText(feedbackMarkdown(), "Your comments"); return true;
+    case "fb-jump": { const el = document.getElementById(d.v); if (el) el.scrollIntoView({ behavior: state.settings.reduceMotion ? "auto" : "smooth", block: "start" }); return true; }
+    case "fb-del2": { const sc = document.querySelector("#dialog-host .dlg-body")?.scrollTop; state.feedback = state.feedback.filter((f) => f.id !== d.v); save(); renderDialog(); renderHeader(); const b = document.querySelector("#dialog-host .dlg-body"); if (b && sc != null) b.scrollTop = sc; return true; }
+    case "copy-comments": copyText(feedbackFormText(), "Your comments"); return true;
+    case "copy-part": copyText(feedbackParts()[Number(d.v)], `Part ${Number(d.v) + 1}`); return true;
+    case "sf-open":
+      if (!d.nocopy) copyText(feedbackParts()[0], "Your comments (now paste them into the form)");
+      tryMark("send"); state.feedbackSentAt = localIso(); save();
+      return "default";
+    case "toggle-reviewer": setMode(isResearch() ? "teacher" : "research"); return true;
     case "open-study": ui.settingsPane = "study"; openDialog("settings"); return true;
     case "dl-codebook": runExport(d.v === "csv" ? "codebookCsv" : "codebookMd"); return true;
     case "dl-clr": runExport("clr", { sid: ui.studentId }); return true;
@@ -3702,22 +3877,65 @@ function v47Click(act, d, t) {
   return false;
 }
 function v47Change(t) {
+  if (t.type === "radio" && t.dataset.choice) { saveAnswer(t.dataset.choice, { pick: t.value }); logT("choice", { id: t.dataset.choice, pick: t.value }); return true; }
   if (t.dataset.act === "try-toggle") {
     if (t.checked) state.tryThis[t.dataset.v] = localIso(); else delete state.tryThis[t.dataset.v];
     save(); renderDialog(); renderHeader(); return true;
   }
   return false;
 }
-function v47Submit(f) {
-  if (f.classList.contains("choice-form")) {
-    const fd = new FormData(f), id = f.dataset.choice, pick = fd.get("pick");
-    if (!pick) { toast("Choose one of the options first."); return true; }
-    state.choices[id] = { pick, why: String(fd.get("why") || "").trim(), at: localIso(), appVersion: APP_VERSION };
-    logT("choice", { id, pick });
-    save(); tryMark("choose"); renderDialog(); toast("Answer saved");
-    return true;
-  }
+function v47Submit() { return false; }
+/* Answers save as the reviewer types or picks, without redrawing the window. */
+function saveAnswer(id, patch) {
+  state.choices[id] = { ...(state.choices[id] || {}), ...patch, at: localIso(), appVersion: APP_VERSION };
+  if (!state.choices[id].pick && !state.choices[id].text && !state.choices[id].why) delete state.choices[id];
+  save();
+  const el = document.getElementById("fb-answered"); if (el) el.textContent = `${answeredCount()}/${questionCount()}`;
+  if (answeredCount() > 0) tryMark("choose");
+}
+function v47Input(t) {
+  if (t.classList.contains("choice-why")) { saveAnswer(t.dataset.choice, { why: t.value.trim() }); return true; }
+  if (t.classList.contains("open-q")) { saveAnswer(t.dataset.choice, { text: t.value.trim() }); return true; }
+  if (t.id === "sf-text") { transient.sfDraft = t.value; return true; }
   return false;
+}
+
+/* One place to switch views, used by the demo-bar switch, the R/T keys, and Settings. */
+function setMode(mode) {
+  if (state.settings.mode === mode) return;
+  state.settings.mode = mode; transient.drawer = null;
+  if (mode === "research") tryMark("reviewer");
+  else if (state.tryThis.reviewer) tryMark("back");
+  render();
+  toast(mode === "research" ? "Reviewer view: hover for explanations, click any part of the page to comment" : "Teacher view: the dashboard is interactive again");
+}
+/* Compact, form-ready version of everything the reviewer noted (Reviewer view comments, general comments, answers). */
+function feedbackFormText() {
+  const fb = state.feedback;
+  const L = [`SMT Mastery Dashboard v${APP_VERSION}${PREVIEW ? " preview" : ""} · ${PROFILE.name} sample · screen: ${screenLabel()}${state.reviewer ? ` · from: ${state.reviewer}` : ""}`,
+    `Try this: ${tryDone()} of ${TRY_TASKS.length} tasks (${TRY_TASKS.filter((t) => state.tryThis[t.id]).map((t) => t.id).join(", ") || "none"})`, ""];
+  const answeredC = CHOICES.filter((c) => state.choices[c.id]?.pick || state.choices[c.id]?.why);
+  L.push(`WHICH FITS YOUR SCHOOL? (${answeredC.length} of ${CHOICES.length} answered)`);
+  answeredC.forEach((c) => { const a = state.choices[c.id]; L.push(`- ${c.q} ${a.pick ? choiceLabel(c, a.pick) : "(no choice)"}${a.why ? `. Why: ${a.why}` : ""}`); });
+  L.push("");
+  const opens = OPEN_QUESTIONS.filter((o) => state.choices[o.id]?.text);
+  if (opens.length) { L.push("OPEN QUESTIONS"); opens.forEach((o) => L.push(`- ${o.q} ${state.choices[o.id].text.replace(/\n+/g, " ")}`)); L.push(""); }
+  const types = Object.fromEntries(FB_TYPES);
+  const byView = Object.keys(VIEW_NAMES).map((v) => [v, fb.filter((f) => f.view === v)]).filter(([, x]) => x.length);
+  if (byView.length) {
+    L.push(`COMMENTS (${fb.length})`);
+    byView.forEach(([v, items]) => { L.push(`${VIEW_NAMES[v]}:`); items.forEach((f) => L.push(`- [${types[f.type] || f.type}] ${f.key === "general" ? "General" : f.label}: ${f.text.replace(/\n+/g, " ")}`)); });
+  } else L.push("COMMENTS: none yet");
+  return L.join("\n");
+}
+
+/* "choices" and "send-feedback" are sections of one Give feedback window. */
+function openFeedbackish(name) {
+  if (name === "how-grades") tryMark("compare");
+  const section = { choices: "fq", "send-feedback": "fs", feedback: null }[name];
+  if (section === undefined) { openDialog(name); return; }
+  openDialog("feedback");
+  if (section) requestAnimationFrame(() => document.getElementById(section)?.scrollIntoView({ block: "start" }));
 }
 
 "use strict";
@@ -3748,7 +3966,7 @@ const TIPS = {
   /* header */
   "tab": (t) => ({ title: `${TABS.find((x) => x.id === t).label} view`, body: P(VIEW_GUIDE[t].purpose) }),
   "semester": () => ({ title: "Semester switch", body: P("Courses last one semester. S1 (Aug 24–Jan 22) and S2 (Jan 25–Jun 15) have different classes and students. Every view follows this switch.") }),
-  "mode": () => ({ title: "Teacher / Reviewer (keys T and R)", body: P("<b>Teacher</b>: use the dashboard normally.") + P("<b>Reviewer</b>: hover anything for context, click any part of the page to leave feedback in the side panel, and switch between the physics, math, and English sample teachers.") }),
+  "mode": () => ({ title: "Reviewer view switch (keys R and T)", body: P("<b>Off (Teacher view)</b>: use the dashboard as a teacher would.") + P("<b>On (Reviewer view)</b>: hover anything for an explanation, click any part of the page to leave a comment in the side panel, and switch between the physics, math, and English sample teachers. Your comments go out with Send feedback.") }),
   "legend": () => ({ title: "Mastery levels", body: P("1 Not yet · 2 Approaching · 3 Meets the standard (proficient) · 4 Exceeds. Gray means no evidence yet. Levels always show their number, so color is never the only cue.") }),
   /* today */
   "page-today": () => ({ title: "Today overview", body: P("Every class in the selected semester, with the standards taught so far. Missing evidence is reported as “not yet assessed,” never as low mastery.") }),
@@ -3950,15 +4168,15 @@ function feedbackCard() {
   const type = transient.fbType || "comment";
   return `<section class="note-card fb-card" aria-label="Reviewer feedback">
     <div class="spread"><div class="eyebrow">Reviewer feedback</div><span class="pill note">${n} note${n === 1 ? "" : "s"}</span></div>
-    <p class="tiny" style="font-family:var(--font-body);color:var(--ink-2);margin-top:4px">Hover anything for context. Click any part of the page to choose it, then type. Switch to Teacher to use the dashboard.</p>
+    <p class="tiny" style="font-family:var(--font-body);color:var(--ink-2);margin-top:4px">Hover anything for context. Click any part of the page to choose it, then type. Flip the Reviewer view switch off (or press T) to use the dashboard.</p>
     <label class="field" for="fb-name" style="margin-top:8px">Your name (optional)<input id="fb-name" type="text" value="${esc(state.reviewer || "")}" placeholder="Reviewer"></label>
     <div class="fb-target" id="fb-target">${fbTargetHtml()}</div>
     <div class="row tight" style="margin-top:6px"><button class="btn sm ghost" data-act="fb-general">Comment on the whole view</button></div>
     <div class="seg fb-types" role="group" aria-label="Note type" style="margin-top:8px">${FB_TYPES.map(([k, l]) => `<button data-act="fb-type" data-v="${k}" aria-pressed="${type === k}">${l}</button>`).join("")}</div>
     <textarea id="fb-text" rows="3" placeholder="Type your note. Enter saves; Shift+Enter adds a line." style="margin-top:8px">${esc(transient.fbDraft || "")}</textarea>
     <div class="row tight" style="margin-top:6px"><button class="btn sm primary" data-act="fb-add">Add note</button>
-      <button class="btn sm" data-act="fb-export" ${n ? "" : "disabled"}>${ICON.download} Export feedback</button>
-      <button class="btn sm ghost" data-act="fb-copy" ${n ? "" : "disabled"}>${ICON.copy} Copy</button></div>
+      <button class="btn sm" data-act="open-dialog" data-v="send-feedback">Give feedback (${n})</button>
+      <button class="btn sm ghost" data-act="fb-export" ${n ? "" : "disabled"}>${ICON.download} File</button></div>
     <div class="fb-log">${byView.length ? byView.map((g) => `<div class="fb-group"><div class="fb-view">${esc(VIEW_NAMES[g.v])} <span class="faint">(${g.items.length})</span></div>
       ${g.items.map((f) => `<div class="fb-item"><div class="spread"><span class="fb-type t-${f.type}">${esc(FB_TYPES.find((x) => x[0] === f.type)[1])}</span><span class="tiny faint">${new Date(f.t).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}</span></div>
         <div class="tiny" style="font-weight:650;margin-top:2px">${esc(f.label)}</div><p class="small">${esc(f.text)}</p>
@@ -3989,12 +4207,14 @@ function feedbackMarkdown() {
       lines.push("");
     }
   }
-  const answered = CHOICES.filter((c) => state.choices && state.choices[c.id]);
+  const answered = CHOICES.filter((c) => state.choices && state.choices[c.id]?.pick);
   if (answered.length) {
     lines.push("## Which fits your school?", "");
-    answered.forEach((c) => { const a = state.choices[c.id]; lines.push(`- **${c.q}** ${a.pick === "a" ? c.a : a.pick === "b" ? c.b : "Neither / it depends"}${a.why ? `: ${a.why}` : ""}`); });
+    answered.forEach((c) => { const a = state.choices[c.id]; lines.push(`- **${c.q}** ${choiceLabel(c, a.pick)}${a.why ? `. Why: ${a.why}` : ""}`); });
     lines.push("");
   }
+  const opens = OPEN_QUESTIONS.filter((o) => state.choices && state.choices[o.id]?.text);
+  if (opens.length) { lines.push("## Open questions", ""); opens.forEach((o) => lines.push(`- **${o.q}** ${state.choices[o.id].text}`)); lines.push(""); }
   lines.push("## Try this checklist", "", ...TRY_TASKS.map((x) => `- [${state.tryThis && state.tryThis[x.id] ? "x" : " "}] ${x.title}`), "");
   const p = state.settings.policy;
   lines.push("## Dashboard settings during the review", "",
@@ -4434,10 +4654,10 @@ function onClick(e) {
   if (!t) return;
   const act = t.dataset.act, d = t.dataset;
   if (t.tagName === "DETAILS" || t.tagName === "SELECT" || (t.tagName === "INPUT" && t.type !== "button")) return;
-  if (v47Click(act, d, t)) return;
+  { const r = v47Click(act, d, t); if (r) return; }
   switch (act) {
     case "tab": setTab(d.tab); break;
-    case "mode": state.settings.mode = d.mode; transient.drawer = null; render(); toast(d.mode === "research" ? "Reviewer view: hover for context, click any part of the page to comment" : "Teacher view: the dashboard is interactive again"); break;
+    case "mode": setMode(d.mode); break;
     case "review-q": ui.reviewQuarter = d.v; render(); break;
     case "fb-general": selectFeedbackTarget(null); break;
     case "fb-type": transient.fbType = d.v; document.querySelectorAll('[data-act="fb-type"]').forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === d.v))); $("#fb-text")?.focus(); break;
@@ -4542,7 +4762,7 @@ function onClick(e) {
       break;
     }
     case "settings-pane": ui.settingsPane = d.v; renderDialog(); restoreFocus({ act: "settings-pane", v: d.v }); break;
-    case "set": if (d.path === "__profile") { switchProfile(d.v); renderDialog(); break; } setSetting(d.path, d.v); render(); break;
+    case "set": if (d.path === "__profile") { switchProfile(d.v); renderDialog(); break; } if (d.path === "mode") { setMode(d.v); renderDialog(); break; } setSetting(d.path, d.v); render(); break;
     case "new-salt": state.settings.privacy.researchSalt = randomSalt(); invalidate(); render(); toast("New research salt set. All research pseudonyms changed."); break;
     case "reset":
       if (t.dataset.armed !== "1") { t.dataset.armed = "1"; t.textContent = "Click again to reset"; return; }
@@ -4619,6 +4839,7 @@ function submitFeedback() {
   const text = ta ? ta.value.trim() : "";
   if (!text) { if (ta) ta.focus(); return; }
   addFeedback(text);
+  tryMark("comment");
   transient.fbDraft = "";
   renderMargin();
   $("#fb-text")?.focus();
@@ -4766,7 +4987,7 @@ function switchProfile(id) {
 }
 function onInput(e) {
   if (e.target.id === "fb-name") { state.reviewer = e.target.value; save(); return; }
-  if (e.target.id === "sf-text") { transient.sfDraft = e.target.value; return; }
+  if (v47Input(e.target)) return;
   if (e.target.id === "fb-text") { transient.fbDraft = e.target.value; return; }
   if (e.target.id === "al-search") { ui.alQuery = e.target.value; const pos = e.target.selectionStart; render(); const el = $("#al-search"); if (el) { el.focus(); el.setSelectionRange(pos, pos); } return; }
   if (e.target.id === "rq-search") {
@@ -4854,7 +5075,7 @@ function onKey(e) {
   if (["input", "select", "textarea"].includes(tag) || e.metaKey || e.ctrlKey || e.altKey || transient.dialog) return;
   if (e.key === "t" || e.key === "T" || e.key === "r" || e.key === "R") {
     const mode = e.key.toLowerCase() === "t" ? "teacher" : "research";
-    if (state.settings.mode !== mode) { e.preventDefault(); state.settings.mode = mode; transient.drawer = null; render(); toast(mode === "research" ? "Reviewer view (press T for Teacher)" : "Teacher view (press R for Reviewer)"); }
+    if (state.settings.mode !== mode) { e.preventDefault(); setMode(mode); }
     return;
   }
   if (isResearch()) return;
