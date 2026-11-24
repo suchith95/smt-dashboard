@@ -625,6 +625,157 @@ pre.code { max-width: 100%; white-space: pre; }
 .gx-compare .gx-win { border-color: var(--l3); box-shadow: inset 0 3px 0 var(--l3); }
 .gx-big { font-size: 1.3rem; font-weight: 750; }
 @media (max-width: 640px) { .gx-compare { grid-template-columns: 1fr; } }
+/* ===================== v0.47.1 preview polish ===================== */
+.margin { display: none !important; }
+body.research .shell { grid-template-columns: minmax(0, 1fr); }
+body.research #main [data-tip] { cursor: auto; }
+body.research #main [data-tip]:hover { outline: none; }
+/* demo bar */
+.demo-bar { max-width: 1440px; margin: 0 auto; padding: 4px 20px; min-height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: .82rem; }
+#preview-banner-host { background: var(--note-soft, var(--surface-2)); border-top: 1px solid var(--line); }
+.db-left, .db-actions { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.db-fict { font: inherit; font-size: .78rem; font-weight: 700; border: 1px solid var(--note-line, var(--line)); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 3px 10px; cursor: pointer; white-space: nowrap; }
+.db-fict-short { display: none; }
+.db-chip { cursor: pointer; border: 0; font: inherit; font-size: .72rem; }
+.demo-bar .btn.sm { padding-top: 4px; padding-bottom: 4px; }
+.bottom-bar { display: none; }
+.sem-select { display: none; }
+/* phone: thin top line + fixed bottom action bar + compact header */
+@media (max-width: 640px) {
+  .app-header .inner { padding: 6px 12px; gap: 6px; row-gap: 6px; }
+  .brand-mark { width: 28px; height: 28px; font-size: .66rem; }
+  .brand-sub { display: none; }
+  .brand-name { font-size: .9rem; }
+  .brand { flex: 1; }
+  .tabs { order: 3; flex: 1 0 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { padding: 6px 10px; flex: 0 0 auto; }
+  #semester { display: none; }
+  .sem-select { display: block; font: inherit; font-size: .82rem; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+  .header-tools .btn.icon { width: 32px; height: 32px; }
+  .demo-bar { min-height: 28px; padding: 2px 12px; }
+  .db-actions { display: none; }
+  .db-fict { border: 0; background: transparent; padding: 2px 0; font-size: .74rem; }
+  .db-fict-long { display: none; }
+  .db-fict-short { display: inline; }
+  .bottom-bar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; background: var(--surface); border-top: 1px solid var(--line);
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); gap: 6px; box-shadow: 0 -4px 14px rgba(0,0,0,.08); }
+  .bottom-bar button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; font: inherit; font-size: .76rem; font-weight: 700; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink); border-radius: 10px; padding: 5px 4px; min-height: 44px; cursor: pointer; }
+  .bottom-bar button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  .toasts { bottom: calc(76px + env(safe-area-inset-bottom)); }
+}
+@media (min-width: 641px) { .toasts { left: auto; right: 18px; transform: none; align-items: flex-end; } }
+/* comment pick mode */
+body.picking #main, body.picking #main * { cursor: crosshair !important; }
+.pick-hover { outline: 2px dashed var(--note) !important; outline-offset: 2px; border-radius: 6px; }
+#main .fb-selected { outline: 2px solid var(--note) !important; outline-offset: 2px; border-radius: 6px; box-shadow: 0 0 0 6px color-mix(in srgb, var(--note) 15%, transparent); }
+.pick-hint { position: fixed; top: 8px; left: 50%; transform: translateX(-50%); z-index: 70; background: var(--ink); color: var(--bg); border-radius: 12px; padding: 8px 10px 8px 14px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: .84rem; font-weight: 600; box-shadow: 0 6px 24px rgba(0,0,0,.25); max-width: calc(100vw - 16px); }
+.pick-hint .btn { background: var(--surface); color: var(--ink); }
+.pick-hint .btn.ghost { background: transparent; color: var(--bg); border-color: color-mix(in srgb, var(--bg) 40%, transparent); }
+.pick-hint[hidden], .cpop[hidden], .cpop-scrim[hidden], .menu-pop-panel[hidden], .guide-dock[hidden] { display: none !important; }
+/* comment popover / bottom sheet */
+.cpop { position: fixed; z-index: 55; width: min(380px, calc(100vw - 16px)); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-top: 3px solid var(--note);
+  border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,.22); padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.cpop-head { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+.cpop-label { font-weight: 750; }
+.cpop textarea { width: 100%; font: inherit; font-size: .9rem; border: 1px solid var(--line); border-radius: 8px; padding: 8px; background: var(--surface); color: var(--ink); resize: vertical; }
+.cpop-foot { justify-content: space-between; }
+.cpop.sheet-mode { left: 0 !important; right: 0; bottom: 0; top: auto !important; width: 100%; border-radius: 16px 16px 0 0; padding-bottom: calc(14px + env(safe-area-inset-bottom)); }
+.cpop-scrim { position: fixed; inset: 0; z-index: 54; background: rgba(8,16,16,.35); }
+/* explain markers */
+.explain-layer { position: absolute; top: 0; left: 0; width: 0; height: 0; z-index: 15; }
+.explain-dot { position: absolute; width: 18px; height: 18px; border-radius: 50%; border: 0; background: var(--note); color: #fff; font: 800 11px/18px var(--font-body, sans-serif);
+  text-align: center; padding: 0; cursor: help; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+.explain-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* menus */
+.menu-pop-panel { position: fixed; z-index: 58; min-width: 240px; max-width: calc(100vw - 16px); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.2); padding: 6px; display: flex; flex-direction: column; gap: 2px; }
+.menu-pop-panel > p { margin: 6px 8px; }
+.menu-pop-panel button[role^="menuitem"], .sheet-menu button[role^="menuitem"] { text-align: left; font: inherit; font-size: .88rem; font-weight: 600; border: 0; background: transparent; color: var(--ink); padding: 8px 10px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 36px; }
+.menu-pop-panel button[role^="menuitem"]:hover, .menu-pop-panel button[role^="menuitem"]:focus-visible, .sheet-menu button[role^="menuitem"]:hover { background: var(--surface-2); }
+.menu-pop-panel .danger, .sheet-menu .danger { color: var(--l1); }
+.menu-pop-panel hr, .sheet-menu hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; width: 100%; }
+.menu-group { padding: 6px 10px; display: flex; flex-direction: column; gap: 4px; }
+.sheet-menu { display: flex; flex-direction: column; gap: 2px; margin-top: 12px; border-top: 1px solid var(--line); padding-top: 8px; }
+/* sheets */
+.sheet-scrim { position: fixed; inset: 0; z-index: 49; background: rgba(8,16,16,.3); }
+.sheet { position: fixed; z-index: 50; background: var(--surface); color: var(--ink); display: flex; flex-direction: column; box-shadow: 0 0 40px rgba(0,0,0,.25); }
+.sheet.side { top: 0; right: 0; bottom: 0; width: min(440px, 100vw); border-left: 1px solid var(--line); }
+.sheet.bottom { left: 0; right: 0; bottom: 0; max-height: 85vh; border-radius: 16px 16px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+.sheet-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line); gap: 8px; }
+.sheet-body { overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.sheet-body h4 { margin-top: 8px; }
+.sheet-body ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+/* guide dock */
+.guide-dock { position: fixed; left: 16px; bottom: 16px; z-index: 30; }
+.guide-dock.open { width: 300px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.18); padding: 12px; display: flex; flex-direction: column; gap: 8px; max-height: calc(100vh - 140px); overflow-y: auto; }
+.gd-head { display: flex; justify-content: space-between; align-items: center; }
+.gd-pill { font: inherit; font-size: .82rem; font-weight: 750; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 8px 14px; box-shadow: 0 4px 14px rgba(0,0,0,.14); cursor: pointer; }
+.guide-list { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.guide-list li { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
+.guide-list li .small.muted { padding-left: 24px; }
+.guide-list li .linklike { padding-left: 24px; }
+.guide-list li.done b { text-decoration: line-through; color: var(--ink-3); }
+@media (max-width: 640px) { .guide-dock { display: none !important; } }
+@media (max-width: 1100px) and (min-width: 641px) { .guide-dock.open { width: 260px; } }
+/* highlight */
+@keyframes pulseOutline { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); } 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 45%, transparent); } }
+.pulse { outline: 2px solid var(--accent) !important; outline-offset: 2px; animation: pulseOutline .7s ease-in-out 3; border-radius: 8px; }
+[data-reduce-motion="on"] .pulse { animation: none; }
+/* saved-comment dots */
+.dot-layer { position: fixed; inset: 0; pointer-events: none; z-index: 44; }
+.cdot { position: absolute; transform: translate(-40%, -40%); min-width: 20px; height: 20px; border-radius: 10px; background: var(--note); color: #fff; font: 800 11px/20px var(--font-body, sans-serif); text-align: center; padding: 0 5px; box-shadow: 0 0 0 2px var(--surface); }
+/* class sub-tabs, retry queue page */
+.subtabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.subtabs button { font: inherit; font-weight: 650; font-size: .9rem; border: 0; background: transparent; color: var(--ink-2); padding: 8px 12px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+.subtabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.rq-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.rq-bar input[type=search] { flex: 1 1 220px; min-width: 0; }
+.menu-pop { position: relative; }
+.menu-pop > summary { list-style: none; cursor: pointer; }
+.menu-pop > summary::-webkit-details-marker { display: none; }
+.menu-pop > .menu-panel { position: absolute; z-index: 25; top: calc(100% + 6px); left: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,.18);
+  padding: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: min(460px, calc(100vw - 32px)); }
+@media (max-width: 640px) { .menu-pop > .menu-panel { grid-template-columns: 1fr; position: fixed; left: 12px; right: 12px; top: auto; width: auto; } }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chipx { font: inherit; font-size: .78rem; font-weight: 650; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+/* send feedback */
+.fict-warn { margin: 0; padding: 8px 10px; background: var(--note-soft, var(--surface-2)); border-radius: 8px; font-size: .84rem; }
+.choice-opts.inline { flex-direction: row; flex-wrap: wrap; gap: 6px 14px; }
+.see-ex > summary { font-size: .82rem; }
+.fb-group { margin-top: 8px; }
+.fb-view { font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
+.facts span { line-height: 1.25; }
+.guide-dock.open { width: 270px; padding: 10px 12px; gap: 6px; }
+.guide-list.compact { gap: 4px; }
+.gl-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; width: 100%; }
+.gl-row .check { font-size: .84rem; }
+.gl-how { padding-left: 24px; }
+.guide-list .linklike { font-size: .76rem; white-space: nowrap; }
+.toasts { z-index: 52; }
+.dialog-foot { flex-wrap: wrap; }
+@media (max-width: 640px) { .dialog-foot > .btn, .dialog-foot > a.btn { flex: 1 1 auto; justify-content: center; text-align: center; } }
+.gd-bar { height: 4px; border-radius: 2px; background: var(--surface-2); overflow: hidden; }
+.gd-bar span { display: block; height: 100%; background: var(--accent); }
+.gd-next { display: flex; flex-direction: column; gap: 4px; }
+@media (min-width: 641px) and (max-width: 1100px) {
+  .brand-sub { display: none; }
+  .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 0 0 auto; padding: 8px 10px; }
+  .app-header .inner { flex-wrap: nowrap; gap: 12px; }
+}
+.toasts { z-index: 48; }
+/* v0.47.2 */
+.sem-pick { flex-direction: row; align-items: center; gap: 6px; }
+.sem-pick select { font-size: .86rem; }
+.student-head .spread { flex-wrap: nowrap; gap: 12px; }
+.student-head .sh-id { min-width: 0; flex: 1 1 auto; }
+.student-head .sh-id h2, .student-head .sh-meta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.student-head .spread > .btn { flex: 0 0 auto; }
 
 </style>
 </head>
@@ -635,8 +786,6 @@ pre.code { max-width: 100%; white-space: pre; }
       <div><div class="brand-name">Mastery Dashboard</div><div class="brand-sub" id="brand-sub"></div></div></div>
     <nav class="tabs" id="tabs" role="tablist" aria-label="Views"></nav>
     <div class="header-tools">
-      <div class="seg" id="semester" role="group" aria-label="Semester" data-tip="semester"></div>
-      <div class="seg" id="mode" role="group" aria-label="View mode" data-tip="mode"></div>
       <button class="btn icon" id="open-settings" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     </div>
   </div>
@@ -644,7 +793,6 @@ pre.code { max-width: 100%; white-space: pre; }
 </header>
 <div class="shell">
   <main id="main" tabindex="-1"></main>
-  <aside class="margin" id="margin" aria-label="Reviewer panel"></aside>
 </div>
 <div id="overlay"></div>
 <div id="dialog-host"></div>
@@ -655,8 +803,11 @@ pre.code { max-width: 100%; white-space: pre; }
    SMT Mastery Dashboard (version: APP_VERSION below is the only version source)
    Data model, seed cohort, policy engine, encoders (SMT string, CSV, CLR/OB3)
    ========================================================================== */
-const APP_VERSION = "0.47";
-const APP_TAG = "v" + APP_VERSION.replace(/\./g, "");           // "v047", used in file names
+const APP_VERSION = "0.47.2";
+/* Exports stamp the version they were made with. While an earlier export is reproduced, GEN_VERSION holds that export's version. */
+let GEN_VERSION = null;
+const verNow = () => GEN_VERSION || APP_VERSION;
+const tagNow = () => "v" + verNow().replace(/\./g, "");             // "v0471", used in file names
 /* Storage is per origin: every repo on <user>.github.io shares one localStorage, so keys are app-specific and version-free. */
 const STORE_KEY = "smt_dashboard_store";                         // demo classes workspace
 const MINE_KEY = "smt_dashboard_mine";                           // "My classes" workspace (kept separate from the demo)
@@ -669,6 +820,21 @@ const SCHEMA = 5;
 const FEEDBACK_FORM = { url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=4elDbMNFf0KRVIfu-Jq4TPC4pWRhrBJGtlKxG9OvpLRUMFI0QUdSN0I2TE9YTlRXMVBCRVQxTDJKVC4u" };
 const PREVIEW = true;   // v0.47 is the pre-IRB preview: fictional students only, roster and record import turned off
 const CHANGELOG = [
+  { version: "0.47.2", date: "2026-11-24", items: [
+    "The demo bar label reads “Simulated Data.”",
+    "The S1/S2 switch left the header: change semesters from the Semester picker on Today or from any class picker, which now lists both semesters' classes.",
+    "Student header shortened (P2 · English 12 · Gr 12) so Add evidence stays on the same line.",
+    "Gradebook has Scoresheet, Assessments, and Send to PowerSchool sub-tabs, like Class.",
+    "“Which fits?” examples: the mastery-graph example uses the student whose levels change the most, and the transcript example compares a conventional summary (last three assessments with scores and dates) with a full record of the same three assessments."] },
+  { version: "0.47.1", date: "2026-11-24", items: [
+    "Reviewer view is split into three tools that never block the dashboard: Comment (C) to point at any part of the page and leave a note, Explain (E) for “?” markers on key parts, and Research details (Guide menu or Settings) for the research display.",
+    "The side panel is replaced by About this screen (Guide menu), with every explanation on the screen; How grades work gains the SMT-code section.",
+    "One slim demo bar on desktop; on phones a one-line notice, a compact header, and a bottom bar with Comment, Guide, and Send.",
+    "Shorter welcome; a docked five-task Guide with “Show me”; shorter completion messages.",
+    "Send feedback: three quick questions, an optional five more, then send. The copy block adds Path and puts usefulness first.",
+    "Today shows the five most urgent retries; the full retry queue is its own page with a Filter & sort menu and removable filter chips.",
+    "Class has Overview, Groups, and Heatmap sub-tabs; Gradebook import steps and the file preview are collapsible.",
+    "Reset demo asks for confirmation and clears scores, comments, and answers."] },
   { version: "0.47", date: "2026-11-22", items: [
     "Preview build for informal practitioner review: fictional students only, with a permanent warning; roster and record import are turned off.",
     "Welcome screen explaining Teacher and Reviewer view, with a choice of Physics, Math, or English sample classes.",
@@ -1938,7 +2104,7 @@ function sisCsv(sectionId, format) {
   if (format === "course") {
     const pv = policyVersionNow();
     const rows = [["Student_Number", "Student_Name", "Course_Section", "Store_Code", "Percent", "Grade", "Work_Habits", "Graded_Standards_With_Evidence", "Level1_Warning", "SMT_App_Version", "Policy_Version"]];
-    list.forEach((st) => { const m = metrics(st); rows.push([st.id, `${st.last}, ${st.first}`, sectionId, term, m.policyPct ?? "", m.policyLetter, currentHabit(st.id) || "", `${m.evidenced}/${m.active.filter((c) => countsInGrade(c)).length}`, m.warnL1Pass ? "Y" : "", APP_VERSION, pv]); });
+    list.forEach((st) => { const m = metrics(st); rows.push([st.id, `${st.last}, ${st.first}`, sectionId, term, m.policyPct ?? "", m.policyLetter, currentHabit(st.id) || "", `${m.evidenced}/${m.active.filter((c) => countsInGrade(c)).length}`, m.warnL1Pass ? "Y" : "", verNow(), pv]); });
     return csv(rows);
   }
   const pv = policyVersionNow();
@@ -1947,7 +2113,7 @@ function sisCsv(sectionId, format) {
     const m = metrics(st);
     activeComps(sectionId).forEach((c) => {
       const { ev, att, policyPct } = m.per[c.id];
-      rows.push([st.id, `${st.last}, ${st.first}`, sectionId, term, c.framework, c.standard, ev.value == null ? "" : fmt1(ev.value), policyPct == null ? "" : Math.round(policyPct), countsInGrade(c) ? "Y" : "N", att.length, att.length ? att[att.length - 1].date : "", APP_VERSION, pv]);
+      rows.push([st.id, `${st.last}, ${st.first}`, sectionId, term, c.framework, c.standard, ev.value == null ? "" : fmt1(ev.value), policyPct == null ? "" : Math.round(policyPct), countsInGrade(c) ? "Y" : "N", att.length, att.length ? att[att.length - 1].date : "", verNow(), pv]);
     });
   });
   return csv(rows);
@@ -2022,7 +2188,7 @@ function researchCsv(sectionId) {
         const base = bt === "imported" ? importedPct(st.id) : baselineStd(upTo, p, bt);
         rows.push([pseudonym(st.id), st.sectionId, c.framework, c.standard, i + 1, e.level, e.method, e.date, e.aid || "", a && a.reassess ? 1 : 0, e.source || "dashboard",
           fmt1(evaluate(upTo, p).value), base == null ? "" : Math.round(base), bt, currentHabit(st.id) || "", ...(withSup ? [sf.iep, sf.p504, sf.ml] : []),
-          smtValid(smtString(c, e)) ? 1 : 0, APP_VERSION, pv]);
+          smtValid(smtString(c, e)) ? 1 : 0, verNow(), pv]);
       });
     });
   });
@@ -2067,7 +2233,7 @@ function codebookRows() {
   rows.push(["District", "25-33", districtField(), `${ID_TYPES[d.idType].name}: ${ID_TYPES[d.idType].help}`, "yes"]);
   return rows;
 }
-function codebookCsv() { return csv([...codebookRows(), [], ["app_version", APP_VERSION, "", "generated", genStamp().slice(0, 10)]]); }
+function codebookCsv() { return csv([...codebookRows(), [], ["app_version", verNow(), "", "generated", genStamp().slice(0, 10)]]); }
 function codebookMd() {
   const rows = codebookRows().slice(1);
   const d = state.settings.district;
@@ -2075,7 +2241,7 @@ function codebookMd() {
   const tbl = (f) => `| Code | Meaning | In use |\n|---|---|---|\n${sect(f)}`;
   return [
     "# SMT codebook",
-    `Standardized Mastery Taxonomy (Uranis et al., 2019) as encoded by the SMT Mastery Dashboard v${APP_VERSION}. Generated ${genStamp().slice(0, 10)}. Grading policy version ${policyVersionNow()}.`,
+    `Standardized Mastery Taxonomy (Uranis et al., 2019) as encoded by the SMT Mastery Dashboard v${verNow()}. Generated ${genStamp().slice(0, 10)}. Grading policy version ${policyVersionNow()}.`,
     "", "## Layout (33 characters)",
     "| Field | Positions | Length |", "|---|---|---|",
     ...SMT_FIELDS.map(([k, a, b]) => `| ${k || "Separator (-)"} | ${a === b ? a : `${a}–${b}`} | ${b - a + 1} |`),
@@ -2117,7 +2283,7 @@ function lessonBrief(sectionId, cid) {
     `> Plan two parallel 20-minute small-group stations for high school students working on ${c.standard} (${c.title}). ` +
     `Station A (${g.reteach.length} students) rebuilds the foundation described at level 1 → 2 above; Station B (${g.practice.length} students) closes the gap from level 2 → 3. ` +
     `Use the feedback notes above to target misconceptions, and end each station with a 3-minute exit check aligned to the level 3 descriptor.`,
-    "", `_Generated by the SMT Mastery Dashboard v${APP_VERSION} · grading policy v${policyVersionNow()}._`
+    "", `_Generated by the SMT Mastery Dashboard v${verNow()} · grading policy v${policyVersionNow()}._`
   ].join("\n");
 }
 
@@ -2168,7 +2334,7 @@ function buildClr(st) {
     id: `urn:uuid:${nameUuid(`clr|${st.id}|${salt}`)}`,
     type: ["VerifiableCredential", "ClrCredential"],
     issuer, validFrom: issued,
-    description: `Unsigned preview generated by the SMT Mastery Dashboard v${APP_VERSION} under grading policy v${policyVersionNow()}.`,
+    description: `Unsigned preview generated by the SMT Mastery Dashboard v${verNow()} under grading policy v${policyVersionNow()}.`,
     name: `Comprehensive Learner Record: ${SEC[st.sectionId].name} (${SEMESTERS.find((x) => x.id === SEC[st.sectionId].semester).name}, 2026–27)`,
     credentialSubject: { type: ["ClrSubject"], identifier, verifiableCredential: creds }
   };
@@ -2250,7 +2416,7 @@ function studentReview(st, qid) {
       .map(({ a, c }) => `${fmtDate(a.date)} · ${a.aid && assessmentById(a.aid) ? assessmentById(a.aid).title : METHODS[a.method].name} (${c.standard}, level ${a.level})${a.note ? `: "${a.note}"` : ""}${a.artifactUrl ? ` ${a.artifactUrl}` : ""}`);
     sections.unshift({ h: "Evidence highlights", empty: "No evidence at Meets or above yet.", items: highlights });
   }
-  const footer = `Levels use the ${RULES[currentPolicy().rule].name.toLowerCase()} rule on a 1–4 scale (3 = meets the standard). Generated by the SMT Mastery Dashboard v${APP_VERSION} (grading policy v${policyVersionNow()}) on ${fmtDate(TODAY, { month: "long", day: "numeric", year: "numeric" })}.`;
+  const footer = `Levels use the ${RULES[currentPolicy().rule].name.toLowerCase()} rule on a 1–4 scale (3 = meets the standard). Generated by the SMT Mastery Dashboard v${verNow()} (grading policy v${policyVersionNow()}) on ${fmtDate(TODAY, { month: "long", day: "numeric", year: "numeric" })}.`;
   const heading = `${q.isSemester ? "Semester review" : "Progress review"}: ${name}`;
   const sub = `${sec.name} (${sec.period}) · ${q.isSemester ? q.name : q.id}, ${range}${ongoing ? " (in progress)" : ""}`;
   const text = [heading, sub, "", ...(letterText ? ["Summary for letters of recommendation", letterText, ""] : []), "Overview", overview, "",
@@ -2265,7 +2431,7 @@ function studentReview(st, qid) {
    Views: Today · Score · Class · Students · Gradebook
    plus evidence drawer, settings window, research margin
    ========================================================================== */
-function uiDefaults() { return { tab: "today", semester: semesterFor(TODAY), sectionId: SECTIONS.find((x) => x.semester === semesterFor(TODAY))?.id || SECTIONS[0]?.id, compId: COMPETENCIES[0]?.id, assessmentId: null, studentId: null, studentTab: "progress", fw: FRAMEWORKS[0]?.id, showUpcoming: false,
+function uiDefaults() { return { explain: false, guide: "collapsed", classSub: "overview", todayView: "home", tab: "today", semester: semesterFor(TODAY), sectionId: SECTIONS.find((x) => x.semester === semesterFor(TODAY))?.id || SECTIONS[0]?.id, compId: COMPETENCIES[0]?.id, assessmentId: null, studentId: null, studentTab: "progress", fw: FRAMEWORKS[0]?.id, showUpcoming: false,
   studentSection: "all", studentQuery: "", reviewQuarter: null, alTerm: null, alQuery: "", reviewOpen: false, ssTerm: null, ssStd: "all", ssShow: "level",
   rq: { group: "standard", cls: "all", fw: "all", level: "all", sort: "student", q: "" }, heatSort: "name", gbFormat: "standards", gbMode: "ptp", ptpAssessment: null, ptpScoreType: "points", ptpOverall: false, ptpBlank: false, ptpBundleTerm: null, settingsPane: "appearance", auditOpen: false, showChanges: false }; }
 state.ui = Object.assign({}, uiDefaults(), state.ui || {});
@@ -2317,9 +2483,14 @@ function distBar(d) {
 const LEGEND = `<div class="legend" data-tip="legend">${[1, 2, 3, 4].map((l) => `<span aria-label="${l} ${LEVELS[l].name}"><i style="background:var(--l${l})"></i>${lvLabel(l)}</span>`).join("")}<span><i style="background:var(--l0-soft);border:1px solid var(--line)"></i>No evidence</span></div>`;
 const semSections = () => SECTIONS.filter((s) => s.semester === ui.semester);
 const semName = (id) => SEMESTERS.find((s) => s.id === id).name;
-const sectionOptions = (sel, withAll) =>
-  (withAll ? `<option value="all" ${sel === "all" ? "selected" : ""}>All classes this semester</option>` : "") +
-  semSections().map((s) => `<option value="${s.id}" ${s.id === sel ? "selected" : ""}>${esc(s.period)} · ${esc(s.name)}</option>`).join("");
+/* Class pickers list this semester's classes first, then the other semester's, so a teacher can change semesters from any class picker. */
+const sectionOptions = (sel, withAll) => SEMESTERS.slice().sort((a, b) => (a.id === ui.semester ? -1 : b.id === ui.semester ? 1 : 0)).map((sem) => {
+  const cur = sem.id === ui.semester;
+  const all = withAll ? `<option value="${cur ? "all" : `sem:${sem.id}`}" ${cur && sel === "all" ? "selected" : ""}>All ${esc(semName(sem.id))} classes</option>` : "";
+  return `<optgroup label="${esc(semName(sem.id))}${cur ? "" : " (switches semester)"}">${all}${SECTIONS.filter((s) => s.semester === sem.id).map((s) => `<option value="${s.id}" ${cur && s.id === sel ? "selected" : ""}>${esc(s.period)} · ${esc(s.name)}</option>`).join("")}</optgroup>`;
+}).join("");
+/* Semester picker on the Today page (and in every class picker); the header no longer carries a permanent S1/S2 switch. */
+const semesterPicker = () => `<label class="field sem-pick" for="sem-inline">Semester<select id="sem-inline" data-act="semester-select" data-tip="semester">${SEMESTERS.map((x) => `<option value="${x.id}" ${ui.semester === x.id ? "selected" : ""}>${esc(semName(x.id))} (${fmtDate(x.start, { month: "short", day: "numeric" })}–${fmtDate(x.end, { month: "short", day: "numeric" })})</option>`).join("")}</select></label>`;
 const ICON = {
   gear: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>`,
   close: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>`,
@@ -2348,19 +2519,14 @@ function renderHeader() {
   const s = state.settings;
   document.getElementById("tabs").innerHTML = TABS.map((t) =>
     `<button class="tab" role="tab" aria-selected="${ui.tab === t.id}" data-act="tab" data-tab="${t.id}"${tip("tab", t.id)}>${t.label}</button>`).join("");
-  const modeEl = document.getElementById("mode");
-  if (modeEl) {
-    modeEl.style.display = PREVIEW ? "none" : "";   // in the preview, the Reviewer view switch lives in the demo bar
-    modeEl.innerHTML = `<button data-act="mode" data-mode="teacher" aria-pressed="${s.mode === "teacher"}">Teacher</button><button data-act="mode" data-mode="research" aria-pressed="${s.mode === "research"}">Reviewer</button>`;
-    modeEl.classList.add("research");
-  }
-  const bs = document.getElementById("brand-sub"); if (bs) bs.textContent = `v${APP_VERSION}${PREVIEW ? " preview" : ""} · fictional data · ${PROFILE.teacher} · 2026–27`;
+  const bs = document.getElementById("brand-sub"); if (bs) bs.textContent = `v${APP_VERSION}${PREVIEW ? " preview" : ""} · simulated data · ${PROFILE.teacher} · 2026–27`;
   const pb = document.getElementById("preview-banner-host"); if (pb) pb.innerHTML = previewBanner();
-  document.getElementById("semester").innerHTML = SEMESTERS.map((x) => `<button data-act="semester" data-v="${x.id}" aria-pressed="${ui.semester === x.id}" title="${esc(x.name)}: ${fmtDate(x.start)}–${fmtDate(x.end)}">${x.id}</button>`).join("");
+  const semEl = document.getElementById("semester"); if (semEl) semEl.innerHTML = SEMESTERS.map((x) => `<button data-act="semester" data-v="${x.id}" aria-pressed="${ui.semester === x.id}" title="${esc(x.name)}: ${fmtDate(x.start)}–${fmtDate(x.end)}">${x.id}</button>`).join("");
 }
 
 /* ---------------------------------------------------------------- Today */
 function viewToday() {
+  if (ui.todayView === "queue") return retryQueuePage();
   const cards = semSections().map((sec) => {
     const { byComp, intensive, list, comps } = groupsForSection(sec.id);
     if (!comps.length) {
@@ -2388,12 +2554,12 @@ function viewToday() {
     const rate = assessed ? Math.round((mastered / assessed) * 100) : 0;
     const nSup = list.filter((st) => supportOf(st.id)?.plan).length, nMl = list.filter((st) => mlActive(st.id)).length;
     const sel = ui.rq.cls === sec.id;
-    return `<article class="card sec-card clickable ${sel ? "selected" : ""}" data-act="rq-card" data-sec="${sec.id}" aria-label="Show ${esc(sec.period)} ${esc(sec.name)} retries"${tip("sec-card", sec.id)}>
-      <div class="spread"><span class="when">${esc(sec.period)} · ${esc(sec.time)}</span><span class="small faint">${sel ? '<span class="pill accent">Filtering retries</span>' : esc(sec.room || "")}</span></div>
+    return `<article class="card sec-card clickable ${sel ? "selected" : ""}" data-act="rq-card" data-sec="${sec.id}" aria-label="Open the retry queue for ${esc(sec.period)} ${esc(sec.name)}"${tip("sec-card", sec.id)}>
+      <div class="spread"><span class="when">${esc(sec.period)} · ${esc(sec.time)}</span><span class="small faint">${esc(sec.room || "")}</span></div>
       <div><h3>${esc(sec.name)}</h3><p class="small muted">${list.length} students${nSup ? ` · ${nSup} with IEP/504` : ""}${nMl ? ` · ${nMl} ML` : ""} · ${comps.length} standards taught so far${nextA ? ` · next: ${esc(nextA.title)} (${fmtDate(nextA.date)})` : ""}</p></div>
       <div class="stack" style="gap:6px"${tip("dist")}>${distBar(d)}<span class="tiny muted">${rate}% of assessed standards at Meets or above${d[0] ? ` · ${d[0]} not yet assessed` : ""}</span></div>
       <div class="facts">
-        <div${tip("fact-l1")}><b>${l1Students.size}</b><span>students needing re-teaching</span></div>
+        <div${tip("fact-l1")}><b>${l1Students.size}</b><span>need re-teaching</span></div>
         <div${tip("fact-retries")}><b>${flags}</b><span>retries waiting</span></div>
         <div${tip("fact-mtss")}><b>${intensive.length}</b><span>for MTSS review</span></div>
       </div>
@@ -2402,9 +2568,51 @@ function viewToday() {
     </article>`;
   }).join("");
   const hasScores = semSections().some((s) => activeComps(s.id).length);
-  return `<div class="page-head"><div><div class="kicker">${fmtDate(TODAY, { weekday: "long", month: "long", day: "numeric" })} · ${semesterFor(TODAY) === "S1" ? `Week ${schoolWeek()} of Semester 1` : `Week ${Math.floor((dayNum(TODAY) - dayNum(semesterStart("S2"))) / 7) + 1} of Semester 2`} · ${termFor(TODAY)}</div><h2 data-tip="page-today">${ui.semester === semesterFor(TODAY) ? "Your classes today" : `${esc(semName(ui.semester))} classes`}</h2></div><div class="row">${LEGEND}<button class="btn" data-act="add-class" data-tip="add-class">${ICON.plus} Add class</button></div></div>
+  return `<div class="page-head"><div><div class="kicker">${fmtDate(TODAY, { weekday: "long", month: "long", day: "numeric" })} · ${semesterFor(TODAY) === "S1" ? `Week ${schoolWeek()} of Semester 1` : `Week ${Math.floor((dayNum(TODAY) - dayNum(semesterStart("S2"))) / 7) + 1} of Semester 2`} · ${termFor(TODAY)}</div><h2 data-tip="page-today">${ui.semester === semesterFor(TODAY) ? "Your classes today" : `${esc(semName(ui.semester))} classes`}</h2></div><div class="row">${LEGEND}${semesterPicker()}<button class="btn" data-act="add-class" data-tip="add-class">${ICON.plus} Add class</button></div></div>
     <section class="sections">${cards}</section>
-    ${hasScores ? retryQueueCard() : ""}`;
+    ${hasScores ? retrySummaryCard() : ""}`;
+}
+/* Today shows the five most urgent retries; the full queue is its own page (Today › Retry queue). */
+function retrySummaryCard() {
+  const all = retryItems();
+  const top = [...all].sort((a, b) => (a.ev.level ?? 9) - (b.ev.level ?? 9) || a.f.date.localeCompare(b.f.date)).slice(0, 5);
+  return `<section class="card flush" id="retry-summary">
+    <div class="card-head spread"><div data-tip="retry-summary"><h3>Retries to handle first</h3><p class="small muted">${all.length ? `Level 1 first, then the longest waiting. Scoring 3 or higher clears a flag.` : "No retries waiting."}</p></div>
+      ${all.length ? `<button class="btn" data-act="rq-open">Open retry queue (${all.length})</button>` : ""}</div>
+    ${top.length ? `<div class="table-wrap"><table><thead><tr><th>Student</th><th>Class</th><th>Standard</th><th>Current</th><th>Flagged</th><th></th></tr></thead><tbody>${top.map((x) => retryRow(x, "")).join("")}</tbody></table></div>` : ""}
+  </section>`;
+}
+function rqChips() {
+  const rq = ui.rq, chips = [];
+  if (rq.cls !== "all" && SEC[rq.cls]) chips.push(["cls", `${SEC[rq.cls].period} · ${SEC[rq.cls].name}`]);
+  if (rq.fw !== "all") chips.push(["fw", fwShort(rq.fw)]);
+  if (rq.level !== "all") chips.push(["level", `Level ${rq.level}`]);
+  if ((rq.q || "").trim()) chips.push(["q", `“${rq.q.trim()}”`]);
+  return chips.map(([k, l]) => `<button class="chipx" data-act="rq-chip" data-k="${k}" aria-label="Remove filter ${esc(l)}">${esc(l)} <span aria-hidden="true">×</span></button>`).join("");
+}
+function retryQueuePage() {
+  const rq = ui.rq, total = retryItems().length, shown = retryFiltered().length;
+  const opt = (v, l, cur) => `<option value="${v}" ${cur === v ? "selected" : ""}>${l}</option>`;
+  if (rq.cls !== "all" && !SEC[rq.cls]) rq.cls = "all";
+  const nActive = ["cls", "fw", "level"].filter((k) => rq[k] !== "all").length;
+  return `<div class="page-head"><div><button class="linklike small" data-act="rq-back">← Back to Today</button><h2 data-tip="retry-queue">Retry queue</h2>
+      <p class="small muted">Students flagged for another attempt in ${esc(semName(ui.semester))}. Scoring 3 or higher clears the flag automatically.</p></div>
+      <span class="pill flag" id="rq-count">${shown === total ? `${total} waiting` : `${shown} of ${total}`}</span></div>
+    <section class="card flush" id="retry-queue">
+      <div class="card-head rq-bar" data-tip="rq-controls">
+        <input type="search" id="rq-search" placeholder="Search student or standard" value="${esc(rq.q)}" aria-label="Search retries">
+        <details class="menu-pop rq-filter" ${ui.rqFilterOpen ? "open" : ""} data-act="rq-filter-toggle"><summary class="btn">Filter &amp; sort${nActive ? ` <span class="pill">${nActive}</span>` : ""}</summary>
+          <div class="menu-panel rq-controls">
+            <label class="field" for="rq-group">Group by<select id="rq-group" data-act="rq" data-k="group">${opt("standard", "Standard within class", rq.group)}${opt("class", "Class", rq.group)}${opt("student", "Student", rq.group)}${opt("none", "No grouping", rq.group)}</select></label>
+            <label class="field" for="rq-cls">Class<select id="rq-cls" data-act="rq" data-k="cls">${opt("all", "All classes", rq.cls)}${semSections().map((s) => opt(s.id, `${s.period} · ${s.name}`, rq.cls)).join("")}</select></label>
+            <label class="field" for="rq-fw">Standards<select id="rq-fw" data-act="rq" data-k="fw">${opt("all", "All", rq.fw)}${FRAMEWORKS.map((f) => opt(f.id, f.short, rq.fw)).join("")}</select></label>
+            <label class="field" for="rq-level">Current level<select id="rq-level" data-act="rq" data-k="level">${opt("all", "Any", rq.level)}${opt("1", "1 Not yet", rq.level)}${opt("2", "2 Approaching", rq.level)}</select></label>
+            <label class="field" for="rq-sort">Sort by<select id="rq-sort" data-act="rq" data-k="sort">${opt("student", "Student name", rq.sort)}${opt("standard", "Standard", rq.sort)}${opt("level", "Lowest level first", rq.sort)}${opt("oldest", "Flagged longest ago", rq.sort)}${opt("newest", "Flagged most recently", rq.sort)}</select></label>
+          </div></details>
+        <div class="chips" id="rq-chips">${rqChips()}</div>
+      </div>
+      <div id="rq-body">${retryBody()}</div>
+    </section>`;
 }
 
 /* ---------- interactive retry queue ---------- */
@@ -2603,26 +2811,31 @@ function viewClass() {
       return `<td><button class="hc h${ev.level}" data-act="drawer" data-sid="${st.id}" data-cid="${c.id}"${tip("heat", st.id, c.id)} aria-label="${esc(nameOf(st))}, ${esc(c.standard)}: ${ev.value == null ? "no evidence" : "level " + fmt1(ev.value)}">${ev.value == null ? "·" : fmt1(ev.value)}${flag ? "⚑" : ""}${R("traces") ? `<span class="sub">${att.length}×</span>` : ""}</button></td>`;
     }).join("")}<td class="num small">${comps.filter((c) => m.per[c.id].ev.mastered).length}/${comps.length}</td></tr>`;
   }).join("");
-  return `<div class="page-head"><div><div class="kicker">${esc(sec.period)}</div><h2 data-tip="page-class">${esc(sec.name)}</h2></div>
-      <div class="toolbar"><div class="stack" style="gap:4px" data-tip="fw"><span class="small" style="font-weight:650;color:var(--ink-2)">Standards</span>${fwSeg()}</div><label class="field" for="sel-section">Class<select id="sel-section" data-act="section">${sectionOptions(sec.id)}</select></label></div></div>
-    <div class="stats">
+  const csub = ["overview", "groups", "heatmap"].includes(ui.classSub) ? ui.classSub : "overview";
+  const subNav = `<div class="subtabs" role="tablist" aria-label="Class sections" data-tip="class-subtabs">${[["overview", "Overview"], ["groups", "Groups"], ["heatmap", "Heatmap"]].map(([k, l]) => `<button role="tab" data-act="class-sub" data-v="${k}" aria-selected="${csub === k}">${l}</button>`).join("")}</div>`;
+  const statsHtml = `<div class="stats">
       <div class="card stat" data-tip="stat-rate"><span class="v">${assessed ? Math.round((mastered / assessed) * 100) : 0}%</span><span class="k">assessed standards at Meets+</span></div>
       <div class="card stat" data-tip="stat-missing"><span class="v">${missing}</span><span class="k">student-standards not yet assessed</span></div>
       <div class="card stat" data-tip="stat-reteach"><span class="v">${comps.reduce((a, c) => a + byComp[c.id].reteach.length, 0)}</span><span class="k">scores at level 1 (re-teach)</span></div>
       <div class="card stat" data-tip="stat-mtss"><span class="v">${intensive.length}</span><span class="k">students for MTSS review</span></div>
-    </div>
-    <section class="card flush"><div class="card-head spread"><div data-tip="where"><h3>Where the class stands</h3><p class="small muted">${comps.length} standards taught so far${ui.fw === "all" ? "" : " in " + esc(fwShort(ui.fw))}.</p></div><div class="row">${LEGEND}<button class="btn sm" data-act="add-standard" data-tip="add-standard">${ICON.plus} Add standard</button></div></div>
+    </div>`;
+  return `<div class="page-head"><div><div class="kicker">${esc(sec.period)}</div><h2 data-tip="page-class">${esc(sec.name)}</h2></div>
+      <div class="toolbar"><div class="stack" style="gap:4px" data-tip="fw"><span class="small" style="font-weight:650;color:var(--ink-2)">Standards</span>${fwSeg()}</div><label class="field" for="sel-section">Class<select id="sel-section" data-act="section">${sectionOptions(sec.id)}</select></label></div></div>
+    ${subNav}
+    ${csub === "overview" ? statsHtml : ""}
+    ${csub !== "overview" ? "" : `<section class="card flush"><div class="card-head spread"><div data-tip="where"><h3>Where the class stands</h3><p class="small muted">${comps.length} standards taught so far${ui.fw === "all" ? "" : " in " + esc(fwShort(ui.fw))}.</p></div><div class="row">${LEGEND}<button class="btn sm" data-act="add-standard" data-tip="add-standard">${ICON.plus} Add standard</button></div></div>
       <div class="table-wrap"><table><thead><tr><th>Standard</th><th>Distribution</th><th>Meets+</th><th></th></tr></thead><tbody>${stdRows}</tbody></table></div>
       ${notTaughtList(sec, allActive)}</section>
     ${intensive.length ? `<section class="card stack"><div data-tip="mtss"><h3>Students to bring to MTSS review</h3>
       <p class="small muted">Persistent need across all standards taught: “not yet” on ${state.settings.groups.tier3Min}+ standards, or ${state.settings.groups.persistentAttempts}+ attempts still at 1 on one standard. This is a prompt for team review, not a tier placement.</p></div>
       <div class="groups">${intensive.map((x) => `<div class="grp gi"${tip("mtss-card", x.st.id)}><h4><button class="linklike" data-act="student" data-sid="${x.st.id}">${esc(nameOf(x.st))}</button></h4><p class="small">${x.reasons.map(esc).join(" · ")}</p></div>`).join("")}</div>
       ${researchInline("Why persistence", "In MTSS, Tier 3 usually means a small group with persistent need across several data points. The dashboard therefore suggests students for team review only when the need persists, and leaves the placement decision to the team.")}</section>` : ""}
-    <section class="stack"><div class="spread"><div data-tip="groups"><h3>Small groups by standard</h3><p class="small muted">Built from current levels. Copy a ready-to-edit intervention plan in Markdown for each standard.</p></div></div>
-      <div class="groups">${groupCards || `<div class="card empty">Everyone is at Meets or above.</div>`}</div></section>
-    <section class="card flush"><div class="card-head spread"><div data-tip="heatmap"><h3>Class heatmap</h3><p class="small muted">Click a cell for evidence and history. ⚑ marks a retry flag.</p></div>
+`}
+    ${csub !== "groups" ? "" : `<section class="stack"><div class="spread"><div data-tip="groups"><h3>Small groups by standard</h3><p class="small muted">Built from current levels. Copy a ready-to-edit intervention plan in Markdown for each standard.</p></div></div>
+      <div class="groups">${groupCards || `<div class="card empty">Everyone is at Meets or above.</div>`}</div></section>`}
+    ${csub !== "heatmap" ? "" : `<section class="card flush"><div class="card-head spread"><div data-tip="heatmap"><h3>Class heatmap</h3><p class="small muted">Click a cell for evidence and history. ⚑ marks a retry flag.</p></div>
       <div class="seg"><button data-act="heat-sort" data-v="name" aria-pressed="${ui.heatSort === "name"}">By name</button><button data-act="heat-sort" data-v="need" aria-pressed="${ui.heatSort === "need"}">Most need first</button></div></div>
-      <div class="table-wrap"><table class="heat"><thead><tr><th>Student</th>${comps.map((c) => `<th title="${esc(c.standard)}: ${esc(c.title)}">${esc(c.id)}</th>`).join("")}<th>Met</th></tr></thead><tbody>${heat}</tbody></table></div></section>`;
+      <div class="table-wrap"><table class="heat"><thead><tr><th>Student</th>${comps.map((c) => `<th title="${esc(c.standard)}: ${esc(c.title)}">${esc(c.id)}</th>`).join("")}<th>Met</th></tr></thead><tbody>${heat}</tbody></table></div></section>`}`;
 }
 
 /* ---------------------------------------------------------------- Students */
@@ -2709,7 +2922,7 @@ function viewStudents() {
       <section class="stack lg">
         <div class="card student-head">
           <div class="spread" style="align-items:flex-start">
-            <div class="sh-id"><h2${tip("student", st.id)}>${esc(nameOf(st))}</h2><p class="small muted">${esc(sec.period)} · ${esc(sec.name)} · ${esc(semName(sec.semester))} · grade ${st.grade}${st.enrolled > semesterStart(sec.semester) ? ` · joined ${fmtDate(st.enrolled)}` : ""}</p></div>
+            <div class="sh-id"><h2${tip("student", st.id)}>${esc(nameOf(st))}</h2><p class="small muted sh-meta" title="${esc(sec.period)} · ${esc(sec.name)} · ${esc(semName(sec.semester))} · grade ${st.grade}">${esc(sec.period.replace("Period ", "P"))} · ${esc(sec.name)} · Gr ${st.grade}${st.enrolled > semesterStart(sec.semester) ? ` · joined ${fmtDate(st.enrolled, { month: "short", day: "numeric" })}` : ""}</p></div>
             <button class="btn primary" data-act="add-evidence" data-tip="add-evidence">+ Add evidence</button>
           </div>
           ${supportsRow(st)}
@@ -2784,17 +2997,19 @@ function smtBreakdown(c, entry) {
 /* ---------------------------------------------------------------- Gradebook */
 function viewGradebook() {
   const sec = SEC[ui.sectionId];
+  const gsub = ["scoresheet", "assessments", "export"].includes(ui.gbSub) ? ui.gbSub : "scoresheet";
   const text = ui.gbMode === "summary" ? sisCsv(sec.id, ui.gbFormat) : "";
   const p = state.settings.policy;
   return `<div class="page-head"><div><div class="kicker">Gradebook</div><h2 data-tip="page-gradebook">${esc(sec.period)} · ${esc(sec.name)}</h2></div>
       <div class="toolbar"><button class="btn ghost" data-act="open-dialog" data-v="how-grades">How grades are calculated</button><label class="field" for="sel-section">Class<select id="sel-section" data-act="section">${sectionOptions(sec.id)}</select></label></div></div>
-    ${scoresheet(sec)}
-    ${assessmentListCard(sec)}
-    <section class="stack" style="gap:12px">
-      <div class="spread"><div><h3>Send to PowerSchool</h3><p class="small muted">Build import files for PowerTeacher Pro, or a summary file for review.</p></div>
+    <div class="subtabs" role="tablist" aria-label="Gradebook sections" data-tip="gb-subtabs">${[["scoresheet", "Scoresheet"], ["assessments", "Assessments"], ["export", "Send to PowerSchool"]].map(([k, l]) => `<button role="tab" data-act="gb-sub" data-v="${k}" aria-selected="${gsub === k}">${l}</button>`).join("")}</div>
+    ${gsub === "scoresheet" ? scoresheet(sec) : ""}
+    ${gsub === "assessments" ? assessmentListCard(sec) : ""}
+    ${gsub !== "export" ? "" : `<section class="stack" style="gap:12px">
+      <div class="spread" id="send-to-ps"><div><h3>Send to PowerSchool</h3><p class="small muted">Build import files for PowerTeacher Pro, or a summary file for review.</p></div>
         <div class="seg" data-tip="export-mode"><button data-act="gb-mode" data-v="ptp" aria-pressed="${ui.gbMode !== "summary"}">PowerTeacher Pro import</button><button data-act="gb-mode" data-v="summary" aria-pressed="${ui.gbMode === "summary"}">Standards summary</button></div></div>
       ${ui.gbMode === "summary" ? summarySection(sec, text, p) : ptpSection(sec)}
-    </section>`;
+    </section>`}`;
 }
 function ssTerms(sec) { return [...TERMS.filter((t) => t.semester === sec.semester && t.start <= TODAY).map((t) => t.id), sec.semester]; }
 const inTerm = (iso, term) => (term.startsWith("S") ? semesterFor(iso) === term : termFor(iso) === term);
@@ -2913,15 +3128,16 @@ function ptpSection(sec) {
       <div class="stat"><span class="v">${esc(METHODS[a.method].short)}</span><span class="k">${fmtDate(a.date)} · ${term}</span></div>
     </div>
     ${warn.length ? `<ul class="small" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px">${warn.map((w) => `<li>${w}</li>`).join("")}</ul>` : ""}
-    <div class="table-wrap preview-wrap" data-tip="ptp-preview"><table><thead><tr>${x.header.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${preview}</tbody></table></div>
-    <p class="tiny muted">${x.rows.length} row${x.rows.length === 1 ? "" : "s"} plus a header. Scroll the preview to check every student.</p>
+    <details class="disclose" data-act="ptp-preview-toggle" ${(transient.ptpOpen ?? !state.ptpPreviewSeen) ? "open" : ""}><summary>File preview (${x.rows.length} row${x.rows.length === 1 ? "" : "s"} plus a header)</summary>
+    <div class="table-wrap preview-wrap" data-tip="ptp-preview" style="margin-top:8px"><table><thead><tr>${x.header.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${preview}</tbody></table></div>
+    <p class="tiny muted">Scroll the preview to check every student.</p></details>
     <div class="row">
       <button class="btn primary" data-act="dl-ptp" data-tip="dl-ptp" ${x.rows.length ? "" : "disabled"}>${ICON.download} Download CSV for this assessment</button>
       <button class="btn" data-act="copy-text" data-src="ptp-csv">${ICON.copy} Copy</button>
       <span class="tiny muted"><code>${esc(ptpFilename(sec.id, a))}</code> · UTF-8 CSV for Import Scores${canDownload() ? "" : ". Downloads are off in this view; use Copy and save the text as a .csv file"}</span></div>
     <textarea class="code hidden" id="ptp-csv" readonly aria-hidden="true">${esc(x.text)}</textarea>
     ${ptpBundleCard(sec)}
-    <details class="disclose" data-tip="steps"><summary>Import steps in PowerTeacher Pro</summary>
+    <details class="disclose" data-tip="steps"><summary>How to import into PowerTeacher Pro (${steps.length} steps)</summary>
       <ol class="small" style="margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px">${steps.map((s) => `<li>${s}</li>`).join("")}</ol>
       <p class="tiny muted" style="margin-top:8px">Based on PowerSchool's “Importing and Exporting Scores” help page for PowerTeacher Pro. Your district's version and permissions may differ.</p></details>
   </section>`;
@@ -2991,6 +3207,7 @@ function renderDrawer() {
 /* ---------------------------------------------------------------- Dialogs */
 function renderDialog() {
   const host = document.getElementById("dialog-host");
+  if (typeof drawCommentDots === "function") drawCommentDots(false);
   if (!transient.dialog) { host.innerHTML = ""; return; }
   if (transient.dialog === "settings") host.innerHTML = settingsDialog();
   else if (transient.dialog === "new-assessment") host.innerHTML = newAssessmentDialog();
@@ -2999,7 +3216,7 @@ function renderDialog() {
   else if (transient.dialog === "add-standard") host.innerHTML = addStandardDialog();
   else if (transient.dialog === "supports") host.innerHTML = supportsDialog();
   else if (transient.dialog === "welcome") host.innerHTML = welcomeDialog();
-  else if (transient.dialog === "try-this") host.innerHTML = tryThisDialog();
+  else if (transient.dialog === "reset-confirm") host.innerHTML = resetConfirmDialog();
   else if (["feedback", "send-feedback", "choices"].includes(transient.dialog)) host.innerHTML = feedbackDialog();
   else if (transient.dialog === "how-grades") host.innerHTML = gradesDialog();
 }
@@ -3027,7 +3244,7 @@ function newAssessmentDialog(ed) {
 function settingsDialog() {
   const s = state.settings, p = s.policy;
   const pane = ui.settingsPane;
-  const panes = [["appearance", "Appearance"], ["views", "Views & columns"], ["research", "Reviewer view"], ["study", "Study data"], ["grading", "Grading rule"], ["groups", "Groups"], ["privacy", "Privacy & IDs"], ["data", "Data"], ["about", "About"]];
+  const panes = [["appearance", "Appearance"], ["views", "Views & columns"], ["research", "Research details & review tools"], ["study", "Study data"], ["grading", "Grading rule"], ["groups", "Groups"], ["privacy", "Privacy & IDs"], ["data", "Data"], ["about", "About"]];
   const seg = (path, val, opts) => `<div class="seg">${opts.map(([v, l]) => `<button type="button" data-act="set" data-path="${path}" data-v="${v}" aria-pressed="${String(val) === String(v)}">${l}</button>`).join("")}</div>`;
   const toggle = (path, val, label, help) => `<div class="set-row"><div><div class="lbl">${label}</div>${help ? `<div class="help">${help}</div>` : ""}</div><input type="checkbox" data-setting="${path}" ${val ? "checked" : ""} aria-label="${esc(label)}"></div>`;
   let body = "";
@@ -3053,19 +3270,20 @@ function settingsDialog() {
       ${toggle("policy.showLegacyToTeacher", p.showLegacyToTeacher, "Show the averaging comparison in Teacher view")}</div>
     <div class="set-group"><h4>Student names</h4>${seg("privacy.nameFormat", s.privacy.nameFormat, [["full", "First Last"], ["lastFirst", "Last, First"], ["firstInitial", "First L."]])}</div>`;
   else if (pane === "research") body = `
-    <div class="set-group"><h4>View mode</h4>${seg("mode", s.mode, [["teacher", "Teacher"], ["research", "Reviewer"]])}<p class="help small muted">Keyboard: T for Teacher, R for Reviewer.</p>
-      <p class="help small muted">Reviewer view adds context pop-ups, a feedback log, and an explanation panel describing each view, how mastery is tracked, and where teacher time is saved. Teacher view hides all of it.</p></div>
+    <div class="set-group"><h4>Research details</h4>${seg("mode", s.mode, [["teacher", "Off"], ["research", "On"]])}
+      <p class="help small muted">Research details change only what the screens show: the averaging comparison everywhere, every correction in a student's history, pseudonyms (if turned on below), hidden support details, research columns, and the SMT-code note. The dashboard stays fully usable. Also in the Guide menu.</p></div>
+    <div class="set-group"><h4>Review tools</h4><p class="help small muted"><b>Comment</b> (C): point at any part of the page and leave a note. <b>Explain</b> (E): “?” markers on key parts of each screen. <b>About this screen</b> (Guide menu): the purpose of the screen and every explanation on it.</p>
+      ${toggle("__explain", !!ui.explain, "Explain markers", "Show “?” markers on about 25 key parts of the dashboard. They never block the dashboard.")}</div>
     <div class="set-group"><h4>Sample teacher</h4>${seg("__profile", PROFILE_ID, Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => [k, v]))}<p class="help small muted">${esc(PROFILE.blurb)}</p></div>
-    <div class="set-group"><h4>Show in Reviewer view</h4>
-      ${toggle("research.studyNotes", s.research.studyNotes, "Explanation panel", "A side panel explaining the current view, how the dashboard tracks mastery, and how it reduces workload.")}
-      ${toggle("research.tips", s.research.tips, "Context pop-ups", "Hover any header, chart, menu, assessment, or score for a short explanation.")}
+    <div class="set-group"><h4>With research details on</h4>
 
       ${toggle("research.pseudonymsEverywhere", s.research.pseudonymsEverywhere, "Show pseudonyms instead of names", "For screen recordings, defense presentations, and observers.")}</div>
     <div class="set-group"><h4>Research file</h4>
       ${toggle("research.includeSupports", s.research.includeSupports, "Include support flags (de-identified)", "Adds support_iep, support_504, and support_ml_status columns to the research CSV for equity analysis. Subgroup summaries with fewer than 10 students show “<10”. Off by default.")}</div>`;
   else if (pane === "study") {
-    const tel = telemetrySummary();
+    const tel = telemetrySummary(), sa = smtAudit();
     body = `
+    <div class="set-group"><h4>Study integrity</h4><p class="help small muted">${sa.n - sa.bad.length} of ${sa.n} SMT codes valid · ${state.exportLog.length} export${state.exportLog.length === 1 ? "" : "s"} logged · grading policy v${policyVersionNow()}. The export log, code check, and codebook are below.</p></div>
     <div class="set-group"><h4>Session telemetry (this browser)</h4>
       <p class="help small muted">Recorded locally as you work, for studying entry burden. Nothing is sent anywhere.</p>
       <div class="stats">
@@ -3226,7 +3444,9 @@ const WORKLOAD = [
   ["Writing up progress for conferences", "Transcript text with rubric language and evidence links, copied in one click."],
   ["Typing scores into PowerTeacher Pro", "Download an import file per assessment, or a whole quarter at once."]
 ];
-function renderMargin() {
+/* v0.47.1: the side panel is gone; its content lives in About this screen, How grades work, the Guide menu, and Settings. */
+function renderMargin() { /* no side panel */ }
+function renderMarginUnused() {
   const el = document.getElementById("margin");
   if (!isResearch()) { el.innerHTML = ""; return; }
   const g = VIEW_GUIDE[ui.tab];
@@ -3268,11 +3488,11 @@ function supPill(sid, compact) {
   const hide = isResearch();
   let out = "";
   if (s.plan) {
-    const detail = hide ? "Details hidden in Reviewer view" : s.accommodations.join(", ") + (s.modifications ? ` · Modifications: ${s.modifications}` : "");
+    const detail = hide ? "Details hidden while research details are on" : s.accommodations.join(", ") + (s.modifications ? ` · Modifications: ${s.modifications}` : "");
     out += ` <span class="pill sup ${s.plan === "IEP" ? "iep" : "p504"}" title="${esc(s.plan)}: ${esc(detail)}"${compact ? "" : tip("supports", sid)}>${esc(s.plan)}</span>`;
   }
   if (s.ml && /^Active|^Monitored/.test(s.ml.status)) {
-    const detail = hide ? "Details hidden in Reviewer view" : `${s.ml.status}${s.ml.proficiency ? ` · ELP ${s.ml.proficiency}` : ""}${(s.ml.supports || []).length ? ` · ${s.ml.supports.join(", ")}` : ""}`;
+    const detail = hide ? "Details hidden while research details are on" : `${s.ml.status}${s.ml.proficiency ? ` · ELP ${s.ml.proficiency}` : ""}${(s.ml.supports || []).length ? ` · ${s.ml.supports.join(", ")}` : ""}`;
     out += ` <span class="pill sup ml" title="Multilingual learner: ${esc(detail)}"${compact ? "" : tip("supports", sid)}>ML${s.ml.status.startsWith("Monitored") ? "·M" : ""}</span>`;
   }
   return out;
@@ -3283,10 +3503,10 @@ function supportsRow(st) {
   if (!s || (!s.plan && !hasMl)) return `<div class="sup-row" data-tip="supports-row"><span class="small muted">No IEP, 504, or ML status recorded.</span><button class="btn sm ghost" data-act="edit-supports">Add student supports</button></div>`;
   const hidden = isResearch();
   const plan = s.plan ? `<span class="pill sup ${s.plan === "IEP" ? "iep" : "p504"}">${esc(s.plan)}</span>
-    ${hidden ? `<span class="small muted">Accommodations are hidden in Reviewer view.</span>` : `<span class="sup-list">${s.accommodations.map((a) => `<span class="htag">${esc(a)}</span>`).join("")}${s.other ? `<span class="htag">${esc(s.other)}</span>` : ""}</span>
+    ${hidden ? `<span class="small muted">Accommodations are hidden while research details are on.</span>` : `<span class="sup-list">${s.accommodations.map((a) => `<span class="htag">${esc(a)}</span>`).join("")}${s.other ? `<span class="htag">${esc(s.other)}</span>` : ""}</span>
     ${s.modifications ? `<span class="small"><b>Modifications:</b> ${esc(s.modifications)}</span>` : ""}`}` : "";
   const ml = hasMl ? `<span class="sup-line"><span class="pill sup ml">ML · ${esc(ML_SHORT[s.ml.status] || s.ml.status)}</span>
-    ${hidden ? `<span class="small muted">ML details are hidden in Reviewer view.</span>` : `${s.ml.proficiency ? `<span class="small">ELP level <b>${esc(s.ml.proficiency)}</b>${s.ml.source ? ` (${esc(s.ml.source)}${s.ml.assessedOn ? `, ${esc(fmtDate(s.ml.assessedOn))}` : ""})` : ""}</span>` : ""}
+    ${hidden ? `<span class="small muted">ML details are hidden while research details are on.</span>` : `${s.ml.proficiency ? `<span class="small">ELP level <b>${esc(s.ml.proficiency)}</b>${s.ml.source ? ` (${esc(s.ml.source)}${s.ml.assessedOn ? `, ${esc(fmtDate(s.ml.assessedOn))}` : ""})` : ""}</span>` : ""}
     ${s.ml.homeLanguage ? `<span class="small muted">Home language: ${esc(s.ml.homeLanguage)}</span>` : ""}
     <span class="sup-list">${(s.ml.supports || []).map((a) => `<span class="htag">${esc(a)}</span>`).join("")}</span>`}</span>` : "";
   return `<div class="sup-row" data-tip="supports-row">${plan ? `<span class="sup-line">${plan}</span>` : ""}${ml}
@@ -3428,7 +3648,7 @@ function supportsDialog() {
   <div class="dialog sm" role="dialog" aria-modal="true" aria-labelledby="sup-title">
     <div class="dialog-head"><h3 id="sup-title">Student supports (IEP · 504 · ML) · ${esc(nameOf(st))}</h3><button class="btn icon ghost" data-act="close-dialog" aria-label="Close">${ICON.close}</button></div>
     <form id="sup-form" class="na-form"><div class="na-body">
-      <div class="inline-note" style="font-family:var(--font-body);font-size:.84rem"><b>Privacy</b>Record flags and the supports you provide. Don't record diagnoses or disability categories. This information is left out of exports, shared reviews, credentials, and research files (unless de-identified support flags are turned on for research), and details are hidden in Reviewer view.</div>
+      <div class="inline-note" style="font-family:var(--font-body);font-size:.84rem"><b>Privacy</b>Record flags and the supports you provide. Don't record diagnoses or disability categories. This information is left out of exports, shared reviews, credentials, and research files (unless de-identified support flags are turned on for research), and details are hidden while research details are on.</div>
       <h4 class="sup-h">IEP or 504</h4>
       <fieldset class="stack" style="border:0;padding:0;margin:0;gap:6px">${lg("Plan")}
         <div class="row">${[["", "None"], ["IEP", "IEP"], ["504", "504 plan"]].map(([v, l]) => `<label class="check"><input type="radio" name="plan" value="${v}" ${s.plan === v ? "checked" : ""}> ${l}</label>`).join("")}</div></fieldset>
@@ -3458,43 +3678,47 @@ function supportsDialog() {
    side-by-side "which fits your school?" choices, Reviewer integrity cards
    ========================================================================== */
 
-/* ---------- Try this: the same short walkthrough for every reviewer ---------- */
+/* ---------- Guide: five tasks, the same for every reviewer (self-checking) ---------- */
 const TRY_TASKS = [
-  { id: "score", group: "teacher", title: "Score a class", how: "Open Score, pick an assessment, and give at least five students a level (keys 1–4 work).", go: "score" },
-  { id: "retry", group: "teacher", title: "Handle a retry", how: "Flag a student for another attempt (F in the Score view), or work a student from the retry queue on Today.", go: "today" },
-  { id: "student", group: "teacher", title: "Open a student record", how: "Open Students and pick anyone. Look at the progress review and the levels per standard.", go: "students" },
-  { id: "compare", group: "teacher", title: "Compare the averaged grade with the mastery grade", how: "Open “How grades work” to see one student's grade both ways.", dialog: "how-grades" },
-  { id: "export", group: "teacher", title: "Export a file", how: "In Gradebook, download a PowerSchool import file or a summary.", go: "gradebook" },
-  { id: "reviewer", group: "review", title: "Turn on Reviewer view and look around", how: "Flip the Reviewer view switch in the demo bar (or press R). Hover any header, chart, menu, or score for an explanation, and read the side panel.", mode: "research" },
-  { id: "comment", group: "review", title: "Leave a comment on a specific part", how: "In Reviewer view, click the part of the page you want to comment on, type in the side panel, and press Enter.", mode: "research" },
-  { id: "back", group: "review", title: "Switch back to Teacher view", how: "Flip the switch off (or press T) to use the dashboard again. Switch back and forth as often as you like.", mode: "teacher" },
-  { id: "choose", group: "review", title: "Answer the questions in Give feedback", how: "Quick “which fits your school?” questions, each shown with demo data, plus three optional open questions.", dialog: "choices" },
-  { id: "send", group: "review", title: "Send your feedback", how: "In Give feedback, “Copy everything and open the form” copies your answers and comments and opens the short form. Paste and submit.", dialog: "send-feedback" }
+  { id: "score",   title: "Score a class",           how: "Give at least five students a level (keys 1–4 work).", go: "score" },
+  { id: "student", title: "Open a student record",   how: "Pick any student and look at their levels.",          go: "students" },
+  { id: "compare", title: "Compare the two grades",  how: "See one student's grade averaged vs. mastery.",       dialog: "how-grades" },
+  { id: "export",  title: "Export a gradebook file", how: "Download a PowerSchool import file.",                 go: "gradebook" },
+  { id: "send",    title: "Send your feedback",      how: "Answer 3 quick questions and send.",                  dialog: "send-feedback" }
 ];
 function tryMark(id) {
-  if (!state.tryThis || state.tryThis[id]) return;
+  if (!state.tryThis || state.tryThis[id] || !TRY_TASKS.some((t) => t.id === id)) return;
   state.tryThis[id] = localIso();
-  const done = TRY_TASKS.filter((t) => state.tryThis[t.id]).length;
   save();
-  if (typeof toast === "function") setTimeout(() => toast(`Try this: “${TRY_TASKS.find((t) => t.id === id).title}” done (${done} of ${TRY_TASKS.length})`), 30);
+  if (typeof toast === "function") setTimeout(() => { toast(`✓ ${TRY_TASKS.find((t) => t.id === id).title} · ${tryDone()} of ${TRY_TASKS.length}`); if (typeof renderGuideDock === "function") renderGuideDock(); renderHeader(); }, 30);
 }
 const tryDone = () => TRY_TASKS.filter((t) => state.tryThis[t.id]).length;
+const FICTION_WARNING = "Preview with fictional students. Do not enter real student information.";
 
-/* ---------- permanent preview banner ---------- */
+/* ---------- demo bar: one slim row (desktop); a thin line plus a bottom action bar (phone) ---------- */
 function previewBanner() {
   if (!PREVIEW) return "";
-  const on = isResearch(), n = state.feedback.length;
-  return `<div class="preview-banner" role="region" aria-label="Demo and review tools">
-    <span class="pb-text"><b>Preview with fictional students.</b> Do not enter real student information.</span>
-    <span class="pb-actions">
-      <button class="mode-switch ${on ? "on" : ""}" role="switch" aria-checked="${on}" data-act="toggle-reviewer" title="Reviewer view: hover for explanations, click to comment (R / T)">
-        <span class="sw" aria-hidden="true"><span></span></span><span>Reviewer view</span></button>
-      <button class="btn sm" data-act="open-dialog" data-v="try-this">Try this <span class="pill">${tryDone()}/${TRY_TASKS.length}</span></button>
-      <button class="btn sm" data-act="open-dialog" data-v="how-grades">How grades work</button>
-      <button class="btn sm primary" data-act="open-dialog" data-v="feedback">Give feedback${n + answeredCount() ? ` <span class="pill">${n + answeredCount()}</span>` : ""}</button>
-      <button class="btn sm ghost" data-act="banner-reset" title="Start over with fresh demo classes">Reset demo</button>
-    </span></div>
-    ${on ? `<div class="pb-hint">Reviewer view: hover anything for an explanation, or click a part of the page and type a comment in the side panel. Flip the switch off (or press T) to use the dashboard.</div>` : ""}`;
+  const n = state.feedback.length, ex = !!ui.explain;
+  return `<div class="demo-bar" role="region" aria-label="Demo and review tools">
+    <div class="db-left">
+      <button class="db-fict" data-act="fict-info" aria-label="${esc(FICTION_WARNING)}" title="${esc(FICTION_WARNING)}"><span class="db-fict-long">Simulated Data</span><span class="db-fict-short">Simulated Data · v${APP_VERSION}</span> <span aria-hidden="true">ⓘ</span></button>
+      ${isResearch() ? `<button class="pill note db-chip" data-act="toggle-research" title="Research details are on. Select to turn off.">Research details on ×</button>` : ""}
+    </div>
+    <div class="db-actions">
+      <button class="btn sm" data-act="comment-start" aria-keyshortcuts="C" title="Comment on any part of the page (C)">💬 Comment${n ? ` <span class="pill">${n}</span>` : ""}</button>
+      <button class="mode-switch ${ex ? "on" : ""}" role="switch" aria-checked="${ex}" data-act="toggle-explain" aria-keyshortcuts="E" title="Show “?” explanations on key parts of the page (E)"><span class="sw" aria-hidden="true"><span></span></span><span>Explain</span></button>
+      <button class="btn sm" data-act="guide-menu" aria-haspopup="menu" aria-expanded="${transient.menu === "guide"}" id="guide-btn">Guide <span class="pill">${tryDone()}/${TRY_TASKS.length}</span> ▾</button>
+      <button class="btn sm primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>
+    </div></div>`;
+}
+/* Fixed bottom action bar on phones. */
+function bottomBar() {
+  if (!PREVIEW) return "";
+  const n = state.feedback.length;
+  return `<nav class="bottom-bar" aria-label="Review tools">
+    <button data-act="comment-start"><span aria-hidden="true">💬</span><span>Comment${n ? ` (${n})` : ""}</span></button>
+    <button data-act="guide-sheet"><span aria-hidden="true">☰</span><span>Guide ${tryDone()}/${TRY_TASKS.length}</span></button>
+    <button class="primary" data-act="open-dialog" data-v="send-feedback"><span aria-hidden="true">➤</span><span>Send</span></button></nav>`;
 }
 
 /* ---------- dialog shell ---------- */
@@ -3506,47 +3730,19 @@ function dlg(id, title, body, foot, size = "sm") {
     ${foot ? `<div class="dialog-foot">${foot}</div>` : ""}</div>`;
 }
 
-/* ---------- welcome ---------- */
+/* ---------- welcome (one screen, under 70 words) ---------- */
 function welcomeDialog() {
   const body = `
-    <p>This is a <b>research prototype</b> of a grading tool for a doctoral study on standards-based grading. Teachers score each standard on a 1–4 mastery scale, and the tool produces the percent and letter grades that PowerSchool needs, plus a learner record for each student.</p>
-    <ul class="welcome-list">
-      <li><b>All students are fictional.</b> Please don't enter real student information.</li>
-      <li><b>A walkthrough takes about 10–15 minutes.</b> The “Try this” checklist gives everyone the same short set of tasks.</li>
-      <li><b>Nothing you type leaves this browser</b> until you send it, and the app uses no analytics.</li>
-    </ul>
-    <h4 style="margin-top:14px">Two ways to look at it</h4>
-    <div class="welcome-modes">
-      <div><b>Teacher view</b><p class="small muted">Use the dashboard the way a teacher would: score, open student records, export grades.</p></div>
-      <div><b>Reviewer view</b><p class="small muted">Hover anything for an explanation of what it does and why. Click any part of the page to leave a comment about it.</p></div>
-    </div>
-    <p class="small">Switch between them any time with the <b>Reviewer view</b> switch in the yellow demo bar (or press R and T). When you're done, <b>Give feedback</b> collects your answers and comments and sends them in one step.</p>
-    <h4 style="margin-top:14px">Pick a sample teacher</h4>
-    <div class="welcome-picks">${Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => `<button class="pick ${PROFILE_ID === k ? "on" : ""}" data-act="welcome-pick" data-v="${k}" aria-pressed="${PROFILE_ID === k}"><b>${esc(v)}</b><span class="small muted">${esc(PROFILE_COURSES[k])}</span></button>`).join("")}</div>`;
-  return dlg("welcome", "Welcome to the SMT Mastery Dashboard preview", body,
-    `<span class="tiny muted">v${APP_VERSION} preview</span><div class="row tight"><button class="btn primary" data-act="welcome-start">Start the walkthrough</button></div>`);
-}
-
-/* ---------- Try this ---------- */
-function tryThisDialog() {
-  const item = (t) => `<li class="${state.tryThis[t.id] ? "done" : ""}">
-      <label class="check"><input type="checkbox" data-act="try-toggle" data-v="${t.id}" ${state.tryThis[t.id] ? "checked" : ""}> <b>${esc(t.title)}</b></label>
-      <p class="small muted">${esc(t.how)}</p>
-      <button class="btn sm ghost" data-act="try-go" data-v="${t.id}">${t.mode ? (t.mode === "research" ? "Turn on Reviewer view" : "Back to Teacher view") : "Go there"}</button></li>`;
-  const grp = (g) => TRY_TASKS.filter((t) => t.group === g);
-  const body = `<p class="small muted">About 10–15 minutes. Each task checks itself off when you do it, or tick it yourself.</p>
-    <h4>1. Use it as a teacher <span class="tiny muted">(Teacher view)</span></h4>
-    <ol class="try-list">${grp("teacher").map(item).join("")}</ol>
-    <h4>2. Review it <span class="tiny muted">(Reviewer view, then send)</span></h4>
-    <ol class="try-list" start="${grp("teacher").length + 1}">${grp("review").map(item).join("")}</ol>
-    <p class="small">${tryDone() === TRY_TASKS.length ? "All done. Thank you!" : "You can switch between Teacher and Reviewer view at any point."}</p>`;
-  return dlg("try", `Try this (${tryDone()} of ${TRY_TASKS.length})`, body,
-    `<button class="btn ghost" data-act="banner-reset">Reset demo and start over</button><button class="btn primary" data-act="open-dialog" data-v="feedback">Give feedback</button>`);
+    <p><b>Welcome!</b> This is an early research prototype of a standards-based grading tool. <b>Every student is fictional. Please don't enter real student information.</b></p>
+    <p>Try a few tasks (about 10 minutes). Use <b>Comment</b> to leave notes on anything, then select <b>Send feedback</b>.</p>
+    <p><b>Pick a sample teacher to start:</b></p>
+    <div class="welcome-picks">${Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => `<button class="pick" data-act="welcome-pick" data-v="${k}"><b>${esc(v)}</b><span class="small muted">${esc(PROFILE_COURSES[k])}</span></button>`).join("")}</div>`;
+  return dlg("welcome", "Welcome", body, "");
 }
 
 /* ---------- Send feedback / Copy my comments ---------- */
 const SCREEN_NAMES = { today: "Today", score: "Score", class: "Class", students: "Students", gradebook: "Gradebook" };
-const screenLabel = () => `${SCREEN_NAMES[ui.tab] || ui.tab} · ${PROFILE.name} · ${isResearch() ? "Reviewer" : "Teacher"} view`;
+const screenLabel = () => `${SCREEN_NAMES[ui.tab] || ui.tab}${ui.tab === "today" && ui.todayView === "queue" ? " › Retry queue" : ""}${ui.tab === "class" ? ` › ${cap1(ui.classSub || "overview")}` : ""} · ${PROFILE.name}${isResearch() ? " · research details on" : ""}${ui.explain ? " · explain on" : ""}`;
 function feedbackFormUrl() {
   if (!FEEDBACK_FORM.url) return "";
   return FEEDBACK_FORM.url.replace(/VERSION/g, encodeURIComponent(`v${APP_VERSION}`)).replace(/SCREEN/g, encodeURIComponent(screenLabel()));
@@ -3613,10 +3809,10 @@ function gradesDialog() {
     <p><b>In short:</b> each standard gets a level from 1 to 4 based on the evidence that counts under the grading rule (now <b>${esc(RULES[p.rule].name.toLowerCase())}</b>). Each level converts to a percent, and the course grade averages those percents across the graded standards.</p>
     <div class="table-wrap"><table class="gx-table"><thead><tr><th>Level</th>${[1, 2, 3, 4].map((l) => `<th>${lvLabel(l)}</th>`).join("")}</tr></thead><tbody><tr><td class="small">Percent</td>${lvlRow}</tr></tbody></table></div>
     ${example}
-    <h4 style="margin-top:14px">Glossary</h4>
-    <dl class="glossary">${G.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
-    ${isResearch() ? `<p class="small muted">Reviewer view: each current level is also encoded as a 33-character SMT code; see “How the SMT dashboard works” in the side panel.</p>` : ""}`;
-  return dlg("gx", "How grades are calculated", body, `<span></span><button class="btn primary" data-act="open-dialog" data-v="feedback">Give feedback</button>`, "md");
+    <details class="disclose"><summary>Glossary (${G.length} terms)</summary><dl class="glossary" style="margin-top:8px">${G.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl></details>
+    <details class="disclose"><summary>How the 33-character SMT code works</summary><div class="stack" style="gap:6px;margin-top:8px">${howItWorks().map(([t, b], i) => `<details class="disclose guide" ${i === howItWorks().length - 1 ? "open" : ""}><summary>${esc(t)}</summary><div class="guide-body">${b}</div></details>`).join("")}</div></details>
+    ${isResearch() ? `<p class="small muted">Research details: each current level is also encoded as a 33-character SMT code, shown on the student transcript and in the research file.</p>` : ""}`;
+  return dlg("gx", "How grades are calculated", body, `<span></span><button class="btn primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>`, "md");
 }
 
 /* ---------- Which fits your school? (open design decisions, each shown with this demo's data) ---------- */
@@ -3653,15 +3849,43 @@ const OPEN_QUESTIONS = [
   { id: "timesaver", q: "What would save you the most time, if anything?" },
   { id: "stopper", q: "What would most likely stop your school from using a tool like this?" }
 ];
-const answeredCount = () => CHOICES.filter((c) => state.choices[c.id]?.pick).length + OPEN_QUESTIONS.filter((o) => state.choices[o.id]?.text).length;
-const questionCount = () => CHOICES.length + OPEN_QUESTIONS.length;
+const USEFUL = { id: "useful", q: "How useful would a tool like this be for your school?", opts: [["1", "1 Not useful"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5 Very useful"], ["na", "Not my role"]] };
+const CHANGE_Q = { id: "change", q: "If you could change one thing, what would it be?" };
+const QUICK_CHOICES = ["attempt"];
+const MORE_ORDER = ["transcript", "habits", "gradebook", "display", "cadence"];
+const answeredCount = () => [USEFUL, ...CHOICES].filter((c) => state.choices[c.id]?.pick).length + [CHANGE_Q, ...OPEN_QUESTIONS].filter((o) => state.choices[o.id]?.text).length;
+const questionCount = () => 2 + CHOICES.length + OPEN_QUESTIONS.length;
 const choiceLabel = (c, pick) => (c.opts.find((o) => o[0] === pick) || [pick, pick])[1];
 function choiceBox(c) {
   const cur = state.choices[c.id] || {};
   return `<div class="choice-form" data-choice="${c.id}" role="group" aria-labelledby="q-${c.id}">
     <div class="small" id="q-${c.id}"><b>${esc(c.q)}</b></div>
-    <div class="choice-opts">${c.opts.map(([v, l]) => `<label class="check small"><input type="radio" name="pick-${c.id}" value="${v}" data-choice="${c.id}" ${cur.pick === v ? "checked" : ""}> ${esc(l)}</label>`).join("")}</div>
-    <label class="field" for="why-${c.id}">Why, or what would your school need? (optional)<input id="why-${c.id}" class="choice-why" data-choice="${c.id}" type="text" value="${esc(cur.why || "")}" placeholder="One line is plenty"></label></div>`;
+    <div class="choice-opts ${c.id === "useful" ? "inline" : ""}">${c.opts.map(([v, l]) => `<label class="check small"><input type="radio" name="pick-${c.id}" value="${v}" data-choice="${c.id}" ${cur.pick === v ? "checked" : ""}> ${esc(l)}</label>`).join("")}</div>
+    </div>`;
+}
+/* The student whose graded standards change level the most (up and down), for the mastery-graph example. */
+function dynamicExample() {
+  const dyn = (att) => { const l = att.map((a) => a.level); if (l.length < 3) return -1; let ch = 0; for (let i = 1; i < l.length; i++) if (l[i] !== l[i - 1]) ch++; return ch + (Math.max(...l) - Math.min(...l)) + (l[l.length - 1] > l[0] ? 1 : 0); };
+  let best = null;
+  for (const st of roster(`all-${ui.semester}`)) {
+    const scored = COMPETENCIES.filter((c) => countsInGrade(c)).map((c) => ({ c, d: dyn(attemptsFor(st.id, c.id)) })).filter((x) => x.d > 0).sort((a, b) => b.d - a.d).slice(0, 2);
+    if (scored.length < 2) continue;
+    const total = scored[0].d + scored[1].d;
+    if (!best || total > best.total) best = { st, comps: scored.map((x) => x.c), total };
+  }
+  return best;
+}
+/* A student's most recent scored assessments, with a gradebook-style score (export setting) and each standard's entry. */
+function recentAssessments(st, n) {
+  const ex = state.settings.export;
+  return state.assessments.filter((a) => (a.sections || []).includes(st.sectionId) && a.date <= TODAY)
+    .map((a) => ({ a, entries: a.comps.map((cid) => ({ c: COMP[cid], e: entryForAssessment(st.id, cid, a.id) })).filter((x) => x.e) }))
+    .filter((r) => r.entries.length).sort((p, q) => q.a.date.localeCompare(p.a.date)).slice(0, n)
+    .map((r) => {
+      const v = Math.round(mean(r.entries.map((x) => exportValue(x.e.level))));
+      const score = ex.scoreType === "points" ? `${v}/${ex.total}` : ex.scoreType === "percent" ? `${v}%` : `${fmt1(mean(r.entries.map((x) => x.e.level)))} of 4`;
+      return { ...r, score };
+    });
 }
 const lvChip = (l) => `<span class="lv lv-${l}"><span class="n">${l}</span></span>`;
 /* A student whose attempts include a slip after a higher score, so "latest" and "highest" differ. */
@@ -3723,73 +3947,90 @@ function choiceVisuals() {
         <tr><td>Every two weeks</td>${fridays.map((f, i) => cell(biw(f, i))).join("")}</tr>
         <tr><td>Progress reports only</td>${fridays.map((f) => cell(reportVal(f))).join("")}</tr></tbody></table></div>
       <p class="tiny muted">More frequent updates show growth sooner but move the grade more often; report-only updates are steadier but can lag weeks behind what the student can do.</p>`;
-    /* display: running average vs mastery graph */
-    const evs = COMPETENCIES.filter((x) => countsInGrade(x)).flatMap((x) => attemptsFor(st.id, x.id).map((e) => ({ ...e, c: x }))).sort((p, q) => p.date.localeCompare(q.date));
-    let run = [];
-    const rows = evs.slice(-6).map((e) => e);
+    /* display: running average vs mastery graph, shown with the student whose levels change the most */
+    const dx = dynamicExample() || { st, comps: shown.slice(0, 2) };
+    const dst = dx.st, dm = metrics(dst), dsec = SEC[dst.sectionId];
+    const evs = COMPETENCIES.filter((x) => countsInGrade(x)).flatMap((x) => attemptsFor(dst.id, x.id).map((e) => ({ ...e, c: x }))).sort((p, q) => p.date.localeCompare(q.date));
     const allPct = evs.map((e) => (e.level / 4) * 100);
-    const startIdx = evs.length - rows.length;
-    const graphs = shown.slice(0, 2);
+    const rows = evs.slice(-6), startIdx = evs.length - rows.length;
     html.display = `<div class="vs">
       <div class="vs-col"><div class="vs-h">Regular gradebook</div><p class="tiny muted">Each score as points (level ÷ 4), with the running average a points gradebook would show.</p>
-        <table class="mini-table"><thead><tr><th>Date</th><th>Standard</th><th>Score</th><th>Running avg</th></tr></thead><tbody>${rows.map((e, i) => { run = allPct.slice(0, startIdx + i + 1); return `<tr><td>${esc(fmtDate(e.date, { month: "short", day: "numeric" }))}</td><td>${esc(e.c.standard)}</td><td class="num">${Math.round((e.level / 4) * 100)}%</td><td class="num">${Math.round(mean(run))}%</td></tr>`; }).join("")}</tbody></table></div>
-      <div class="vs-col"><div class="vs-h">Mastery graph</div><p class="tiny muted">Each standard's level over time; the dashed line is 3 (Meets). This is the Students page view.</p>
-        ${graphs.map((x) => `<div class="tiny"><b>${esc(x.standard)}</b> ${esc(x.title)}</div>${miniLevelChart(m.per[x.id].att)}`).join("")}</div></div>
-      <p class="tiny muted">Same student both ways: ${esc(nameOf(st))}.</p>`;
+        <table class="mini-table"><thead><tr><th>Date</th><th>Standard</th><th>Score</th><th>Running avg</th></tr></thead><tbody>${rows.map((e, i) => `<tr><td>${esc(fmtDate(e.date, { month: "short", day: "numeric" }))}</td><td>${esc(e.c.standard)}</td><td class="num">${Math.round((e.level / 4) * 100)}%</td><td class="num">${Math.round(mean(allPct.slice(0, startIdx + i + 1)))}%</td></tr>`).join("")}</tbody></table></div>
+      <div class="vs-col"><div class="vs-h">Mastery graph</div><p class="tiny muted">Each standard's level over time, as on the Students page. The dashed line is 3 (Meets); the number at right is the current level.</p>
+        ${dx.comps.map((x) => `<div class="tiny"><b>${esc(x.standard)}</b> ${esc(x.title)}</div>${progressSvg(dm.per[x.id].att, dm.per[x.id].ev, semesterStart(dsec.semester))}`).join("")}</div></div>
+      <p class="tiny muted">Same student both ways: ${esc(nameOf(dst))}.</p>`;
   }
   if (ex) {
-    const { st } = ex, m = metrics(st);
-    const shown = m.active.filter((x) => m.per[x.id].att.length).slice(0, 2);
+    const { st } = ex, m = metrics(st), sec = SEC[st.sectionId];
+    const recent = recentAssessments(st, 3);
     html.transcript = `<div class="vs">
-      <div class="vs-col"><div class="vs-h">Summary</div><p class="small"><b>${esc(nameOf(st))}</b> · ${esc(SEC[st.sectionId].name)}</p>
-        <p class="small">Grade ${m.policyLetter} ${m.policyPct}% · ${m.mastered} of ${m.active.length} standards at Meets or above · Work habits: ${esc(currentHabit(st.id) || "–")}</p></div>
-      <div class="vs-col"><div class="vs-h">Full record</div><p class="small"><b>${esc(nameOf(st))}</b> · ${m.policyLetter} ${m.policyPct}%</p>
-        ${shown.map((x) => { const { ev, att: aa } = m.per[x.id]; const last = aa[aa.length - 1]; return `<div class="vs-std"><div class="small">${chip(ev, true)} <b>${esc(x.standard)}</b> ${esc(x.title)}</div><div class="tiny muted">Rubric: ${esc(x.rubric[ev.level])}</div>${last.note ? `<div class="tiny">Feedback: ${esc(last.note)}</div>` : ""}${last.artifactUrl ? `<div class="tiny">Evidence: link to ${esc(last.artifactType || "student work")}</div>` : ""}</div>`; }).join("")}
-        <p class="tiny muted">…and so on for every standard.</p></div></div>`;
+      <div class="vs-col"><div class="vs-h">Conventional summary</div>
+        <p class="small"><b>${esc(nameOf(st))}</b> · ${esc(sec.name)} · <b>${m.policyLetter} ${m.policyPct}%</b></p>
+        <table class="mini-table"><thead><tr><th>Date</th><th>Assessment</th><th>Score</th></tr></thead><tbody>${recent.map((r) => `<tr><td>${esc(fmtDate(r.a.date, { month: "short", day: "numeric" }))}</td><td>${esc(r.a.title)}</td><td class="num">${esc(r.score)}</td></tr>`).join("")}</tbody></table>
+        <p class="tiny muted">${m.mastered} of ${m.active.length} standards at Meets or above · Work habits: ${esc(currentHabit(st.id) || "–")}</p></div>
+      <div class="vs-col"><div class="vs-h">Full record</div>
+        <p class="small"><b>${esc(nameOf(st))}</b> · ${esc(sec.name)} · <b>${m.policyLetter} ${m.policyPct}%</b></p>
+        ${recent.map((r) => `<div class="vs-std"><div class="small"><b>${esc(r.a.title)}</b> <span class="muted">· ${esc(fmtDate(r.a.date, { month: "short", day: "numeric" }))} · ${esc(METHODS[r.a.method]?.short || "")} · ${esc(r.score)}</span></div>
+          ${r.entries.map(({ c, e }) => `<div class="tiny">${chip({ level: e.level, value: e.level, confirmed: true }, true)} <b>${esc(c.standard)}</b> ${esc(c.title)}: <span class="muted">${esc(c.rubric[e.level])}</span></div>`).join("")}
+          ${r.entries.find((x) => x.e.note) ? `<div class="tiny">Feedback: ${esc(r.entries.find((x) => x.e.note).e.note)}</div>` : ""}
+          ${r.entries.find((x) => x.e.artifactUrl) ? `<div class="tiny">Evidence: link to ${esc(r.entries.find((x) => x.e.artifactUrl).e.artifactType || "student work")}</div>` : ""}</div>`).join("")}
+        <p class="tiny muted">${m.mastered} of ${m.active.length} standards at Meets or above · Work habits: ${esc(currentHabit(st.id) || "–")} · each standard's current level, rubric, and evidence follow.</p></div></div>
+      <p class="tiny muted">Same three assessments both ways. Scores use the gradebook export setting (${esc(exportTypeLabel())}).</p>`;
   }
   return html;
 }
-/* ---------- Give feedback: questions, comments, and sending in one window ---------- */
+/* ---------- Send feedback: quick questions → optional 5 more → send ---------- */
+function choiceSection(c, html) {
+  return `<section class="choice">${choiceBox(c)}${html ? `<details class="disclose see-ex"><summary>See example</summary><div style="margin-top:8px">${html}</div></details>` : ""}</section>`;
+}
+const openBox = (o) => `<label class="field" for="oq-${o.id}">${esc(o.q)}<textarea id="oq-${o.id}" class="open-q" data-choice="${o.id}" rows="2">${esc(state.choices[o.id]?.text || "")}</textarea></label>`;
 function feedbackDialog() {
-  const html = choiceVisuals();
-  const fb = state.feedback, rev = fb.filter((f) => f.key !== "general"), gen = fb.filter((f) => f.key === "general");
-  const url = feedbackFormUrl(), parts = feedbackParts();
-  const types = Object.fromEntries(FB_TYPES);
-  const body = `
-    <nav class="fb-steps" aria-label="Feedback steps">
-      <button class="fb-step" data-act="fb-jump" data-v="fq">1 · Questions <span class="pill" id="fb-answered">${answeredCount()}/${questionCount()}</span></button>
-      <button class="fb-step" data-act="fb-jump" data-v="fc">2 · Your comments <span class="pill">${fb.length}</span></button>
-      <button class="fb-step" data-act="fb-jump" data-v="fs">3 · Send</button></nav>
-    <section id="fq" class="fb-sec">
-      <h4>1 · Which fits your school?</h4>
-      <p class="small muted">These decisions aren't settled, and schools differ. Most questions show this demo's fictional data both ways. Pick what fits; “it depends” is a useful answer too. Answers save as you go.</p>
-      ${CHOICES.map((c) => `<section class="choice">${html[c.id] || ""}${choiceBox(c)}</section>`).join("")}
-      <section class="choice"><div class="small"><b>A few open questions</b> <span class="muted">(optional)</span></div>
-        ${OPEN_QUESTIONS.map((o) => `<label class="field" for="oq-${o.id}">${esc(o.q)}<textarea id="oq-${o.id}" class="open-q" data-choice="${o.id}" rows="2">${esc(state.choices[o.id]?.text || "")}</textarea></label>`).join("")}</section>
-    </section>
-    <section id="fc" class="fb-sec">
-      <h4>2 · Your comments</h4>
-      ${rev.length ? `<p class="small muted">From Reviewer view (${rev.length}):</p><ul class="fb-mini">${rev.map((f) => `<li><span class="fb-type t-${f.type}">${esc(types[f.type] || f.type)}</span> <b>${esc(SCREEN_NAMES[f.view] || f.view)} › ${esc(f.label)}:</b> ${esc(f.text)} <button class="linklike tiny" data-act="fb-del2" data-v="${f.id}">Remove</button></li>`).join("")}</ul>`
-        : `<p class="small muted">No Reviewer view comments yet. Comments on a specific part of the page are the most useful: flip the <b>Reviewer view</b> switch in the demo bar, click the part you mean, and type.</p>`}
-      ${gen.length ? `<ul class="fb-mini">${gen.map((f) => `<li><b>General (${esc(SCREEN_NAMES[f.view] || f.view)}):</b> ${esc(f.text)} <button class="linklike tiny" data-act="fb-del2" data-v="${f.id}">Remove</button></li>`).join("")}</ul>` : ""}
-      <label class="field" for="sf-text">Add a general comment<textarea id="sf-text" rows="2" placeholder="Overall, what was clear, confusing, or missing?">${esc(transient.sfDraft || "")}</textarea></label>
+  const step = ["quick", "more", "send"].includes(transient.fbStep) ? transient.fbStep : "quick";
+  const warn = `<p class="fict-warn" role="note"><b>${esc(FICTION_WARNING)}</b></p>`;
+  let body = "", foot = "", title = "Send feedback";
+  if (step === "quick") {
+    const html = choiceVisuals();
+    title = "Send feedback · Quick questions";
+    body = `${warn}
+      <section class="choice">${choiceBox(USEFUL)}</section>
+      ${QUICK_CHOICES.map((id) => choiceSection(CHOICES.find((c) => c.id === id), html[id])).join("")}
+      <section class="choice">${openBox(CHANGE_Q)}</section>`;
+    foot = `<button class="btn" data-act="fb-step" data-v="more" data-path="full">Answer 5 more questions (about 4 min)</button><button class="btn primary" data-act="fb-step" data-v="send">Send now</button>`;
+  } else if (step === "more") {
+    const html = choiceVisuals();
+    title = "Send feedback · 5 more questions";
+    body = `${warn}<p class="small muted">Optional. These decisions aren't settled, and schools differ; “it depends” is a useful answer too.</p>
+      ${MORE_ORDER.map((id) => choiceSection(CHOICES.find((c) => c.id === id), html[id])).join("")}
+      <section class="choice"><div class="small"><b>A few open questions</b> <span class="muted">(optional)</span></div>${OPEN_QUESTIONS.map(openBox).join("")}</section>`;
+    foot = `<button class="btn ghost" data-act="fb-step" data-v="quick">← Back</button><button class="btn primary" data-act="fb-step" data-v="send">Continue to send</button>`;
+  } else {
+    const fb = state.feedback, url = feedbackFormUrl(), parts = feedbackParts();
+    const types = Object.fromEntries(FB_TYPES);
+    const byView = Object.keys(VIEW_NAMES).map((v) => [v, fb.filter((f) => f.view === v)]).filter(([, x]) => x.length);
+    let num = 0;
+    title = "Send feedback";
+    body = `${warn}
+      <p class="small"><b>${answeredCount()} answer${answeredCount() === 1 ? "" : "s"} · ${fb.length} comment${fb.length === 1 ? "" : "s"}</b> <button class="linklike small" data-act="fb-step" data-v="quick">Edit answers</button></p>
+      ${fb.length ? `<details class="disclose" data-act="fb-comments-toggle"><summary>Your comments (${fb.length})</summary>
+        ${byView.map(([v, items]) => `<div class="fb-group"><div class="fb-view">${esc(VIEW_NAMES[v])}</div><ol class="fb-mini" start="${num + 1}">${items.map((f) => { num++; return `<li><span class="fb-type t-${f.type}">${esc(types[f.type] || f.type)}</span> <b>${esc(f.key === "general" || f.key === "view" ? "Whole screen" : f.label)}:</b> ${esc(f.text)} <button class="linklike tiny" data-act="fb-del2" data-v="${f.id}">Remove</button></li>`; }).join("")}</ol></div>`).join("")}</details>`
+        : `<p class="small muted">No comments yet. Use <b>Comment</b> (or press C) to point at any part of the page and leave a note.</p>`}
+      <label class="field" for="sf-text">Add a comment about the whole tool (optional)<textarea id="sf-text" rows="2" placeholder="What was clear, confusing, or missing?">${esc(transient.sfDraft || "")}</textarea></label>
       <div class="row tight"><button class="btn sm" data-act="sf-add">Add comment</button></div>
-    </section>
-    <section id="fs" class="fb-sec">
-      <h4>3 · Send</h4>
+      <label class="field" for="fb-name">Your name (optional)<input id="fb-name" type="text" value="${esc(state.reviewer || "")}" autocomplete="off"></label>
       <div class="sf-go">
-        <p class="small">Everything above (answers, open responses, and comments, with the version and the screen you're on) goes out as one block of text. In the form, paste it into the single answer box and submit.</p>
         ${url ? (parts.length === 1
-          ? `<a class="btn primary" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-act="sf-open">Copy everything and open the form ↗</a>`
-          : `<p class="small">Your feedback is long, so it's split into ${parts.length} parts to fit the form's answer box. Paste part 1 and submit, then open the form again for the next part.</p>
+          ? `<a class="btn primary" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-act="sf-open">Copy everything and open the form ↗</a>
+             <p class="small muted">Your answers and comments are copied as the form opens. Paste them (Ctrl+V or ⌘V) into the form's single box and submit.</p>`
+          : `<p class="small">Your feedback is long, so it's split into ${parts.length} parts to fit the form. Paste part 1 and submit, then open the form again for the next part.</p>
              <div class="row tight">${parts.map((_, i) => `<button class="btn sm" data-act="copy-part" data-v="${i}">${ICON.copy} Copy part ${i + 1}</button>`).join("")}</div>
              <a class="btn primary" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-act="sf-open" data-nocopy="1">Open the form ↗</a>`)
           : `<p class="small muted">The feedback form link hasn't been set up yet. Copy everything and email it to the researcher.</p>`}
-        <div class="row tight"><button class="btn sm ghost" data-act="copy-comments">${ICON.copy} Copy only</button><button class="btn sm ghost" data-act="fb-export">${ICON.download} Download as a file</button></div>
+        <p class="small"><button class="linklike" data-act="copy-comments">Copy only</button> · <button class="linklike" data-act="fb-export">Download as a file</button></p>
       </div>
-      <p class="tiny muted">Your name is optional (set it in the Reviewer view side panel). Nothing leaves this device until you send it. No student data is included.</p>
-    </section>`;
-  return dlg("fbk", "Give feedback", body, `<span class="tiny muted">v${APP_VERSION} · answers save automatically</span><button class="btn primary" data-act="fb-jump" data-v="fs">Go to Send</button>`, "md");
+      <p class="tiny muted">Nothing leaves this device until you send it. No student data is included.</p>`;
+    foot = `<button class="btn ghost" data-act="fb-step" data-v="${state.fbPath === "full" ? "more" : "quick"}">← Back</button><span class="tiny muted">v${APP_VERSION}</span>`;
+  }
+  return dlg("fbk", title, body, foot, "md");
 }
 
 /* ---------- Reviewer: SMT check and codebook ---------- */
@@ -3832,34 +4073,34 @@ function subgroupCard() {
 function v47Click(act, d, t) {
   switch (act) {
     case "open-dialog": openFeedbackish(d.v); return true;
-    case "banner-reset":
-      if (t.dataset.armed !== "1") { t.dataset.armed = "1"; t.textContent = "Click again to reset"; setTimeout(() => { if (t.isConnected) { t.dataset.armed = ""; t.textContent = "Reset demo"; } }, 4000); return true; }
-      state.tryThis = {}; resetDemo(); return true;
-    case "welcome-pick": switchProfile(d.v); transient.dialog = "welcome"; renderDialog(); return true;
-    case "welcome-start": state.welcomed = true; save(); transient.dialog = "try-this"; renderDialog(); return true;
-    case "try-go": {
-      const task = TRY_TASKS.find((x) => x.id === d.v);
-      transient.dialog = null;
-      if (task.mode) { renderDialog(); setMode(task.mode); }
-      else if (task.dialog) openFeedbackish(task.dialog);
-      else { renderDialog(); setTab(task.go); }
+    case "banner-reset": closeMenus(); openDialog("reset-confirm"); return true;
+    case "reset-confirmed": transient.dialog = null; state.tryThis = {}; resetDemo(PROFILE_ID, true); ui.guide = "open"; renderGuideDock(); return true;
+    case "welcome-pick":
+      state.welcomed = true; transient.dialog = null;
+      if (d.v !== PROFILE_ID) switchProfile(d.v); else { renderDialog(); }
+      ui.guide = "open"; save(); renderGuideDock(); render();
+      if (isPhone()) openSheet("guide");
       return true;
-    }
     case "sf-add": {
       const ta = document.getElementById("sf-text"), v = ta.value.trim();
       if (!v) { ta.focus(); return true; }
-      addQuickComment(v); transient.sfDraft = ""; renderDialog(); renderHeader(); document.getElementById("fc")?.scrollIntoView({ block: "start" }); toast("Comment added");
+      addQuickComment(v); transient.sfDraft = ""; renderDialog(); renderHeader(); toast(`Comment saved · ${state.feedback.length} total`);
       return true;
     }
+    case "fb-step":
+      if (d.path) state.fbPath = d.path;
+      transient.fbStep = d.v; save(); renderDialog();
+      document.querySelector("#dialog-host .dlg-body")?.scrollTo(0, 0);
+      return true;
     case "fb-jump": { const el = document.getElementById(d.v); if (el) el.scrollIntoView({ behavior: state.settings.reduceMotion ? "auto" : "smooth", block: "start" }); return true; }
     case "fb-del2": { const sc = document.querySelector("#dialog-host .dlg-body")?.scrollTop; state.feedback = state.feedback.filter((f) => f.id !== d.v); save(); renderDialog(); renderHeader(); const b = document.querySelector("#dialog-host .dlg-body"); if (b && sc != null) b.scrollTop = sc; return true; }
-    case "copy-comments": copyText(feedbackFormText(), "Your comments"); return true;
+    case "copy-comments": copyText(feedbackFormText(), "Your comments"); tryMark("send"); return true;
     case "copy-part": copyText(feedbackParts()[Number(d.v)], `Part ${Number(d.v) + 1}`); return true;
     case "sf-open":
       if (!d.nocopy) copyText(feedbackParts()[0], "Your comments (now paste them into the form)");
-      tryMark("send"); state.feedbackSentAt = localIso(); save();
+      state.feedbackSentAt = localIso(); save(); tryMark("send");
       return "default";
-    case "toggle-reviewer": setMode(isResearch() ? "teacher" : "research"); return true;
+    case "toggle-research": setMode(isResearch() ? "teacher" : "research"); return true;
     case "open-study": ui.settingsPane = "study"; openDialog("settings"); return true;
     case "dl-codebook": runExport(d.v === "csv" ? "codebookCsv" : "codebookMd"); return true;
     case "dl-clr": runExport("clr", { sid: ui.studentId }); return true;
@@ -3880,7 +4121,7 @@ function v47Change(t) {
   if (t.type === "radio" && t.dataset.choice) { saveAnswer(t.dataset.choice, { pick: t.value }); logT("choice", { id: t.dataset.choice, pick: t.value }); return true; }
   if (t.dataset.act === "try-toggle") {
     if (t.checked) state.tryThis[t.dataset.v] = localIso(); else delete state.tryThis[t.dataset.v];
-    save(); renderDialog(); renderHeader(); return true;
+    save(); renderGuideDock(); renderHeader(); if (transient.sheet === "guide") renderSheet(); return true;
   }
   return false;
 }
@@ -3891,51 +4132,451 @@ function saveAnswer(id, patch) {
   if (!state.choices[id].pick && !state.choices[id].text && !state.choices[id].why) delete state.choices[id];
   save();
   const el = document.getElementById("fb-answered"); if (el) el.textContent = `${answeredCount()}/${questionCount()}`;
-  if (answeredCount() > 0) tryMark("choose");
+
 }
 function v47Input(t) {
-  if (t.classList.contains("choice-why")) { saveAnswer(t.dataset.choice, { why: t.value.trim() }); return true; }
   if (t.classList.contains("open-q")) { saveAnswer(t.dataset.choice, { text: t.value.trim() }); return true; }
   if (t.id === "sf-text") { transient.sfDraft = t.value; return true; }
+  if (t.id === "fb-name") { state.reviewer = t.value; save(); return true; }
   return false;
 }
 
-/* One place to switch views, used by the demo-bar switch, the R/T keys, and Settings. */
+/* Research details only change what the screens show; they never block clicks or keys. */
 function setMode(mode) {
   if (state.settings.mode === mode) return;
-  state.settings.mode = mode; transient.drawer = null;
-  if (mode === "research") tryMark("reviewer");
-  else if (state.tryThis.reviewer) tryMark("back");
+  state.settings.mode = mode;
   render();
-  toast(mode === "research" ? "Reviewer view: hover for explanations, click any part of the page to comment" : "Teacher view: the dashboard is interactive again");
+  toast(mode === "research" ? "Research details on" : "Research details off");
 }
 /* Compact, form-ready version of everything the reviewer noted (Reviewer view comments, general comments, answers). */
 function feedbackFormText() {
-  const fb = state.feedback;
+  const fb = state.feedback, ch = state.choices;
   const L = [`SMT Mastery Dashboard v${APP_VERSION}${PREVIEW ? " preview" : ""} · ${PROFILE.name} sample · screen: ${screenLabel()}${state.reviewer ? ` · from: ${state.reviewer}` : ""}`,
-    `Try this: ${tryDone()} of ${TRY_TASKS.length} tasks (${TRY_TASKS.filter((t) => state.tryThis[t.id]).map((t) => t.id).join(", ") || "none"})`, ""];
-  const answeredC = CHOICES.filter((c) => state.choices[c.id]?.pick || state.choices[c.id]?.why);
+    `Path: ${state.fbPath === "full" ? "full" : "quick"}`,
+    `Usefulness: ${ch.useful?.pick ? choiceLabel(USEFUL, ch.useful.pick) : "(not answered)"}`,
+    `Guide: ${tryDone()} of ${TRY_TASKS.length} tasks (${TRY_TASKS.filter((t) => state.tryThis[t.id]).map((t) => t.id).join(", ") || "none"})`, ""];
+  const answeredC = CHOICES.filter((c) => ch[c.id]?.pick || ch[c.id]?.why);
   L.push(`WHICH FITS YOUR SCHOOL? (${answeredC.length} of ${CHOICES.length} answered)`);
-  answeredC.forEach((c) => { const a = state.choices[c.id]; L.push(`- ${c.q} ${a.pick ? choiceLabel(c, a.pick) : "(no choice)"}${a.why ? `. Why: ${a.why}` : ""}`); });
+  answeredC.forEach((c) => { const a = ch[c.id]; L.push(`- ${c.q} ${a.pick ? choiceLabel(c, a.pick) : "(no choice)"}${a.why ? `. Why: ${a.why}` : ""}`); });
   L.push("");
-  const opens = OPEN_QUESTIONS.filter((o) => state.choices[o.id]?.text);
-  if (opens.length) { L.push("OPEN QUESTIONS"); opens.forEach((o) => L.push(`- ${o.q} ${state.choices[o.id].text.replace(/\n+/g, " ")}`)); L.push(""); }
+  const opens = [CHANGE_Q, ...OPEN_QUESTIONS].filter((o) => ch[o.id]?.text);
+  if (opens.length) { L.push("OPEN QUESTIONS"); opens.forEach((o) => L.push(`- ${o.q} ${ch[o.id].text.replace(/\n+/g, " ")}`)); L.push(""); }
   const types = Object.fromEntries(FB_TYPES);
   const byView = Object.keys(VIEW_NAMES).map((v) => [v, fb.filter((f) => f.view === v)]).filter(([, x]) => x.length);
   if (byView.length) {
     L.push(`COMMENTS (${fb.length})`);
-    byView.forEach(([v, items]) => { L.push(`${VIEW_NAMES[v]}:`); items.forEach((f) => L.push(`- [${types[f.type] || f.type}] ${f.key === "general" ? "General" : f.label}: ${f.text.replace(/\n+/g, " ")}`)); });
+    byView.forEach(([v, items]) => { L.push(`${VIEW_NAMES[v]}:`); items.forEach((f) => L.push(`- [${types[f.type] || f.type}] ${f.key === "general" || f.key === "view" ? "Whole screen" : f.label}: ${f.text.replace(/\n+/g, " ")}`)); });
   } else L.push("COMMENTS: none yet");
   return L.join("\n");
 }
 
-/* "choices" and "send-feedback" are sections of one Give feedback window. */
+/* "choices", "feedback", and "send-feedback" all open the Send feedback window. */
 function openFeedbackish(name) {
   if (name === "how-grades") tryMark("compare");
-  const section = { choices: "fq", "send-feedback": "fs", feedback: null }[name];
-  if (section === undefined) { openDialog(name); return; }
+  if (!["choices", "send-feedback", "feedback"].includes(name)) { openDialog(name); return; }
+  if (name === "choices") transient.fbStep = "more";
+  else if (!transient.fbStep) transient.fbStep = "quick";
   openDialog("feedback");
-  if (section) requestAnimationFrame(() => document.getElementById(section)?.scrollIntoView({ block: "start" }));
+}
+
+"use strict";
+/* ==========================================================================
+   v0.47.1 "Preview polish": Comment (pick mode), Explain markers, About this
+   screen, Guide dock and menu, sheets, highlights, reset confirmation.
+   None of these block the dashboard.
+   ========================================================================== */
+
+/* Elements that get an Explain "?" marker. Edit this list to change them. */
+const EXPLAIN_KEYS = ["page-today", "page-score", "page-class", "page-students", "page-gradebook",
+  "legend", "stat-reteach", "stat-retries", "stat-mtss", "rq-controls", "scored", "kbd",
+  "th-current", "th-course", "review", "growth-chart", "layer1", "layer3", "supports-row",
+  "groups", "heatmap", "mtss", "ptp", "export-log", "credential", "stat-grade"];
+
+const isPhone = () => window.matchMedia && window.matchMedia("(max-width: 640px)").matches;
+function layer(id, cls) {
+  let el = document.getElementById(id);
+  if (!el) { el = document.createElement("div"); el.id = id; if (cls) el.className = cls; document.body.appendChild(el); }
+  return el;
+}
+function trapIn(e, box) {
+  const f = [...box.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((x) => !x.disabled && x.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+
+/* ---------------------------------------------------------------- Comment: pick mode */
+const pick = { on: false, hover: null, opener: null };
+function pickTargetAt(node) {
+  if (!node || !node.closest) return null;
+  const main = document.getElementById("main");
+  if (!main.contains(node)) return null;
+  return node.closest("#main [data-tip]") || main;
+}
+function pickMove(e) {
+  const el = pickTargetAt(e.target);
+  if (el === pick.hover) return;
+  if (pick.hover) pick.hover.classList.remove("pick-hover");
+  pick.hover = el;
+  if (el) el.classList.add("pick-hover");
+}
+function pickClick(e) {
+  if (e.target.closest && e.target.closest("#pick-hint")) return;
+  e.preventDefault(); e.stopPropagation();
+  const el = pickTargetAt(e.target);
+  if (!el) return;
+  const main = document.getElementById("main");
+  stopPick();
+  openCommentPopover(el === main ? null : el);
+}
+function pickBlock(e) { if (e.target.closest && !e.target.closest("#pick-hint") && pickTargetAt(e.target)) e.preventDefault(); }
+function startPick(opener) {
+  if (pick.on) { stopPick(); return; }
+  closeMenus(); closeSheet(); closeCommentPopover(true);
+  if (transient.dialog) closeDialog();
+  if (transient.drawer) { transient.drawer = null; renderDrawer(); }
+  pick.on = true; pick.opener = opener || document.activeElement;
+  document.body.classList.add("picking");
+  const hint = layer("pick-hint", "pick-hint");
+  hint.setAttribute("role", "status");
+  hint.innerHTML = `<span>${isPhone() ? "Tap" : "Click"} the part you want to comment on · Esc to cancel</span>
+    <span class="row tight"><button class="btn sm" data-act="comment-whole">Comment on this whole screen</button><button class="btn sm ghost" data-act="comment-cancel">Cancel</button></span>`;
+  hint.hidden = false;
+  document.addEventListener("click", pickClick, true);
+  document.addEventListener("mousedown", pickBlock, true);
+  document.addEventListener("mousemove", pickMove, true);
+  hint.querySelector("button")?.focus({ preventScroll: true });
+}
+function stopPick() {
+  if (!pick.on) return;
+  pick.on = false;
+  document.body.classList.remove("picking");
+  if (pick.hover) pick.hover.classList.remove("pick-hover");
+  pick.hover = null;
+  const hint = document.getElementById("pick-hint"); if (hint) hint.hidden = true;
+  document.removeEventListener("click", pickClick, true);
+  document.removeEventListener("mousedown", pickBlock, true);
+  document.removeEventListener("mousemove", pickMove, true);
+}
+
+/* ---------------------------------------------------------------- Comment popover / bottom sheet */
+let cpopEl = null;
+function openCommentPopover(el) {
+  transient.fbTarget = fbTargetFrom(el);
+  transient.cpopFor = el || null;
+  const t = transient.fbTarget, type = transient.fbType || "comment";
+  cpopEl = layer("cpop", "cpop");
+  cpopEl.setAttribute("role", "dialog"); cpopEl.setAttribute("aria-modal", "true"); cpopEl.setAttribute("aria-labelledby", "cpop-title");
+  cpopEl.innerHTML = `<div class="cpop-head"><div><div class="tiny muted" id="cpop-title">Commenting on</div><div class="cpop-label">${esc(t.key === "view" ? `This whole screen (${VIEW_NAMES[t.view]})` : t.label)}</div></div>
+      <button class="btn icon ghost" data-act="comment-cancel" aria-label="Cancel">${ICON.close}</button></div>
+    <div class="seg fb-types" role="group" aria-label="Note type">${FB_TYPES.map(([k, l]) => `<button data-act="cp-type" data-v="${k}" aria-pressed="${type === k}">${l}</button>`).join("")}</div>
+    <textarea id="cp-text" rows="3" placeholder="Type your note. Enter saves; Shift+Enter adds a line." aria-label="Your comment">${esc(transient.fbDraft || "")}</textarea>
+    <div class="row tight cpop-foot"><span class="tiny muted">${state.feedback.length} saved so far</span><span class="row tight"><button class="btn sm ghost" data-act="comment-cancel">Cancel</button><button class="btn sm primary" data-act="comment-save">Save</button></span></div>`;
+  cpopEl.hidden = false;
+  cpopEl.classList.toggle("sheet-mode", isPhone());
+  const scrim = layer("cpop-scrim", "cpop-scrim"); scrim.hidden = !isPhone();
+  markSelected();
+  positionPopover();
+  document.getElementById("cp-text").focus({ preventScroll: !isPhone() });
+}
+function positionPopover() {
+  if (!cpopEl || cpopEl.hidden) return;
+  if (isPhone()) { cpopEl.style.left = ""; cpopEl.style.top = ""; return; }
+  const el = transient.cpopFor, w = cpopEl.offsetWidth, h = cpopEl.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
+  let top = 120, left = (vw - w) / 2;
+  if (el && el.isConnected) {
+    const r = el.getBoundingClientRect();
+    left = clamp(r.left, 8, vw - w - 8);
+    if (r.bottom + 8 + h < vh - 8 && r.bottom > 60) top = r.bottom + 8;
+    else if (r.top - 8 - h > 60) top = r.top - 8 - h;
+    else top = clamp(r.top + 12, 70, vh - h - 8);
+  }
+  cpopEl.style.left = left + "px"; cpopEl.style.top = top + "px";
+}
+function closeCommentPopover(silent) {
+  if (!cpopEl || cpopEl.hidden) return;
+  const ta = document.getElementById("cp-text");
+  if (ta) transient.fbDraft = ta.value;
+  cpopEl.hidden = true;
+  const scrim = document.getElementById("cpop-scrim"); if (scrim) scrim.hidden = true;
+  document.querySelectorAll(".fb-selected").forEach((x) => x.classList.remove("fb-selected"));
+  transient.fbTarget = null; transient.cpopFor = null;
+  if (!silent && pick.opener && pick.opener.isConnected) pick.opener.focus({ preventScroll: true });
+}
+function saveComment() {
+  const ta = document.getElementById("cp-text"), text = ta ? ta.value.trim() : "";
+  if (!text) { ta && ta.focus(); return; }
+  addFeedback(text);
+  transient.fbDraft = ""; transient.fbType = "comment";
+  closeCommentPopover();
+  renderHeader();
+  toast(`Comment saved · ${state.feedback.length} total`);
+}
+
+/* ---------------------------------------------------------------- Explain markers */
+let explainTimer = null, pinnedTip = null;
+function drawExplain() {
+  const host = layer("explain-layer", "explain-layer");
+  host.innerHTML = "";
+  if (!tipsOn()) { hideTip(); pinnedTip = null; return; }
+  const seen = new Set(), sx = window.scrollX, sy = window.scrollY;
+  document.querySelectorAll("#main [data-tip]").forEach((el) => {
+    const k = el.dataset.tip;
+    if (!EXPLAIN_KEYS.includes(k) || seen.has(k)) return;
+    const r = el.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    const c = tipContent(el);
+    if (!c) return;
+    seen.add(k);
+    const b = document.createElement("button");
+    b.className = "explain-dot"; b.type = "button"; b.textContent = "?";
+    b.setAttribute("aria-label", `Explain: ${c.title}`);
+    b.style.left = Math.round(Math.min(r.right + sx - 10, document.documentElement.clientWidth + sx - 20)) + "px";
+    b.style.top = Math.round(r.top + sy - 8) + "px";
+    b._target = el;
+    b.addEventListener("mouseenter", () => { if (!pinnedTip) showTip(el); });
+    b.addEventListener("mouseleave", () => { if (!pinnedTip) hideTip(); });
+    b.addEventListener("click", (e) => { e.stopPropagation(); if (pinnedTip === el) { pinnedTip = null; hideTip(); } else { pinnedTip = el; showTip(el); } });
+    host.appendChild(b);
+  });
+}
+function scheduleExplain() { if (!tipsOn()) return; cancelAnimationFrame(explainTimer); explainTimer = requestAnimationFrame(drawExplain); }
+window.addEventListener("resize", () => { scheduleExplain(); positionPopover(); });
+document.addEventListener("scroll", (e) => { if (e.target !== document && tipsOn()) scheduleExplain(); }, true);
+document.addEventListener("click", (e) => { if (pinnedTip && !(e.target.closest && e.target.closest(".explain-dot, .tip"))) { pinnedTip = null; hideTip(); } });
+function toggleExplain() {
+  ui.explain = !ui.explain; save();
+  renderHeader(); drawExplain();
+  toast(ui.explain ? "Explain on: select a “?” for what that part does" : "Explain off");
+}
+
+/* ---------------------------------------------------------------- menus and sheets */
+function closeMenus() {
+  if (!transient.menu) return;
+  transient.menu = null;
+  const m = document.getElementById("menu-pop"); if (m) m.hidden = true;
+  const b = document.getElementById("guide-btn"); if (b) b.setAttribute("aria-expanded", "false");
+}
+function guideMenuItems(phone) {
+  return `<button role="menuitem" data-act="guide-open">Guide checklist <span class="pill">${tryDone()}/${TRY_TASKS.length}</span></button>
+    <button role="menuitem" data-act="open-dialog" data-v="how-grades">How grades work</button>
+    <button role="menuitem" data-act="about-open">About this screen</button>
+    <div class="menu-group" role="group" aria-label="Sample teacher"><span class="tiny muted">Sample teacher</span>
+      <div class="seg">${Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => `<button data-act="profile" data-v="${k}" aria-pressed="${PROFILE_ID === k}">${v}</button>`).join("")}</div></div>
+    ${phone ? `<button role="menuitemcheckbox" aria-checked="${!!ui.explain}" data-act="toggle-explain">Explain markers: ${ui.explain ? "on" : "off"}</button>` : ""}
+    <button role="menuitemcheckbox" aria-checked="${isResearch()}" data-act="toggle-research">Show research details: ${isResearch() ? "on" : "off"}</button>
+    <hr>
+    <button role="menuitem" class="danger" data-act="banner-reset">Reset demo…</button>`;
+}
+function openGuideMenu(btn) {
+  if (transient.menu === "guide") { closeMenus(); return; }
+  transient.menu = "guide";
+  const m = layer("menu-pop", "menu-pop-panel");
+  m.setAttribute("role", "menu"); m.setAttribute("aria-label", "Guide");
+  m.innerHTML = guideMenuItems(false);
+  m.hidden = false;
+  const r = btn.getBoundingClientRect();
+  m.style.top = r.bottom + 6 + "px";
+  m.style.left = Math.max(8, Math.min(r.right - m.offsetWidth, window.innerWidth - m.offsetWidth - 8)) + "px";
+  btn.setAttribute("aria-expanded", "true");
+  m.querySelector("button")?.focus();
+}
+document.addEventListener("click", (e) => {
+  if (transient.menu && !(e.target.closest && e.target.closest("#menu-pop, #guide-btn"))) closeMenus();
+}, true);
+
+function openSheet(name) { closeMenus(); transient.sheetOpener = document.activeElement; transient.sheet = name; renderSheet(); }
+function closeSheet() {
+  if (!transient.sheet) return;
+  transient.sheet = null; renderSheet();
+  if (transient.sheetOpener && transient.sheetOpener.isConnected) transient.sheetOpener.focus({ preventScroll: true });
+}
+function renderSheet() {
+  const host = layer("sheet-host");
+  if (!transient.sheet) { host.innerHTML = ""; return; }
+  const side = transient.sheet === "about" && !isPhone();
+  const title = transient.sheet === "about" ? `About this screen: ${VIEW_GUIDE[ui.tab]?.name || ""}` : `Guide · ${tryDone()} of ${TRY_TASKS.length}`;
+  const body = transient.sheet === "about" ? aboutHtml() : `${guideListHtml()}<div class="sheet-menu" role="menu" aria-label="Guide menu">${guideMenuItems(true)}</div>`;
+  host.innerHTML = `<div class="sheet-scrim" data-act="sheet-close"></div>
+    <aside class="sheet ${side ? "side" : "bottom"}" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+      <div class="sheet-head"><h3 id="sheet-title">${esc(title)}</h3><button class="btn icon ghost" data-act="sheet-close" aria-label="Close">${ICON.close}</button></div>
+      <div class="sheet-body">${body}</div></aside>`;
+  host.querySelector(".sheet button")?.focus({ preventScroll: true });
+}
+
+/* ---------------------------------------------------------------- About this screen */
+function allTipKeysHere() {
+  const found = new Map();
+  document.querySelectorAll("#main [data-tip], #overlay [data-tip]").forEach((el) => { if (!found.has(el.dataset.tip)) found.set(el.dataset.tip, el); });
+  return found;
+}
+function tipBody(key, el) {
+  const fn = TIPS[key];
+  if (!fn) return null;
+  const st = studentById(ui.studentId) || roster(`all-${ui.semester}`)[0];
+  const tries = el ? [[el.dataset.ta, el.dataset.tb]] : [];
+  const a0 = state.assessments.find((x) => (x.sections || []).includes(ui.sectionId) && x.comps.includes(ui.compId)) || state.assessments[0];
+  tries.push([undefined, undefined], [st && st.id, ui.compId], [ui.compId, undefined], [ui.sectionId, undefined], [st && `${st.id}|${ui.compId}`, undefined],
+    [ui.tab, undefined], ["3", undefined], [`${ui.sectionId}|${ui.compId}`, undefined], [st && st.id, a0 && `${a0.id}|${a0.comps[0]}`]);
+  for (const [a, b] of tries) { try { const c = fn(a, b); if (c && c.title) return c; } catch (e) { /* try the next argument shape */ } }
+  return null;
+}
+function aboutHtml() {
+  const g = VIEW_GUIDE[ui.tab];
+  const here = allTipKeysHere();
+  const acc = (entries) => entries.map(([k, c]) => `<details class="disclose guide"><summary>${esc(c.title)}</summary><div class="guide-body">${c.body}</div></details>`).join("");
+  const onScreen = [...here.entries()].map(([k, el]) => [k, tipBody(k, el)]).filter(([, c]) => c);
+  const elsewhere = Object.keys(TIPS).filter((k) => !here.has(k)).map((k) => [k, tipBody(k, null)]).filter(([, c]) => c);
+  const a = smtAudit();
+  return `<p>${esc(g.purpose)}</p>
+    <h4>How it works</h4><ul class="small">${g.how.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+    <h4>How it saves teacher time</h4><ul class="small">${g.saves.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+    <h4>What to look for</h4><p class="small">${esc(g.lens)}</p>
+    <h4>All explanations on this screen (${onScreen.length})</h4><div class="stack" style="gap:6px">${acc(onScreen)}</div>
+    <details class="disclose"><summary>Explanations from other screens (${elsewhere.length})</summary><div class="stack" style="gap:6px;margin-top:8px">${acc(elsewhere)}</div></details>
+    <h4>Where the workload drops</h4>
+    <div class="stack" style="gap:8px">${WORKLOAD.map(([x, y]) => `<div class="wl"><div class="tiny" style="color:var(--ink-2);text-decoration:line-through">${esc(x)}</div><p class="small">${esc(y)}</p></div>`).join("")}</div>
+    <p class="tiny muted" style="margin-top:12px">Study integrity: ${a.n - a.bad.length} of ${a.n} SMT codes valid · ${state.exportLog.length} export${state.exportLog.length === 1 ? "" : "s"} logged · grading policy v${policyVersionNow()}. Details in Settings › Study data.</p>`;
+}
+
+/* ---------------------------------------------------------------- Guide dock */
+function guideListHtml(compact) {
+  const next = TRY_TASKS.find((t) => !state.tryThis[t.id]);
+  return `<ol class="guide-list ${compact ? "compact" : ""}">${TRY_TASKS.map((t) => `<li class="${state.tryThis[t.id] ? "done" : ""}">
+      <span class="gl-row"><label class="check"><input type="checkbox" data-act="try-toggle" data-v="${t.id}" ${state.tryThis[t.id] ? "checked" : ""}> <b>${esc(t.title)}</b></label>
+      <button class="linklike tiny" data-act="guide-show" data-v="${t.id}" aria-label="Show me: ${esc(t.title)}">Show me</button></span>
+      ${!compact || t === next ? `<span class="tiny muted gl-how">${esc(t.how)}</span>` : ""}</li>`).join("")}</ol>
+    <p class="tiny muted">Tip: use <b>Comment</b> anywhere, anytime.${compact ? ` <button class="linklike tiny" data-act="guide-all">Show next only</button>` : ""}</p>`;
+}
+function dockNext() {
+  const next = TRY_TASKS.find((t) => !state.tryThis[t.id]);
+  if (!next) return `<p class="small">All five done. Thank you! <button class="linklike small" data-act="guide-all">See the list</button></p>`;
+  return `<div class="gd-next"><div class="tiny muted">Next</div><b>${esc(next.title)}</b><span class="small muted">${esc(next.how)}</span>
+    <div class="row tight"><button class="btn sm primary" data-act="guide-show" data-v="${next.id}">Show me</button><button class="linklike tiny" data-act="guide-all">All tasks</button></div></div>`;
+}
+function renderGuideDock() {
+  const el = layer("guide-dock", "guide-dock");
+  if (!PREVIEW || !state.welcomed || ui.guide === "hidden") { el.hidden = true; return; }
+  el.hidden = false;
+  const open = ui.guide === "open";
+  el.classList.toggle("open", open);
+  el.innerHTML = open
+    ? `<div class="gd-head"><b>Guide · ${tryDone()} of ${TRY_TASKS.length}</b><button class="btn icon ghost sm" data-act="guide-collapse" aria-label="Collapse the guide">▾</button></div>
+       <div class="gd-bar" aria-hidden="true"><span style="width:${(tryDone() / TRY_TASKS.length) * 100}%"></span></div>
+       ${ui.guideAll ? guideListHtml(true) : dockNext()}`
+    : `<button class="gd-pill" data-act="guide-open" aria-label="Open the guide, ${tryDone()} of ${TRY_TASKS.length} done">Guide ${tryDone()}/${TRY_TASKS.length} ▴</button>`;
+}
+function highlight(el) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: state.settings.reduceMotion ? "auto" : "smooth", block: "center" });
+  el.classList.remove("pulse"); void el.offsetWidth; el.classList.add("pulse");
+  setTimeout(() => el.classList.remove("pulse"), 2100);
+}
+function guideShow(id) {
+  closeSheet(); closeMenus();
+  if (ui.guide === "open") { ui.guide = "collapsed"; save(); renderGuideDock(); }
+  const task = TRY_TASKS.find((t) => t.id === id);
+  if (task.dialog) { openFeedbackish(task.dialog); return; }
+  if (id === "export") { ui.gbMode = "ptp"; ui.gbSub = "export"; }
+  setTab(task.go);
+  requestAnimationFrame(() => {
+    let target = null;
+    if (id === "score") target = [...document.querySelectorAll('tr[data-row="score"]')].find((r) => !r.querySelector('.sb[aria-pressed="true"]')) || document.querySelector('tr[data-row="score"]');
+    if (id === "student") target = document.getElementById("student-list");
+    if (id === "export") target = document.getElementById("send-to-ps")?.parentElement;
+    highlight(target);
+    if (id === "score" && target) target.focus({ preventScroll: true });
+  });
+}
+
+/* ---------------------------------------------------------------- saved-comment markers in Send feedback */
+function drawCommentDots(on) {
+  const host = layer("dot-layer", "dot-layer");
+  host.innerHTML = "";
+  if (!on) return;
+  let n = 0;
+  Object.keys(VIEW_NAMES).forEach((v) => state.feedback.filter((f) => f.view === v).forEach((f) => {
+    n++;
+    if (v !== ui.tab || f.key === "general" || f.key === "view") return;
+    let sel = `[data-tip="${CSS.escape(f.key)}"]`;
+    const el = document.querySelector(`#main ${sel}`);
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const d = document.createElement("span");
+    d.className = "cdot"; d.textContent = n; d.setAttribute("aria-hidden", "true");
+    d.style.left = r.left + "px"; d.style.top = r.top + "px";
+    host.appendChild(d);
+  }));
+}
+
+/* ---------------------------------------------------------------- other dialogs */
+function resetConfirmDialog() {
+  return dlg("rc", "Reset the demo?", `<p>Reset clears your scores, comments, and answers. Continue?</p><p class="small muted">The sample classes, grading settings, and Guide go back to the start. Display settings stay.</p>`,
+    `<button class="btn ghost" data-act="close-dialog">Cancel</button><button class="btn danger" data-act="reset-confirmed">Reset demo</button>`);
+}
+function fictInfo(btn) {
+  const m = layer("menu-pop", "menu-pop-panel");
+  transient.menu = "fict";
+  m.setAttribute("role", "note");
+  m.innerHTML = `<p class="small"><b>${esc(FICTION_WARNING)}</b></p><p class="tiny muted">SMT Mastery Dashboard v${APP_VERSION} preview. Nothing you type leaves this browser until you send it, and the app uses no analytics.</p>`;
+  m.hidden = false;
+  const r = btn.getBoundingClientRect();
+  m.style.top = r.bottom + 6 + "px"; m.style.left = Math.max(8, Math.min(r.left, window.innerWidth - m.offsetWidth - 8)) + "px";
+}
+
+/* ---------------------------------------------------------------- events */
+function v471Click(act, d, t) {
+  switch (act) {
+    case "comment-start": startPick(t); return true;
+    case "comment-cancel": stopPick(); closeCommentPopover(); return true;
+    case "comment-whole": stopPick(); openCommentPopover(null); return true;
+    case "comment-save": saveComment(); return true;
+    case "cp-type": transient.fbType = d.v; cpopEl.querySelectorAll("[data-act=cp-type]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === d.v)); return true;
+    case "toggle-explain": closeMenus(); toggleExplain(); if (transient.sheet === "guide") renderSheet(); return true;
+    case "guide-menu": openGuideMenu(t); return true;
+    case "guide-sheet": openSheet("guide"); return true;
+    case "guide-open": closeMenus(); if (isPhone()) openSheet("guide"); else { ui.guide = "open"; save(); renderGuideDock(); document.querySelector("#guide-dock button")?.focus(); } return true;
+    case "guide-collapse": ui.guide = "collapsed"; save(); renderGuideDock(); document.querySelector("#guide-dock .gd-pill")?.focus(); return true;
+    case "guide-show": guideShow(d.v); return true;
+    case "guide-all": ui.guideAll = !ui.guideAll; save(); renderGuideDock(); return true;
+    case "about-open": openSheet("about"); return true;
+    case "sheet-close": closeSheet(); return true;
+    case "fict-info": if (transient.menu === "fict") closeMenus(); else fictInfo(t); return true;
+  }
+  return false;
+}
+/* Returns true if the key was handled. Scoring keys are never blocked by these tools. */
+function v471Key(e) {
+  if (e.key === "Escape") {
+    if (pick.on) { e.preventDefault(); stopPick(); pick.opener?.focus?.({ preventScroll: true }); return true; }
+    if (cpopEl && !cpopEl.hidden) { e.preventDefault(); closeCommentPopover(); return true; }
+    if (transient.menu) { e.preventDefault(); closeMenus(); document.getElementById("guide-btn")?.focus(); return true; }
+    if (transient.sheet) { e.preventDefault(); closeSheet(); return true; }
+    if (pinnedTip) { pinnedTip = null; hideTip(); return true; }
+    return false;
+  }
+  if (e.key === "Tab") {
+    if (cpopEl && !cpopEl.hidden) { trapIn(e, cpopEl); return true; }
+    const sh = document.querySelector("#sheet-host .sheet"); if (sh) { trapIn(e, sh); return true; }
+    const mp = document.getElementById("menu-pop"); if (transient.menu && mp && !mp.hidden) { trapIn(e, mp); return true; }
+    return false;
+  }
+  if (e.target.id === "cp-text" && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); saveComment(); return true; }
+  const tag = (e.target.tagName || "").toLowerCase();
+  if (["input", "select", "textarea"].includes(tag) || e.metaKey || e.ctrlKey || e.altKey || transient.dialog || transient.drawer) return false;
+  if (!PREVIEW) return false;
+  if (e.key === "c" || e.key === "C") { e.preventDefault(); startPick(document.activeElement); return true; }
+  if (e.key === "e" || e.key === "E") { e.preventDefault(); toggleExplain(); return true; }
+  return false;
+}
+function afterRender() {
+  closeMenus();
+  const bb = layer("bottom-bar-host"); bb.innerHTML = bottomBar();
+  renderGuideDock();
+  drawExplain();
+  if (cpopEl && !cpopEl.hidden) { markSelected(); positionPopover(); }
+  if (transient.sheet) renderSheet();
 }
 
 "use strict";
@@ -3965,8 +4606,8 @@ function levelContext(sid, cid) {
 const TIPS = {
   /* header */
   "tab": (t) => ({ title: `${TABS.find((x) => x.id === t).label} view`, body: P(VIEW_GUIDE[t].purpose) }),
-  "semester": () => ({ title: "Semester switch", body: P("Courses last one semester. S1 (Aug 24–Jan 22) and S2 (Jan 25–Jun 15) have different classes and students. Every view follows this switch.") }),
-  "mode": () => ({ title: "Reviewer view switch (keys R and T)", body: P("<b>Off (Teacher view)</b>: use the dashboard as a teacher would.") + P("<b>On (Reviewer view)</b>: hover anything for an explanation, click any part of the page to leave a comment in the side panel, and switch between the physics, math, and English sample teachers. Your comments go out with Send feedback.") }),
+  "semester": () => ({ title: "Semester", body: P("Courses last one semester. Semester 1 (Aug 24–Jan 22) and Semester 2 (Jan 25–Jun 15) have different classes and students. Every view follows the semester chosen here or in any class picker, where the other semester's classes are listed too.") }),
+  "mode": () => ({ title: "Research details", body: P("Changes only what the screens show: the averaging comparison everywhere, every correction in a student's history, pseudonyms (if turned on), hidden support details, and research columns. The dashboard stays fully usable.") }),
   "legend": () => ({ title: "Mastery levels", body: P("1 Not yet · 2 Approaching · 3 Meets the standard (proficient) · 4 Exceeds. Gray means no evidence yet. Levels always show their number, so color is never the only cue.") }),
   /* today */
   "page-today": () => ({ title: "Today overview", body: P("Every class in the selected semester, with the standards taught so far. Missing evidence is reported as “not yet assessed,” never as low mastery.") }),
@@ -3991,7 +4632,7 @@ const TIPS = {
   "new-assessment": () => ({ title: "New assessment", body: P("Creates an assessment event (name, date, method, standards, classes). Scores entered against it replace each other instead of piling up as extra attempts.") }),
   "scored": () => ({ title: "Scoring progress", body: P("How many students in this class already have a score on the selected assessment for this standard.") }),
   "rubric": (cid) => ({ title: "Rubric", body: P(`The four level descriptors for ${COMP[cid].standard}. They stay on screen while scoring so levels are applied consistently.`) }),
-  "kbd": () => ({ title: "Keyboard scoring", body: P("Select a row, press 1–4 to score, 0 to clear, arrows to move, F to flag a retry. Outside a row, T and R switch between Teacher and Reviewer view.") }),
+  "kbd": () => ({ title: "Keyboard scoring", body: P("Select a row, press 1–4 to score, 0 to clear, arrows to move, F to flag a retry. Outside a row, C starts a comment and E toggles Explain.") }),
   "th-current": () => ({ title: "Current level", body: P(`The level the dashboard reports right now, from all evidence on this standard. Under the current rule, ${ruleSentence()}.`) }),
   "th-score": () => ({ title: "Score on this assessment", body: P("Click a level (or press 1–4) to save it for this assessment. A highlighted button is the saved score; choosing another level replaces it.") }),
   "th-attempts": () => ({ title: "Attempts", body: P("How many current pieces of evidence exist for this standard. Corrections and voided scores aren't counted.") }),
@@ -4075,6 +4716,11 @@ const TIPS = {
   "histogram": () => ({ title: "Distribution of differences", body: P("How many students' grades differ, and by how much, between the current rule and averaging. Green: averaging would have lowered the grade. Red: recent evidence was weaker than earlier evidence.") }),
   "audit-row": (sid) => { const m = metrics(studentById(sid)); return { title: nameOf(studentById(sid)), body: P(`Averaged: ${m.legacyLetter} ${m.legacyPct}% · Current rule: ${m.policyLetter} ${m.policyPct}% · Difference ${m.delta > 0 ? "+" : ""}${m.delta} points.`) }; },
   "research-export": () => ({ title: "Research export", body: P("One row per attempt with pseudonyms instead of names and student numbers. Pseudonyms are salted SHA-256 hashes; the salt stays in this browser.") }),
+  "export-log": () => ({ title: "Export log and reproduction", body: P("Every download is logged with the app version, grading policy version, settings, and a SHA-256 fingerprint. “Check” rebuilds a logged file from the evidence recorded by then and confirms it matches exactly, so any reported grade can be reproduced.") }),
+  "smt-check": () => ({ title: "SMT code check", body: P("Every current level is encoded as a 33-character SMT code and checked: length 33, hyphen at position 15, a real date, and method P, A, or E. Codes that fail are left out of exports. The codebook download documents every code in use.") }),
+  "retry-summary": () => ({ title: "Retries to handle first", body: P("The five most urgent retry flags: students still at Level 1 first, then the flags that have waited longest. Open the full queue to search, filter, and sort every retry.") }),
+  "gb-subtabs": () => ({ title: "Gradebook sections", body: P("Scoresheet shows every student's current grade and each assessment's score, like PowerTeacher Pro. Assessments lists everything given in this class. Send to PowerSchool builds the import files and summaries.") }),
+  "class-subtabs": () => ({ title: "Class sections", body: P("Overview shows where the class stands, standards not yet assessed, and students for MTSS review. Groups builds small groups by standard with intervention plans. Heatmap shows every student and standard at once.") }),
   "summary": () => ({ title: "Standards summary", body: P("Current level and percent per student and standard, or one course row per student. For review and comparison with PowerTeacher Pro's own calculation.") })
 };
 function tipContent(el) {
@@ -4089,7 +4735,7 @@ function showTip(el) {
   const c = tipContent(el);
   if (!c) return;
   if (!tipEl) { tipEl = document.createElement("div"); tipEl.className = "tip"; tipEl.setAttribute("role", "tooltip"); document.body.appendChild(tipEl); }
-  tipEl.innerHTML = `<div class="tip-title">${esc(c.title)}</div><div class="tip-body">${c.body}</div><div class="tip-hint">Click to leave feedback on this</div>`;
+  tipEl.innerHTML = `<div class="tip-title">${esc(c.title)}</div><div class="tip-body">${c.body}</div>`;
   tipEl.style.display = "block";
   const r = el.getBoundingClientRect(), w = tipEl.offsetWidth, h = tipEl.offsetHeight;
   let left = clamp(r.left + r.width / 2 - w / 2, 8, window.innerWidth - w - 8);
@@ -4099,15 +4745,8 @@ function showTip(el) {
   tipFor = el;
 }
 function hideTip() { if (tipEl) tipEl.style.display = "none"; tipFor = null; }
-const tipsOn = () => isResearch() && state.settings.research.tips;
-document.addEventListener("mouseover", (e) => {
-  if (!tipsOn()) return;
-  const el = e.target.closest && e.target.closest("[data-tip]");
-  if (!el || el.closest("#margin") || el.closest(".dialog")) { if (tipFor && !tipFor.contains(e.target)) hideTip(); return; }
-  if (el !== tipFor) showTip(el);
-});
-document.addEventListener("mouseout", (e) => { if (tipFor && !(e.relatedTarget && tipFor.contains(e.relatedTarget))) hideTip(); });
-document.addEventListener("focusin", (e) => { if (tipsOn() && e.target.matches && e.target.matches("[data-tip]")) showTip(e.target); });
+/* Explanations show only through Explain markers ("?") and the About this screen sheet; nothing explains itself on hover. */
+const tipsOn = () => !!(state.ui && state.ui.explain);
 window.addEventListener("scroll", hideTip, true);
 
 /* ---------- feedback mode ---------- */
@@ -4142,19 +4781,6 @@ function fbTargetHtml() {
   const t = transient.fbTarget || fbTargetFrom(null);
   return `<div class="tiny" style="color:var(--ink-2)">Commenting on</div><div class="fb-label">${esc(t.label)}</div><div class="tiny faint">${esc(VIEW_NAMES[t.view])} · ${esc(t.context)}</div>`;
 }
-// In Reviewer view, clicks inside the page pick a feedback target instead of operating the dashboard.
-function captureFeedbackClick(e) {
-  if (!isResearch()) return;
-  const inMain = e.target.closest && e.target.closest("#main");
-  if (!inMain) return;
-  e.preventDefault(); e.stopPropagation();
-  if (e.type !== "click") return;
-  hideTip();
-  selectFeedbackTarget(e.target.closest("[data-tip]"));
-}
-document.addEventListener("click", captureFeedbackClick, true);
-document.addEventListener("mousedown", (e) => { if (isResearch() && e.target.closest && e.target.closest("#main") && e.target.closest("select, input, textarea, summary")) e.preventDefault(); }, true);
-
 function addFeedback(text) {
   if (transient.fbTarget && transient.fbTarget.view !== ui.tab) transient.fbTarget = null;
   const t = transient.fbTarget || fbTargetFrom(null);
@@ -4270,7 +4896,7 @@ async function saveFile(filename, data, label) {
 
 /* ---------- file naming ---------- */
 const slugify = (s) => s.normalize("NFKD").replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-").slice(0, 48);
-function ptpFilename(sectionId, a) { return `PTP_${sectionId}_${a.date}_${slugify(a.title)}_${exportTag()}_${APP_TAG}.csv`; }
+function ptpFilename(sectionId, a) { return `PTP_${sectionId}_${a.date}_${slugify(a.title)}_${exportTag()}_${tagNow()}.csv`; }
 
 /* ---------- minimal ZIP writer (stored, no compression; UTF-8 names) ---------- */
 const CRC_T = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
@@ -4320,7 +4946,7 @@ function importStepsText(sectionId, items) {
   const t = EXPORT_TYPES[ex.scoreType].file;
   return [
     `PowerTeacher Pro score import: ${sec.period} ${sec.name}`,
-    `Generated ${genStamp().replace("T", " ")} by the SMT Mastery Dashboard v${APP_VERSION} · grading policy v${policyVersionNow()} · score type ${exportTypeLabel(ex)}`,
+    `Generated ${genStamp().replace("T", " ")} by the SMT Mastery Dashboard v${verNow()} · grading policy v${policyVersionNow()} · score type ${exportTypeLabel(ex)}`,
     "",
     "Files in this folder (one per assessment):",
     ...items.map(({ a, x }) => `  ${ptpFilename(sectionId, a)}  ->  assessment "${a.title}" (${a.date}), ${x.rows.length} students, columns: ${x.comps.map((c) => c.standard).join(", ")}`),
@@ -4345,18 +4971,18 @@ const EXPORTS = {
   bundle: { label: "Import files", make: ({ sectionId, term }) => {
     const items = ptpTermAssessments(sectionId, term);
     if (!items.length) return null;
-    const folder = `PTP_${sectionId}_${term}_${VIEW_DATE}_${APP_TAG}`;
+    const folder = `PTP_${sectionId}_${term}_${VIEW_DATE}_${tagNow()}`;
     const files = items.map(({ a, x }) => ({ name: `${folder}/${ptpFilename(sectionId, a)}`, text: x.text }));
     files.push({ name: `${folder}/IMPORT-STEPS.txt`, text: importStepsText(sectionId, items) });
     return { filename: `${folder}.zip`, data: makeZip(files), digest: files.map((f) => `${f.name}\n${f.text}`).join("\n--\n"), count: items.length };
   } },
-  summary: { label: "Summary", make: ({ sectionId, format }) => ({ filename: `SMT_${sectionId}_${format === "course" ? "course" : "standards"}_summary_${VIEW_DATE}_${APP_TAG}_pv${policyVersionNow()}.csv`, data: crlf(sisCsv(sectionId, format)) }) },
-  research: { label: "Research file", make: ({ semester }) => ({ filename: `SMT_research_${semester}_${VIEW_DATE}_${APP_TAG}_pv${policyVersionNow()}.csv`, data: crlf(researchCsv(`all-${semester}`)) }) },
-  clr: { label: "Credential", make: ({ sid }) => { const st = studentById(sid); return st ? { filename: `CLR_${slugify(nameOf(st))}_${VIEW_DATE}_${APP_TAG}.json`, data: JSON.stringify(buildClr(st), null, 2) } : null; } },
+  summary: { label: "Summary", make: ({ sectionId, format }) => ({ filename: `SMT_${sectionId}_${format === "course" ? "course" : "standards"}_summary_${VIEW_DATE}_${tagNow()}_pv${policyVersionNow()}.csv`, data: crlf(sisCsv(sectionId, format)) }) },
+  research: { label: "Research file", make: ({ semester }) => ({ filename: `SMT_research_${semester}_${VIEW_DATE}_${tagNow()}_pv${policyVersionNow()}.csv`, data: crlf(researchCsv(`all-${semester}`)) }) },
+  clr: { label: "Credential", make: ({ sid }) => { const st = studentById(sid); return st ? { filename: `CLR_${slugify(nameOf(st))}_${VIEW_DATE}_${tagNow()}.json`, data: JSON.stringify(buildClr(st), null, 2) } : null; } },
   brief: { label: "Intervention plan", make: ({ sectionId, cid }) => ({ filename: `Intervention_plan_${sectionId}_${slugify(COMP[cid].standard)}_${VIEW_DATE}.md`, data: lessonBrief(sectionId, cid) }) },
-  codebookMd: { label: "SMT codebook", make: () => ({ filename: `SMT_codebook_${VIEW_DATE}_${APP_TAG}.md`, data: codebookMd() }) },
-  codebookCsv: { label: "SMT codebook", make: () => ({ filename: `SMT_codebook_${VIEW_DATE}_${APP_TAG}.csv`, data: crlf(codebookCsv()) }) },
-  backup: { label: "Backup", reproducible: false, make: () => ({ filename: `SMT_backup_${state.workspace}_${VIEW_DATE}_${APP_TAG}.json`, data: JSON.stringify({ ...state, exportedAt: genStamp(), appVersion: APP_VERSION, schema: SCHEMA }, null, 1) }) }
+  codebookMd: { label: "SMT codebook", make: () => ({ filename: `SMT_codebook_${VIEW_DATE}_${tagNow()}.md`, data: codebookMd() }) },
+  codebookCsv: { label: "SMT codebook", make: () => ({ filename: `SMT_codebook_${VIEW_DATE}_${tagNow()}.csv`, data: crlf(codebookCsv()) }) },
+  backup: { label: "Backup", reproducible: false, make: () => ({ filename: `SMT_backup_${state.workspace}_${VIEW_DATE}_${tagNow()}.json`, data: JSON.stringify({ ...state, exportedAt: genStamp(), appVersion: APP_VERSION, schema: SCHEMA }, null, 1) }) }
 };
 const settingsSnap = () => structuredClone({ export: state.settings.export, district: state.settings.district, research: state.settings.research });
 async function runExport(kind, args = {}, emptyMsg = "There's nothing to export yet.") {
@@ -4380,11 +5006,12 @@ function reproduceExport(entry) {
   const saved = { district: state.settings.district, research: state.settings.research };
   if (entry.settings) { state.settings.district = structuredClone(entry.settings.district); state.settings.research = structuredClone(entry.settings.research); }
   try {
+    GEN_VERSION = entry.appVersion || null;
     return withSnapshot({ ts: entry.ts, policyVersion: entry.policyVersion, date: entry.date, export: entry.settings && entry.settings.export }, () => {
       const out = EXPORTS[entry.kind].make(entry.args);
       return out ? { ...out, digestNow: sha256Hex(out.digest ?? out.data) } : null;
     });
-  } finally { state.settings.district = saved.district; state.settings.research = saved.research; invalidate(); }
+  } finally { GEN_VERSION = null; state.settings.district = saved.district; state.settings.research = saved.research; invalidate(); }
 }
 function exportPtpCurrent() { runExport("ptp", { sectionId: ui.sectionId, aid: ui.ptpAssessment }, "There are no scores to export for this assessment."); }
 function exportPtpBundle() { const term = ui.ptpBundleTerm || termFor(TODAY); runExport("bundle", { sectionId: ui.sectionId, term }, `No scored assessments in ${term} for this class.`); }
@@ -4441,14 +5068,23 @@ function render() {
   renderHeader();
   document.getElementById("main").innerHTML = (VIEWS[ui.tab] || viewToday)();
   if (ui.tab === "students") tryMark("student");
-  renderMargin();
   renderDrawer();
   renderDialog();
   restoreFocus(k);
-  if (isResearch()) markSelected(); else if (typeof hideTip === "function") hideTip();
+  afterRender();
   save();
 }
+function setSemester(v, sectionId) {
+  if (ui.semester === v) { if (sectionId) { ui.sectionId = sectionId; render(); } return; }
+  ui.semester = v;
+  const first = SECTIONS.find((s) => s.semester === v);
+  ui.sectionId = sectionId || first.id; ui.assessmentId = null; ui.ptpAssessment = null; ui.ptpBundleTerm = null; ui.studentSection = "all";
+  ui.studentId = roster(`all-${v}`)[0].id; transient.drawer = null; ui.todayView = "home";
+  if (ui.rq) ui.rq.cls = "all";
+  render(); toast(`Showing ${semName(v)} classes`);
+}
 function setTab(t) {
+  if (t === "today" && ui.tab !== "today") ui.todayView = "home";
   ui.tab = t;
   if (location.hash.slice(1) !== t) { try { location.hash = t; } catch (e) { /* hash unavailable */ } }
   render();
@@ -4654,6 +5290,7 @@ function onClick(e) {
   if (!t) return;
   const act = t.dataset.act, d = t.dataset;
   if (t.tagName === "DETAILS" || t.tagName === "SELECT" || (t.tagName === "INPUT" && t.type !== "button")) return;
+  if (v471Click(act, d, t)) return;
   { const r = v47Click(act, d, t); if (r) return; }
   switch (act) {
     case "tab": setTab(d.tab); break;
@@ -4682,10 +5319,13 @@ function onClick(e) {
       setTab(d.tab); break;
     case "comp": ui.compId = d.cid; ui.assessmentId = null; render(); break;
     case "profile": switchProfile(d.v); break;
-    case "rq-card":
-      ui.rq.cls = ui.rq.cls === d.sec ? "all" : d.sec; render();
-      document.getElementById("retry-queue")?.scrollIntoView({ behavior: state.settings.reduceMotion ? "auto" : "smooth", block: "start" }); break;
+    case "rq-card": ui.rq.cls = d.sec; ui.todayView = "queue"; render(); window.scrollTo(0, 0); break;
     case "rq-all": ui.rq.cls = "all"; render(); break;
+    case "rq-open": ui.todayView = "queue"; render(); window.scrollTo(0, 0); break;
+    case "rq-back": ui.todayView = "home"; render(); window.scrollTo(0, 0); break;
+    case "rq-chip": if (d.k === "q") ui.rq.q = ""; else ui.rq[d.k] = "all"; render(); break;
+    case "class-sub": ui.classSub = d.v; render(); break;
+    case "gb-sub": ui.gbSub = d.v; render(); break;
     case "add-class": openDialog("add-class"); break;
     case "remove-class": {
       if (t.dataset.armed !== "1") { t.dataset.armed = "1"; t.textContent = "Click again to remove"; return; }
@@ -4705,14 +5345,7 @@ function onClick(e) {
     case "hist-sample": importHistory(sampleHistoryRecord(studentById(ui.studentId)), null); break;
     case "hist-import": { const v = $("#hist-text").value.trim(); try { importHistory(JSON.parse(v), null); } catch (ex) { $("#hist-error").textContent = "That isn't valid JSON. Paste the whole file contents, starting with {."; } break; }
     case "hist-remove": state.history[ui.studentId] = (state.history[ui.studentId] || []).filter((h) => h.id !== d.v); save(); render(); break;
-    case "semester": {
-      if (ui.semester === d.v) break;
-      ui.semester = d.v;
-      const first = SECTIONS.find((s) => s.semester === d.v);
-      ui.sectionId = first.id; ui.assessmentId = null; ui.ptpAssessment = null; ui.ptpBundleTerm = null; ui.studentSection = "all";
-      ui.studentId = roster(`all-${d.v}`)[0].id; transient.drawer = null;
-      render(); toast(`${semName(d.v)} classes`); break;
-    }
+    case "semester": setSemester(d.v); break;
     case "go-plan": ui.sectionId = d.sec; transient.drawer = null; setTab("score"); openDialog("new-assessment"); break;
     case "new-assessment": openDialog("new-assessment"); break;
     case "open-settings": openDialog("settings"); break;
@@ -4762,7 +5395,7 @@ function onClick(e) {
       break;
     }
     case "settings-pane": ui.settingsPane = d.v; renderDialog(); restoreFocus({ act: "settings-pane", v: d.v }); break;
-    case "set": if (d.path === "__profile") { switchProfile(d.v); renderDialog(); break; } if (d.path === "mode") { setMode(d.v); renderDialog(); break; } setSetting(d.path, d.v); render(); break;
+    case "set": if (d.path === "__profile") { switchProfile(d.v); renderDialog(); break; } if (d.path === "__explain") { toggleExplain(); renderDialog(); break; } if (d.path === "mode") { setMode(d.v); renderDialog(); break; } setSetting(d.path, d.v); render(); break;
     case "new-salt": state.settings.privacy.researchSalt = randomSalt(); invalidate(); render(); toast("New research salt set. All research pseudonyms changed."); break;
     case "reset":
       if (t.dataset.armed !== "1") { t.dataset.armed = "1"; t.textContent = "Click again to reset"; return; }
@@ -4786,11 +5419,16 @@ function onClick(e) {
 }
 function onChange(e) {
   const t = e.target, d = t.dataset;
+  if (d.act === "semester-select") { setSemester(t.value); return; }
   if (v47Change(t)) return;
-  if (d.act === "section") { ui.sectionId = t.value; ui.assessmentId = null; render(); return; }
+  if (d.act === "section") { const s = SEC[t.value]; if (s && s.semester !== ui.semester) { setSemester(s.semester, s.id); return; } ui.sectionId = t.value; ui.assessmentId = null; render(); return; }
   if (d.act === "assessment") { ui.assessmentId = t.value; render(); return; }
   if (d.act === "habit") { setHabit(d.sid, t.value); toast(`Work habits: ${t.value} for ${nameOf(studentById(d.sid))}`); renderMargin(); return; }
-  if (d.act === "student-section") { ui.studentSection = t.value; render(); return; }
+  if (d.act === "student-section") {
+    if (t.value.startsWith("sem:")) { setSemester(t.value.slice(4)); return; }
+    const s = SEC[t.value]; if (s && s.semester !== ui.semester) { setSemester(s.semester); ui.studentSection = s.id; ui.studentId = roster(s.id)[0].id; render(); return; }
+    ui.studentSection = t.value; render(); return;
+  }
   if (d.act === "show-changes") { ui.showChanges = t.checked; renderDrawer(); return; }
   if (d.act === "show-upcoming") { ui.showUpcoming = t.checked; render(); return; }
   if (d.act === "ptp-assessment") { ui.ptpAssessment = t.value; render(); return; }
@@ -4805,6 +5443,7 @@ function onChange(e) {
   if (d.act === "ptp-bundle-term") { ui.ptpBundleTerm = t.value; render(); return; }
   if (d.act === "ptp-overall") { ui.ptpOverall = t.checked; render(); return; }
   if (d.act === "ptp-blank") { ui.ptpBlank = t.checked; render(); return; }
+  if (d.setting === "__explain") { if (!!ui.explain !== t.checked) toggleExplain(); return; }
   if (d.setting) { setSetting(d.setting, t.type === "checkbox" ? t.checked : t.value); render(); return; }
   if (t.closest("#anchors-form")) {
     const f = $("#anchors-form"), err = $("#anchor-error");
@@ -4957,13 +5596,14 @@ function importHistory(json, fileName) {
   save(); render(); toast(`Imported ${recs.length} results`);
 }
 /* Fresh start: demo classes, default grading policy, and the Try this checklist. Comments, choices, and display settings stay. */
-function resetDemo(profileId = PROFILE_ID) {
-  const keep = { notes: state.fieldNotes, fb: state.feedback, rv: state.reviewer, choices: state.choices, tel: state.telemetry };
+function resetDemo(profileId = PROFILE_ID, clearFeedback = false) {
+  const keep = { notes: state.fieldNotes, fb: clearFeedback ? [] : state.feedback, rv: state.reviewer, choices: clearFeedback ? {} : state.choices, tel: state.telemetry };
+  const keepUi = { explain: ui.explain, guide: ui.guide }, keepPath = clearFeedback ? undefined : state.fbPath;
   const disp = Object.fromEntries(["theme", "density", "fontScale", "cvd", "reduceMotion", "mode", "startTab", "columns", "research", "rubricOpen", "autoAdvance"].map((k) => [k, state.settings[k]]));
   state = freshState(profileId);
   Object.assign(state.settings, structuredClone(disp));
-  Object.assign(state, { fieldNotes: keep.notes, feedback: keep.fb, reviewer: keep.rv, choices: keep.choices, telemetry: keep.tel, welcomed: true });
-  state.ui = uiDefaults(); ui = state.ui;
+  Object.assign(state, { fieldNotes: keep.notes, feedback: keep.fb, reviewer: keep.rv, choices: keep.choices, telemetry: keep.tel, welcomed: true, fbPath: keepPath });
+  state.ui = { ...uiDefaults(), ...keepUi }; ui = state.ui;
   transient = { drawer: null, dialog: null, editing: null, lastFocus: null, fbTarget: null, fbType: "comment", fbDraft: "" };
   invalidate(); saveNow(); render(); toast(`Demo classes restored (${PROFILE.teacher.toLowerCase()} sample)`);
 }
@@ -4994,6 +5634,7 @@ function onInput(e) {
     ui.rq.q = e.target.value;
     const body = $("#rq-body"); if (body) body.innerHTML = retryBody();
     const cnt = $("#rq-count"); if (cnt) { const s = retryFiltered().length, t = retryItems().length; cnt.textContent = s === t ? `${t} waiting` : `${s} of ${t}`; }
+    const ch = $("#rq-chips"); if (ch) ch.innerHTML = rqChips();
     return;
   }
   if (e.target.id === "student-search") { ui.studentQuery = e.target.value; $("#student-list").innerHTML = studentList(); }
@@ -5061,6 +5702,7 @@ function trapFocus(e, container) {
   else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 }
 function onKey(e) {
+  if (v471Key(e)) return;
   if (e.key === "Escape") {
     if (transient.dialog) { e.preventDefault(); closeDialog(); return; }
     if (transient.drawer) { e.preventDefault(); closeDrawer(); return; }
@@ -5073,12 +5715,6 @@ function onKey(e) {
   if (e.target.id === "fb-text" && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submitFeedback(); return; }
   const tag = (e.target.tagName || "").toLowerCase();
   if (["input", "select", "textarea"].includes(tag) || e.metaKey || e.ctrlKey || e.altKey || transient.dialog) return;
-  if (e.key === "t" || e.key === "T" || e.key === "r" || e.key === "R") {
-    const mode = e.key.toLowerCase() === "t" ? "teacher" : "research";
-    if (state.settings.mode !== mode) { e.preventDefault(); setMode(mode); }
-    return;
-  }
-  if (isResearch()) return;
   const row = e.target.closest && e.target.closest('tr[data-row="score"]');
   if (!row || transient.drawer || transient.dialog) return;
   const sid = row.dataset.sid;
@@ -5102,7 +5738,13 @@ function init() {
   document.addEventListener("input", onInput);
   document.addEventListener("submit", onSubmit);
   document.addEventListener("keydown", onKey);
-  document.addEventListener("toggle", (e) => { if (e.target.dataset && e.target.dataset.act === "audit-toggle") ui.auditOpen = e.target.open; }, true);
+  document.addEventListener("toggle", (e) => {
+    const act = e.target.dataset && e.target.dataset.act;
+    if (act === "audit-toggle") ui.auditOpen = e.target.open;
+    if (act === "rq-filter-toggle") ui.rqFilterOpen = e.target.open;
+    if (act === "ptp-preview-toggle") { transient.ptpOpen = e.target.open; if (e.target.open && !state.ptpPreviewSeen) { state.ptpPreviewSeen = true; save(); } }
+    if (act === "fb-comments-toggle") drawCommentDots(e.target.open);
+  }, true);
   window.addEventListener("hashchange", () => { const t = location.hash.slice(1); if (TABS.some((x) => x.id === t) && t !== ui.tab) { ui.tab = t; render(); } });
   $("#open-settings").addEventListener("click", () => openDialog("settings"));
   if (!state.welcomed) transient.dialog = "welcome";
