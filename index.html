@@ -776,6 +776,37 @@ body.picking #main, body.picking #main * { cursor: crosshair !important; }
 .student-head .sh-id { min-width: 0; flex: 1 1 auto; }
 .student-head .sh-id h2, .student-head .sh-meta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .student-head .spread > .btn { flex: 0 0 auto; }
+/* v0.47.3 */
+.dist .d0 { background: repeating-linear-gradient(135deg, var(--l0-soft) 0 4px, color-mix(in srgb, var(--ink-3) 22%, var(--l0-soft)) 4px 6px); }
+.legend i.hatch { background: repeating-linear-gradient(135deg, var(--l0-soft) 0 3px, color-mix(in srgb, var(--ink-3) 30%, var(--l0-soft)) 3px 4.5px); border: 1px solid var(--line); }
+.page-head > .row { align-items: center; gap: 14px; }
+.page-head > .row .legend { align-items: center; }
+.sem-pick { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; font-weight: 650; color: var(--ink-2); margin: 0; }
+.sem-pick select { height: 38px; padding: 0 30px 0 10px; font-size: .86rem; }
+.page-head > .row > .btn { height: 38px; }
+.student-list { max-height: min(56vh, 460px); }
+@media (max-width: 860px) { .student-list { max-height: 210px; } }
+.student-head { scroll-margin-top: 120px; }
+@media (max-width: 640px) { .student-head { scroll-margin-top: 132px; } }
+#score-table th:first-child, #score-table td.name { position: sticky; left: 0; z-index: 2; background: var(--surface); }
+#score-table thead th:first-child { z-index: 3; }
+#score-table td.name { box-shadow: 1px 0 0 var(--line); }
+#score-table tr.selected td.name, #score-table tr:focus td.name, #score-table tr:focus-within td.name { background: var(--surface); }
+@media (max-width: 640px) { #score-table td.name { max-width: 42vw; } #score-table td.name .linklike { white-space: normal; text-align: left; } }
+.std-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; }
+.std-grid .chip { width: 100%; min-width: 0; text-align: left; }
+.std-grid .chip small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.svgchart text { font-size: calc(0.66rem * var(--svg-k, 1)); }
+.svgchart text.end { font-size: calc(0.76rem * var(--svg-k, 1)); }
+.std-flow { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; }
+.std-fw { display: inline-flex; align-items: center; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); padding: 0 4px 0 8px; border-left: 2px solid var(--line); }
+.std-flow > .std-fw:first-child { border-left: 0; padding-left: 0; }
+.std-flow .chip { text-align: left; }
+.std-lead { display: inline-flex; gap: 6px; align-items: stretch; }
+.std-flow > .std-lead:first-child .std-fw { border-left: 0; padding-left: 0; }
+.sem-pick { min-width: 0; max-width: 100%; flex-wrap: wrap; }
+.sem-pick select { min-width: 0; max-width: 100%; }
+@media (max-width: 640px) { .page-head > .row { gap: 8px; } }
 
 </style>
 </head>
@@ -803,7 +834,7 @@ body.picking #main, body.picking #main * { cursor: crosshair !important; }
    SMT Mastery Dashboard (version: APP_VERSION below is the only version source)
    Data model, seed cohort, policy engine, encoders (SMT string, CSV, CLR/OB3)
    ========================================================================== */
-const APP_VERSION = "0.47.2";
+const APP_VERSION = "0.47.3";
 /* Exports stamp the version they were made with. While an earlier export is reproduced, GEN_VERSION holds that export's version. */
 let GEN_VERSION = null;
 const verNow = () => GEN_VERSION || APP_VERSION;
@@ -820,6 +851,12 @@ const SCHEMA = 5;
 const FEEDBACK_FORM = { url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=4elDbMNFf0KRVIfu-Jq4TPC4pWRhrBJGtlKxG9OvpLRUMFI0QUdSN0I2TE9YTlRXMVBCRVQxTDJKVC4u" };
 const PREVIEW = true;   // v0.47 is the pre-IRB preview: fictional students only, roster and record import turned off
 const CHANGELOG = [
+  { version: "0.47.3", date: "2026-11-24", items: [
+    "Level bars always fill: the striped end shows standards not yet assessed (the legend says so).",
+    "The student list is shorter, scrolls on its own, and keeps its place; choosing a student jumps to their record.",
+    "Today's header row (legend, semester, Add class) is aligned on one line.",
+    "Score view: the student name column stays frozen while scrolling sideways; standards fill the full width.",
+    "Chart labels on student progress graphs follow the text-size setting."] },
   { version: "0.47.2", date: "2026-11-24", items: [
     "The demo bar label reads “Simulated Data.”",
     "The S1/S2 switch left the header: change semesters from the Semester picker on Today or from any class picker, which now lists both semesters' classes.",
@@ -2477,10 +2514,11 @@ function chip(ev, compact) {
 }
 function distBar(d) {
   const tot = d[0] + d[1] + d[2] + d[3] + d[4] || 1;
-  const seg = (k) => (d[k] ? `<span class="d${k}" style="width:${(d[k] / tot) * 100}%" title="Level ${k}: ${d[k]}"></span>` : "");
-  return `<div class="dist" role="img" aria-label="Level 1: ${d[1]}, 2: ${d[2]}, 3: ${d[3]}, 4: ${d[4]}, no evidence: ${d[0]}">${seg(1)}${seg(2)}${seg(3)}${seg(4)}</div>`;
+  const seg = (k) => (d[k] ? `<span class="d${k}" style="width:${(d[k] / tot) * 100}%" title="${k ? `Level ${k}: ${d[k]}` : `Not yet assessed: ${d[0]}`}"></span>` : "");
+  /* The bar always fills: the striped end is student-standards with no evidence yet (not yet assessed), not a gap. */
+  return `<div class="dist" role="img" aria-label="Level 1: ${d[1]}, 2: ${d[2]}, 3: ${d[3]}, 4: ${d[4]}, not yet assessed: ${d[0]}">${seg(1)}${seg(2)}${seg(3)}${seg(4)}${seg(0)}</div>`;
 }
-const LEGEND = `<div class="legend" data-tip="legend">${[1, 2, 3, 4].map((l) => `<span aria-label="${l} ${LEVELS[l].name}"><i style="background:var(--l${l})"></i>${lvLabel(l)}</span>`).join("")}<span><i style="background:var(--l0-soft);border:1px solid var(--line)"></i>No evidence</span></div>`;
+const LEGEND = `<div class="legend" data-tip="legend">${[1, 2, 3, 4].map((l) => `<span aria-label="${l} ${LEVELS[l].name}"><i style="background:var(--l${l})"></i>${lvLabel(l)}</span>`).join("")}<span><i class="hatch"></i>Not yet assessed</span></div>`;
 const semSections = () => SECTIONS.filter((s) => s.semester === ui.semester);
 const semName = (id) => SEMESTERS.find((s) => s.id === id).name;
 /* Class pickers list this semester's classes first, then the other semester's, so a teacher can change semesters from any class picker. */
@@ -2490,7 +2528,7 @@ const sectionOptions = (sel, withAll) => SEMESTERS.slice().sort((a, b) => (a.id 
   return `<optgroup label="${esc(semName(sem.id))}${cur ? "" : " (switches semester)"}">${all}${SECTIONS.filter((s) => s.semester === sem.id).map((s) => `<option value="${s.id}" ${cur && s.id === sel ? "selected" : ""}>${esc(s.period)} · ${esc(s.name)}</option>`).join("")}</optgroup>`;
 }).join("");
 /* Semester picker on the Today page (and in every class picker); the header no longer carries a permanent S1/S2 switch. */
-const semesterPicker = () => `<label class="field sem-pick" for="sem-inline">Semester<select id="sem-inline" data-act="semester-select" data-tip="semester">${SEMESTERS.map((x) => `<option value="${x.id}" ${ui.semester === x.id ? "selected" : ""}>${esc(semName(x.id))} (${fmtDate(x.start, { month: "short", day: "numeric" })}–${fmtDate(x.end, { month: "short", day: "numeric" })})</option>`).join("")}</select></label>`;
+const semesterPicker = () => `<label class="sem-pick" for="sem-inline"><span>Semester</span><select id="sem-inline" data-act="semester-select" data-tip="semester">${SEMESTERS.map((x) => `<option value="${x.id}" ${ui.semester === x.id ? "selected" : ""}>${esc(semName(x.id))} (${fmtDate(x.start, { month: "short", day: "numeric" })}–${fmtDate(x.end, { month: "short", day: "numeric" })})</option>`).join("")}</select></label>`;
 const ICON = {
   gear: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>`,
   close: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>`,
@@ -2708,8 +2746,8 @@ function viewScore() {
   const a = currentAssessment();
   const ros = roster(sec.id);
   const cols = state.settings.columns;
-  const chips = byFramework(pickable).map(({ f, comps }) => `<div class="stack" style="gap:6px"><div class="tiny faint" style="font-weight:700;text-transform:uppercase;letter-spacing:.06em">${esc(f.name)}</div>
-    <div class="chips">${comps.map((c) => `<button class="chip" data-act="comp" data-cid="${c.id}" aria-pressed="${c.id === comp.id}"${tip("std", c.id)}>${esc(c.standard)}${active.includes(c) ? "" : " · upcoming"}<small>${esc(c.title)}</small></button>`).join("")}</div></div>`).join("");
+  /* One flowing list: each framework's short name sits inline before its standards, so rows fill the width. */
+  const chips = `<div class="std-flow">${byFramework(pickable).map(({ f, comps }) => `${comps.map((c, i) => `${i === 0 ? `<span class="std-lead"><span class="std-fw" title="${esc(f.name)}">${esc(f.short || f.name)}</span>` : ""}<button class="chip" data-act="comp" data-cid="${c.id}" aria-pressed="${c.id === comp.id}"${tip("std", c.id)}>${esc(c.standard)}${active.includes(c) ? "" : " · upcoming"}<small>${esc(c.title)}</small></button>${i === 0 ? "</span>" : ""}`).join("")}`).join("")}</div>`;
   const aOpts = list.map((x) => `<option value="${x.id}" ${a && x.id === a.id ? "selected" : ""}>${fmtDate(x.date)} · ${esc(x.title)}${x.date > TODAY ? " (upcoming)" : ""}</option>`).join("");
   const scored = a ? ros.filter((st) => entryForAssessment(st.id, comp.id, a.id)).length : 0;
   const head = `<tr><th>Student</th><th data-tip="th-current">Current</th><th data-tip="th-score">${a ? "Score: " + esc(a.title) : "Score"}</th>
@@ -2718,8 +2756,9 @@ function viewScore() {
   return `<div class="page-head"><div><div class="kicker">${esc(sec.period)} · ${esc(sec.name)}</div><h2 data-tip="page-score">Score a standard</h2></div>
       <div class="toolbar"><label class="field" for="sel-section">Class<select id="sel-section" data-act="section">${sectionOptions(sec.id)}</select></label></div></div>
     <div class="card stack">
-      <div class="spread" style="align-items:flex-start"><div class="stack" role="group" aria-label="Standard" style="gap:10px;flex:1">${chips}</div>
+      <div class="spread"><span class="small" style="font-weight:650;color:var(--ink-2)">Standard</span>
         <label class="check small"><input type="checkbox" data-act="show-upcoming" ${ui.showUpcoming ? "checked" : ""}> Show standards not yet taught</label></div>
+      <div role="group" aria-label="Standard">${chips}</div>
       <div class="spread">
         <div class="row">
           <label class="field" for="sel-assessment"${tip("assessment", a ? a.id : "")}>Assessment
@@ -2857,8 +2896,8 @@ function progressSvg(att, ev, start = FIRST_DAY) {
   const months = [["2026-09-01", "Sep"], ["2026-10-01", "Oct"], ["2026-11-01", "Nov"], ["2026-12-01", "Dec"], ["2027-01-01", "Jan"], ["2027-02-01", "Feb"], ["2027-03-01", "Mar"], ["2027-04-01", "Apr"], ["2027-05-01", "May"], ["2027-06-01", "Jun"]].filter(([dd]) => dayNum(dd) > d0 + 3 && dayNum(dd) < d1 - 10).map(([dd, l]) => `<text x="${x(dd)}" y="${H - 3}" font-size="9">${l}</text>`).join("");
   const pts = att.map((a) => `${x(a.date).toFixed(1)},${y(a.level).toFixed(1)}`).join(" ");
   const dots = att.map((a, i) => `<circle cx="${x(a.date)}" cy="${y(a.level)}" r="${i === att.length - 1 ? 4.5 : 3.2}" fill="var(--l${a.level})" stroke="var(--surface)" stroke-width="1.5"><title>${fmtDate(a.date)}: ${a.level} ${LEVELS[a.level].name}</title></circle>`).join("");
-  const endLbl = ev.value != null ? `<text x="${W - padR + 5}" y="${y(ev.value) + 3}" font-size="10" font-weight="700" style="fill:var(--l${ev.level})">${fmt1(ev.value)}</text>` : "";
-  return `<svg class="svgchart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Attempts over time">${grid}${months}${att.length > 1 ? `<polyline points="${pts}" fill="none" stroke="var(--ink-3)" stroke-width="1.5"/>` : ""}${dots}${endLbl}</svg>`;
+  const endLbl = ev.value != null ? `<text class="end" x="${W - padR + 5}" y="${y(ev.value) + 3}" font-size="10" font-weight="700" style="fill:var(--l${ev.level})">${fmt1(ev.value)}</text>` : "";
+  return `<svg class="svgchart" data-vbw="${W}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Attempts over time">${grid}${months}${att.length > 1 ? `<polyline points="${pts}" fill="none" stroke="var(--ink-3)" stroke-width="1.5"/>` : ""}${dots}${endLbl}</svg>`;
 }
 function viewStudents() {
   if (!studentById(ui.studentId) || SEC[studentById(ui.studentId).sectionId].semester !== ui.semester) ui.studentId = roster(`all-${ui.semester}`)[0].id;
@@ -4570,8 +4609,14 @@ function v471Key(e) {
   if (e.key === "e" || e.key === "E") { e.preventDefault(); toggleExplain(); return true; }
   return false;
 }
+/* SVG charts scale with their box, so their labels are sized from the text-size setting instead (--svg-k undoes the scaling). */
+function scaleChartText() {
+  document.querySelectorAll("svg[data-vbw]").forEach((s) => { const w = s.getBoundingClientRect().width; if (w) s.style.setProperty("--svg-k", (Number(s.dataset.vbw) / w).toFixed(3)); });
+}
+window.addEventListener("resize", () => scaleChartText());
 function afterRender() {
   closeMenus();
+  scaleChartText();
   const bb = layer("bottom-bar-host"); bb.innerHTML = bottomBar();
   renderGuideDock();
   drawExplain();
@@ -5066,7 +5111,10 @@ function render() {
   const k = focusKey();
   applyAppearance();
   renderHeader();
+  const slPrev = document.getElementById("student-list");
+  const slTop = transient.slScroll ?? (slPrev ? slPrev.scrollTop : 0); transient.slScroll = null;
   document.getElementById("main").innerHTML = (VIEWS[ui.tab] || viewToday)();
+  const slNow = document.getElementById("student-list"); if (slNow) slNow.scrollTop = slTop;
   if (ui.tab === "students") tryMark("student");
   renderDrawer();
   renderDialog();
@@ -5361,7 +5409,15 @@ function onClick(e) {
       if (transient.drawer) render(); else if (ui.tab === "score") { refreshScoreRow(d.sid); restoreFocus({ act: "flag", sid: d.sid, cid: d.cid }); } else render();
       toast(on ? "Flagged for retry" : "Retry flag removed"); break;
     }
-    case "student": ui.studentId = d.sid; transient.drawer = null; setTab("students"); break;
+    case "student": {
+      const fromList = !!t.closest("#student-list");
+      const sl = document.getElementById("student-list");
+      transient.slScroll = fromList && sl ? sl.scrollTop : null;
+      ui.studentId = d.sid; transient.drawer = null;
+      if (ui.tab !== "students") setTab("students"); else render();
+      if (fromList) requestAnimationFrame(() => document.querySelector(".student-head")?.scrollIntoView({ behavior: state.settings.reduceMotion ? "auto" : "smooth", block: "start" }));
+      break;
+    }
     case "student-tab": ui.studentTab = d.v; render(); break;
     case "heat-sort": ui.heatSort = d.v; render(); break;
     case "fw": ui.fw = d.v; render(); break;
@@ -5744,6 +5800,7 @@ function init() {
     if (act === "rq-filter-toggle") ui.rqFilterOpen = e.target.open;
     if (act === "ptp-preview-toggle") { transient.ptpOpen = e.target.open; if (e.target.open && !state.ptpPreviewSeen) { state.ptpPreviewSeen = true; save(); } }
     if (act === "fb-comments-toggle") drawCommentDots(e.target.open);
+    if (e.target.open && e.target.querySelector && e.target.querySelector("svg[data-vbw]")) scaleChartText();
   }, true);
   window.addEventListener("hashchange", () => { const t = location.hash.slice(1); if (TABS.some((x) => x.id === t) && t !== ui.tab) { ui.tab = t; render(); } });
   $("#open-settings").addEventListener("click", () => openDialog("settings"));
