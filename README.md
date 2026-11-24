@@ -12,7 +12,7 @@ The SMT Mastery Dashboard is a research prototype. Teachers grade on a **1–4 m
 
 It is the design artifact for a doctoral design-based research study on how competency-based grading can work inside legacy Student Information Systems (SIS).
 
-**[▶ Try the live preview](https://YOUR-USERNAME.github.io/YOUR-REPO/)**
+**[▶ Try the live preview](https://suchith95.github.io/smt-dashboard/)**
 
 > [!WARNING]
 > **Preview with fictional students. Do not enter real student information.**
