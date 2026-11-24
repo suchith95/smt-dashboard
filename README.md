@@ -148,7 +148,7 @@ Grading rules available: **most recent**, **highest**, **average of recent attem
 
 If you've been invited to review the preview:
 
-1. Open the **[live preview](https://YOUR-USERNAME.github.io/YOUR-REPO/)** and choose a subject on the welcome screen.
+1. Open the **[live preview](https://suchith95.github.io/smt-dashboard/)** and choose a subject on the welcome screen.
 2. Work through **Try this** in the demo bar. It has 10 short tasks and takes about 10–15 minutes.
 3. Turn on **Reviewer view** (or press **R**) to hover for explanations and click to leave comments.
 4. Open **Give feedback** and answer the "which fits your school?" questions.
@@ -210,7 +210,7 @@ https://github.com/YOUR-USERNAME/YOUR-REPO
 
 ## License
 
-*Choose a license before sharing publicly.* MIT is a common choice for open research software. Leave this section as **All rights reserved** if you'd rather keep control until the study is complete.
+**All rights reserved**
 
 ---
 
