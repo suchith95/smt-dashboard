@@ -807,6 +807,125 @@ body.picking #main, body.picking #main * { cursor: crosshair !important; }
 .sem-pick { min-width: 0; max-width: 100%; flex-wrap: wrap; }
 .sem-pick select { min-width: 0; max-width: 100%; }
 @media (max-width: 640px) { .page-head > .row { gap: 8px; } }
+/* v0.47.4 */
+@media (max-width: 640px) {
+  #main { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+  body { padding-bottom: 0; }
+  #score-table td.name { max-width: none; }
+  #score-table td.name .linklike { white-space: nowrap; }
+  .nm-cell { max-width: 40vw; }
+}
+.nm-cell { display: flex; align-items: center; gap: 6px; min-width: 0; flex-wrap: nowrap; }
+.nm-cell .nm-btn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; flex: 0 1 auto; }
+.nm-cell .pill { flex: 0 0 auto; margin-left: 0; }
+.nm-init { display: none; }
+.nm-cell.short .nm-last { display: none; }
+.nm-cell.short .nm-init { display: inline; }
+/* v0.47.5 gradebook */
+.ptp-note { margin: 0; padding: 6px 10px; border-radius: 8px; background: var(--l2-soft); font-size: .84rem; }
+.ptp-files { display: flex; flex-direction: column; gap: 8px; }
+.ptp-file { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: var(--surface); }
+.ptp-file.on { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.pf-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pf-name { text-align: left; min-width: 0; }
+.pf-status { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.pf-count { font-size: .84rem; }
+.pf-count.ok { color: var(--l3); } .pf-count.warn { color: var(--l2); }
+.pf-count b { color: var(--ink); }
+.miss-chip { font: inherit; font-size: .76rem; font-weight: 650; border: 1px dashed var(--l2); background: var(--l2-soft); color: var(--ink); border-radius: 999px; padding: 2px 10px; cursor: pointer; }
+.gb-tools { display: flex; justify-content: flex-end; margin-bottom: -6px; }
+.menu-pop.gb-export > .menu-panel { left: auto; right: 0; grid-template-columns: 1fr; width: min(340px, calc(100vw - 32px)); gap: 4px; padding: 8px; }
+.menu-list > button { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; font: inherit; font-size: .88rem; border: 0; background: transparent; color: var(--ink); padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+.menu-list > button:hover, .menu-list > button:focus-visible { background: var(--surface-2); }
+.ml-foot { padding: 4px 10px; margin: 0; }
+@media (max-width: 640px) { .menu-pop.gb-export > .menu-panel { left: 12px; right: 12px; width: auto; } }
+/* v0.47.5 small fixes */
+@media (max-width: 640px) { #main { padding-bottom: calc(var(--bb-h, 64px) + 20px); } }
+.nowrap { white-space: nowrap; }
+.guide-dock[data-corner="br"] { left: auto; right: 16px; }
+.guide-dock[data-corner="tl"] { bottom: auto; top: 150px; }
+.guide-dock[data-corner="tr"] { bottom: auto; top: 150px; left: auto; right: 16px; }
+.guide-dock.dragging { transition: none; opacity: .92; cursor: grabbing; }
+.gd-pill, .gd-head { cursor: grab; touch-action: none; }
+.gd-head button { cursor: pointer; }
+@media (min-width: 641px) { body[data-guide="br"] .toasts { right: auto; left: 18px; align-items: flex-start; } }
+.dialog-nav .study-pane { font-weight: 750; }
+.dialog-nav .study-pane[data-v="research"] { background: var(--note-soft, var(--surface-2)); border-left: 3px solid var(--note); }
+.dialog-nav .study-pane[aria-selected="true"] { color: var(--ink); }
+.pill.study-tag { background: var(--note); color: #fff; font-size: .62rem; padding: 0 6px; margin-left: 4px; vertical-align: 1px; }
+.nav-sep { border: 0; border-top: 1px solid var(--line); margin: 6px 0; width: 100%; }
+/* v0.47.5 standards picker */
+.std-picker { display: flex; flex-direction: column; gap: 8px; }
+.std-tabs { display: flex; gap: 4px; align-items: flex-end; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: thin; }
+.std-tabs [role=tab] { font: inherit; font-size: .86rem; font-weight: 700; border: 0; background: transparent; color: var(--ink-2); padding: 7px 12px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+.std-tabs [role=tab][aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.std-tabs .tab-n { font-size: .7rem; font-weight: 700; color: var(--ink-3); background: var(--surface-2); border-radius: 999px; padding: 0 6px; margin-left: 2px; }
+.std-tabs .cur-dot { color: var(--accent); font-size: .6rem; vertical-align: 2px; }
+.std-upcoming { margin-left: auto; white-space: nowrap; padding: 0 4px 6px 12px; }
+.std-row { display: flex; gap: 6px; overflow-x: auto; padding: 2px 2px 8px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+.std-row .std-chip { flex: 0 0 auto; max-width: 260px; text-align: left; scroll-snap-align: start; }
+.std-row .std-chip small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+/* v0.47.5 context panel */
+.ctx-panel { position: fixed; z-index: 28; right: 0; top: var(--hdr-h, 100px); bottom: 0; width: 380px; background: var(--surface); border-left: 1px solid var(--line); box-shadow: -8px 0 24px rgba(0,0,0,.08); display: flex; flex-direction: column; }
+.ctx-panel[hidden] { display: none; }
+.ctx-body { overflow-y: auto; padding: 14px 16px 24px; display: flex; flex-direction: column; gap: 8px; }
+.ctx-body h4 { margin-top: 6px; }
+.ctx-body ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+@media (min-width: 1101px) { body.ctx-open .shell { margin-right: 380px; max-width: calc(1440px); } body.ctx-open .guide-dock[data-corner$="r"] { right: 396px; } }
+@media (min-width: 641px) and (max-width: 1100px) { .ctx-panel { width: 340px; box-shadow: -10px 0 30px rgba(0,0,0,.18); } }
+.ctx-research { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; background: var(--surface-2); }
+.ctx-research.on { border-color: var(--note); background: var(--note-soft, var(--surface-2)); }
+.ctx-item { border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+.ctx-item > summary { cursor: pointer; font-weight: 650; font-size: .88rem; }
+.ctx-item[open] { border-color: var(--accent); }
+.ctx-hl { outline: 2px solid var(--accent) !important; outline-offset: 3px; border-radius: 6px; box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 14%, transparent); }
+.btn.on-btn { border-color: var(--accent); color: var(--accent); background: var(--accent-soft, var(--surface-2)); }
+code.smt-mini { display: block; font-size: .64rem; letter-spacing: .02em; color: var(--ink-3); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+code.smt-mini.bad { color: var(--l1); }
+.ss-avg { white-space: nowrap; background: var(--note-soft, var(--surface-2)); }
+.ml-foot .linklike { font-size: .78rem; }
+/* v0.47.5 growth by domain */
+:root { --dc1: #1f77b4; --dc2: #d95f02; --dc3: #7570b3; --dc4: #e7298a; --dc5: #1b9e77; --dc6: #a6761d; --dc7: #4d4d4d; --dc8: #17becf; --dc9: #bcbd22; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --dc1: #6aaee6; --dc2: #f39a4c; --dc3: #a9a4e6; --dc4: #f07ab8; --dc5: #4fd1a8; --dc6: #d8a64a; --dc7: #bdbdbd; --dc8: #5fd6e6; --dc9: #d6d66a; } }
+:root[data-theme="dark"] { --dc1: #6aaee6; --dc2: #f39a4c; --dc3: #a9a4e6; --dc4: #f07ab8; --dc5: #4fd1a8; --dc6: #d8a64a; --dc7: #bdbdbd; --dc8: #5fd6e6; --dc9: #d6d66a; }
+.dom-legend { display: flex; flex-wrap: wrap; gap: 6px; }
+.dom-key { font: inherit; font-size: .78rem; font-weight: 650; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+.dom-key i, .dom-sw { width: 10px; height: 10px; border-radius: 3px; display: inline-block; flex: 0 0 auto; }
+.dom-sw { margin-right: 6px; vertical-align: -1px; }
+.dom-key.off { opacity: .45; text-decoration: line-through; }
+.svgchart.growth { width: 100%; height: auto; }
+.dom-grid th.cur { color: var(--accent); }
+.lvcell { display: inline-block; min-width: 34px; text-align: center; border-radius: 6px; padding: 1px 6px; font-weight: 700; font-size: .8rem; }
+.lvcell.l1 { background: var(--l1-soft); color: var(--l1); } .lvcell.l2 { background: var(--l2-soft); color: var(--l2); }
+.lvcell.l3 { background: var(--l3-soft); color: var(--l3); } .lvcell.l4 { background: var(--l4-soft); color: var(--l4); }
+.svgchart.growth { max-width: none !important; width: 100% !important; height: auto; }
+/* v0.47.6 */
+.std-grid2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 6px; }
+.std-grid2 .std-chip { width: 100%; min-width: 0; text-align: left; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+.std-grid2 .std-chip small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; }
+.std-grid2 .std-code { font-weight: 750; }
+.std-ghead { grid-column: 1 / -1; font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); padding: 6px 2px 0; border-top: 1px solid var(--line); }
+.std-ghead:first-child { border-top: 0; padding-top: 0; }
+@media (max-width: 640px) { .std-grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 360px) { .std-grid2 { grid-template-columns: 1fr; } }
+.dialog-nav .nav-head { font-size: .66rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); padding: 10px 10px 4px; }
+.dialog-nav .nav-head:first-child { padding-top: 2px; }
+.dialog-nav .study-pane[data-v="research"] { background: transparent; border-left: 0; }
+/* welcome research card */
+.wr-card { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: var(--surface-2); margin-top: 4px; }
+.wr-card.on { border-color: var(--note); background: var(--note-soft, var(--surface-2)); }
+.wr-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.wr-preview { background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 3px; }
+.wr-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.wr-avg { display: inline-flex; align-items: center; gap: 4px; background: var(--note-soft, var(--surface-2)); border-radius: 6px; padding: 1px 6px; font-size: .78rem; }
+.wr-code { margin-top: 0; }
+.wr-card:not(.on) .wr-add { animation: wrFade 4.5s ease-in-out infinite; }
+.wr-card:not(.on) .wr-code { animation-delay: .35s; }
+@keyframes wrFade { 0%, 18% { opacity: 0; transform: translateY(3px); } 32%, 72% { opacity: 1; transform: none; } 88%, 100% { opacity: 0; transform: translateY(-2px); } }
+:root[data-reduce-motion="on"] .wr-add { opacity: 1 !important; }
+@media (prefers-reduced-motion: reduce) { .wr-card .wr-add { animation: none !important; opacity: 1; } }
+.wr-card.on .wr-adds { color: var(--note); }
+@media (max-width:640px){ .dialog-nav .nav-head { white-space:nowrap; align-self:center; padding:0 4px 0 8px; font-size:.6rem; } .dialog-nav .nav-head + button { margin-left: 0; } }
 
 </style>
 </head>
@@ -834,7 +953,7 @@ body.picking #main, body.picking #main * { cursor: crosshair !important; }
    SMT Mastery Dashboard (version: APP_VERSION below is the only version source)
    Data model, seed cohort, policy engine, encoders (SMT string, CSV, CLR/OB3)
    ========================================================================== */
-const APP_VERSION = "0.47.3";
+const APP_VERSION = "0.47.6";
 /* Exports stamp the version they were made with. While an earlier export is reproduced, GEN_VERSION holds that export's version. */
 let GEN_VERSION = null;
 const verNow = () => GEN_VERSION || APP_VERSION;
@@ -851,6 +970,22 @@ const SCHEMA = 5;
 const FEEDBACK_FORM = { url: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=4elDbMNFf0KRVIfu-Jq4TPC4pWRhrBJGtlKxG9OvpLRUMFI0QUdSN0I2TE9YTlRXMVBCRVQxTDJKVC4u" };
 const PREVIEW = true;   // v0.47 is the pre-IRB preview: fictional students only, roster and record import turned off
 const CHANGELOG = [
+  { version: "0.47.6", date: "2026-11-25", items: [
+    "Score: each standards tab shows all of its standards in a wrapping grid (no sideways scrolling); All groups them under small headers.",
+    "Welcome screen includes the Research layer card, off by default, with a short preview of what it adds.",
+    "“Term” replaces “Period” for quarter and semester choices in the Gradebook.",
+    "Settings menu grouped under Reviewer settings and General settings."] },
+  { version: "0.47.5", date: "2026-11-25", items: [
+    "Context panel (E) replaces the Explain markers and the About this screen sheet: it follows you between screens, and hovering or opening an explanation outlines that part of the page.",
+    "Research layer (in the Context panel, Guide menu, or Settings) now adds visible detail: SMT codes under current levels on Score and Students, and an Averaged column in the Scoresheet.",
+    "Score: standards are grouped under category tabs with one scrolling row per category.",
+    "Send to PowerSchool: one import file per standard (separate download buttons), a status line with a tag for each student left out, and the quarter or semester .zip split the same way.",
+    "Course grades and standards-by-student files moved to an Export menu on the Scoresheet tab.",
+    "Students › History: growth over time by course domain, with prior years by semester and this year by quarter; the sample prior record covers two earlier years.",
+    "The minimized Guide can be dragged to any corner; phones keep content clear of the bottom bar; retry tables show P2 instead of Period 2; Research & review leads the Settings menu."] },
+  { version: "0.47.4", date: "2026-11-25", items: [
+    "Phones: the bottom action bar no longer covers the end of any page.",
+    "Score: long names shorten to “First L.” (then “…”) so IEP, 504, and ML tags never run into the next column; the full name shows on hover and to screen readers."] },
   { version: "0.47.3", date: "2026-11-24", items: [
     "Level bars always fill: the striped end shows standards not yet assessed (the legend says so).",
     "The student list is shorter, scrolls on its own, and keeps its place; choosing a student jumps to their record.",
@@ -1723,32 +1858,93 @@ function parseLearnerRecord(json) {
   walk(json, "");
   return out.filter((r) => r.date);
 }
-const PRIOR_SETS = {
-  physics: { course: "Chemistry", items: [["HS-PS1-1", "Periodic table patterns"], ["HS-PS1-2", "Explaining chemical reactions"], ["HS-PS1-4", "Bond energy model"], ["HS-PS1-5", "Reaction rates"], ["HS-PS1-7", "Conservation of mass"], ["HS-ETS1-2", "Designing by decomposition"]] },
-  math: { course: "Grade 8 Mathematics", items: [["8.EE.C.7", "Solving linear equations"], ["8.F.B.4", "Constructing linear functions"], ["8.G.B.7", "Pythagorean theorem"], ["8.SP.A.3", "Interpreting linear models"], ["8.EE.A.2", "Square and cube roots"]] },
-  english: { course: "English 10", items: [["RL.9-10.1", "Citing textual evidence"], ["RL.9-10.2", "Theme and central idea"], ["W.9-10.1", "Argument writing"], ["W.9-10.2", "Informative writing"], ["SL.9-10.1", "Collaborative discussion"], ["L.9-10.1", "Grammar and usage"]] }
+/* ---------- growth by domain ----------
+   Each course groups standards into domains that matter for high school and this course. Standard codes from this course and
+   from imported records map onto the same domains (first match wins), so prior years line up with this year. */
+const GROWTH_DOMAINS = {
+  physics: [["Forces & motion", /PS2-[123]\b/], ["Fields", /PS2-[45]\b|PS3-5\b/], ["Energy", /PS3-\d/], ["Matter & reactions", /PS1-\d/], ["Waves", /PS4-\d/],
+    ["Engineering design", /ETS1/], ["Computational thinking", /^\d[AB]-/], ["Math modeling", /^HS[NAFGS]|^\d\.(EE|F|G|SP|NS|RP)\b|^\d\.(EE|F|G|SP)\./]],
+  math: [["Number & quantity", /^HSN|^\d\.(NS|RP)\.|^8\.EE\.A/], ["Algebra", /^HSA|^\d\.EE/], ["Functions", /^HSF|^\d\.F\./], ["Geometry", /^HSG|^\d\.G\./], ["Statistics", /^HSS|^\d\.SP/], ["Mathematical practices", /^MP/]],
+  english: [["Research", /^W\.\d+-\d+\.(7|8|9)\b/], ["Reading literature", /^RL/], ["Reading informational", /^RI/], ["Writing", /^W\./], ["Speaking & listening", /^SL/], ["Language", /^L\./]],
+  mine: []
 };
+function domainOf(code) {
+  const hit = (GROWTH_DOMAINS[PROFILE_ID] || []).find(([, re]) => re.test(String(code || "")));
+  return hit ? hit[0] : "Other";
+}
+/* Earlier courses a student would likely have taken, chosen by the grade they were in that year. */
+const PRIOR_COURSES = {
+  physics: (g) => (g <= 9
+    ? { course: "Physical Science", items: [["HS-PS1-1", "Periodic table patterns"], ["HS-PS2-1", "Forces and motion (intro)"], ["HS-PS3-1", "Energy conservation (intro)"], ["HS-PS4-1", "Wave properties"], ["HS-ETS1-2", "Designing by decomposition"], ["HSA-CED.A.1", "Equations from contexts"]] }
+    : g === 10 ? { course: "Chemistry", items: [["HS-PS1-2", "Explaining chemical reactions"], ["HS-PS1-5", "Reaction rates"], ["HS-PS3-4", "Thermal energy transfer"], ["HS-ETS1-3", "Evaluating design trade-offs"], ["3A-AP-17", "Decomposing programs"], ["HSG-SRT.C.8", "Right-triangle trigonometry"]] }
+    : { course: "Environmental Science", items: [["HS-PS3-1", "Energy flow models"], ["HS-PS4-1", "Waves and the atmosphere"], ["HS-ETS1-1", "Defining design problems"], ["3A-DA-11", "Data and visualizations"], ["HSS-ID.B.6", "Fitting data with functions"], ["HS-PS2-1", "Forces in natural systems"]] }),
+  math: (g) => (g <= 8
+    ? { course: `Grade ${g} Mathematics`, items: [["8.EE.A.2", "Square and cube roots"], ["8.EE.C.7", "Solving linear equations"], ["8.F.B.4", "Constructing linear functions"], ["8.G.B.7", "Pythagorean theorem"], ["8.SP.A.3", "Interpreting linear models"], ["MP.1", "Make sense of problems"]] }
+    : g === 9 ? { course: "Algebra I", items: [["HSN-RN.A.2", "Rational exponents"], ["HSA-CED.A.1", "Equations from contexts"], ["HSA-REI.B.3", "Solving linear equations"], ["HSF-IF.B.6", "Rate of change"], ["HSS-ID.C.7", "Interpreting slope"], ["MP.4", "Model with mathematics"]] }
+    : { course: g === 10 ? "Geometry" : "Algebra II", items: [["HSG-CO.A.5", "Transformations"], ["HSG-SRT.C.8", "Right-triangle trigonometry"], ["HSA-SSE.B.3", "Equivalent forms"], ["HSF-BF.B.3", "Transforming functions"], ["HSS-IC.B.4", "Margin of error"], ["MP.3", "Construct arguments"]] }),
+  english: (g) => { const b = g <= 10 ? "9-10" : "11-12"; return { course: `English ${g}`, items: [[`RL.${b}.1`, "Citing textual evidence"], [`RL.${b}.2`, "Theme and central idea"], [`RI.${b}.6`, "Author's point of view"], [`W.${b}.1`, "Argument writing"], [`W.${b}.7`, "Research projects"], [`SL.${b}.1`, "Collaborative discussion"], [`L.${b}.1`, "Grammar and usage"]] }; }
+};
+const PRIOR_YEARS = { physics: [PRIOR_COURSES.physics(9), PRIOR_COURSES.physics(10)], math: [PRIOR_COURSES.math(8), PRIOR_COURSES.math(9)], english: [PRIOR_COURSES.english(9), PRIOR_COURSES.english(10)] };
+const PRIOR_SETS = Object.fromEntries(Object.entries(PRIOR_YEARS).map(([k, v]) => [k, { course: v[v.length - 1].course, items: v[v.length - 1].items }]));
+function schoolYearOf(iso) { const [y, m] = iso.split("-").map(Number); return m >= 8 ? y : y - 1; }
+/* Sample prior record: two earlier years by semester (four terms), with levels that rise toward this year's levels by domain. */
 function sampleHistoryRecord(st) {
   const rng = mulberry32(Number(st.id.replace(/\D/g, "")) * 31 + 7);
-  const set = PRIOR_SETS[PROFILE_ID];
+  const pick = PRIOR_COURSES[PROFILE_ID] || PRIOR_COURSES.physics;
+  const years = [pick(st.grade - 2), pick(st.grade - 1)];
   const m = metrics(st);
-  const now = m.meanLevel || 2.6;
-  const terms = [["2025-01-17", -1.0], ["2025-06-13", -0.6]];
+  const nowByDomain = {};
+  COMPETENCIES.forEach((c) => { const v = m.per[c.id].ev.value; if (v != null) (nowByDomain[domainOf(c.standard)] = nowByDomain[domainOf(c.standard)] || []).push(v); });
+  const overall = m.meanLevel || 2.5;
+  const sy = schoolYearOf(TODAY);
   const creds = [];
-  terms.forEach(([date, off]) => set.items.forEach(([code, name]) => {
-    const lvl = clamp(Math.round(now + off + (rng() - 0.5) * 1.2), 1, 4);
-    const id = `https://district.example.org/achievements/${code.toLowerCase()}`;
-    creds.push({ type: ["VerifiableCredential", "OpenBadgeCredential"], validFrom: `${date}T00:00:00Z`, name: `${code}: ${name}`,
-      credentialSubject: { type: ["AchievementSubject"], achievement: { id, type: ["Achievement"], name: `${code}: ${name}`, alignment: [{ type: ["Alignment"], targetCode: code, targetName: name, targetFramework: PROFILE_ID === "physics" ? "NGSS" : "CT Core Standards (CCSS)" }] },
-        result: [{ type: ["Result"], achievedLevel: `${id}#level-${lvl}` }] } });
-  }));
-  return { "@context": ["https://www.w3.org/ns/credentials/v2"], type: ["VerifiableCredential", "ClrCredential"], name: `${set.course} 2024–25 (sample prior record)`, validFrom: "2025-06-13T00:00:00Z",
+  years.forEach((yr, yi) => {
+    const y0 = sy - (years.length - yi);
+    [[`${y0 + 1}-01-16`, 0], [`${y0 + 1}-06-12`, 1]].forEach(([date, half]) => {
+      const step = yi * 2 + half;                       // 0..3, oldest first
+      yr.items.forEach(([code, name]) => {
+        const dom = domainOf(code), now = nowByDomain[dom] ? mean(nowByDomain[dom]) : overall;
+        const lvl = clamp(Math.round(now - 1.3 + step * 0.35 + (rng() - 0.5) * 1.1), 1, 4);
+        const id = `https://district.example.org/achievements/${code.toLowerCase().replace(/[^a-z0-9.-]/g, "")}`;
+        creds.push({ type: ["VerifiableCredential", "OpenBadgeCredential"], validFrom: `${date}T00:00:00Z`, name: `${code}: ${name}`, course: `${yr.course} (Grade ${st.grade - (years.length - yi)})`,
+          credentialSubject: { type: ["AchievementSubject"], achievement: { id, type: ["Achievement"], name: `${code}: ${name}`, alignment: [{ type: ["Alignment"], targetCode: code, targetName: name, targetFramework: /^\d[AB]-/.test(code) ? "CSTA" : /^(HS|\d\.|MP)/.test(code) && !/^HS-/.test(code) ? "CT Core Standards (CCSS Math)" : /^(RL|RI|W|SL|L)\./.test(code) ? "CT Core Standards (CCSS ELA)" : "NGSS" }] },
+          result: [{ type: ["Result"], achievedLevel: `${id}#level-${lvl}` }] } });
+      });
+    });
+  });
+  return { "@context": ["https://www.w3.org/ns/credentials/v2"], type: ["VerifiableCredential", "ClrCredential"], name: `${years.map((y) => y.course).join(" and ")} (sample prior record, ${sy - years.length}–${String(sy % 100).padStart(2, "0")})`, validFrom: `${sy}-06-12T00:00:00Z`,
     credentialSubject: { type: ["ClrSubject"], verifiableCredential: creds } };
 }
 function termLabel(iso) {
   const [y, m] = iso.split("-").map(Number);
   const sy = m >= 8 ? y : y - 1;
   return `${sy}–${String((sy + 1) % 100).padStart(2, "0")} ${m >= 8 || m === 1 ? "S1" : "S2"}`;
+}
+/* Growth periods: prior years by semester (labeled by grade), this year by quarter. */
+function growthPeriod(iso, st) {
+  const sy = schoolYearOf(iso), cur = schoolYearOf(TODAY);
+  const g = st.grade - (cur - sy);
+  if (sy === cur) { const q = termFor(iso); return { key: `${sy}-${q}`, label: `Gr ${g} ${q}`, sort: `${sy}-${q}`, current: true }; }
+  const sem = termLabel(iso).slice(-2);
+  return { key: `${sy}-${sem}`, label: `Gr ${g} ${sem}`, sort: `${sy}-${sem === "S1" ? "Q0" : "Q2a"}`, current: false };
+}
+function domainSeries(st) {
+  const pts = [];
+  (state.history[st.id] || []).forEach((h) => h.records.forEach((r) => pts.push({ date: r.date, level: r.level, dom: domainOf(r.code), source: h.name })));
+  COMPETENCIES.forEach((c) => attemptsFor(st.id, c.id).forEach((a) => pts.push({ date: a.date, level: a.level, dom: domainOf(c.standard), source: "This course" })));
+  const periods = new Map(), cells = new Map(), domOrder = (GROWTH_DOMAINS[PROFILE_ID] || []).map((x) => x[0]).concat("Other");
+  pts.forEach((p) => {
+    const per = growthPeriod(p.date, st);
+    if (!periods.has(per.key)) periods.set(per.key, { ...per, n: 0, sources: new Set() });
+    const P = periods.get(per.key); P.n++; P.sources.add(p.source);
+    const k = `${p.dom}|${per.key}`; if (!cells.has(k)) cells.set(k, []); cells.get(k).push(p.level);
+  });
+  const plist = [...periods.values()].sort((a, b) => a.sort.localeCompare(b.sort));
+  const domains = domOrder.filter((dname) => plist.some((p) => cells.has(`${dname}|${p.key}`))).map((dname) => ({
+    name: dname, values: Object.fromEntries(plist.map((p) => [p.key, cells.has(`${dname}|${p.key}`) ? mean(cells.get(`${dname}|${p.key}`)) : null])),
+    n: Object.fromEntries(plist.map((p) => [p.key, (cells.get(`${dname}|${p.key}`) || []).length]))
+  }));
+  return { periods: plist.map((p) => ({ ...p, sources: [...p.sources] })), domains };
 }
 function growthSeries(st) {
   const pts = [];
@@ -2178,10 +2374,11 @@ function exportTypeLabel(ex = state.settings.export) {
 /* PowerTeacher Pro "Import Scores" file: one PowerTeacher Pro assignment (= one SMT assessment) per import; needs a student-number
    column and a score column; a name column (for Validate Student Names) and extra score
    columns are optional. Multi-column files work with the CSV/Text formats. */
-function ptpImport(sectionId, aid, ex = state.settings.export) {
+/* onlyCid: build the single-standard file PowerTeacher Pro imports in one pass (one score column). */
+function ptpImport(sectionId, aid, ex = state.settings.export, onlyCid) {
   const a = assessmentById(aid);
   if (!a) return null;
-  const comps = a.comps.map((id) => COMP[id]);
+  const comps = (onlyCid && a.comps.includes(onlyCid) ? [onlyCid] : a.comps).map((id) => COMP[id]);
   const typeLbl = exportTypeLabel(ex);
   const withName = ex.nameFormat !== "none";
   const header = ["Student Number", ...(withName ? ["Student Name"] : []), ...comps.map((c) => `${c.standard} (${typeLbl})`)];
@@ -2485,6 +2682,12 @@ const TABS = [
 const isResearch = () => state.settings.mode === "research";
 const R = (k) => isResearch() && !["traces", "smt", "telemetry"].includes(k) && state.settings.research[k];
 
+/* Name markup for tight cells: when the full "First Last" doesn't fit, fitNames() shortens it to "First L." and, if still too long, cuts it off with "…". */
+function nameHtml(st) {
+  const s = state.settings;
+  if ((isResearch() && s.research.pseudonymsEverywhere) || s.privacy.nameFormat !== "full") return esc(nameOf(st));
+  return `<span class="nm-first">${esc(st.first)}</span> <span class="nm-last">${esc(st.last)}</span><span class="nm-init">${esc(st.last[0])}.</span>`;
+}
 function nameOf(st) {
   const s = state.settings;
   if (isResearch() && s.research.pseudonymsEverywhere) return pseudonym(st.id);
@@ -2506,6 +2709,12 @@ function warnChip(m, compact) {
 }
 const baselineVs = () => BASELINES[currentPolicy().baseline].vs;
 const baselineShort = () => ({ anchors: "same-table average", rawPoints: "raw-points avg", imported: "reported %" })[currentPolicy().baseline];
+/* Research layer: the 33-character SMT code for a student's current level on a standard (from the most recent evidence). */
+function smtLine(att, c) {
+  if (!isResearch() || !att.length) return "";
+  const code = smtString(c, att[att.length - 1]);
+  return `<code class="smt-mini ${smtValid(code) ? "" : "bad"}" title="SMT code (Uranis et al., 2019), 33 characters${smtValid(code) ? "" : ": fails the check"}">${esc(code)}</code>`;
+}
 function chip(ev, compact) {
   if (!ev || ev.value == null) return `<span class="lv lv-0"><span class="n">–</span>${compact ? "" : "No evidence"}</span>`;
   const v = fmt1(ev.value);
@@ -2681,7 +2890,7 @@ function retryFiltered() {
 function retryRow(x, hide) {
   return `<tr${tip("retry", x.k)}>
     ${hide === "student" ? "" : `<td class="name"><button class="linklike" data-act="student" data-sid="${x.st.id}">${esc(nameOf(x.st))}</button></td>`}
-    ${hide === "class" || hide === "standard" ? "" : `<td class="small">${esc(SEC[x.st.sectionId].period)}</td>`}
+    ${hide === "class" || hide === "standard" ? "" : `<td class="small nowrap" title="${esc(SEC[x.st.sectionId].period)} · ${esc(SEC[x.st.sectionId].name)}">${esc(SEC[x.st.sectionId].period.replace("Period ", "P"))}</td>`}
     ${hide === "standard" ? "" : `<td><span class="small"><b>${esc(x.c.standard)}</b> <span class="muted">${esc(x.c.title)}</span></span></td>`}
     <td>${chip(x.ev)}</td>
     <td class="small muted">${fmtDate(x.f.date)}</td>
@@ -2746,8 +2955,22 @@ function viewScore() {
   const a = currentAssessment();
   const ros = roster(sec.id);
   const cols = state.settings.columns;
-  /* One flowing list: each framework's short name sits inline before its standards, so rows fill the width. */
-  const chips = `<div class="std-flow">${byFramework(pickable).map(({ f, comps }) => `${comps.map((c, i) => `${i === 0 ? `<span class="std-lead"><span class="std-fw" title="${esc(f.name)}">${esc(f.short || f.name)}</span>` : ""}<button class="chip" data-act="comp" data-cid="${c.id}" aria-pressed="${c.id === comp.id}"${tip("std", c.id)}>${esc(c.standard)}${active.includes(c) ? "" : " · upcoming"}<small>${esc(c.title)}</small></button>${i === 0 ? "</span>" : ""}`).join("")}`).join("")}</div>`;
+  /* Category tabs (one per standards framework) over a single scrolling row of that category's standards. */
+  const groups = byFramework(pickable);
+  const curFw = comp.framework;
+  if (!ui.stdCat || (ui.stdCat !== "all" && !groups.some((g) => g.f.id === ui.stdCat))) ui.stdCat = curFw;
+  const shownComps = ui.stdCat === "all" ? pickable : (groups.find((g) => g.f.id === ui.stdCat) || groups[0] || { comps: [] }).comps;
+  const stdBtn = (c) => `<button class="chip std-chip" data-act="comp" data-cid="${c.id}" aria-pressed="${c.id === comp.id}"${tip("std", c.id)}><span class="std-code">${esc(c.standard)}${active.includes(c) ? "" : ` <span class="tiny muted">upcoming</span>`}</span><small>${esc(c.title)}</small></button>`;
+  /* All of a category's standards at once, in a wrapping grid of equal-width cards (no sideways scrolling). */
+  const grid = ui.stdCat === "all"
+    ? groups.map(({ f, comps }) => `<div class="std-ghead" title="${esc(f.name)}">${esc(f.short || f.name)} <span class="tiny muted">${comps.length}</span></div>${comps.map(stdBtn).join("")}`).join("")
+    : shownComps.map(stdBtn).join("");
+  const chips = `<div class="std-tabs" role="tablist" aria-label="Standard categories">
+      ${groups.map(({ f, comps }) => `<button role="tab" data-act="std-cat" data-v="${f.id}" aria-selected="${ui.stdCat === f.id}" title="${esc(f.name)}">${esc(f.short || f.name)} <span class="tab-n">${comps.length}</span>${f.id === curFw && ui.stdCat !== f.id ? ' <span class="cur-dot" aria-label="current standard is here">●</span>' : ""}</button>`).join("")}
+      ${groups.length > 1 ? `<button role="tab" data-act="std-cat" data-v="all" aria-selected="${ui.stdCat === "all"}">All <span class="tab-n">${pickable.length}</span></button>` : ""}
+      <label class="check small std-upcoming"><input type="checkbox" data-act="show-upcoming" ${ui.showUpcoming ? "checked" : ""}> Not yet taught</label>
+    </div>
+    <div class="std-grid2" role="group" aria-label="${esc(ui.stdCat === "all" ? "All standards" : (FRAMEWORKS.find((f) => f.id === ui.stdCat) || {}).name || "Standards")}">${grid}</div>`;
   const aOpts = list.map((x) => `<option value="${x.id}" ${a && x.id === a.id ? "selected" : ""}>${fmtDate(x.date)} · ${esc(x.title)}${x.date > TODAY ? " (upcoming)" : ""}</option>`).join("");
   const scored = a ? ros.filter((st) => entryForAssessment(st.id, comp.id, a.id)).length : 0;
   const head = `<tr><th>Student</th><th data-tip="th-current">Current</th><th data-tip="th-score">${a ? "Score: " + esc(a.title) : "Score"}</th>
@@ -2756,9 +2979,7 @@ function viewScore() {
   return `<div class="page-head"><div><div class="kicker">${esc(sec.period)} · ${esc(sec.name)}</div><h2 data-tip="page-score">Score a standard</h2></div>
       <div class="toolbar"><label class="field" for="sel-section">Class<select id="sel-section" data-act="section">${sectionOptions(sec.id)}</select></label></div></div>
     <div class="card stack">
-      <div class="spread"><span class="small" style="font-weight:650;color:var(--ink-2)">Standard</span>
-        <label class="check small"><input type="checkbox" data-act="show-upcoming" ${ui.showUpcoming ? "checked" : ""}> Show standards not yet taught</label></div>
-      <div role="group" aria-label="Standard">${chips}</div>
+      <div class="std-picker">${chips}</div>
       <div class="spread">
         <div class="row">
           <label class="field" for="sel-assessment"${tip("assessment", a ? a.id : "")}>Assessment
@@ -2798,8 +3019,8 @@ function scoreRow(st, comp, a) {
   const showLegacy = isResearch() || state.settings.policy.showLegacyToTeacher;
   const trace = "";
   return `<tr tabindex="0" data-row="score" data-sid="${st.id}">
-    <td class="name"><button class="linklike" data-act="drawer" data-sid="${st.id}" data-cid="${comp.id}"${tip("student", st.id)}>${nm}</button>${supPill(st.id)}${trace}</td>
-    <td><span${tip("level", st.id, comp.id)}>${chip(ev)}</span></td>
+    <td class="name"><div class="nm-cell"><button class="linklike nm-btn" data-act="drawer" data-sid="${st.id}" data-cid="${comp.id}" title="${nm}" aria-label="${nm}"${tip("student", st.id)}>${nameHtml(st)}</button>${supPill(st.id)}${trace}</div></td>
+    <td><span${tip("level", st.id, comp.id)}>${chip(ev)}</span>${smtLine(att, comp)}</td>
     <td><div class="scorebtns" role="group" aria-label="Score for ${nm}">${btns}</div></td>
     ${cols.attempts ? `<td class="num small">${att.length}</td>` : ""}
     ${cols.habits ? `<td><select data-act="habit" data-sid="${st.id}" aria-label="Work habits for ${nm}" class="small">
@@ -2916,7 +3137,7 @@ function viewStudents() {
       const { att, ev } = m.per[c.id];
       return `<button class="mini" data-act="drawer" data-sid="${st.id}" data-cid="${c.id}"${tip("mini", st.id, c.id)}>
         <div class="spread"><div><div class="tiny" style="color:var(--accent);font-weight:700">${esc(c.standard)}</div><div class="small" style="font-weight:650">${esc(c.title)}</div></div>${chip(ev, true)}</div>
-        ${progressSvg(att, ev, semesterStart(sec.semester))}</button>`;
+        ${progressSvg(att, ev, semesterStart(sec.semester))}${smtLine(att, c)}</button>`;
     }).join("")}</div></div>`).join("")}
     ${upcoming.length ? `<details class="disclose"><summary>Coming later this semester (${upcoming.length})</summary><ul class="small" style="margin:8px 0 0;padding-left:18px">${upcoming.map((c) => `<li><b>${esc(c.standard)}</b> ${esc(c.title)} <span class="muted">· ${esc(c.unit)} · ${esc(c.when)}</span></li>`).join("")}</ul></details>` : ""}
     <p class="tiny muted">Dots are attempts; the dashed line is level 3 (Meets). The number at right is the current level under the active grading rule (${esc(RULES[state.settings.policy.rule].name.toLowerCase())}).</p>`);
@@ -3037,17 +3258,14 @@ function smtBreakdown(c, entry) {
 function viewGradebook() {
   const sec = SEC[ui.sectionId];
   const gsub = ["scoresheet", "assessments", "export"].includes(ui.gbSub) ? ui.gbSub : "scoresheet";
-  const text = ui.gbMode === "summary" ? sisCsv(sec.id, ui.gbFormat) : "";
-  const p = state.settings.policy;
   return `<div class="page-head"><div><div class="kicker">Gradebook</div><h2 data-tip="page-gradebook">${esc(sec.period)} · ${esc(sec.name)}</h2></div>
       <div class="toolbar"><button class="btn ghost" data-act="open-dialog" data-v="how-grades">How grades are calculated</button><label class="field" for="sel-section">Class<select id="sel-section" data-act="section">${sectionOptions(sec.id)}</select></label></div></div>
     <div class="subtabs" role="tablist" aria-label="Gradebook sections" data-tip="gb-subtabs">${[["scoresheet", "Scoresheet"], ["assessments", "Assessments"], ["export", "Send to PowerSchool"]].map(([k, l]) => `<button role="tab" data-act="gb-sub" data-v="${k}" aria-selected="${gsub === k}">${l}</button>`).join("")}</div>
-    ${gsub === "scoresheet" ? scoresheet(sec) : ""}
+    ${gsub === "scoresheet" ? `<div class="gb-tools">${gbExportMenu()}</div>${scoresheet(sec)}` : ""}
     ${gsub === "assessments" ? assessmentListCard(sec) : ""}
     ${gsub !== "export" ? "" : `<section class="stack" style="gap:12px">
-      <div class="spread" id="send-to-ps"><div><h3>Send to PowerSchool</h3><p class="small muted">Build import files for PowerTeacher Pro, or a summary file for review.</p></div>
-        <div class="seg" data-tip="export-mode"><button data-act="gb-mode" data-v="ptp" aria-pressed="${ui.gbMode !== "summary"}">PowerTeacher Pro import</button><button data-act="gb-mode" data-v="summary" aria-pressed="${ui.gbMode === "summary"}">Standards summary</button></div></div>
-      ${ui.gbMode === "summary" ? summarySection(sec, text, p) : ptpSection(sec)}
+      <div class="spread" id="send-to-ps"><div><h3>Send to PowerSchool</h3><p class="small muted">Import files for PowerTeacher Pro. Review files (course grades, standards by student) are in the Export menu on the Scoresheet tab.</p></div></div>
+      ${ptpSection(sec)}
     </section>`}`;
 }
 function ssTerms(sec) { return [...TERMS.filter((t) => t.semester === sec.semester && t.start <= TODAY).map((t) => t.id), sec.semester]; }
@@ -3075,19 +3293,19 @@ function scoresheet(sec) {
       }).join("")}</div></td>`;
     }).join("");
     return `<tr><td class="name ss-sticky"><button class="linklike" data-act="student" data-sid="${st.id}"${tip("student", st.id)}>${esc(nameOf(st))}</button></td>
-      <td class="ss-grade ss-sticky2"${tip("ss-grade", st.id)}><b>${m.policyLetter}</b> <span class="muted num">${m.policyPct ?? "–"}%</span>${warnChip(m, true)}</td>${cells}</tr>`;
+      <td class="ss-grade ss-sticky2"${tip("ss-grade", st.id)}><b>${m.policyLetter}</b> <span class="muted num">${m.policyPct ?? "–"}%</span>${warnChip(m, true)}</td>${isResearch() ? `<td class="ss-avg small" title="${esc(BASELINES[m.baseline].vs)}">${m.legacyPct == null ? "–" : `<b>${m.legacyLetter}</b> <span class="muted num">${m.legacyPct}%</span>${m.delta ? ` <span class="pill ${m.delta > 0 ? "good" : "note"}">${m.delta > 0 ? "+" : ""}${m.delta}</span>` : ""}`}</td>` : ""}${cells}</tr>`;
   }).join("");
   const opt = (v, l, cur) => `<option value="${v}" ${cur === v ? "selected" : ""}>${l}</option>`;
   return `<section class="card flush">
     <div class="card-head stack" style="gap:10px">
       <div class="spread" style="align-items:flex-start"><div data-tip="ss"><h3>Scoresheet</h3><p class="small muted">Every assessment and score this ${ui.ssTerm.startsWith("S") ? "semester" : "quarter"}, with the current grade. Click a score to open that student's evidence for the assessment, a name for the learner record, or a column to score that assessment.</p></div><button class="btn sm" data-act="copy-ss" data-tip="copy-ss">${ICON.copy} Copy table</button></div>
       <div class="rq-controls">
-        <label class="field" for="ss-term">Period<select id="ss-term" data-act="ss" data-k="ssTerm">${terms.map((t) => opt(t, t.startsWith("S") ? `${t} (whole semester)` : t, ui.ssTerm)).join("")}</select></label>
+        <label class="field" for="ss-term">Term<select id="ss-term" data-act="ss" data-k="ssTerm">${terms.map((t) => opt(t, t.startsWith("S") ? `${t} (whole semester)` : t, ui.ssTerm)).join("")}</select></label>
         <label class="field" for="ss-std">Standard<select id="ss-std" data-act="ss" data-k="ssStd">${opt("all", "All standards", ui.ssStd)}${stdOpts.map((c) => opt(c.id, `${c.standard} · ${c.title}`, ui.ssStd)).join("")}</select></label>
         <div class="stack" style="gap:4px"><span class="small" style="font-weight:650;color:var(--ink-2)">Show scores as</span><div class="seg" data-tip="ss-show"><button data-act="ss-show" data-v="level" aria-pressed="${ui.ssShow !== "export"}">Mastery levels</button><button data-act="ss-show" data-v="export" aria-pressed="${ui.ssShow === "export"}">PowerSchool values (${esc(exportTypeLabel(ex))})</button></div></div>
       </div>
     </div>
-    ${asmts.length ? `<div class="table-wrap ss-wrap"><table class="ss"><thead><tr><th class="ss-sticky">Student</th><th class="ss-sticky2"${tip("ss-grade-h")}>Current grade</th>${cols}</tr></thead><tbody>${rows}</tbody></table></div>
+    ${asmts.length ? `<div class="table-wrap ss-wrap"><table class="ss"><thead><tr><th class="ss-sticky">Student</th><th class="ss-sticky2"${tip("ss-grade-h")}>Current grade</th>${isResearch() ? `<th class="ss-avg" title="${esc(BASELINES[currentPolicy().baseline].help)}">Averaged<br><span class="tiny muted">${esc(BASELINES[currentPolicy().baseline].name.toLowerCase())}</span></th>` : ""}${cols}</tr></thead><tbody>${rows}</tbody></table></div>
       <div class="ss-foot tiny muted">${LEGEND} <span>– = no score yet (click to add)</span></div>`
       : `<div class="empty">No assessments in ${esc(ui.ssTerm)} yet.</div>`}
   </section>`;
@@ -3105,12 +3323,12 @@ function summarySection(sec, text, p) {
 function ptpBundleCard(sec) {
   const terms = ssTerms(sec);
   if (!terms.includes(ui.ptpBundleTerm)) ui.ptpBundleTerm = terms.includes(termFor(TODAY)) ? termFor(TODAY) : sec.semester;
-  const items = ptpTermAssessments(sec.id, ui.ptpBundleTerm);
+  const items = ptpTermAssessments(sec.id, ui.ptpBundleTerm, true);
   return `<div class="card stack" style="background:var(--surface-2);gap:10px" data-tip="bundle">
-    <div class="spread"><div><h4>Export a quarter or the semester</h4><p class="small muted">One import file per scored assessment, plus a step list, in a single .zip. Uses the score settings above.</p></div>
-      <div class="row"><label class="field" for="ptp-term">Period<select id="ptp-term" data-act="ptp-bundle-term">${terms.map((t) => `<option value="${t}" ${t === ui.ptpBundleTerm ? "selected" : ""}>${t.startsWith("S") ? `${t} (whole semester)` : t}</option>`).join("")}</select></label>
+    <div class="spread"><div><h4>Export a quarter or the semester</h4><p class="small muted">Every import file for the period (one per assessment and standard) plus a step list, in a single .zip. Uses the score settings above.</p></div>
+      <div class="row"><label class="field" for="ptp-term">Term<select id="ptp-term" data-act="ptp-bundle-term">${terms.map((t) => `<option value="${t}" ${t === ui.ptpBundleTerm ? "selected" : ""}>${t.startsWith("S") ? `${t} (whole semester)` : t}</option>`).join("")}</select></label>
       <button class="btn primary" data-act="dl-bundle" style="align-self:flex-end" ${items.length ? "" : "disabled"}>${ICON.download} Download ${items.length} file${items.length === 1 ? "" : "s"} (.zip)</button></div></div>
-    ${items.length ? `<ul class="tiny muted" style="margin:0;padding-left:18px;columns:2;column-gap:24px">${items.map(({ a, x }) => `<li>${fmtDate(a.date)} · ${esc(a.title)} <span class="faint">(${x.rows.length} students, ${x.comps.length} col)</span></li>`).join("")}</ul>` : `<p class="small muted">No scored assessments in ${esc(ui.ptpBundleTerm)} yet.</p>`}
+    ${items.length ? `<ul class="tiny muted" style="margin:0;padding-left:18px;columns:2;column-gap:24px">${items.map(({ a, c, x }) => `<li>${fmtDate(a.date)} · ${esc(a.title)} · <b>${esc(c.standard)}</b> <span class="faint">(${x.rows.length} students)</span></li>`).join("")}</ul>` : `<p class="small muted">No scored assessments in ${esc(ui.ptpBundleTerm)} yet.</p>`}
   </div>`;
 }
 function exportSettingsCard() {
@@ -3137,49 +3355,65 @@ function ptpSection(sec) {
   const done = state.assessments.filter((a) => (a.sections || []).includes(sec.id) && a.date <= TODAY).sort((a, b) => b.date.localeCompare(a.date));
   if (!done.some((a) => a.id === ui.ptpAssessment)) ui.ptpAssessment = done[0] ? done[0].id : null;
   if (!ui.ptpAssessment) return `<section class="card empty">No assessments yet for this class.</section>`;
-  const x = ptpImport(sec.id, ui.ptpAssessment);
-  const a = x.a;
+  const a = assessmentById(ui.ptpAssessment);
+  if (!a.comps.includes(ui.ptpCid)) ui.ptpCid = a.comps[0];
+  /* PowerTeacher Pro imports one score column per assessment, so each standard gets its own one-column file. */
+  const files = a.comps.map((cid) => ({ c: COMP[cid], x: ptpImport(sec.id, a.id, ex, cid) }));
+  const cur = files.find((f) => f.c.id === ui.ptpCid), x = cur.x;
   const ros = roster(sec.id);
   const term = termFor(a.date);
-  const warn = [];
-  if (term !== termFor(TODAY)) warn.push(`This assessment is in ${term}. PowerTeacher Pro blocks imports when the reporting term or class is locked; ask your administrator if ${term} is closed.`);
-  if (x.skipped.length) warn.push(`${x.skipped.length} student${x.skipped.length > 1 ? "s have" : " has"} no score on this assessment and ${x.skipped.length > 1 ? "are" : "is"} left out of the file: ${x.skipped.map((s) => esc(nameOf(s))).join(", ")}.`);
-  const partial = x.rows.filter((r) => r.slice(x.firstScoreCol, x.firstScoreCol + x.comps.length).some((v) => v === "")).length;
-  if (partial) warn.push(`${partial} row${partial > 1 ? "s have" : " has"} a blank cell for at least one standard. Choose “keep existing scores” when importing if you don't want blanks to matter.`);
-  if (x.comps.length > 1) warn.push(`This assessment covers ${x.comps.length} standards, so the file has ${x.comps.length} score columns. Each import brings in one column: repeat the import for each matching assessment in PowerTeacher Pro and pick that standard's column.`);
+  const multi = files.length > 1;
+  const missing = (f) => f.x.skipped;
   const preview = x.rows.map((r) => `<tr>${r.map((v, i) => `<td class="${i >= x.firstScoreCol ? "num" : ""} small">${esc(v === "" ? "–" : v)}</td>`).join("")}</tr>`).join("");
   const steps = [
-    `In PowerTeacher Pro, open <b>Grading › Assignment List</b> (PowerTeacher Pro's list of assessments) and select the one that matches <b>${esc(a.title)}</b>${x.comps.length > 1 ? " (or the one for the standard you are importing)" : ""}.`,
+    `In PowerTeacher Pro, open <b>Grading › Assignment List</b> (PowerTeacher Pro's list of assessments) and select the one that matches <b>${esc(a.title)}</b>${multi ? " for the standard in the file" : ""}.`,
     `Click the gear icon and choose <b>Import Scores</b>, then <b>Browse Files</b> and pick the file you saved.`,
     `Set <b>Format</b> to <b>CSV</b>. Leave <b>Include First Row</b> unchecked: the first row is a header.`,
     `Set <b>File Score Type</b> to <b>${EXPORT_TYPES[ex.scoreType].file}</b>${ex.scoreType === "points" ? ` (scores are out of ${ex.total}; set the assessment to ${ex.total} points in PowerTeacher Pro)` : ex.scoreType === "level" ? " (scores are 1–4; set the assessment to 4 points in PowerTeacher Pro)" : ""}. If the PowerTeacher Pro assessment uses a different score type, PowerTeacher Pro converts the scores.`,
     ex.nameFormat === "none" ? `Leave <b>Validate Student Names</b> unchecked (this file has no name column), then click <b>Next</b> and review any alerts.` : `Check <b>Validate Student Names</b> so mismatches between names and student numbers are flagged, then click <b>Next</b> and review any alerts.`,
-    `${x.comps.length > 1 ? "Click the column header for the standard you are importing. " : ""}Choose whether to keep or overwrite existing scores, and whether to keep or recalculate existing standards scores. Then click <b>Import</b>.`
+    `Choose whether to keep or overwrite existing scores, and whether to keep or recalculate existing standards scores. Then click <b>Import</b>.${multi ? " Repeat with the next file." : ""}`
   ];
+  const chips = (f) => missing(f).map((st) => `<button class="miss-chip" data-act="drawer" data-sid="${st.id}" data-cid="${f.c.id}" data-aid="${a.id}" title="Score ${esc(nameOf(st))} on ${esc(f.c.standard)}">${esc(st.first)} ${esc(st.last[0])}. · no score</button>`).join("");
   return `<section class="card stack">
-    <div class="spread"><div data-tip="ptp"><h3>PowerTeacher Pro score import</h3><p class="small muted">One file per assessment, matched to students by student number. Choose the assessment and score settings, check the preview, then download.</p></div></div>
+    <div class="spread"><div data-tip="ptp"><h3>PowerTeacher Pro score import</h3><p class="small muted">Pick an assessment, check who's in the file, then download. Students are matched by student number.</p></div></div>
     <label class="field" for="ptp-assessment"${tip("assessment", a.id)} style="max-width:520px">Assessment<select id="ptp-assessment" data-act="ptp-assessment">${done.map((d) => `<option value="${d.id}" ${d.id === a.id ? "selected" : ""}>${fmtDate(d.date)} · ${esc(d.title)} (${termFor(d.date)})</option>`).join("")}</select></label>
     ${exportSettingsCard()}
-    <div class="stats" data-tip="ptp-stats">
-      <div class="stat"><span class="v">${x.rows.length}<span class="small muted">/${ros.length}</span></span><span class="k">students in file</span></div>
-      <div class="stat"><span class="v">${x.comps.length}</span><span class="k">score column${x.comps.length > 1 ? "s" : ""}</span></div>
-      <div class="stat"><span class="v">${x.cells}</span><span class="k">scores</span></div>
-      <div class="stat"><span class="v">${esc(METHODS[a.method].short)}</span><span class="k">${fmtDate(a.date)} · ${term}</span></div>
+    ${term !== termFor(TODAY) ? `<p class="ptp-note"><span aria-hidden="true">⚠</span> ${esc(term)} assessment: PowerTeacher Pro blocks imports once a term is locked.</p>` : ""}
+    <div class="ptp-files" data-tip="ptp-stats">
+      ${files.map((f) => `<div class="ptp-file ${f.c.id === cur.c.id ? "on" : ""}">
+        <div class="pf-head"><button class="linklike pf-name" data-act="ptp-std" data-cid="${f.c.id}" aria-pressed="${f.c.id === cur.c.id}" title="Preview this file"><b>${esc(f.c.standard)}</b> <span class="muted">${esc(f.c.title)}</span></button>
+          <button class="btn sm ${f.c.id === cur.c.id ? "primary" : ""}" data-act="dl-ptp" data-cid="${f.c.id}" ${f.x.rows.length ? "" : "disabled"} data-tip="dl-ptp">${ICON.download} ${multi ? `${esc(f.c.standard)} file` : "Download CSV"}</button></div>
+        <div class="pf-status"><span class="pf-count ${missing(f).length ? "warn" : "ok"}">${missing(f).length ? "●" : "✓"} <b>${f.x.rows.length} of ${ros.length}</b> students in file</span>${chips(f)}</div></div>`).join("")}
     </div>
-    ${warn.length ? `<ul class="small" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px">${warn.map((w) => `<li>${w}</li>`).join("")}</ul>` : ""}
-    <details class="disclose" data-act="ptp-preview-toggle" ${(transient.ptpOpen ?? !state.ptpPreviewSeen) ? "open" : ""}><summary>File preview (${x.rows.length} row${x.rows.length === 1 ? "" : "s"} plus a header)</summary>
+    ${multi ? `<p class="tiny muted">This assessment covers ${files.length} standards, so it makes ${files.length} files with one score column each. Import each file into the matching assessment in PowerTeacher Pro.</p>` : ""}
+    <details class="disclose" data-act="ptp-preview-toggle" ${(transient.ptpOpen ?? !state.ptpPreviewSeen) ? "open" : ""}><summary>Preview ${multi ? `the ${esc(cur.c.standard)} file` : "the file"} (${x.rows.length} row${x.rows.length === 1 ? "" : "s"} plus a header)</summary>
     <div class="table-wrap preview-wrap" data-tip="ptp-preview" style="margin-top:8px"><table><thead><tr>${x.header.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${preview}</tbody></table></div>
-    <p class="tiny muted">Scroll the preview to check every student.</p></details>
-    <div class="row">
-      <button class="btn primary" data-act="dl-ptp" data-tip="dl-ptp" ${x.rows.length ? "" : "disabled"}>${ICON.download} Download CSV for this assessment</button>
-      <button class="btn" data-act="copy-text" data-src="ptp-csv">${ICON.copy} Copy</button>
-      <span class="tiny muted"><code>${esc(ptpFilename(sec.id, a))}</code> · UTF-8 CSV for Import Scores${canDownload() ? "" : ". Downloads are off in this view; use Copy and save the text as a .csv file"}</span></div>
+    <div class="row tight" style="margin-top:6px"><button class="btn sm" data-act="copy-text" data-src="ptp-csv">${ICON.copy} Copy</button><span class="tiny muted"><code>${esc(ptpFilename(sec.id, a, multi ? cur.c : null))}</code>${canDownload() ? "" : " · Downloads are off in this view; use Copy and save the text as a .csv file"}</span></div></details>
     <textarea class="code hidden" id="ptp-csv" readonly aria-hidden="true">${esc(x.text)}</textarea>
     ${ptpBundleCard(sec)}
     <details class="disclose" data-tip="steps"><summary>How to import into PowerTeacher Pro (${steps.length} steps)</summary>
-      <ol class="small" style="margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px">${steps.map((s) => `<li>${s}</li>`).join("")}</ol>
-      <p class="tiny muted" style="margin-top:8px">Based on PowerSchool's “Importing and Exporting Scores” help page for PowerTeacher Pro. Your district's version and permissions may differ.</p></details>
+      <ol class="small" style="margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px">${steps.map((s) => `<li>${s}</li>`).join("")}</ol></details>
   </section>`;
+}
+/* Export menu on the Scoresheet tab: review files (not PowerTeacher Pro imports). */
+function gbExportMenu() {
+  const p = currentPolicy();
+  return `<details class="menu-pop gb-export" data-tip="summary"><summary class="btn">${ICON.download} Export ▾</summary>
+    <div class="menu-panel menu-list">
+      <button data-act="dl-summary" data-v="course"><b>Course grades (CSV)</b><span class="tiny muted">One row per student: percent, letter, work habits</span></button>
+      <button data-act="dl-summary" data-v="standards"><b>Standards by student (CSV)</b><span class="tiny muted">One row per student and standard: level and percent</span></button>
+      <div class="ml-foot"><button class="linklike tiny" data-act="preview-summary" data-v="course">Preview course grades</button> · <button class="linklike tiny" data-act="preview-summary" data-v="standards">Preview standards</button></div>
+      <p class="tiny muted ml-foot">${esc(RULES[p.rule].name)} rule · 1 → ${p.anchors[1]}%, 2 → ${p.anchors[2]}%, 3 → ${p.anchors[3]}%, 4 → ${p.anchors[4]}% · review files, not PowerTeacher Pro imports</p>
+    </div></details>`;
+}
+function summaryPreviewDialog() {
+  const sec = SEC[ui.sectionId], text = sisCsv(sec.id, ui.gbFormat);
+  const rows = text.trim().split(/\r?\n/).map((l) => l.split(","));
+  return dlg("sp", `${ui.gbFormat === "course" ? "Course grades" : "Standards by student"} · ${esc(sec.period)} ${esc(sec.name)}`,
+    `<div class="table-wrap preview-wrap"><table><thead><tr>${rows[0].map((h) => `<th>${esc(h.replace(/"/g, ""))}</th>`).join("")}</tr></thead><tbody>${rows.slice(1).map((r) => `<tr>${r.map((v) => `<td class="small">${esc(v.replace(/"/g, ""))}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+     <textarea class="code hidden" id="sis-csv" readonly aria-hidden="true">${esc(text)}</textarea>
+     <label class="field" for="term" style="max-width:160px">Store code (term)<input id="term" type="text" data-setting="district.term" value="${esc(state.settings.district.term)}"></label>`,
+    `<button class="btn" data-act="copy-text" data-src="sis-csv">${ICON.copy} Copy</button><button class="btn primary" data-act="dl-summary" data-v="${ui.gbFormat}">${ICON.download} Download CSV</button>`, "md");
 }
 
 /* ---------------------------------------------------------------- Drawer */
@@ -3256,6 +3490,7 @@ function renderDialog() {
   else if (transient.dialog === "supports") host.innerHTML = supportsDialog();
   else if (transient.dialog === "welcome") host.innerHTML = welcomeDialog();
   else if (transient.dialog === "reset-confirm") host.innerHTML = resetConfirmDialog();
+  else if (transient.dialog === "summary-preview") host.innerHTML = summaryPreviewDialog();
   else if (["feedback", "send-feedback", "choices"].includes(transient.dialog)) host.innerHTML = feedbackDialog();
   else if (transient.dialog === "how-grades") host.innerHTML = gradesDialog();
 }
@@ -3283,13 +3518,13 @@ function newAssessmentDialog(ed) {
 function settingsDialog() {
   const s = state.settings, p = s.policy;
   const pane = ui.settingsPane;
-  const panes = [["appearance", "Appearance"], ["views", "Views & columns"], ["research", "Research details & review tools"], ["study", "Study data"], ["grading", "Grading rule"], ["groups", "Groups"], ["privacy", "Privacy & IDs"], ["data", "Data"], ["about", "About"]];
+  const panes = [["research", "Research & review"], ["study", "Study data"], ["appearance", "Appearance"], ["views", "Views & columns"], ["grading", "Grading rule"], ["groups", "Groups"], ["privacy", "Privacy & IDs"], ["data", "Data"], ["about", "About"]];
   const seg = (path, val, opts) => `<div class="seg">${opts.map(([v, l]) => `<button type="button" data-act="set" data-path="${path}" data-v="${v}" aria-pressed="${String(val) === String(v)}">${l}</button>`).join("")}</div>`;
   const toggle = (path, val, label, help) => `<div class="set-row"><div><div class="lbl">${label}</div>${help ? `<div class="help">${help}</div>` : ""}</div><input type="checkbox" data-setting="${path}" ${val ? "checked" : ""} aria-label="${esc(label)}"></div>`;
   let body = "";
   if (pane === "appearance") body = `
     <div class="set-group"><h4>Theme</h4>${seg("theme", s.theme, [["system", "Match system"], ["light", "Light"], ["dark", "Dark"]])}</div>
-    <div class="set-group"><h4>Density</h4>${seg("density", s.density, [["auto", "Auto"], ["comfortable", "Comfortable"], ["compact", "Compact"]])}<p class="help small muted">Auto uses comfortable spacing in Teacher view and compact spacing in Reviewer view.</p></div>
+    <div class="set-group"><h4>Density</h4>${seg("density", s.density, [["auto", "Auto"], ["comfortable", "Comfortable"], ["compact", "Compact"]])}<p class="help small muted">Auto uses comfortable spacing, and compact spacing while the research layer is on.</p></div>
     <div class="set-group"><h4>Text size</h4>${seg("fontScale", s.fontScale, [["90", "Small"], ["100", "Default"], ["112", "Large"], ["125", "Larger"]])}</div>
     <div class="set-group"><h4>Accessibility</h4>
       ${toggle("cvd", s.cvd, "Color-vision-safe level colors", "Swaps the level palette for one that stays distinct with common color-vision differences. Levels always show their number too.")}
@@ -3309,10 +3544,9 @@ function settingsDialog() {
       ${toggle("policy.showLegacyToTeacher", p.showLegacyToTeacher, "Show the averaging comparison in Teacher view")}</div>
     <div class="set-group"><h4>Student names</h4>${seg("privacy.nameFormat", s.privacy.nameFormat, [["full", "First Last"], ["lastFirst", "Last, First"], ["firstInitial", "First L."]])}</div>`;
   else if (pane === "research") body = `
-    <div class="set-group"><h4>Research details</h4>${seg("mode", s.mode, [["teacher", "Off"], ["research", "On"]])}
-      <p class="help small muted">Research details change only what the screens show: the averaging comparison everywhere, every correction in a student's history, pseudonyms (if turned on below), hidden support details, research columns, and the SMT-code note. The dashboard stays fully usable. Also in the Guide menu.</p></div>
-    <div class="set-group"><h4>Review tools</h4><p class="help small muted"><b>Comment</b> (C): point at any part of the page and leave a note. <b>Explain</b> (E): “?” markers on key parts of each screen. <b>About this screen</b> (Guide menu): the purpose of the screen and every explanation on it.</p>
-      ${toggle("__explain", !!ui.explain, "Explain markers", "Show “?” markers on about 25 key parts of the dashboard. They never block the dashboard.")}</div>
+    <div class="set-group"><h4>Research layer</h4>${seg("mode", s.mode, [["teacher", "Off"], ["research", "On"]])}
+      <p class="help small muted">The research layer adds, without blocking anything: each current level's 33-character SMT code (Score and Students), an “Averaged” column beside every grade in the Scoresheet, the averaging comparison everywhere, every correction in a student's history, pseudonyms (if turned on below), hidden support details, and research columns. Also a switch in the Context panel.</p></div>
+    <div class="set-group"><h4>Review tools</h4><p class="help small muted"><b>Comment</b> (C): point at any part of the page and leave a note. <b>Context</b> (E): a panel that explains the current screen; select an explanation to see the part of the page it refers to.</p></div>
     <div class="set-group"><h4>Sample teacher</h4>${seg("__profile", PROFILE_ID, Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => [k, v]))}<p class="help small muted">${esc(PROFILE.blurb)}</p></div>
     <div class="set-group"><h4>With research details on</h4>
 
@@ -3410,7 +3644,7 @@ function settingsDialog() {
   <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title">
     <div class="dialog-head"><h3 id="settings-title">Settings</h3><button class="btn icon ghost" data-act="close-dialog" aria-label="Close settings" id="settings-close">${ICON.close}</button></div>
     <div class="dialog-body">
-      <nav class="dialog-nav" role="tablist" aria-label="Settings sections">${panes.map(([k, l]) => `<button type="button" role="tab" data-act="settings-pane" data-v="${k}" aria-selected="${pane === k}">${l}</button>`).join("")}</nav>
+      <nav class="dialog-nav" role="tablist" aria-label="Settings sections">${panes.map(([k, l]) => `${k === "research" ? '<div class="nav-head" role="presentation">Reviewer settings</div>' : k === "appearance" ? '<div class="nav-head" role="presentation">General settings</div>' : ""}<button type="button" role="tab" data-act="settings-pane" data-v="${k}" aria-selected="${pane === k}" class="${k === "research" || k === "study" ? "study-pane" : ""}">${l}</button>`).join("")}</nav>
       <div class="dialog-pane" role="tabpanel">${body}</div>
     </div></div>`;
 }
@@ -3582,7 +3816,7 @@ function assessmentListCard(sec) {
       <div class="spread"><div data-tip="assessment-list"><h3>Assessments</h3><p class="small muted">Every assessment for this class. Rename, move, or change standards here; deleting keeps scores in the audit trail.</p></div>
         <button class="btn" data-act="new-assessment">${ICON.plus} New assessment</button></div>
       <div class="rq-controls"><input type="search" id="al-search" placeholder="Search assessments" value="${esc(ui.alQuery || "")}" aria-label="Search assessments">
-        <label class="field" for="al-term">Period<select id="al-term" data-act="ss" data-k="alTerm">${terms.map((t) => opt(t, t.startsWith("S") ? `${t} (whole semester)` : t, ui.alTerm)).join("")}</select></label></div>
+        <label class="field" for="al-term">Term<select id="al-term" data-act="ss" data-k="alTerm">${terms.map((t) => opt(t, t.startsWith("S") ? `${t} (whole semester)` : t, ui.alTerm)).join("")}</select></label></div>
     </div>
     <div class="table-wrap al-wrap" id="al-body">${list.length ? `<table><thead><tr><th>Date</th><th>Assessment</th><th>Type</th><th>Standards</th><th>Scored</th><th></th></tr></thead><tbody>${rows}</tbody></table>` : `<div class="empty">No assessments match.</div>`}</div>
   </section>`;
@@ -3598,24 +3832,40 @@ function scoresheetTsv(sec) {
   });
   return tsv(rows);
 }
+/* Growth by domain: one line per domain over terms (prior years by semester, this year by quarter), target line at 3. */
+const DOMAIN_COLORS = ["var(--dc1)", "var(--dc2)", "var(--dc3)", "var(--dc4)", "var(--dc5)", "var(--dc6)", "var(--dc7)", "var(--dc8)", "var(--dc9)"];
 function historyTab(st) {
   const recs = state.history[st.id] || [];
-  const series = growthSeries(st);
-  const W = 560, H = 190, pl = 30, pr = 16, pt = 14, pb = 34;
-  const x = (i) => pl + (series.length <= 1 ? (W - pl - pr) / 2 : (i / (series.length - 1)) * (W - pl - pr));
+  const { periods, domains } = domainSeries(st);
+  const hidden = new Set(ui.growthHide || []);
+  const W = 640, H = 230, pl = 30, pr = 16, pt = 14, pb = 38;
+  const x = (i) => pl + (periods.length <= 1 ? (W - pl - pr) / 2 : (i / (periods.length - 1)) * (W - pl - pr));
   const y = (v) => pt + ((4 - v) / 3) * (H - pt - pb);
-  const chart = series.length ? `<svg class="svgchart growth" viewBox="0 0 ${W} ${H}" role="img" aria-label="Average mastery level by term" data-tip="growth-chart">
-    ${[1, 2, 3, 4].map((l) => `<line x1="${pl}" x2="${W - pr}" y1="${y(l)}" y2="${y(l)}" stroke="var(--line)" ${l === 3 ? 'stroke-dasharray="4 3" stroke="var(--l3)"' : ""}/><text x="${pl - 8}" y="${y(l) + 4}" font-size="11" text-anchor="end">${l}</text>`).join("")}
-    ${series.length > 1 ? `<polyline points="${series.map((s, i) => `${x(i)},${y(s.mean)}`).join(" ")}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>` : ""}
-    ${series.map((s, i) => `<circle cx="${x(i)}" cy="${y(s.mean)}" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"><title>${s.term}: mean ${s.mean.toFixed(2)} from ${s.n} results</title></circle>
-      <text x="${x(i)}" y="${y(s.mean) - 10}" font-size="11" font-weight="700" text-anchor="middle" style="fill:var(--ink)">${s.mean.toFixed(1)}</text>
-      <text x="${x(i)}" y="${H - 14}" font-size="10.5" text-anchor="middle">${s.term}</text><text x="${x(i)}" y="${H - 2}" font-size="9.5" text-anchor="middle" style="fill:var(--ink-3)">${s.n} results</text>`).join("")}
+  const firstCur = periods.findIndex((p) => p.current);
+  const lines = domains.map((dm, di) => {
+    if (hidden.has(dm.name)) return "";
+    const col = DOMAIN_COLORS[di % DOMAIN_COLORS.length];
+    const pts = periods.map((p, i) => (dm.values[p.key] == null ? null : [x(i), y(dm.values[p.key]), p, dm.values[p.key]])).filter(Boolean);
+    return `<g class="dom-line" data-dom="${esc(dm.name)}">${pts.length > 1 ? `<polyline points="${pts.map((q) => `${q[0]},${q[1]}`).join(" ")}" fill="none" stroke="${col}" stroke-width="2.2" stroke-linejoin="round"/>` : ""}
+      ${pts.map((q) => `<circle cx="${q[0]}" cy="${q[1]}" r="4" fill="${col}" stroke="var(--surface)" stroke-width="1.5"><title>${esc(dm.name)} · ${esc(q[2].label)}: ${q[3].toFixed(1)}</title></circle>`).join("")}</g>`;
+  }).join("");
+  const chart = periods.length ? `<svg class="svgchart growth" data-vbw="${W}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Mastery by domain over time; the table below lists the values" data-tip="growth-chart">
+    ${firstCur > 0 ? `<rect x="${(x(firstCur - 1) + x(firstCur)) / 2}" y="${pt}" width="${W - pr - (x(firstCur - 1) + x(firstCur)) / 2}" height="${H - pt - pb}" fill="var(--surface-2)"/><text x="${(x(firstCur - 1) + x(firstCur)) / 2 + 6}" y="${pt + 12}" style="fill:var(--ink-3)">This year</text>` : ""}
+    ${[1, 2, 3, 4].map((l) => `<line x1="${pl}" x2="${W - pr}" y1="${y(l)}" y2="${y(l)}" stroke="${l === 3 ? "var(--l3)" : "var(--line)"}" ${l === 3 ? 'stroke-dasharray="5 4" stroke-width="1.5"' : ""}/><text x="${pl - 8}" y="${y(l) + 4}" text-anchor="end">${l}</text>`).join("")}
+    <text x="${W - pr}" y="${y(3) - 5}" text-anchor="end" style="fill:var(--l3)">Target: 3 (Meets)</text>
+    ${lines}
+    ${periods.map((p, i) => `<text x="${x(i)}" y="${H - 18}" text-anchor="middle">${esc(p.label)}</text><text x="${x(i)}" y="${H - 4}" text-anchor="middle" style="fill:var(--ink-3)">${p.n} results</text>`).join("")}
   </svg>` : "";
+  const legend = `<div class="dom-legend">${domains.map((dm, di) => `<button class="dom-key ${hidden.has(dm.name) ? "off" : ""}" data-act="growth-dom" data-v="${esc(dm.name)}" aria-pressed="${!hidden.has(dm.name)}"><i style="background:${DOMAIN_COLORS[di % DOMAIN_COLORS.length]}"></i>${esc(dm.name)}</button>`).join("")}</div>`;
+  const grid = periods.length ? `<div class="table-wrap"><table class="dom-grid"><thead><tr><th>Domain</th>${periods.map((p) => `<th class="${p.current ? "cur" : ""}">${esc(p.label)}</th>`).join("")}</tr></thead>
+    <tbody>${domains.map((dm, di) => `<tr><td class="small"><i class="dom-sw" style="background:${DOMAIN_COLORS[di % DOMAIN_COLORS.length]}"></i>${esc(dm.name)}</td>${periods.map((p) => { const v = dm.values[p.key]; return v == null ? `<td class="num faint">–</td>` : `<td class="num"><span class="lvcell l${clamp(Math.round(v), 1, 4)}" title="${dm.n[p.key]} result${dm.n[p.key] === 1 ? "" : "s"}">${v.toFixed(1)}</span></td>`; }).join("")}</tr>`).join("")}</tbody></table></div>` : "";
   return `<div class="stack">
     <section class="card stack">
-      <div class="spread"><div data-tip="growth-chart"><h3>Growth over time</h3><p class="small muted">Average mastery level by semester, combining imported records with this course's evidence. Dashed line: level 3.</p></div></div>
-      ${series.length > 1 ? chart : `${chart}<p class="small muted">Import a past learner record to see growth across terms.</p>`}
-      ${series.length ? `<div class="table-wrap"><table><thead><tr><th>Term</th><th>Source</th><th>Results</th><th>Average level</th><th>At 3+</th></tr></thead><tbody>${series.map((s) => `<tr><td class="small">${s.term}</td><td class="small">${esc(s.sources.join(", "))}</td><td class="num small">${s.n}</td><td class="num small"><b>${s.mean.toFixed(2)}</b></td><td class="num small">${Math.round((s.met / s.n) * 100)}%</td></tr>`).join("")}</tbody></table></div>` : ""}
+      <div class="spread"><div data-tip="growth-chart"><h3>Growth over time by domain</h3><p class="small muted">Average level in each domain of the course, by term: earlier years by semester (from imported records) and this year by quarter. Dashed line: the graduation target, level 3. Select a domain to hide or show it.</p></div></div>
+      ${legend}
+      ${chart}
+      ${periods.filter((p) => !p.current).length ? "" : `<p class="small muted">Load or import a past learner record to see growth across earlier years.</p>`}
+      ${grid}
     </section>
     <section class="card stack" data-tip="history-import">
       <div><h3>${PREVIEW ? "Past learner records" : "Import a past learner record"}</h3><p class="small muted">${PREVIEW ? "In the pilot, teachers can import a Comprehensive Learner Record or Open Badges file from an earlier course. File import is turned off in this preview; load a fictional sample record to see how growth is charted." : "Choose a Comprehensive Learner Record or Open Badges JSON file from an earlier course or school, or paste its contents. Only standards, levels, and dates are kept."}</p></div>
@@ -3737,15 +3987,14 @@ const FICTION_WARNING = "Preview with fictional students. Do not enter real stud
 /* ---------- demo bar: one slim row (desktop); a thin line plus a bottom action bar (phone) ---------- */
 function previewBanner() {
   if (!PREVIEW) return "";
-  const n = state.feedback.length, ex = !!ui.explain;
+  const n = state.feedback.length;
   return `<div class="demo-bar" role="region" aria-label="Demo and review tools">
     <div class="db-left">
       <button class="db-fict" data-act="fict-info" aria-label="${esc(FICTION_WARNING)}" title="${esc(FICTION_WARNING)}"><span class="db-fict-long">Simulated Data</span><span class="db-fict-short">Simulated Data · v${APP_VERSION}</span> <span aria-hidden="true">ⓘ</span></button>
-      ${isResearch() ? `<button class="pill note db-chip" data-act="toggle-research" title="Research details are on. Select to turn off.">Research details on ×</button>` : ""}
     </div>
     <div class="db-actions">
       <button class="btn sm" data-act="comment-start" aria-keyshortcuts="C" title="Comment on any part of the page (C)">💬 Comment${n ? ` <span class="pill">${n}</span>` : ""}</button>
-      <button class="mode-switch ${ex ? "on" : ""}" role="switch" aria-checked="${ex}" data-act="toggle-explain" aria-keyshortcuts="E" title="Show “?” explanations on key parts of the page (E)"><span class="sw" aria-hidden="true"><span></span></span><span>Explain</span></button>
+      <button class="btn sm ${ui.context ? "on-btn" : ""}" data-act="context-toggle" aria-pressed="${!!ui.context}" aria-keyshortcuts="E" title="Explain this screen (E)">ⓘ Context${isResearch() ? ' <span class="pill study-tag">Research</span>' : ""}</button>
       <button class="btn sm" data-act="guide-menu" aria-haspopup="menu" aria-expanded="${transient.menu === "guide"}" id="guide-btn">Guide <span class="pill">${tryDone()}/${TRY_TASKS.length}</span> ▾</button>
       <button class="btn sm primary" data-act="open-dialog" data-v="send-feedback">Send feedback</button>
     </div></div>`;
@@ -3769,19 +4018,34 @@ function dlg(id, title, body, foot, size = "sm") {
     ${foot ? `<div class="dialog-foot">${foot}</div>` : ""}</div>`;
 }
 
+/* Research layer card (welcome screen): off by default, with a small looping preview of what it adds. */
+function researchCard() {
+  const on = isResearch();
+  const code = COMPETENCIES[0] ? smtString(COMPETENCIES[0], { level: 3, date: "2026-11-17", method: "P" }) : "";
+  return `<div class="wr-card ${on ? "on" : ""}">
+    <div class="wr-top"><div><b>Research layer</b> <span class="small muted">(optional)</span></div>
+      <button class="mode-switch ${on ? "on" : ""}" role="switch" aria-checked="${on}" data-act="toggle-research" aria-label="Research layer"><span class="sw" aria-hidden="true"><span></span></span><span>${on ? "On" : "Off"}</span></button></div>
+    <div class="wr-preview" aria-label="Preview: adds each level's SMT code and the averaged grade">
+      <div class="wr-row"><span class="small"><b>Maya R.</b> · ${esc(COMPETENCIES[0] ? COMPETENCIES[0].standard : "Standard")}</span><span class="lv lv-3"><span class="n">3</span>Meets</span>
+        <span class="wr-add wr-avg"><span class="tiny muted">Averaged</span> <b>C 74%</b> <span class="pill good">+4</span></span></div>
+      <code class="smt-mini wr-add wr-code">${esc(code)}</code>
+      <span class="tiny muted wr-adds">${on ? "Shown on every screen" : "Adds:"} SMT codes and averaged grades</span></div>
+  </div>`;
+}
 /* ---------- welcome (one screen, under 70 words) ---------- */
 function welcomeDialog() {
   const body = `
     <p><b>Welcome!</b> This is an early research prototype of a standards-based grading tool. <b>Every student is fictional. Please don't enter real student information.</b></p>
     <p>Try a few tasks (about 10 minutes). Use <b>Comment</b> to leave notes on anything, then select <b>Send feedback</b>.</p>
     <p><b>Pick a sample teacher to start:</b></p>
-    <div class="welcome-picks">${Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => `<button class="pick" data-act="welcome-pick" data-v="${k}"><b>${esc(v)}</b><span class="small muted">${esc(PROFILE_COURSES[k])}</span></button>`).join("")}</div>`;
+    <div class="welcome-picks">${Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => `<button class="pick" data-act="welcome-pick" data-v="${k}"><b>${esc(v)}</b><span class="small muted">${esc(PROFILE_COURSES[k])}</span></button>`).join("")}</div>
+    ${researchCard()}`;
   return dlg("welcome", "Welcome", body, "");
 }
 
 /* ---------- Send feedback / Copy my comments ---------- */
 const SCREEN_NAMES = { today: "Today", score: "Score", class: "Class", students: "Students", gradebook: "Gradebook" };
-const screenLabel = () => `${SCREEN_NAMES[ui.tab] || ui.tab}${ui.tab === "today" && ui.todayView === "queue" ? " › Retry queue" : ""}${ui.tab === "class" ? ` › ${cap1(ui.classSub || "overview")}` : ""} · ${PROFILE.name}${isResearch() ? " · research details on" : ""}${ui.explain ? " · explain on" : ""}`;
+const screenLabel = () => `${SCREEN_NAMES[ui.tab] || ui.tab}${ui.tab === "today" && ui.todayView === "queue" ? " › Retry queue" : ""}${ui.tab === "class" ? ` › ${cap1(ui.classSub || "overview")}` : ""}${ui.tab === "gradebook" ? ` › ${cap1(ui.gbSub || "scoresheet")}` : ""} · ${PROFILE.name}${isResearch() ? " · research layer on" : ""}${ui.context ? " · context open" : ""}`;
 function feedbackFormUrl() {
   if (!FEEDBACK_FORM.url) return "";
   return FEEDBACK_FORM.url.replace(/VERSION/g, encodeURIComponent(`v${APP_VERSION}`)).replace(/SCREEN/g, encodeURIComponent(screenLabel()));
@@ -4139,7 +4403,7 @@ function v47Click(act, d, t) {
       if (!d.nocopy) copyText(feedbackParts()[0], "Your comments (now paste them into the form)");
       state.feedbackSentAt = localIso(); save(); tryMark("send");
       return "default";
-    case "toggle-research": setMode(isResearch() ? "teacher" : "research"); return true;
+    case "toggle-research": closeMenus(); setMode(isResearch() ? "teacher" : "research"); if (transient.sheet) renderSheet(); return true;
     case "open-study": ui.settingsPane = "study"; openDialog("settings"); return true;
     case "dl-codebook": runExport(d.v === "csv" ? "codebookCsv" : "codebookMd"); return true;
     case "dl-clr": runExport("clr", { sid: ui.studentId }); return true;
@@ -4185,7 +4449,7 @@ function setMode(mode) {
   if (state.settings.mode === mode) return;
   state.settings.mode = mode;
   render();
-  toast(mode === "research" ? "Research details on" : "Research details off");
+  toast(mode === "research" ? "Research layer on: SMT codes and averaged grades are shown" : "Research layer off");
 }
 /* Compact, form-ready version of everything the reviewer noted (Reviewer view comments, general comments, answers). */
 function feedbackFormText() {
@@ -4353,42 +4617,58 @@ function saveComment() {
   toast(`Comment saved · ${state.feedback.length} total`);
 }
 
-/* ---------------------------------------------------------------- Explain markers */
-let explainTimer = null, pinnedTip = null;
-function drawExplain() {
-  const host = layer("explain-layer", "explain-layer");
-  host.innerHTML = "";
-  if (!tipsOn()) { hideTip(); pinnedTip = null; return; }
-  const seen = new Set(), sx = window.scrollX, sy = window.scrollY;
-  document.querySelectorAll("#main [data-tip]").forEach((el) => {
-    const k = el.dataset.tip;
-    if (!EXPLAIN_KEYS.includes(k) || seen.has(k)) return;
-    const r = el.getBoundingClientRect();
-    if (!r.width || !r.height) return;
-    const c = tipContent(el);
-    if (!c) return;
-    seen.add(k);
-    const b = document.createElement("button");
-    b.className = "explain-dot"; b.type = "button"; b.textContent = "?";
-    b.setAttribute("aria-label", `Explain: ${c.title}`);
-    b.style.left = Math.round(Math.min(r.right + sx - 10, document.documentElement.clientWidth + sx - 20)) + "px";
-    b.style.top = Math.round(r.top + sy - 8) + "px";
-    b._target = el;
-    b.addEventListener("mouseenter", () => { if (!pinnedTip) showTip(el); });
-    b.addEventListener("mouseleave", () => { if (!pinnedTip) hideTip(); });
-    b.addEventListener("click", (e) => { e.stopPropagation(); if (pinnedTip === el) { pinnedTip = null; hideTip(); } else { pinnedTip = el; showTip(el); } });
-    host.appendChild(b);
-  });
+/* ---------------------------------------------------------------- Context panel (replaces Explain markers) */
+/* Explanations are listed for the current screen; hovering or selecting one outlines the part of the page it describes. */
+function drawExplain() { const l = document.getElementById("explain-layer"); if (l) l.innerHTML = ""; }
+function ctxTarget(key) { return document.querySelector(`#main [data-tip="${CSS.escape(key)}"]`); }
+function ctxHtml() {
+  const g = VIEW_GUIDE[ui.tab];
+  const here = allTipKeysHere();
+  const onScreen = [...here.entries()].map(([k, el]) => [k, tipBody(k, el)]).filter(([, c]) => c);
+  const elsewhere = Object.keys(TIPS).filter((k) => !here.has(k)).map((k) => [k, tipBody(k, null)]).filter(([, c]) => c);
+  const a = smtAudit(), r = isResearch();
+  const item = ([k, c], linked) => `<details class="ctx-item" ${linked ? `data-key="${esc(k)}"` : ""}><summary>${esc(c.title)}</summary><div class="guide-body">${c.body}${linked ? `<button class="linklike small" data-act="ctx-show" data-key="${esc(k)}">Show on page</button>` : ""}</div></details>`;
+  return `<div class="ctx-research ${r ? "on" : ""}">
+      <button class="mode-switch ${r ? "on" : ""}" role="switch" aria-checked="${r}" data-act="toggle-research"><span class="sw" aria-hidden="true"><span></span></span><span>Research layer</span></button>
+      <p class="tiny muted">${r ? `On: SMT codes under current levels (Score, Students), an “Averaged” column in the Scoresheet, every correction in histories, research columns. ${a.n - a.bad.length} of ${a.n} codes valid · ${state.exportLog.length} export${state.exportLog.length === 1 ? "" : "s"} logged · policy v${policyVersionNow()}.` : "Turn on to see the study's research details on every screen: SMT codes, averaged grades, and corrections."}</p></div>
+    <p>${esc(g.purpose)}</p>
+    <h4>On this screen (${onScreen.length})</h4>
+    <p class="tiny muted">Hover or open an explanation to outline that part of the page.</p>
+    <div class="stack" style="gap:6px">${onScreen.map((x) => item(x, true)).join("")}</div>
+    <details class="disclose"><summary>How this screen works and saves time</summary>
+      <h4>How it works</h4><ul class="small">${g.how.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h4>How it saves teacher time</h4><ul class="small">${g.saves.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h4>What to look for</h4><p class="small">${esc(g.lens)}</p></details>
+    <details class="disclose"><summary>Where the workload drops</summary><div class="stack" style="gap:8px;margin-top:8px">${WORKLOAD.map(([x, y]) => `<div class="wl"><div class="tiny" style="color:var(--ink-2);text-decoration:line-through">${esc(x)}</div><p class="small">${esc(y)}</p></div>`).join("")}</div></details>
+    <details class="disclose"><summary>Explanations from other screens (${elsewhere.length})</summary><div class="stack" style="gap:6px;margin-top:8px">${elsewhere.map((x) => item(x, false)).join("")}</div></details>`;
 }
-function scheduleExplain() { if (!tipsOn()) return; cancelAnimationFrame(explainTimer); explainTimer = requestAnimationFrame(drawExplain); }
-window.addEventListener("resize", () => { scheduleExplain(); positionPopover(); });
-document.addEventListener("scroll", (e) => { if (e.target !== document && tipsOn()) scheduleExplain(); }, true);
-document.addEventListener("click", (e) => { if (pinnedTip && !(e.target.closest && e.target.closest(".explain-dot, .tip"))) { pinnedTip = null; hideTip(); } });
-function toggleExplain() {
-  ui.explain = !ui.explain; save();
-  renderHeader(); drawExplain();
-  toast(ui.explain ? "Explain on: select a “?” for what that part does" : "Explain off");
+function renderContext() {
+  let el = document.getElementById("ctx-panel");
+  const desktop = !isPhone();
+  document.body.classList.toggle("ctx-open", !!ui.context && desktop);
+  if (!ui.context || !desktop) { if (el) el.hidden = true; return; }
+  el = layer("ctx-panel", "ctx-panel");
+  const keepScroll = el.querySelector(".ctx-body")?.scrollTop || 0;
+  const openKeys = [...el.querySelectorAll(".ctx-item[open]")].map((d) => d.dataset.key);
+  el.hidden = false;
+  el.setAttribute("role", "complementary"); el.setAttribute("aria-label", "Context for this screen");
+  el.innerHTML = `<div class="sheet-head"><h3>Context · ${esc(VIEW_GUIDE[ui.tab]?.name || "")}</h3><button class="btn icon ghost" data-act="context-toggle" aria-label="Close the context panel">${ICON.close}</button></div><div class="ctx-body">${ctxHtml()}</div>`;
+  openKeys.forEach((k) => { const d = k && el.querySelector(`.ctx-item[data-key="${CSS.escape(k)}"]`); if (d) d.open = true; });
+  el.querySelector(".ctx-body").scrollTop = keepScroll;
 }
+function toggleContext() {
+  if (isPhone()) { if (transient.sheet === "context") closeSheet(); else openSheet("context"); return; }
+  ui.context = !ui.context; save(); renderHeader(); renderContext();
+  if (ui.context) document.querySelector("#ctx-panel .sheet-head button")?.focus({ preventScroll: true });
+}
+const toggleExplain = toggleContext;
+function ctxHighlight(key, on) {
+  document.querySelectorAll(".ctx-hl").forEach((x) => x.classList.remove("ctx-hl"));
+  if (on && key) ctxTarget(key)?.classList.add("ctx-hl");
+}
+document.addEventListener("mouseover", (e) => { const it = e.target.closest && e.target.closest(".ctx-item[data-key]"); if (it) ctxHighlight(it.dataset.key, true); else if (e.target.closest && e.target.closest("#ctx-panel, #sheet-host")) ctxHighlight(null, false); });
+document.addEventListener("mouseleave", () => ctxHighlight(null, false));
+document.addEventListener("toggle", (e) => { const d = e.target; if (d.classList && d.classList.contains("ctx-item") && d.open && d.dataset.key) { ctxHighlight(d.dataset.key, true); const t = ctxTarget(d.dataset.key); if (t) { const r = t.getBoundingClientRect(); if (r.bottom < 80 || r.top > innerHeight - 60) t.scrollIntoView({ behavior: state.settings.reduceMotion ? "auto" : "smooth", block: "center" }); } } }, true);
 
 /* ---------------------------------------------------------------- menus and sheets */
 function closeMenus() {
@@ -4400,11 +4680,10 @@ function closeMenus() {
 function guideMenuItems(phone) {
   return `<button role="menuitem" data-act="guide-open">Guide checklist <span class="pill">${tryDone()}/${TRY_TASKS.length}</span></button>
     <button role="menuitem" data-act="open-dialog" data-v="how-grades">How grades work</button>
-    <button role="menuitem" data-act="about-open">About this screen</button>
+    <button role="menuitem" data-act="context-toggle">Context: explain this screen</button>
     <div class="menu-group" role="group" aria-label="Sample teacher"><span class="tiny muted">Sample teacher</span>
       <div class="seg">${Object.entries(PROFILE_CACHE_LABELS).map(([k, v]) => `<button data-act="profile" data-v="${k}" aria-pressed="${PROFILE_ID === k}">${v}</button>`).join("")}</div></div>
-    ${phone ? `<button role="menuitemcheckbox" aria-checked="${!!ui.explain}" data-act="toggle-explain">Explain markers: ${ui.explain ? "on" : "off"}</button>` : ""}
-    <button role="menuitemcheckbox" aria-checked="${isResearch()}" data-act="toggle-research">Show research details: ${isResearch() ? "on" : "off"}</button>
+    <button role="menuitemcheckbox" aria-checked="${isResearch()}" data-act="toggle-research">Research layer: ${isResearch() ? "on" : "off"}</button>
     <hr>
     <button role="menuitem" class="danger" data-act="banner-reset">Reset demo…</button>`;
 }
@@ -4434,9 +4713,10 @@ function closeSheet() {
 function renderSheet() {
   const host = layer("sheet-host");
   if (!transient.sheet) { host.innerHTML = ""; return; }
-  const side = transient.sheet === "about" && !isPhone();
-  const title = transient.sheet === "about" ? `About this screen: ${VIEW_GUIDE[ui.tab]?.name || ""}` : `Guide · ${tryDone()} of ${TRY_TASKS.length}`;
-  const body = transient.sheet === "about" ? aboutHtml() : `${guideListHtml()}<div class="sheet-menu" role="menu" aria-label="Guide menu">${guideMenuItems(true)}</div>`;
+  const side = false;
+  const isCtx = transient.sheet === "context" || transient.sheet === "about";
+  const title = isCtx ? `Context · ${VIEW_GUIDE[ui.tab]?.name || ""}` : `Guide · ${tryDone()} of ${TRY_TASKS.length}`;
+  const body = isCtx ? ctxHtml() : `${guideListHtml()}<div class="sheet-menu" role="menu" aria-label="Guide menu">${guideMenuItems(true)}</div>`;
   host.innerHTML = `<div class="sheet-scrim" data-act="sheet-close"></div>
     <aside class="sheet ${side ? "side" : "bottom"}" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
       <div class="sheet-head"><h3 id="sheet-title">${esc(title)}</h3><button class="btn icon ghost" data-act="sheet-close" aria-label="Close">${ICON.close}</button></div>
@@ -4500,12 +4780,46 @@ function renderGuideDock() {
   el.hidden = false;
   const open = ui.guide === "open";
   el.classList.toggle("open", open);
+  const corner = ["bl", "br", "tl", "tr"].includes(ui.guideCorner) ? ui.guideCorner : "bl";
+  el.dataset.corner = corner; document.body.dataset.guide = corner;
+  el.style.left = el.style.top = el.style.right = el.style.bottom = "";
+  if (!el.dataset.dragBound) { el.dataset.dragBound = "1"; el.addEventListener("pointerdown", dockPointerDown); }
   el.innerHTML = open
-    ? `<div class="gd-head"><b>Guide · ${tryDone()} of ${TRY_TASKS.length}</b><button class="btn icon ghost sm" data-act="guide-collapse" aria-label="Collapse the guide">▾</button></div>
+    ? `<div class="gd-head" title="Drag to move"><b>Guide · ${tryDone()} of ${TRY_TASKS.length}</b><span class="row tight"><button class="btn icon ghost sm" data-act="guide-move" aria-label="Move the guide to the other side" title="Move to the other side">⇄</button><button class="btn icon ghost sm" data-act="guide-collapse" aria-label="Collapse the guide">▾</button></span></div>
        <div class="gd-bar" aria-hidden="true"><span style="width:${(tryDone() / TRY_TASKS.length) * 100}%"></span></div>
        ${ui.guideAll ? guideListHtml(true) : dockNext()}`
-    : `<button class="gd-pill" data-act="guide-open" aria-label="Open the guide, ${tryDone()} of ${TRY_TASKS.length} done">Guide ${tryDone()}/${TRY_TASKS.length} ▴</button>`;
+    : `<button class="gd-pill" data-act="guide-open" aria-label="Open the guide, ${tryDone()} of ${TRY_TASKS.length} done. Drag to move it." title="Drag to move">Guide ${tryDone()}/${TRY_TASKS.length} ${corner[0] === "t" ? "▾" : "▴"}</button>`;
 }
+/* Drag the Guide (pill or card header) anywhere; on release it snaps to the nearest corner and remembers it. */
+let dockDrag = null, dockJustDragged = false;
+function dockPointerDown(e) {
+  const handle = e.target.closest(".gd-pill, .gd-head");
+  if (!handle || e.button > 0 || (e.target.closest(".gd-head button"))) return;
+  const el = document.getElementById("guide-dock"), r = el.getBoundingClientRect();
+  dockDrag = { x0: e.clientX, y0: e.clientY, dx: e.clientX - r.left, dy: e.clientY - r.top, moved: false, el, id: e.pointerId };
+  document.addEventListener("pointermove", dockPointerMove);
+  document.addEventListener("pointerup", dockPointerUp, { once: true });
+}
+function dockPointerMove(e) {
+  const d = dockDrag; if (!d) return;
+  if (!d.moved && Math.hypot(e.clientX - d.x0, e.clientY - d.y0) < 6) return;
+  d.moved = true; d.el.classList.add("dragging");
+  const w = d.el.offsetWidth, h = d.el.offsetHeight;
+  d.el.style.right = d.el.style.bottom = "auto";
+  d.el.style.left = clamp(e.clientX - d.dx, 4, innerWidth - w - 4) + "px";
+  d.el.style.top = clamp(e.clientY - d.dy, 4, innerHeight - h - 4) + "px";
+}
+function dockPointerUp(e) {
+  document.removeEventListener("pointermove", dockPointerMove);
+  const d = dockDrag; dockDrag = null;
+  if (!d || !d.moved) return;
+  d.el.classList.remove("dragging");
+  const r = d.el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  ui.guideCorner = (cy < innerHeight / 2 ? "t" : "b") + (cx < innerWidth / 2 ? "l" : "r");
+  dockJustDragged = true; setTimeout(() => (dockJustDragged = false), 50);
+  save(); renderGuideDock();
+}
+document.addEventListener("click", (e) => { if (dockJustDragged && e.target.closest && e.target.closest("#guide-dock")) { e.stopPropagation(); e.preventDefault(); } }, true);
 function highlight(el) {
   if (!el) return;
   el.scrollIntoView({ behavior: state.settings.reduceMotion ? "auto" : "smooth", block: "center" });
@@ -4572,14 +4886,16 @@ function v471Click(act, d, t) {
     case "comment-whole": stopPick(); openCommentPopover(null); return true;
     case "comment-save": saveComment(); return true;
     case "cp-type": transient.fbType = d.v; cpopEl.querySelectorAll("[data-act=cp-type]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === d.v)); return true;
-    case "toggle-explain": closeMenus(); toggleExplain(); if (transient.sheet === "guide") renderSheet(); return true;
+    case "toggle-explain": case "context-toggle": closeMenus(); if (transient.sheet === "guide") closeSheet(); toggleContext(); return true;
+    case "ctx-show": { closeSheet(); const t = ctxTarget(d.key); if (t) highlight(t); else toast("That part isn't showing right now."); return true; }
     case "guide-menu": openGuideMenu(t); return true;
     case "guide-sheet": openSheet("guide"); return true;
     case "guide-open": closeMenus(); if (isPhone()) openSheet("guide"); else { ui.guide = "open"; save(); renderGuideDock(); document.querySelector("#guide-dock button")?.focus(); } return true;
     case "guide-collapse": ui.guide = "collapsed"; save(); renderGuideDock(); document.querySelector("#guide-dock .gd-pill")?.focus(); return true;
     case "guide-show": guideShow(d.v); return true;
     case "guide-all": ui.guideAll = !ui.guideAll; save(); renderGuideDock(); return true;
-    case "about-open": openSheet("about"); return true;
+    case "guide-move": { const c = ["bl", "br", "tl", "tr"].includes(ui.guideCorner) ? ui.guideCorner : "bl"; ui.guideCorner = c[0] + (c[1] === "l" ? "r" : "l"); save(); renderGuideDock(); document.querySelector("#guide-dock [data-act=guide-move]")?.focus(); toast(`Guide moved to the ${ui.guideCorner[1] === "l" ? "left" : "right"}`); return true; }
+    case "about-open": toggleContext(); return true;
     case "sheet-close": closeSheet(); return true;
     case "fict-info": if (transient.menu === "fict") closeMenus(); else fictInfo(t); return true;
   }
@@ -4592,7 +4908,6 @@ function v471Key(e) {
     if (cpopEl && !cpopEl.hidden) { e.preventDefault(); closeCommentPopover(); return true; }
     if (transient.menu) { e.preventDefault(); closeMenus(); document.getElementById("guide-btn")?.focus(); return true; }
     if (transient.sheet) { e.preventDefault(); closeSheet(); return true; }
-    if (pinnedTip) { pinnedTip = null; hideTip(); return true; }
     return false;
   }
   if (e.key === "Tab") {
@@ -4606,7 +4921,7 @@ function v471Key(e) {
   if (["input", "select", "textarea"].includes(tag) || e.metaKey || e.ctrlKey || e.altKey || transient.dialog || transient.drawer) return false;
   if (!PREVIEW) return false;
   if (e.key === "c" || e.key === "C") { e.preventDefault(); startPick(document.activeElement); return true; }
-  if (e.key === "e" || e.key === "E") { e.preventDefault(); toggleExplain(); return true; }
+  if (e.key === "e" || e.key === "E") { e.preventDefault(); toggleContext(); return true; }
   return false;
 }
 /* SVG charts scale with their box, so their labels are sized from the text-size setting instead (--svg-k undoes the scaling). */
@@ -4614,10 +4929,29 @@ function scaleChartText() {
   document.querySelectorAll("svg[data-vbw]").forEach((s) => { const w = s.getBoundingClientRect().width; if (w) s.style.setProperty("--svg-k", (Number(s.dataset.vbw) / w).toFixed(3)); });
 }
 window.addEventListener("resize", () => scaleChartText());
+function fitNames() {
+  document.querySelectorAll("#score-table .nm-cell").forEach((c) => {
+    c.classList.remove("short");
+    const b = c.querySelector(".nm-btn");
+    if (b && b.querySelector(".nm-init") && (b.scrollWidth > b.clientWidth + 1 || c.scrollWidth > c.clientWidth + 1)) c.classList.add("short");
+  });
+}
+window.addEventListener("resize", () => fitNames());
+function syncBottomBar() {
+  const bb = document.querySelector(".bottom-bar");
+  const h = bb && bb.offsetParent !== null ? bb.getBoundingClientRect().height : 0;
+  document.documentElement.style.setProperty("--bb-h", Math.ceil(h) + "px");
+  const hd = document.querySelector(".app-header");
+  if (hd) document.documentElement.style.setProperty("--hdr-h", Math.ceil(hd.getBoundingClientRect().height) + "px");
+}
+window.addEventListener("resize", syncBottomBar);
+if (window.visualViewport) window.visualViewport.addEventListener("resize", syncBottomBar);
 function afterRender() {
   closeMenus();
+  fitNames();
   scaleChartText();
-  const bb = layer("bottom-bar-host"); bb.innerHTML = bottomBar();
+  renderContext();
+  const bb = layer("bottom-bar-host"); bb.innerHTML = bottomBar(); syncBottomBar();
   renderGuideDock();
   drawExplain();
   if (cpopEl && !cpopEl.hidden) { markSelected(); positionPopover(); }
@@ -4941,7 +5275,7 @@ async function saveFile(filename, data, label) {
 
 /* ---------- file naming ---------- */
 const slugify = (s) => s.normalize("NFKD").replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-").slice(0, 48);
-function ptpFilename(sectionId, a) { return `PTP_${sectionId}_${a.date}_${slugify(a.title)}_${exportTag()}_${tagNow()}.csv`; }
+function ptpFilename(sectionId, a, c) { return `PTP_${sectionId}_${a.date}_${slugify(a.title)}${c ? `_${slugify(c.standard)}` : ""}_${exportTag()}_${tagNow()}.csv`; }
 
 /* ---------- minimal ZIP writer (stored, no compression; UTF-8 names) ---------- */
 const CRC_T = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
@@ -4978,11 +5312,12 @@ function makeZip(files) {
 /* ---------- PowerTeacher Pro exports ---------- */
 const ptpOpts = () => state.settings.export;
 const exportTag = () => { const ex = state.settings.export; return ex.scoreType === "points" ? `points${ex.total}` : ex.scoreType; };
-function ptpTermAssessments(sectionId, term) {
+/* split: one file per assessment × standard (v0.47.5 and later). Older logged bundles reproduce with split off. */
+function ptpTermAssessments(sectionId, term, split) {
   return state.assessments
     .filter((a) => (a.sections || []).includes(sectionId) && a.date <= VIEW_DATE && (term.startsWith("S") ? semesterFor(a.date) === term : termFor(a.date) === term))
     .sort((a, b) => a.date.localeCompare(b.date))
-    .map((a) => ({ a, x: ptpImport(sectionId, a.id, ptpOpts()) }))
+    .flatMap((a) => (split ? a.comps.map((cid) => ({ a, c: COMP[cid], x: ptpImport(sectionId, a.id, ptpOpts(), cid) })) : [{ a, x: ptpImport(sectionId, a.id, ptpOpts()) }]))
     .filter(({ x }) => x && x.cells > 0);
 }
 function importStepsText(sectionId, items) {
@@ -4993,8 +5328,8 @@ function importStepsText(sectionId, items) {
     `PowerTeacher Pro score import: ${sec.period} ${sec.name}`,
     `Generated ${genStamp().replace("T", " ")} by the SMT Mastery Dashboard v${verNow()} · grading policy v${policyVersionNow()} · score type ${exportTypeLabel(ex)}`,
     "",
-    "Files in this folder (one per assessment):",
-    ...items.map(({ a, x }) => `  ${ptpFilename(sectionId, a)}  ->  assessment "${a.title}" (${a.date}), ${x.rows.length} students, columns: ${x.comps.map((c) => c.standard).join(", ")}`),
+    items.some((it) => it.c) ? "Files in this folder (one per assessment and standard; each has one score column):" : "Files in this folder (one per assessment):",
+    ...items.map(({ a, c, x }) => `  ${ptpFilename(sectionId, a, c)}  ->  assessment "${a.title}" (${a.date})${c ? `, standard ${c.standard}` : ""}, ${x.rows.length} students, columns: ${x.comps.map((k) => k.standard).join(", ")}`),
     "",
     "For each file:",
     "  1. Grading > Assignment List (PowerTeacher Pro's list of assessments), select the matching assessment.",
@@ -5012,12 +5347,12 @@ function importStepsText(sectionId, items) {
 /* ---------- export registry: every download is logged with what's needed to reproduce it exactly ---------- */
 const crlf = (s) => s.replace(/\r?\n/g, "\r\n") + "\r\n";
 const EXPORTS = {
-  ptp: { label: "Import file", make: ({ sectionId, aid }) => { const x = ptpImport(sectionId, aid, ptpOpts()); return x && x.rows.length ? { filename: ptpFilename(sectionId, x.a), data: x.text } : null; } },
-  bundle: { label: "Import files", make: ({ sectionId, term }) => {
-    const items = ptpTermAssessments(sectionId, term);
+  ptp: { label: "Import file", make: ({ sectionId, aid, cid }) => { const x = ptpImport(sectionId, aid, ptpOpts(), cid); return x && x.rows.length ? { filename: ptpFilename(sectionId, x.a, cid ? COMP[cid] : null), data: x.text } : null; } },
+  bundle: { label: "Import files", make: ({ sectionId, term, split }) => {
+    const items = ptpTermAssessments(sectionId, term, split);
     if (!items.length) return null;
     const folder = `PTP_${sectionId}_${term}_${VIEW_DATE}_${tagNow()}`;
-    const files = items.map(({ a, x }) => ({ name: `${folder}/${ptpFilename(sectionId, a)}`, text: x.text }));
+    const files = items.map(({ a, c, x }) => ({ name: `${folder}/${ptpFilename(sectionId, a, c)}`, text: x.text }));
     files.push({ name: `${folder}/IMPORT-STEPS.txt`, text: importStepsText(sectionId, items) });
     return { filename: `${folder}.zip`, data: makeZip(files), digest: files.map((f) => `${f.name}\n${f.text}`).join("\n--\n"), count: items.length };
   } },
@@ -5058,9 +5393,9 @@ function reproduceExport(entry) {
     });
   } finally { GEN_VERSION = null; state.settings.district = saved.district; state.settings.research = saved.research; invalidate(); }
 }
-function exportPtpCurrent() { runExport("ptp", { sectionId: ui.sectionId, aid: ui.ptpAssessment }, "There are no scores to export for this assessment."); }
-function exportPtpBundle() { const term = ui.ptpBundleTerm || termFor(TODAY); runExport("bundle", { sectionId: ui.sectionId, term }, `No scored assessments in ${term} for this class.`); }
-function exportSummary() { runExport("summary", { sectionId: ui.sectionId, format: ui.gbFormat }); }
+function exportPtpCurrent(cid) { const a = assessmentById(ui.ptpAssessment); runExport("ptp", { sectionId: ui.sectionId, aid: ui.ptpAssessment, cid: cid || (a && a.comps[0]) }, "There are no scores to export for this standard."); }
+function exportPtpBundle() { const term = ui.ptpBundleTerm || termFor(TODAY); runExport("bundle", { sectionId: ui.sectionId, term, split: true }, `No scored assessments in ${term} for this class.`); }
+function exportSummary(format) { runExport("summary", { sectionId: ui.sectionId, format: format || ui.gbFormat }); }
 function exportResearch() { runExport("research", { semester: ui.semester }); }
 function exportBackup() { runExport("backup"); }
 
@@ -5374,6 +5709,8 @@ function onClick(e) {
     case "rq-chip": if (d.k === "q") ui.rq.q = ""; else ui.rq[d.k] = "all"; render(); break;
     case "class-sub": ui.classSub = d.v; render(); break;
     case "gb-sub": ui.gbSub = d.v; render(); break;
+    case "growth-dom": { const h = new Set(ui.growthHide || []); if (h.has(d.v)) h.delete(d.v); else h.add(d.v); ui.growthHide = [...h]; render(); break; }
+    case "std-cat": ui.stdCat = d.v; render(); break;
     case "add-class": openDialog("add-class"); break;
     case "remove-class": {
       if (t.dataset.armed !== "1") { t.dataset.armed = "1"; t.textContent = "Click again to remove"; return; }
@@ -5423,9 +5760,11 @@ function onClick(e) {
     case "fw": ui.fw = d.v; render(); break;
     case "gb-format": ui.gbFormat = d.v; render(); break;
     case "gb-mode": ui.gbMode = d.v; render(); break;
-    case "dl-ptp": exportPtpCurrent(); break;
+    case "dl-ptp": exportPtpCurrent(d.cid); break;
+    case "ptp-std": ui.ptpCid = d.cid; render(); break;
     case "dl-bundle": exportPtpBundle(); break;
-    case "dl-summary": exportSummary(); break;
+    case "dl-summary": exportSummary(d.v); t.closest("details")?.removeAttribute("open"); break;
+    case "preview-summary": ui.gbFormat = d.v; t.closest("details")?.removeAttribute("open"); openDialog("summary-preview"); break;
     case "dl-research": exportResearch(); break;
     case "dl-backup": exportBackup(); break;
     case "ptp-type": ui.ptpScoreType = d.v; render(); break;
